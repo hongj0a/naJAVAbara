@@ -11,4 +11,8 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/header")
+	public String header() {
+		return "main/header";
+	}
 }

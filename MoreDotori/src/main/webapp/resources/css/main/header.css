@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.margin_left_10{
+	margin-left: 10px;
+}
+
+.magin_right_10{
+	margin-right: 10px;
+}
+
+.width_40px{
+	width: 40px;
+}
+
+.width_100px{
+	width: 100px;
+}
+
+.width_300px{
+	width: 300px;
+}
+
+/** 헤더프로필 **/
+.profile{
+	text-align: center;
+}
+
+.profile p{
+	margin-top: 15px;
+}
+
+#profile_img{
+    display: block;
+    width: 100px;
+    margin: auto;	
+}
