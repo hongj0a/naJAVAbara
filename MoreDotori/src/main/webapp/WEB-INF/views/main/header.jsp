@@ -100,7 +100,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <div class="dropdown">
+                    <div class="dropdown2 dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                        	    <img src="images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
                             <span>김채연님</span>
@@ -108,22 +108,22 @@
                         <div class="dropdown-menu dropdown-menu-right notification">
                             <div class="noti-head">
                                 <h6 class="d-inline-block m-b-0">김채연님의 프로필</h6>
-                                <div class="float-right">
-                                    <a href="#!"><span class="pcoded-micon"><i class="fas fa-pencil-alt"></i></span></a>
-                                </div>                              
                             </div>
                             <ul class="noti-body">
-                                <li class="notification">
+                                <li class="notification" id="notification2">
                                         <div class="media-body profile">
                                         <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
                                             <p><strong>김채연</strong>님 </p> 
                                             <p>kcy8729@gmail.com</p>
+                                            <p><a href="#!" id="update_info"> 정보수정 </a></p>
                                         </div>
                                 </li>
                             </ul>
-                            <div class="noti-footer">
-                                <a href="#!"> 로그아웃 </a>
+                            <a href="#!">
+                            <div class="noti-footer" id="logout">
+                                                                   로그아웃 
                             </div>
+                            </a>
                         </div>
                     </div>
                 </li>
@@ -133,49 +133,39 @@
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
                         <div class="dropdown-menu dropdown-menu-right notification">
                             <div class="noti-head">
-                                <h6 class="d-inline-block m-b-0">Notifications</h6>
-                                <div class="float-right">
-                                    <a href="#!" class="m-r-10">mark as read</a>
-                                    <a href="#!">clear all</a>
-                                </div>
+                                <h6 class="d-inline-block m-b-0">알림</h6>
                             </div>
                             <ul class="noti-body">
-                                <li class="n-title">
-                                    <p class="m-b-0">NEW</p>
-                                </li>
-                                <li class="notification">
+                                <li class="notification2 notification header_notice">
                                     <div class="media">
-                                        <img class="img-radius" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>New ticket Added</p>
+                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
+                                            <p> - 내용웅앵웅조곰만보여주지... </p>
+                                            <span>2019.07. 09</span>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="n-title">
-                                    <p class="m-b-0">EARLIER</p>
-                                </li>
-                                <li class="notification">
+                                <li class="notification2 notification header_notice">
                                     <div class="media">
-                                        <img class="img-radius" src="images/user/avatar-2.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <p><strong>Joseph William</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>Prchace New Theme and make payment</p>
+                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
+                                            <p> - 내용웅앵웅조곰만보여주지... </p>
+                                            <span>2019.07. 09</span>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="notification">
+                                <li class="notification2 notification header_notice">
                                     <div class="media">
-                                        <img class="img-radius" src="images/user/avatar-3.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <p><strong>Sara Soudein</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
-                                            <p>currently login</p>
+                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
+                                            <p> - 내용웅앵웅조곰만보여주지... </p>
+                                            <span>2019.07. 09</span>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                             <div class="noti-footer">
-                                <a href="#!">show all</a>
+                                <a href="#!">알림 전체보기</a>
                             </div>
                         </div>
                     </div>
