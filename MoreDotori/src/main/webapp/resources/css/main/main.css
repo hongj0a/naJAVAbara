@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#main_content_nopadding{
+	padding: 0;
+}
+
+#main_no_margin{
+	margin: 0px;
+}
+
+.padding_30px{
+	padding: 30px;
+}
