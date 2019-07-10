@@ -57,6 +57,22 @@
 	font-weight: bold;
 }
 
+#whole_noti{
+	font-size: 15px;
+	text-decoration: none;
+	color: white;
+	background-color: #6b98f2;
+}
+
+#whole_noti:hover{
+	background-color: #5d90f6;
+}
+
+#whole_noti:active{
+	background-color: #5086F2;
+	font-weight: bold;	
+}
+
 .header_notice{
 	border-bottom: .5px solid #80808033;
 }
@@ -91,3 +107,16 @@
 .pcoded-header .dropdown2 .notification .noti-body li#notification2:hover {
   background: none;
 }
+
+#noti_menu_scroll{
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x:hidden
+}
+
+#noti_menu_scroll::-webkit-scrollbar{width: 8px;}
+::-webkit-scrollbar-track {background-color:#fff;}
+::-webkit-scrollbar-thumb {background-color:#f2f2f2;border-radius: 10px;}
+::-webkit-scrollbar-thumb:hover {background: #555;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+width:16px;height:16px;background:#fff;} 

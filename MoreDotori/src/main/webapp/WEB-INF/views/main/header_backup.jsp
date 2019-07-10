@@ -212,6 +212,33 @@
     </section>
     <!-- [ chat message ] end -->
 
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+
+                    <!-- [ breadcrumb ] start -->
+                    <div class="page-header">
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+
+                    <div class="main-body">
+                        <div class="page-wrapper">
+
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                            </div>
+                            <!-- [ Main Content ] end -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
     <!-- Required Js -->
     <script src="js/vendor-all.min.js">
 </script>

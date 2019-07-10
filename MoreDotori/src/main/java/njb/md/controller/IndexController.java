@@ -13,6 +13,6 @@ public class IndexController {
 	
 	@GetMapping("/header")
 	public String header() {
-		return "main/header";
+		return "main/main";
 	}
 }
