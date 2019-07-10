@@ -112,14 +112,15 @@ body::-webkit-scrollbar{width: 10px;}
 
 #noti_bell_count{
     display: inline-block;
-    width: 19px;
-    height: 19px;
-    border-radius: 19px;
-    background-color: white;
-    color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #f44236;
+    color: white;
     line-height: 54px;
     position: relative;
-    top: -10px;
+    top: -5px;
+    left: -6px;
 }
 
 #noti_bell_count p{

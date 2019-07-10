@@ -31,7 +31,7 @@
     <nav class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
+                <a href="/main" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
                     </div>
@@ -47,7 +47,7 @@
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu active pcoded-trigger">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
-                            <li class="active"><a href="index.html" class="">가계부 작성</a></li>
+                            <li class="active"><a href="/main" class="">가계부 작성</a></li>
                             <li class=""><a href="dashboard-ecommerce.html" class="">자산목록관리</a></li>
                             <li class=""><a href="dashboard-crm.html" class="">현황 및 통계 </a></li>
                         </ul>
@@ -84,7 +84,7 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
-            <a href="index.html" class="b-brand">
+            <a href="/main" class="b-brand">
                    <div class="b-bg">
                        <i class="feather icon-trending-up"></i>
                    </div>
@@ -173,7 +173,7 @@
                                     </div>
                                 </li>                               
                             </ul>
-                            <a href="#!">
+                            <a href="/noti">
                             <div class="noti-footer" id="whole_noti">
                               	알림 전체보기
                             </div>

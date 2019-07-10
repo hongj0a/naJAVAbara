@@ -11,8 +11,13 @@ public class IndexController {
 		return "index";
 	}
 	
-	@GetMapping("/header")
-	public String header() {
+	@GetMapping("/main")
+	public String main() {
 		return "main/main";
+	}
+
+	@GetMapping("/noti")
+	public String noti() {
+		return "main/notification";
 	}
 }
