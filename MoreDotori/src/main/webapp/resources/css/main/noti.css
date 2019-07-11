@@ -23,6 +23,10 @@
 	padding-top: 20px;
 }
 
+.noti_lists hr{    
+	border-bottom: .5px solid #6b98f2;
+}
+
 .noti_lists:first-child{
 	padding-top: 0px;
 }

@@ -3980,12 +3980,10 @@ body.layout-1 .pcoded-navbar.icon-colored .sidemenu > li:nth-child(48) > a {
   -webkit-text-fill-color: unset;
 }
 
-/**
 .pcoded-header.header-lightblue {
   background: #23b7e5;
   color: rgba(255, 255, 255, 0.8);
 }
-**/
 
 .pcoded-header.header-lightblue .profile-notification li > a {
   color: #888;
@@ -4200,11 +4198,9 @@ body.layout-1 .pcoded-navbar.icon-colored .sidemenu > li:nth-child(48) > a {
   -webkit-text-fill-color: unset;
 }
 
-/**
 .pcoded-navbar.brand-lightblue .header-logo, .pcoded-navbar[class*="navbar-"].brand-lightblue .header-logo {
   background: #23b7e5;
 }
-**/
 
 .pcoded-navbar.brand-lightblue .header-logo .b-bg, .pcoded-navbar[class*="navbar-"].brand-lightblue .header-logo .b-bg {
   background: #fff;
@@ -10610,17 +10606,6 @@ div.code-toolbar > .toolbar span:hover {
 }
 /**====== File Upload css end ======**/
 
-/**====== Append CSS for naJAVAbara =======**/
-/*헤더*/
-.pcoded-header.header-lightblue {
-  background: #5086f2;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/*메뉴*/
-.pcoded-navbar.brand-lightblue .header-logo, .pcoded-navbar[class*="navbar-"].brand-lightblue .header-logo {
-  background: #5086f2;
-}
 
 /*기본버튼*/
 .btn-primary {
@@ -10628,4 +10613,3 @@ div.code-toolbar > .toolbar span:hover {
   background-color: #5086f2;
   border-color: #5086f2;
 }
-

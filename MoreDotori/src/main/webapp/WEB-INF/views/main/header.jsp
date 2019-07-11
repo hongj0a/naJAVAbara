@@ -28,9 +28,9 @@
 
 <body class="layout-8">
     <!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar menu-light brand-lightblue active-lightblue">
+    <nav class="pcoded-navbar menu-light brand-lightblue active-lightblue navbar-collapsed">
         <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo">
+            <div class="navbar-brand header-logo" id="moredotori_menu">
                 <a href="/main" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
@@ -40,10 +40,11 @@
                 <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             </div>
             <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar">
+                <ul class="nav pcoded-inner-navbar" id="moredotori_navbar">
+                    <!-- 회원 메뉴 -->
                     <li class="nav-item pcoded-menu-caption">
-                        <label>MENU</label>
-                    </li>
+                        <label>MEMBER MENU</label>
+                    </li>                    
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu active pcoded-trigger">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
@@ -67,13 +68,63 @@
                             <li class=""><a href="widget-chart.html" class="">자유게시판</a></li>
                         </ul>
                     </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">고객센터</span></a>
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="bc_toasts.html" class="">F A Q</a></li>
                             <li class=""><a href="bc_extra.html" class="">Q & A</a></li>
                         </ul>
                     </li>
+                    
+                    
+                    <!-- 전문가 메뉴 -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>EXPERT MENU</label>
+                    </li>                     
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">상담 관리</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="widget-table.html" class="">상담 신청자 목록</a></li>
+                            <li class=""><a href="widget-user-card.html" class="">상담 현황</a></li>
+                        </ul>
+                    </li>
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="widget-table.html" class="">공지사항</a></li>
+                            <li class=""><a href="widget-user-card.html" class="">PR게시판</a></li>
+                            <li class=""><a href="widget-chart.html" class="">자유게시판</a></li>
+                        </ul>
+                    </li>
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="bc_toasts.html" class="">F A Q</a></li>
+                            <li class=""><a href="bc_extra.html" class="">Q & A</a></li>
+                        </ul>
+                    </li>                                   
+                                       
+                    <!-- 관리자 메뉴 -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>NAJAVABARA MENU</label>
+                    </li>                    
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">회원 관리</span></a>
+                    </li>
+                    <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">게시물 관리</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="bc_toasts.html" class="">공지사항</a></li>
+                            <li class=""><a href="bc_extra.html" class="">신고내역</a></li>
+                        </ul>
+                    </li>
+                     <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
+                        <ul class="pcoded-submenu">
+                            <li class=""><a href="bc_toasts.html" class="">F A Q</a></li>
+                            <li class=""><a href="bc_extra.html" class="">Q & A</a></li>
+                        </ul>
+                    </li>                    
                 </ul>
             </div>
         </div>
@@ -81,7 +132,7 @@
     <!-- [ navigation menu ] end -->
 
     <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed">
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed" id="moredotori_header">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="/main" class="b-brand">
