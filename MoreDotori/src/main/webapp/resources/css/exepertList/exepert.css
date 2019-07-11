@@ -19,5 +19,31 @@
 	 overflow:scroll;
 	 height:200px;
 	 width:465px;
-	 font-size:5px;
+}
+
+#consent p{
+	font-size: 12px;
+}
+
+#content{
+	resize: none;
+	height:100px;
+	width:465px;
+	padding:0px;
+	word-wrap: break-word;
+}
+#footer-style{
+	width: 100%;
+}
+#footer-style button{
+	margin: auto;
+}
+#card-design{
+	margin-top: 50px;
+}
+#sns-design{
+	margin-top: 20px;
+}
+#sns-design button{
+	font-size: 10px;
 }
