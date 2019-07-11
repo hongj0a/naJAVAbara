@@ -48,7 +48,7 @@
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu active pcoded-trigger">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
-                            <li class="active"><a href="/main" class="">가계부 작성</a></li>
+                            <li class="active"><a href="/book" class="">가계부 작성</a></li>
                             <li class=""><a href="dashboard-ecommerce.html" class="">자산목록관리</a></li>
                             <li class=""><a href="dashboard-crm.html" class="">현황 및 통계 </a></li>
                         </ul>

@@ -20,4 +20,9 @@ public class IndexController {
 	public String noti() {
 		return "main/notification";
 	}
+
+	@GetMapping("/book")
+	public String book() {
+		return "cheyeon_member/accountBook";
+	}
 }
