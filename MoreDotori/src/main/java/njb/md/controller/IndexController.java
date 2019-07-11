@@ -10,5 +10,12 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	
+	@GetMapping("/eList")
+	public String eList() {
+		return "exepertList/exepertList";
+	}
+	@GetMapping("/eListIn")
+	public String eListIn() {
+		return "exepertList/exepertListIn";
+	}
 }

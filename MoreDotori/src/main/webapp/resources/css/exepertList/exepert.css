@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#advice_title{
+	display: block;
+	margin: auto 0;
+	text-align: center;
+}
+#advice_signup{
+	display: block;
+	margin: auto 0;
+	float : center;
+}
+#modal-advice{
+	width: 100%;
+	float:none;
+	margin:0 auto;
+}
+#consent{
+	 overflow:scroll;
+	 height:200px;
+	 width:465px;
+	 font-size:5px;
+}
