@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.txt_right{
+	text-align: right;
+}
+
+.txt_center{
+	text-align: center;
+}
+
+
+#account_header{
+	margin : 0px 0px 20px 0px;
+}
+
+#account_header div:nth-child(2){
+	font-size: 25px;
+}
