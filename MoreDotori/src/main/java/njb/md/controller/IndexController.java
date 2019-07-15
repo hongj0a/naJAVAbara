@@ -25,4 +25,9 @@ public class IndexController {
 	public String book() {
 		return "cheyeon_member/accountBook";
 	}
+
+	@GetMapping("/book2")
+	public String book2() {
+		return "cheyeon_member/accountBook2";
+	}
 }

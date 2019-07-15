@@ -14,12 +14,18 @@
     request.setCharacterEncoding("utf-8");
     
     Calendar now = Calendar.getInstance();
-    int year = now.get(Calendar.YEAR);
-    int month = now.get(Calendar.MONTH)+1;
-    int day = now.get(Calendar.DATE);
+
+    int toyear = now.get(Calendar.YEAR);
+    int tomonth = now.get(Calendar.MONTH)+1;
+    int today = now.get(Calendar.DATE);
+    
+    int year = toyear;
+    int month = tomonth;
+    int day = today;
     
     String _year = request.getParameter("year");
     String _month = request.getParameter("month");
+    String _day = request.getParameter("day");
     
     if(_year != null)
         year = Integer.parseInt(_year);
@@ -27,10 +33,14 @@
     if(_month != null)
         month = Integer.parseInt(_month);
     
-    now.set(year, month-1, 1);    //출력할 년도, 월로 설정
+    if(_day != null)
+    	day = Integer.parseInt(_day);
+    
+    now.set(year, month-1, day);    //출력할 년도, 월로 설정
     
     year = now.get(Calendar.YEAR);    //변화된 년, 월
     month = now.get(Calendar.MONTH) + 1;
+    day = now.get(Calendar.DATE);
     
     int end = now.getActualMaximum(Calendar.DAY_OF_MONTH);    //해당월의 마지막 날짜
     int w = now.get(Calendar.DAY_OF_WEEK);    //1~7(일~토)
@@ -66,18 +76,18 @@
 								    <div class="col">
 								    	<div class="card">
 									    <div class="row">
-									    	<div class="col">
-									            <table width="210" border="0" cellpadding="1" cellspacing="2">
+									    	<div class="col-5">
+									            <table width="100%" border="0" cellpadding="1" cellspacing="2">
 									                <tr height="30">
 									                    <td align="center">
-									                        <a href="/book?year=<%=year%>&month=<%=month-1%>">◀</a>
+									                        <a href="/book?year=<%=year%>&month=<%=month-1%>&day=<%=day%>">◀</a>
 									                        <b><%=year %>年 <%=month %>月</b>
-									                        <a href="/book?year=<%=year%>&month=<%=month+1%>">▶</a>
+									                        <a href="/book?year=<%=year%>&month=<%=month+1%>&day=<%=day%>">▶</a>
 									                    </td>
 									                </tr>
 									            </table>
 									            
-									            <table width="210" border="0" cellpadding="2" cellspacing="1" bgcolor="#cccccc">
+									            <table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#cccccc">
 									                <tr height="25">
 									                    <td align="center" bgcolor="#e6e4e6"><font color="red">일</font></td>
 									                    <td align="center" bgcolor="#e6e4e6">월</td>
@@ -104,7 +114,8 @@
 									                        fc = (newLine == 0)?"red":(newLine==6?"blue":"#000000");
 									                        bg = "#ffffff";
 									                        out.println("<td align='center' bgcolor=" + bg + "><font color=" + fc + ">"
-									                                + i + "</font></td>");
+									                        		+ "<a href='/book?year=" + year + "&month=" + month + "&day=" + i + "'>"
+									                                + i + "</a></font></td>");
 									                        newLine++;
 									                        if(newLine == 7 && i != end)
 									                        {
@@ -123,7 +134,7 @@
 									                %>
 									            </table>
 								            </div>
-								            <div class="col">
+								            <div class="col-7">
 								            	gg
 								            </div>					    
 									    </div>								    	
@@ -136,17 +147,43 @@
 								    </div>
 								</div>	                            
 								<div class="row">
-								    <div class="col-8">
-	                                    <div class="card">
-	                                        <div class="card-header">
-	                                            <h5>Line [ Basic ] Chart</h5>
-	                                        </div>
-	                                        <div class="card-block">
-	                                            <div id="chart-highchart-line1" style="width: 100%; height: 350px;"></div>
-	                                        </div>
-	                                    </div>
+								    <div class="col-10 card">
+								    	<div class="row">
+									    	<div class="col-2">
+									    		<div class="row">
+                                                    <div class="form-group">
+                                                    	<div> 수입 </div>
+                                                        <div class="checkbox checkbox-fill d-inline">
+                                                            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-1" checked>
+                                                            <label for="checkbox-fill-1" class="cr"> 122,332원 </label>
+                                                        </div>
+                                                    </div>
+									    		</div>
+									    		<div class="row">
+                                                    <div class="form-group">
+                                                    	<div> 지출 </div>
+                                                        <div class="checkbox checkbox-fill d-inline">
+                                                            <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2" checked>
+                                                            <label for="checkbox-fill-2" class="cr"> 122,332원 </label>
+                                                        </div>
+                                                    </div>
+									    		</div>
+									    		<div class="row">
+                                                    <div class="form-group">
+                                                    	<div> 그외 </div>
+                                                        <div class="checkbox checkbox-fill d-inline">
+                                                            <input type="checkbox" name="checkbox-fill-3" id="checkbox-fill-3" checked>
+                                                            <label for="checkbox-fill-3" class="cr"> 122,332원 </label>
+                                                        </div>
+                                                    </div>
+									    		</div>									    											    		
+									    	</div>
+		                                    <div class="col-10">
+												<div id="container" style="height: 350px"></div>
+		                                    </div>								    	
+								    	</div>
 								    </div>
-								    <div class="col-4">col-4</div>
+								    <div class="col-2">col-2</div>
 								</div>							
                             <!-- [ Main Content ] end -->
 
@@ -158,8 +195,7 @@
     </div>
     <!-- [ Main Content ] end -->
     <!-- highchart chart -->
-    <script src="plugins/chart-highchart/js/highcharts.js"></script>
-    <script src="plugins/chart-highchart/js/highcharts-3d.js"></script>
-    <script src="js/pages/chart-highchart-custom.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="js/cheyeon_member/accountBook.js"></script>
 </body>
 </html>
