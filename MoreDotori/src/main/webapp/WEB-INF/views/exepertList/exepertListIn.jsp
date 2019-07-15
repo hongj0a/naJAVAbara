@@ -26,11 +26,14 @@
     <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="css/style.css">
+       <!-- Smart Wizard css -->
+    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard.min.css">
+    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
+    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
+    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
 	<!--  stars css  -->
     <link rel="stylesheet" href="plugins/ratting/css/bootstrap-stars.css">
-    <link rel="stylesheet" href="plugins/ratting/css/css-stars.css">
-    <link rel="stylesheet" href="plugins/ratting/css/fontawesome-stars.css">
-    <link rel="stylesheet" href="plugins/ratting/css/fontawesome-stars-o.css">  
+    <link rel="stylesheet" href="plugins/ratting/css/css-stars.css"> 
     <!-- select2 css -->
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     <!-- multi-select css -->
@@ -277,10 +280,10 @@
                         <div class="page-block">
                             <div class="row align-items-center">
                                 <div class="col-md-12">
-                                    <div class="page-header-title" style="weight:80%;">
+                                    <div id="headder-title" class="page-header-title">
                                         <h5>전문가 상세정보</h5>
                                     </div>
-                                    <div class="find-list" style="weight:60%; float:left;">
+                                    <div class="find-list">
                                     <ul class="breadcrumb">
                                
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
@@ -289,14 +292,14 @@
                                         <li class="breadcrumb-item"><a href="#!">전문가 상세정보</a></li>
                                     </ul>
                                     </div>
-                               		<div class="advice-signup" style="float : right;">
+                               		<div class="advice-signup">
                                			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">상담신청</button>
                                			<div class="card-body">
                                             <div id="exampleModalCenter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                        	<div style="width: 100%; float:none; margin:0 auto" >
+                                                        	<div id="advice-signup2">
                                                             <h5 class="modal-title" id="  exampleModalCenterTitle">상담신청</h5>
                                                             </div>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -592,34 +595,85 @@
                     </div>
                    <!--  stars -->
                     <hr style="border-bottom : solid 1px blue;">
-                                     <div class="stars stars-example-css" style="float: right;">
-                                         <select id="example-css" class="rating-star" name="rating" autocomplete="off">
-                                             <option value="1">1</option>
-                                             <option value="2">2</option>
-                                             <option value="3">3</option>
-                                             <option value="4">4</option>
-                                             <option value="5">5</option>
-                                         </select>
+                                     <div class="stars stars-example-css" id="stars">
+                                     	<div class="br-wrapper br-theme-css-stars">
+                                       			<div class="br-widget">
+                                       				<a href="#" data-rating-value="1" data-rating-text="1" class="br-selected"></a>
+                                       				<a href="#" data-rating-value="2" data-rating-text="2" class="br-selected"></a>
+                                       				<a href="#" data-rating-value="3" data-rating-text="3" class="br-selected"></a>
+                                       				<a href="#" data-rating-value="4" data-rating-text="4" class="br-selected br-current"></a>
+                                       				<a href="#" data-rating-value="5" data-rating-text="5" class=""></a>
+                                       			</div>
+                                       	  </div>
                                      </div>
 		 						</br></br>
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                                     <div class="card">
-                                   		 <div class="col-xl-4 col-md-6">
-	                                        <div class="card-block p-0">
-	                                            <div id="card-design" class="text-center project-main">
-	                                                <a href="/"><img class="img-fluid rounded-circle" src="images/user/avatar-5.jpg" alt="dashboard-user"></a>
+                                   		    <div class="card-block p-0">
+	                                            <div id="card-design-plus" class="text-center project-main">
+	                                            <div class="col-xl-4 col-md-6" id="colxlmd">
+	                                                <a href="#!"><img class="img-fluid rounded-circle" src="images/user/avatar-5.jpg" alt="dashboard-user"></a>
 	                                                <h5 class="mt-4">최혜원</h5>
 	                                                <span>email@naver.com</span>
-	                                                <div id="sns-design">
-		                                                <button type="submit" class="btn btn-primary" >instagram</button>
-		                                                <button type="submit" class="btn btn-primary" >facebook</button>
-		                                                <button type="button"><img src="images/exepertList/facebook.png" alt="">버튼명</button>
+	                                                <div class="sns-design">
+		                                           		<a href="https://www.instagram.com/"><i id="sns-design" class="fab fa-instagram"></i></a>
+		                                                <a href="https://www.facebook.com/"><i id="sns-design2" class="fab fa-facebook-square"></i></a>
+		                                                </div>
 		                                            </div>
 	                                            </div>
+	                                           <div class="self-intro">
+                                    	 		<h5>자기소개</h5>
+                                    	 		<p>	-웅앵웅포키포키</p>
+                                    	 		<p>	-웅앵웅포키포키</p></br></br>
+                                    	 		<h5>자격증</h5>
+                                    	 		<p>	-웅앵웅포키포키</p>
+                                    	 		<p>	-웅앵웅포키포키</p>
+                                    	 	  </div>
 	                                       	</div>
-                                    	 </div>
+	                                       	</br></br>
+	                                   		<div class="row">
+	                                   <div class="col-sm-12">
+                                        <div class="card-header">
+                                            <h5>후  기</h5>
+                                        </div>
+                                        <div id="card-box" class="card">
+                                        <div class="card-block">
+		                                        <div class="stars stars-example-css" id="stars">
+		                                     	<div class="br-wrapper br-theme-css-stars">
+		                                     		<select id="example-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+		                                                    <option value="1">1</option>
+		                                                    <option value="2">2</option>
+		                                                    <option value="3">3</option>
+		                                                    <option value="4">4</option>
+		                                                    <option value="5">5</option>
+		                                       		</select>
+		                                       	</div>
+		                                     </div>
+                                                <div>
+                                                    <div id="review">
+                                                        <div id="review-subject">
+                                                        	<h5>이것은 후기다</h5>
+                                                        </div>
+                                                        <div id="review-person">
+                                                        	<p>id는여기에</p>
+                                                        </div>
+                                                        </br><hr>
+                                                        <p>여기에 내용 들어가는 것임</p>
+                                                        <p>이렇게 쓰면 되는 것</p>
+                                                        </div>
+                                                    <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end"><div class="btn-group mr-2 sw-btn-group" role="group">
+	                                                    <button class="btn btn-primary sw-btn-prev" type="button">Previous</button>
+	                                                    <button class="btn btn-primary sw-btn-next" type="button">Next</button>
+	                                                 </div>
+	                                               </div>
+	                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
                                 	</div>
 	                            </div>
                             <!-- [ Main Content ] end -->
@@ -683,10 +737,19 @@
     <script src="js/vendor-all.min.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/pcoded.js"></script>
-    
 
     <!-- Todo Js -->
     <script src="plugins/todo/js/todo.js"></script>
+
+	<!-- Required Js -->
+    <script src="js/vendor-all.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/pcoded.min.js"></script>
+    
+
+    <!-- Rating Js -->
+    <script src="plugins/ratting/js/jquery.barrating.min.js"></script>
+    <script src="js/pages/ac-rating.js"></script>
 
 </body>
 </html>

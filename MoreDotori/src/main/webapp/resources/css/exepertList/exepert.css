@@ -38,12 +38,64 @@
 #footer-style button{
 	margin: auto;
 }
-#card-design{
-	margin-top: 50px;
+#card-design-plus{
+	width: 50%;
+	margin-top: 80px;
+	float: left;
 }
 #sns-design{
-	margin-top: 20px;
+	margin-top: 15px;
+	font-size: 35px;
 }
-#sns-design button{
-	font-size: 10px;
+#sns-design2{
+	margin-top: 15px;
+	font-size: 35px;
+}
+.sns-design i{
+	margin: 8px;
+}
+.headder-title{
+	weight:80%;
+}
+.find-list{
+	weight:60%;
+	float:left;
+}
+.advice-signup{
+	float : right;
+}
+#advice-signup2{
+	width: 100%;
+	float:none;
+	margin:0 auto;
+}
+#stars{
+	 float: right;
+}
+.self-intro{
+	margin-top: 130px;
+	width: 50%;
+	float: left;
+}
+#colxlmd{
+	margin-left: auto;
+    margin-right: auto;
+}
+#review{
+	margin: 50px;
+}
+#card-box{
+	margin: 100px;
+}
+#review-subject{
+	width:60%;
+	float: left;
+}
+#review-person{
+	width: 40%;
+	float: left;
+}
+#review-person p{
+	margin-right: -40px;
+	text-align: right;
 }
