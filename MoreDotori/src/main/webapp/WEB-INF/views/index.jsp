@@ -2374,7 +2374,6 @@
                                                         <tr>
                                                             <th>Plugins Name</th>
                                                             <th>Plugins page use</th>
-                                                            <th>Link</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -2384,7 +2383,12 @@
                                                                 <a href="/eList" target="_blank">exepertList</a>
                                                             </td>
                                                         </tr>
-                                                        
+                                                        <tr>
+                                                            <td>AssetManagement</td>
+                                                            <td>
+                                                                <a href="/aList" target="_blank">assetList</a>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

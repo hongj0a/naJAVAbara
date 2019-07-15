@@ -18,4 +18,8 @@ public class IndexController {
 	public String eListIn() {
 		return "exepertList/exepertListIn";
 	}
+	@GetMapping("/aList")
+	public String aList() {
+		return "assetManagement/assetList";
+	}
 }

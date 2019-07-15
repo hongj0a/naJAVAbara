@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>MoreDotori ExpertList</title>
+    <title>MoreDotori AssetList</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -267,50 +267,20 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title" style="weight:80%;">
-                                        <h5>전문가 찾기</h5>
+                                        <h5>자산목록 관리</h5>
                                     </div>
                                     <div class="find-list" style="weight:60%; float:left;">
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="#!">재무 진단</a></li>
-                                        <li class="breadcrumb-item"><a href="#!">전문가 찾기</a></li>
+                                        <li class="breadcrumb-item"><a href="#!">나의 자산</a></li>
+                                        <li class="breadcrumb-item"><a href="#!">자산목록 관리</a></li>
                                     </ul>
                                     </div>
-                               <div class="reading-list" style="float : right;">
-                             <ul class="navbar-nav mr-auto">
-						                <li class="nav-item dropdown">
-						                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">자격증 종류</a>
-						                    <ul class="dropdown-menu">
-						                        <li><a class="dropdown-item" href="#!">종합자산관리사</a></li>
-						                        <li><a class="dropdown-item" href="#!">자산관리사</a></li>
-						                        <li><a class="dropdown-item" href="#!">재무설계사</a></li>
-						                    </ul>
-						                </li>
-						                <li class="nav-item">
-						                    <div class="main-search">
-						                        <div class="input-group">
-						                            <input type="text" id="m-search" class="form-control" placeholder="전문가 이름">
-						                            <a href="#!" class="input-group-append search-close">
-						                                <i class="feather icon-x input-group-text"></i>
-						                            </a>
-						                            <span class="input-group-append search-btn btn btn-primary">
-						                                <i class="feather icon-search input-group-text"></i>
-						                            </span>
-						                        </div>
-						                    </div>
-						                </li>
-						            </ul>
-	                            </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr style="border-bottom : solid 1px blue;">
-					  <div class="reading-list" style="float:right;">
-			             <a href=#!>최신순</a>ㅣ
-			             <a href=#!>별점순</a>ㅣ
-			    		 <a href=#!>후기순</a>ㅣ
-			             <a href=#!>경력순</a>
 		             </div>
 		 			</br></br>
     				<!-- [ breadcrumb ] end -->
@@ -319,131 +289,16 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                                <!-- [ Hyewon Choi] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-block p-0">
-                                            <div class="text-center project-main">
-                                                <a href="/eListIn"><img class="img-fluid rounded-circle" src="images/user/avatar-5.jpg" alt="dashboard-user"></a>
-                                                <h5 class="mt-4">최혜원</h5>
-                                                <span>종합자산관리사
-                                                </br>자산관리사 </br>경력2년</span>
-                                            </div>
-                                            <div class="border-top"></div>
-                                            <div class="project-main">
-                                                <div class="row text-center">
-                                                    <div class="col-md-6 col-6">
-                                                        <h6 class="text-muted"><i class="fas fa-star m-r-5"></i> 4.8</h6>
-                                                    </div>
-                                                    <div class="col-md-6 col-10">
-                                                        <h6 class="text-muted m-0"><i class="fas fa-file-alt m-r-5"></i> 84개의 후기 </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ Hyewon choi ] end -->
-                                  <!-- [ Cheyeon kim ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-block p-0">
-                                            <div class="text-center project-main">
-                                                <a href="/eListIn"><img class="img-fluid rounded-circle" src="images/user/avatar-1.jpg" alt="dashboard-user"></a>
-                                                <h5 class="mt-4">김채연</h5>
-                                                <span>종합자산관리사
-                                                </br>자산관리사</br>경력3년</span>
-                                            </div>
-                                            <div class="border-top"></div>
-                                            <div class="project-main">
-                                                <div class="row text-center">
-                                                    <div class="col-md-6 col-6">
-                                                        <h6 class="text-muted"><i class="fas fa-star m-r-5"></i> 4.2</h6>
-                                                    </div>
-                                                    <div class="col-md-6 col-10">
-                                                        <h6 class="text-muted m-0"><i class="fas fa-file-alt m-r-5"></i> 101개의 후기 </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ Cheyeon kim ] end -->
-                                  <!-- [  jinyoung hong ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-block p-0">
-                                            <div class="text-center project-main">
-                                                <a href="/eListIn"><img class="img-fluid rounded-circle" src="images/user/avatar-3.jpg" alt="dashboard-user"></a>
-                                                <h5 class="mt-4">홍진영</h5>
-                                                <span>재무설계사
-                                                </br>자산관리사</br>경력2년</span>
-                                            </div>
-                                            <div class="border-top"></div>
-                                            <div class="project-main">
-                                                <div class="row text-center">
-                                                    <div class="col-md-6 col-6">
-                                                        <h6 class="text-muted"><i class="fas fa-star m-r-5"></i> 4.4</h6>
-                                                    </div>
-                                                    <div class="col-md-6 col-10">
-                                                        <h6 class="text-muted m-0"><i class="fas fa-file-alt m-r-5"></i> 62개의 후기 </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ jinyoung hong ] end -->
-            		               <!-- [  inhee kim ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-block p-0">
-                                            <div class="text-center project-main">
-                                                <a href="/eListIn"><img class="img-fluid rounded-circle" src="images/user/avatar-2.jpg" alt="dashboard-user"></a>
-                                                <h5 class="mt-4">김인희</h5>
-                                                <span>종합자산관리사
-                                                </br>자산관리사</br>재무설계사</br>경력3년</span>
-                                            </div>
-                                            <div class="border-top"></div>
-                                            <div class="project-main">
-                                                <div class="row text-center">
-                                                    <div class="col-md-6 col-6">
-                                                        <h6 class="text-muted"><i class="fas fa-star m-r-5"></i> 4.6</h6>
-                                                    </div>
-                                                    <div class="col-md-6 col-10">
-                                                        <h6 class="text-muted m-0"><i class="fas fa-file-alt m-r-5"></i> 132개의 후기 </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ inhee kim ] end --> 
-            		               <!-- [  nari kim ] start -->
-                                <div class="col-xl-4 col-md-6">
-                                    <div class="card">
-                                        <div class="card-block p-0">
-                                            <div class="text-center project-main">
-                                                <a href="/eListIn"><img class="img-fluid rounded-circle" src="images/user/avatar-4.jpg" alt="dashboard-user"></a>
-                                                <h5 class="mt-4">김나리</h5>
-                                                <span>종합자산관리사
-                                                </br>자산관리사</br>경력2년</span>
-                                            </div>
-                                            <div class="border-top"></div>
-                                            <div class="project-main">
-                                                <div class="row text-center">
-                                                    <div class="col-md-6 col-6">
-                                                        <h6 class="text-muted"><i class="fas fa-star m-r-5"></i> 4.8</h6>
-                                                    </div>
-                                                    <div class="col-md-6 col-10">
-                                                        <h6 class="text-muted m-0"><i class="fas fa-file-alt m-r-5"></i> 84개의 후기 </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- [ nari kim ] end -->
+                              <div class="card">
+                              	 <div class="card-block p-0">
+                             		 <div class="text-center project-main">
+	                                   <div class="col-xl-4 col-md-6" id="colxlmd">
+										  <div id="list-size" class="reading-list">
+								             <a href=#!>+ 항목 추가</a>
+                              		   </div>
+                              		</div>
+                              	</div>
+                             </div>
                             </div>
                             <!-- [ Main Content ] end -->
 

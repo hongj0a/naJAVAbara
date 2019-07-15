@@ -281,15 +281,15 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div id="headder-title" class="page-header-title">
-                                        <h5>전문가 상세정보</h5>
+                                        <h5>상세정보</h5>
                                     </div>
                                     <div class="find-list">
                                     <ul class="breadcrumb">
                                
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="/eList">전문가 찾기</a></li>
-                                        <li class="breadcrumb-item"><a href="eList">상담 전문가 리스트</a></li>
-                                        <li class="breadcrumb-item"><a href="#!">전문가 상세정보</a></li>
+                                        <li class="breadcrumb-item"><a href="/eList">재무 진단</a></li>
+                                        <li class="breadcrumb-item"><a href="eList">전문가 찾기</a></li>
+                                        <li class="breadcrumb-item"><a href="#!">상세정보</a></li>
                                     </ul>
                                     </div>
                                		<div class="advice-signup">
