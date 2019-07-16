@@ -6,27 +6,10 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
-	
     <!-- append css -->
     <link rel="stylesheet" href="css/cheyeon_member/accountBook.css">
     <link rel="stylesheet" href="css/cheyeon_member/jsCalendar.css">
-    
-    <!-- highchart chart -->
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="js/cheyeon_member/accountBook.js"></script>
-	<script src="js/cheyeon_member/jsCalendar.js"></script>
-    <script language="javascript">
-       var calendar = jsCalendar.new("#my-calendar");
-       
-       calendar.onDateClick(function(event, date){
-          console.log(jsCalendar.tools.dateToString(date, 'YYYY-MM-DD', 'en'));
-          year = jsCalendar.tools.dateToString(date, 'YYYY', 'en');
-          month = jsCalendar.tools.dateToString(date, 'MM', 'en');
-          day = jsCalendar.tools.dateToString(date, 'DD', 'en');
-          
-          calendar.set(date);
-       });
-    </script>
+
 </head>
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -61,7 +44,7 @@
 								    	<div class="card">
 									    <div class="row">
 									    	<div class="col-5" id="cal_col">
-	                         					<a href='' class="back_today"></a>
+	                         					<a href='#!' class="back_today"></a>
 												<div class="material-theme" id="my-calendar"></div>
 								            </div>
 								            <div class="col-7 mwidth_350">
@@ -185,5 +168,53 @@
 								    <div class="col-2">col-2</div>
 								</div>							
                             <!-- [ Main Content ] end -->
+    <!-- highchart chart -->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="js/cheyeon_member/accountBook.js"></script>
+	<script src="js/cheyeon_member/jsCalendar.js"></script>
+    <script language="javascript">
+       var calendar = jsCalendar.new("#my-calendar");
+       
+       $.fn.settingToday = function () {
+           var tday = new Date();
+           var tdd = tday.getDate();
+           var tmm = tday.getMonth()+1; //January is 0!
+           var tyyyy = tday.getFullYear();
+
+           if(tdd<10) { tdd='0'+tdd } 
+           if(tmm<10) { tmm='0'+tmm }
+    		
+           tday = tyyyy+'년 '+tmm+'월 '+tdd+'일';
+           
+    		$(".title_select_date").text(tday);
+    		$(".form_select_date").text(tday);
+    		$(".back_today").text('today : '+tday);    	   
+       };
+
+       //메소드실행
+       $.fn.settingToday();
+       
+       //클릭이벤트(달력클릭)
+       calendar.onDateClick(function(event, date){
+          console.log(jsCalendar.tools.dateToString(date, 'YYYY-MM-DD', 'en'));
+          year = jsCalendar.tools.dateToString(date, 'YYYY', 'en');
+          month = jsCalendar.tools.dateToString(date, 'MM', 'en');
+          day = jsCalendar.tools.dateToString(date, 'DD', 'en');
+          
+          calendar.set(date);
+
+          sday = year+'년 '+month+'월 '+day+'일';
+	  	  $(".title_select_date").text(sday);
+		  $(".form_select_date").text(sday);
+       });
+       
+       //클릭이벤트(today클릭)
+       $(".back_today").click(function(){
+    	   $.fn.settingToday();
+    	   
+    	   var date = new Date();
+    	   calendar.set(date);
+       });
+    </script>
 </body>
 </html>
