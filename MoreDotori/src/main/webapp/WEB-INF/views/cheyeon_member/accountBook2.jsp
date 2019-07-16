@@ -80,40 +80,75 @@
 	                         					</a>
 												<div class="material-theme" id="my-calendar"></div>
 								            </div>
-								            <div class="col-7">
+								            <div class="col-7 mwidth_350">
 												<ul class="nav nav-pills insert_tab" id="pills-tab" role="tablist">
 												    <li class="nav-item">
-												        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">수입</a>
+												        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">수입</a>
 												    </li>
 												    <li class="nav-item">
-												        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">지출</a>
+												        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">지출</a>
 												    </li>
 												    <li class="nav-item">
 												        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">이체</a>
 												    </li>
 												</ul>
 												<div class="tab-content insert_cont" id="pills-tabContent">
-												    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-												        <p class="mb-0">Consequat occaecat ullamco amet non eiusmod nostrud dolore irure incididunt est duis anim sunt officia. Fugiat velit proident aliquip nisi incididunt nostrud exercitation proident est nisi. Irure magna
-												            elit commodo
-												            anim ex veniam culpa eiusmod id nostrud sit cupidatat in veniam ad. Eiusmod consequat eu adipisicing minim anim aliquip cupidatat culpa excepteur quis. Occaecat sit eu exercitation irure Lorem incididunt nostrud.
-												        </p>
+												    <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 												    </div>
-												    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-												        <p class="mb-0">Ad pariatur nostrud pariatur exercitation ipsum ipsum culpa mollit commodo mollit ex. Aute sunt incididunt amet commodo est sint nisi deserunt pariatur do. Aliquip ex eiusmod voluptate exercitation
-												            cillum
-												            id incididunt
-												            elit sunt. Qui minim sit magna Lorem id et dolore velit Lorem amet exercitation duis deserunt. Anim id labore elit adipisicing ut in id occaecat pariatur ut ullamco ea tempor duis.
-												        </p>
+												    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+												    
+												    	<table class="insert_form">
+												    		<tr>
+												    			<td class="form_title">날짜</td>
+												    			<td><%=year %>년 <%=month %>월 <%=day %>일</td>
+												    		</tr>
+												    		<tr class="insert_form_select">
+												    			<td class="form_title">자산</td>
+												    			<td>
+											                        <select>
+											                            <option>1</option>
+											                            <option>2</option>
+											                            <option>3</option>
+											                            <option>4</option>
+											                            <option>5</option>
+											                        </select>												    				
+												    			</td>
+												    		</tr>
+												    		<tr class="insert_form_select">
+												    			<td class="form_title">분류</td>
+												    			<td>
+											                        <select>
+											                            <option>1</option>
+											                            <option>2</option>
+											                            <option>3</option>
+											                            <option>4</option>
+											                            <option>5</option>
+											                        </select>												    				
+												    			</td>
+												    		</tr>
+												    		<tr class="insert_form_txt">
+												    			<td class="form_title">금액</td>
+												    			<td>
+													    			<input type="text" placeholder="000원">
+												    			</td>
+												    		</tr>
+												    		<tr class="insert_form_txtarea">
+												    			<td class="form_title">내용</td>
+												    			<td>
+																	<textarea rows="2"></textarea>												    			
+												    			</td>
+												    		</tr>
+												    	</table>
+												    	<table class="insert_form">
+												    		<tr class="insert_form_btn">
+												    			<td class="wid_50">내용지우기</td>
+												    			<td class="wid_50">저장하기</td>
+												    		</tr>												    	
+												    	</table>									    
+												    
 												    </div>
 												    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-												        <p class="mb-0">Est quis nulla laborum officia ad nisi ex nostrud culpa Lorem excepteur aliquip dolor aliqua irure ex. Nulla ut duis ipsum nisi elit fugiat commodo sunt reprehenderit laborum veniam eu veniam. Eiusmod
-												            minim
-												            exercitation fugiat irure ex labore incididunt do fugiat commodo aliquip sit id deserunt reprehenderit aliquip nostrud. Amet ex cupidatat excepteur aute veniam incididunt mollit cupidatat esse irure officia elit
-												            do
-												            ipsum ullamco Lorem. Ullamco ut ad minim do mollit labore ipsum laboris ipsum commodo sunt tempor enim incididunt. Commodo quis sunt dolore aliquip aute tempor irure magna enim minim reprehenderit. Ullamco
-												            consectetur
-												            culpa veniam sint cillum aliqua incididunt velit ullamco sunt ullamco quis quis commodo voluptate. Mollit nulla nostrud adipisicing aliqua cupidatat aliqua pariatur mollit voluptate voluptate consequat non.</p>
 												    </div>
 												</div>
 								            </div>					    
