@@ -81,21 +81,21 @@
 	margin-left: auto;
     margin-right: auto;
 }
-#review{
+.review{
 	margin: 50px;
 }
 #card-box{
 	margin: 100px;
 }
-#review-subject{
+.review-subject{
 	width:60%;
 	float: left;
 }
-#review-person{
+.review-person{
 	width: 40%;
 	float: left;
 }
-#review-person p{
+.review-person p{
 	margin-right: -40px;
 	text-align: right;
 }

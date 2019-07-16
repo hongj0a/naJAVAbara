@@ -27,6 +27,8 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="css/style.css">
 
+	<link rel="stylesheet" href="css/assetManagement/assetm.css">
+
 </head>
 
 <body>
@@ -282,6 +284,9 @@
                     </div>
                     <hr style="border-bottom : solid 1px blue;">
 		             </div>
+					  <div class="reading-list">
+			             <a href=#!>+ 항목 추가</a>
+		             </div>
 		 			</br></br>
     				<!-- [ breadcrumb ] end -->
     				
@@ -294,7 +299,6 @@
                              		 <div class="text-center project-main">
 	                                   <div class="col-xl-4 col-md-6" id="colxlmd">
 										  <div id="list-size" class="reading-list">
-								             <a href=#!>+ 항목 추가</a>
                               		   </div>
                               		</div>
                               	</div>

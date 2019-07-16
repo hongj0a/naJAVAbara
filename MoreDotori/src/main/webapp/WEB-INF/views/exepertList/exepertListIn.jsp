@@ -648,21 +648,25 @@
 		                                                    <option value="3">3</option>
 		                                                    <option value="4">4</option>
 		                                                    <option value="5">5</option>
+		                                       	
+		                                       	
 		                                       		</select>
 		                                       	</div>
 		                                     </div>
                                                 <div>
-                                                    <div id="review">
-                                                        <div id="review-subject">
-                                                        	<h5>이것은 후기다</h5>
-                                                        </div>
-                                                        <div id="review-person">
-                                                        	<p>id는여기에</p>
-                                                        </div>
-                                                        </br><hr>
-                                                        <p>여기에 내용 들어가는 것임</p>
-                                                        <p>이렇게 쓰면 되는 것</p>
-                                                        </div>
+                                              	  <div class="review">
+	                                                <div id="step-l-1" class="tab-pane step-content" style="display: block;">
+    	                                                    <div class="review-subject">
+	                                                        	<h5>이것은 후기다</h5>
+	                                                        </div>
+	                                                        <div class="review-person">
+	                                                        	<p>id는여기에</p>
+	                                                        </div>
+	                                                        </br><hr>
+	                                                        <p>여기에 내용 들어가는 것임</p>
+	                                                        <p>이렇게 쓰면 되는 것</p>
+	                                                    </div>
+	                                                 </div>
                                                     <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end"><div class="btn-group mr-2 sw-btn-group" role="group">
 	                                                    <button class="btn btn-primary sw-btn-prev" type="button">Previous</button>
 	                                                    <button class="btn btn-primary sw-btn-next" type="button">Next</button>
@@ -739,17 +743,16 @@
     <script src="js/pcoded.js"></script>
 
     <!-- Todo Js -->
-    <script src="plugins/todo/js/todo.js"></script>
-
-	<!-- Required Js -->
-    <script src="js/vendor-all.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/pcoded.min.js"></script>
-    
+    <script src="plugins/todo/js/todo.js"></script>  
 
     <!-- Rating Js -->
     <script src="plugins/ratting/js/jquery.barrating.min.js"></script>
     <script src="js/pages/ac-rating.js"></script>
+    
+    <!-- Smart Wizard Js -->
+    <script src="plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
+    <script src="assets/js/pages/wizard-custom.js"></script>
+
 
 </body>
 </html>
