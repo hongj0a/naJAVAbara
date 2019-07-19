@@ -242,6 +242,16 @@
     	   $(".highcharts-series-1").trigger("click");
        });
        
+       
+       /*한달예산버튼 이벤트*/
+       //1) 수정버튼
+       $(".badge_update").click(function(){
+    	 $("#month_money")  
+       });
+       
+       //2) 저장버튼
+       //3) 취소버튼
+       
        //input엔터키 못먹게하기
        $('input[type="text"]').keydown(function() {
     	    if (event.keyCode === 13) {

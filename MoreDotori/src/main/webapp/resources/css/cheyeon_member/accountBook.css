@@ -19,6 +19,31 @@
 #account_menu{
 	font-size: 13px;
 	margin-bottom: 4px;
+	padding: 0px 8px 0px 8px;
+}
+
+#account_menu .col:first-child span:first-child{
+	margin-right: 5px;
+}
+
+#account_menu .col:first-child .badge{
+	opacity: .5;
+}
+
+#account_menu .col:first-child .badge:hover{
+	opacity: 1;
+}
+
+#account_menu .col:first-child .badge_save, #account_menu .col:first-child .badge_cancle{
+	display: none;
+}
+
+#month_money{
+	width: 78px;
+    border: none;
+    background-color: transparent;
+    text-align: right;
+    font-size: 12px;	
 }
 
 #cal_col a{

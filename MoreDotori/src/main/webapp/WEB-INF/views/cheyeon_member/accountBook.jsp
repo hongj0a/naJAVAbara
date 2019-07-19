@@ -40,7 +40,10 @@
                             	</div>
                             	<div class="row" id="account_menu">
                             		<div class="col">
-                            			한달예산 : 333,333원
+                            			<span> 한달예산 : <input id="month_money" type="text" value="1321313" readonly>원 </span>
+                            			<span class="badge badge-pill badge-info badge_update">수정</span>
+										<span class="badge badge-pill badge-primary badge_save">저장</span>
+										<span class="badge badge-pill badge-secondary badge_cancle">취소</span>                            			
                             		</div>
                             		<div class="col txt_right">
                             			월 전체내역 보기
