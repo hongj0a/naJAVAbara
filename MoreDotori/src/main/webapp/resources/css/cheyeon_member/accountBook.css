@@ -9,11 +9,16 @@
 }
 
 #account_header{
-	margin : 0px 0px 20px 0px;
+	margin : 0px 0px 10px 0px;
 }
 
 #account_header div:nth-child(2){
 	font-size: 25px;
+}
+
+#account_menu{
+	font-size: 13px;
+	margin-bottom: 4px;
 }
 
 #cal_col a{
@@ -58,7 +63,43 @@
 }
 
 #container .highcharts-container{
+	width: 90% !important;
+}
+
+#container .highcharts-container .highcharts-root{
 	width: 100% !important;
+}
+
+.form-group div:first-child{
+	font-size: 14px;
+	text-align: center;
+    margin: 7px 0px;
+}
+
+.chart_menu .row:first-child .form-group div:last-child label{
+	color: #6b98f2;
+}
+
+.chart_menu .row:last-child .form-group div:last-child label{
+	color: #F29D35;
+}
+
+.checkbox.checkbox-fill input[type=checkbox] + .cr:after {
+    width: 17.5px !important;
+    height: 17.5px !important;
+    border: 1.7px solid #e9eaec !important;
+}
+
+.checkbox.checkbox-fill input[type=checkbox] + .cr:before {
+    font-size: 20px !important;
+    margin-right: 3px;
+    color: #23b7e5 !important;
+}
+
+.chart_menu{
+	font-size: 12px !important;
+    padding-left: 6% !important;
+    padding-top: 2% !important;
 }
 
 #my-calendar table{
@@ -161,28 +202,6 @@
 	text-align: center;
 }
 
-.account_table_card{
-	min-height: 270px;
-	padding: 15px;
-	margin-top: 10px !important;
-}
-
-.account_table{
-	text-align: center;
-	font-size: 12.5px;
-}
-
-.account_table th, .account_table td{
-	border: 1px solid #d6d6d6;
-}
-
-.account_table th{
-	width: 21%;
-}
-
-.account_table th:first-child, .account_table th:last-child{
-	width: 8%;
-}
 
 .account_total{
 	width:100%;
@@ -212,4 +231,56 @@
 
 .account_total table td:last-child{
 	color: #F29D35;
+}
+
+.account_table_card{
+	min-height: 270px;
+	padding: 15px;
+	margin-top: 10px !important;
+}
+
+.account_table{
+	text-align: center;
+	font-size: 12.5px;
+}
+
+.account_table th, .account_table td{
+	border: 1px solid #d6d6d6;
+}
+
+.account_table th{
+	width: 21%;
+}
+
+.account_table th:first-child, .account_table th:last-child{
+	width: 8%;
+}
+
+.form_money_out{
+	color: #F29D35;
+}
+
+.form_money_in{
+	color: #5086F2;
+}
+
+.sum_menu{
+	padding: 15px;
+	text-align: center;
+}
+
+.sum_menu div:nth-child(2), .sum_menu div:nth-child(4){
+	margin-bottom: 30px;
+}
+
+.sum_menu div:first-child, .sum_menu div:nth-child(3), .sum_menu div:nth-child(5){
+	font-size: 18px;
+}
+
+.sum_menu div:nth-child(4), .sum_menu div:nth-child(6){
+	color: #F29D35;	
+}
+
+.sum_menu div:nth-child(2){
+	color: #5086F2;
 }
