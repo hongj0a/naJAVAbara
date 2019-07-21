@@ -246,38 +246,11 @@
        /*한달예산버튼 이벤트*/
        //1) 수정버튼
        $(".badge_update").click(function(){
-    	 $("#month_money").attr("readonly", false);
-    	 $("#month_money").css({"background-color": "white", "border": "1px solid gray"});
-    	 
-    	 $(".badge_save").css("display", "inline-block");
-    	 $(".badge_cancle").css("display", "inline-block");
-    	 
-    	 $(".badge_update").css("display", "none");
+    	 $("#month_money")  
        });
        
        //2) 저장버튼
-       $(".badge_save").click(function(){
-    	 $("#month_money").attr("readonly", true);
-    	 $("#month_money").css({"background-color": "#ffffff00", "border": "none"});
-    	 
-    	 $(".badge_save").css("display", "none");
-    	 $(".badge_cancle").css("display", "none");
-    	 
-    	 $(".badge_update").css("display", "inline-block");   
-    	 
-    	 alert('저장로직짜셈');
-       });
-       
        //3) 취소버튼
-       $(".badge_cancle").click(function(){
-      	 $("#month_money").attr("readonly", true);
-      	 $("#month_money").css({"background-color": "#ffffff00", "border": "none"});
-	
-	   	 $(".badge_save").css("display", "none");
-		 $(".badge_cancle").css("display", "none");      	
-      	
-    	 $(".badge_update").css("display", "inline-block");  		 
-       });       
        
        //input엔터키 못먹게하기
        $('input[type="text"]').keydown(function() {
