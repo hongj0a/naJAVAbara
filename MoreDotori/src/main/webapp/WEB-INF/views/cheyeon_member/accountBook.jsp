@@ -46,7 +46,7 @@
 										<span class="badge badge-pill badge-secondary badge_cancle">취소</span>                            			
                             		</div>
                             		<div class="col txt_right">
-                            			월 전체내역 보기
+                            			<a href="/book2">월 전체내역 보기</a>
                             		</div>
                             	</div>
 								<div class="row">

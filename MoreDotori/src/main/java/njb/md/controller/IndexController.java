@@ -28,6 +28,6 @@ public class IndexController {
 
 	@GetMapping("/book2")
 	public String book2() {
-		return "cheyeon_member/accountBook2";
+		return "cheyeon_member/accountBook_month";
 	}
 }

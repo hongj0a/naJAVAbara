@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+.txt_right{
+	text-align: right;
+}
+
+.txt_center{
+	text-align: center;
+}
+
+.fl_right{
+	float: right;
+}
+
+#account_header{
+	margin : 0px 0px 10px 0px;
+}
+
+#account_header div:nth-child(2){
+	font-size: 25px;
+}
+
+.tablesCard_header{
+	height: 38px;
+}
+
+.accountbook_search input{
+    border: 1px solid #8080807a;
+    border-radius: 10px;
+    padding: 4px;
+    color: #5086f2;	
+    font-size: 13px;
+}
+
+.accountbook_search span{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    display: inline-block;
+    color: #5086f2;
+}
+
+.tablesCard{
+	box-shadow: none !important;
+}
+
+.tablesCard table{
+	width:100%;
+	line-height: 30px;
+	text-align: center;
+	font-size: 13.5px;
+}
+
+.tablesCard table th, .tablesCard table td{
+	width: 14.2857142857%;
+	border: 1px solid #80808047;
+}
+
+.tablesCard table th:nth-child(2), .tablesCard table td:nth-child(2), .tablesCard table th:last-child, .tablesCard table td:last-child{
+	width: 10.2857142857%;
+}
+
+.tablesCard table th:first-child, .tablesCard table td:first-child, .tablesCard table th:nth-child(5), .tablesCard table td:nth-child(5){
+	width: 18.2857142857%;
+}
+
+.row_setting .btn{
+	padding: 0px;
+    color: gray;
+    background: transparent;
+    border: none;
+    margin: 0px;
+    font-size: 13.5px;	
+}
+
+.row_setting .btn:hover{
+    background: transparent;
+    color: #5086f2;
+}
