@@ -104,5 +104,10 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
+	<script>
+		$("#menu1").addClass('active');
+		$("#menu1").addClass('pcoded-trigger');
+		$("#menu1_1").addClass('active');
+	</script>
 </body>
 </html>

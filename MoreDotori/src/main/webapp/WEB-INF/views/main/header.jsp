@@ -45,12 +45,12 @@
                     <li class="nav-item pcoded-menu-caption">
                         <label>MEMBER MENU</label>
                     </li>                    
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu active pcoded-trigger">
+                    <li id="menu1" data-username="dashboard Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
-                            <li class="active"><a href="/book" class="">가계부 작성</a></li>
-                            <li class=""><a href="dashboard-ecommerce.html" class="">자산목록관리</a></li>
-                            <li class=""><a href="dashboard-crm.html" class="">현황 및 통계 </a></li>
+                            <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
+                            <li id="menu1_2"><a href="dashboard-ecommerce.html" class="">자산목록관리</a></li>
+                            <li id="menu1_3"><a href="dashboard-crm.html" class="">현황 및 통계 </a></li>
                         </ul>
                     </li>
                     <li data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
@@ -150,7 +150,11 @@
             	<!-- 헤더오른쪽 -->
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li>
+            	<li>
+            		로그인
+            	</li>
+            	
+<!--                 <li>
                     <div class="dropdown2 dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                        	    <img src="images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
@@ -232,6 +236,7 @@
                         </div>
                     </div>
                 </li>
+                 -->
                 <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
             </ul>
         </div>

@@ -324,5 +324,10 @@
 	<script src="js/cheyeon_member/aBookChart.js"></script>
 	<script src="js/cheyeon_member/jsCalendar.js"></script>
 	<script src="js/cheyeon_member/accountBook.js"></script>
+	<script>
+		$("#menu1").addClass('active');
+		$("#menu1").addClass('pcoded-trigger');
+		$("#menu1_1").addClass('active');
+	</script>
 </body>
 </html>
