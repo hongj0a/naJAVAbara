@@ -259,7 +259,7 @@
        //2) 저장버튼
        $(".badge_save").click(function(){
     	 $("#month_money").attr("readonly", true);
-    	 $("#month_money").css({"background-color": "#ffffff00", "border": "none"});
+    	 $("#month_money").css({"background-color": "#ffffff00", "border": "1px solid #f4f7fa"});
     	 
     	 $(".badge_save").css("display", "none");
     	 $(".badge_cancle").css("display", "none");
@@ -272,7 +272,7 @@
        //3) 취소버튼
        $(".badge_cancle").click(function(){
       	 $("#month_money").attr("readonly", true);
-      	 $("#month_money").css({"background-color": "#ffffff00", "border": "none"});
+      	 $("#month_money").css({"background-color": "#ffffff00", "border": "1px solid #f4f7fa"});
 	
 	   	 $(".badge_save").css("display", "none");
 		 $(".badge_cancle").css("display", "none");      	

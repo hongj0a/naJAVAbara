@@ -7,7 +7,6 @@
 	<meta charset="utf-8">
     <!-- append css -->
     <link rel="stylesheet" href="css/cheyeon_member/accountBookM.css">
-    <link rel="stylesheet" href="css/cheyeon_member/MonthPicker.css">
 </head>
 
 <body class="layout-8">
@@ -26,12 +25,82 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 
-				   <!-- 수정모달창 -->
-			       <div id="exampleModalPopovers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" aria-hidden="true">
+				   <!-- 수입 및 지출 수정모달창 -->
+			       <div id="inoutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" aria-hidden="true">
 			           <div class="modal-dialog" role="document">
 			               <div class="modal-content">
 			                   <div class="modal-header">
-			                       <h5 class="modal-title" id="exampleModalPopoversLabel">Modal Title</h5>
+			                       <h5 class="modal-title" id="exampleModalPopoversLabel"> 수입 및 지출 내역 수정 </h5>
+			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+			                   </div>
+			                   <div class="modal-body">
+						    	<table class="inout_form">
+						    		<tr>
+						    			<td class="form_inout">대분류</td>
+						    			<td class="form_select0">
+					                        <select name="" class="inout_form">
+					                            <option value="">대분류를 선택해주세요</option>
+					                            <option>수입</option>
+					                            <option>지출</option>
+					                        </select>						    			
+						    			</td>
+						    		</tr>						    	
+						    		<tr>
+						    			<td class="form_title">날짜</td>
+						    			<td class="form_select_date">
+						    				
+						    			</td>
+						    		</tr>
+						    		<tr class="insert_form_select">
+						    			<td class="form_title">자산</td>
+						    			<td class="form_select1">
+					                        <select name="" class="inout_form">
+					                            <option value="">자산종류를 선택해주세요</option>
+					                            <option>현금</option>
+					                            <option>국민카드</option>
+					                            <option>우리은행</option>
+					                        </select>												    				
+						    			</td>
+						    		</tr>
+						    		<tr class="insert_form_select">
+						    			<td class="form_title">분류</td>
+						    			<td class="form_select2">
+					                        <select name="" class="inout_form">
+					                            <option value="">수입내역 분류를 선택해주세요</option>
+					                            <option>월급</option>
+					                            <option>용돈</option>
+					                            <option>부수입</option>
+					                        </select>												    				
+						    			</td>
+						    		</tr>
+						    		<tr class="insert_form_txt">
+						    			<td class="form_title">금액</td>
+						    			<td class="form_money">
+							    			<input type="text" placeholder="수입금액을 기입해주세요" name="" class="inout_form" numberOnly>
+						    			</td>
+						    		</tr>
+						    		<tr class="insert_form_txtarea">
+						    			<td class="form_title">내용</td>
+						    			<td class="form_cont">
+											<textarea rows="2" placeholder="수입내용을 기입해주세요" name="" class="inout_form"></textarea>												    			
+						    			</td>
+						    		</tr>
+						    	</table>			                   		
+			                   </div>
+			                   <div class="modal-footer">
+			                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			                       <button type="button" class="btn btn-primary">Save changes</button>
+			                   </div>
+			               </div>
+			           </div>
+			       </div>
+
+				   <!-- 이체 수정모달창 -->
+			       <div id="transferModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalPopoversLabel" aria-hidden="true">
+			           <div class="modal-dialog" role="document">
+			               <div class="modal-content">
+			                   <div class="modal-header">
+			                       <h5 class="modal-title" id="exampleModalPopoversLabel"> 이체내역 수정 </h5>
 			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			                   </div>
 			                   <div class="modal-body">
@@ -89,8 +158,16 @@
 							    				<td>문화생활비</td>
 							    				<td>영화존내봤음</td>
 							    				<td>5,000</td>
-							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalPopovers">수정</button> / <span>삭제</span></td>
-						    				</tr>                          				
+							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inoutModal">수정</button>/<span>삭제</span></td>
+						    				</tr>
+						    				<tr>
+							    				<td>2019년 07월 21일</td>
+							    				<td>이체</td>
+							    				<td colspan="2"><span>현금</span> ==> <span>농협통장</span></td>
+							    				<td>현금이체</td>
+							    				<td>15,000</td>
+							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">수정</button>/<span>삭제</span></td>
+						    				</tr> 						    				                         				
                             			</table>
                             		</div>
                             	</div>
