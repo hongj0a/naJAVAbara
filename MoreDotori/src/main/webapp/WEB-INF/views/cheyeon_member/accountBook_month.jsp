@@ -7,6 +7,7 @@
 	<meta charset="utf-8">
     <!-- append css -->
     <link rel="stylesheet" href="css/cheyeon_member/accountBookM.css">
+    <link rel="stylesheet" href="css/cheyeon_member/jquery.monthpicker-0.1.css">
 </head>
 
 <body class="layout-8">
@@ -122,7 +123,7 @@
                            		
                            		</div>
                             	<div class="col txt_center">
-                            		2019년 7월
+                            		<label id="select-month">2019년 7월</label>
                            		</div>
                            		<div class="col">
                            		</div>                            		                           		
@@ -184,7 +185,10 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
+    <script src="js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
 	<script>
+	    $("#select-month").monthPicker();	
+	
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');
 		$("#menu1_1").addClass('active');
