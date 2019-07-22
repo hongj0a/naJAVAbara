@@ -148,8 +148,8 @@
 }
 
 .insert_form tr{
-	height: 37px;
-	line-height: 37px;
+	height: 34px;
+	line-height: 34px;
 	text-align: center;
 }
 
@@ -222,6 +222,32 @@
   line-height: 37px;
 }
 
+.form_select_date_val{
+	border: 1px solid white;
+	color: gray;
+	text-align: right;
+}
+
+.form_select_year_val{
+	width: 35px;
+}
+
+.form_select_month_val, .form_select_day_val{
+	width: 22px;
+}
+
+.form_select_date .badge_update_date, .form_select_date .badge_save_date, .form_select_date .badge_cancle_date{
+	opacity: .5;
+}
+
+.form_select_date .badge_update_date:hover, .form_select_date .badge_save_date:hover, .form_select_date .badge_cancle_date:hover{
+	opacity: 1;
+}
+
+.form_select_date .badge_save_date, .form_select_date .badge_cancle_date{
+	display: none;
+}
+
 .wid_50{
 	width: 50%;
 	text-align: center;
@@ -259,7 +285,7 @@
 }
 
 .account_table_card{
-	min-height: 270px;
+	min-height: 280px;
 	padding: 15px;
 	margin-top: 10px !important;
 }

@@ -34,63 +34,65 @@
 			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			                   </div>
 			                   <div class="modal-body">
-						    	<table class="inout_form">
-						    		<tr>
-						    			<td class="form_inout">대분류</td>
-						    			<td class="form_select0">
-					                        <select name="" class="inout_form">
-					                            <option value="">대분류를 선택해주세요</option>
-					                            <option>수입</option>
-					                            <option>지출</option>
-					                        </select>						    			
-						    			</td>
-						    		</tr>						    	
-						    		<tr>
-						    			<td class="form_title">날짜</td>
-						    			<td class="form_select_date">
-						    				
-						    			</td>
-						    		</tr>
-						    		<tr class="insert_form_select">
-						    			<td class="form_title">자산</td>
-						    			<td class="form_select1">
-					                        <select name="" class="inout_form">
-					                            <option value="">자산종류를 선택해주세요</option>
-					                            <option>현금</option>
-					                            <option>국민카드</option>
-					                            <option>우리은행</option>
-					                        </select>												    				
-						    			</td>
-						    		</tr>
-						    		<tr class="insert_form_select">
-						    			<td class="form_title">분류</td>
-						    			<td class="form_select2">
-					                        <select name="" class="inout_form">
-					                            <option value="">수입내역 분류를 선택해주세요</option>
-					                            <option>월급</option>
-					                            <option>용돈</option>
-					                            <option>부수입</option>
-					                        </select>												    				
-						    			</td>
-						    		</tr>
-						    		<tr class="insert_form_txt">
-						    			<td class="form_title">금액</td>
-						    			<td class="form_money">
-							    			<input type="text" placeholder="수입금액을 기입해주세요" name="" class="inout_form" numberOnly>
-						    			</td>
-						    		</tr>
-						    		<tr class="insert_form_txtarea">
-						    			<td class="form_title">내용</td>
-						    			<td class="form_cont">
-											<textarea rows="2" placeholder="수입내용을 기입해주세요" name="" class="inout_form"></textarea>												    			
-						    			</td>
-						    		</tr>
-						    	</table>			                   		
-			                   </div>
-			                   <div class="modal-footer">
-			                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			                       <button type="button" class="btn btn-primary">Save changes</button>
-			                   </div>
+				                  <form action="" class="" method="">
+								    	<table class="inout_form">
+								    		<tr>
+								    			<td class="form_inout">대분류</td>
+								    			<td class="form_select0">
+							                        <select name="" class="inout_form">
+							                            <option value="">대분류를 선택해주세요</option>
+							                            <option>수입</option>
+							                            <option>지출</option>
+							                        </select>						    			
+								    			</td>
+								    		</tr>						    	
+								    		<tr>
+								    			<td class="form_title">날짜</td>
+								    			<td class="form_select_date">
+								    				2020223434
+								    			</td>
+								    		</tr>
+								    		<tr class="inout_form_select">
+								    			<td class="form_title">자산</td>
+								    			<td class="form_select1">
+							                        <select name="" class="inout_form">
+							                            <option value="">자산종류를 선택해주세요</option>
+							                            <option>현금</option>
+							                            <option>국민카드</option>
+							                            <option>우리은행</option>
+							                        </select>												    				
+								    			</td>
+								    		</tr>
+								    		<tr class="inout_form_select">
+								    			<td class="form_title">분류</td>
+								    			<td class="form_select2">
+							                        <select name="" class="inout_form">
+							                            <option value="">내역 분류를 선택해주세요</option>
+							                            <option>월급</option>
+							                            <option>용돈</option>
+							                            <option>부수입</option>
+							                        </select>												    				
+								    			</td>
+								    		</tr>
+								    		<tr class="inout_form_txt">
+								    			<td class="form_title">금액</td>
+								    			<td class="form_money">
+									    			<input type="text" placeholder="금액을 기입해주세요" name="" class="inout_form" numberOnly>
+								    			</td>
+								    		</tr>
+								    		<tr class="inout_form_txtarea">
+								    			<td class="form_title">내용</td>
+								    			<td class="form_cont">
+													<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="inout_form"></textarea>												    			
+								    			</td>
+								    		</tr>
+								    	</table>			                   		
+					                   </div>
+					                   <div class="modal-footer">
+					                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					                       <button type="button" class="btn btn-primary">Save changes</button>
+					                   </div>
+				                   </form>
 			               </div>
 			           </div>
 			       </div>
@@ -163,7 +165,8 @@
 						    				<tr>
 							    				<td>2019년 07월 21일</td>
 							    				<td>이체</td>
-							    				<td colspan="2"><span>현금</span> ==> <span>농협통장</span></td>
+							    				<td><span>현금</span> ==> <span>농협적금</span></td>
+							    				<td>적금</td>
 							    				<td>현금이체</td>
 							    				<td>15,000</td>
 							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">수정</button>/<span>삭제</span></td>

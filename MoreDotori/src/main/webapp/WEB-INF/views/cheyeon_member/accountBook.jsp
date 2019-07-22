@@ -46,7 +46,7 @@
 										<span class="badge badge-pill badge-secondary badge_cancle">취소</span>                            			
                             		</div>
                             		<div class="col txt_right">
-                            			<a href="/book2">월 전체내역 보기</a>
+                            			<a href="/book2">월 전체내역 및 검색</a>
                             		</div>
                             	</div>
 								<div class="row">
@@ -60,71 +60,13 @@
 								            <div class="col-7 mwidth_350">
 												<ul class="nav nav-pills insert_tab" id="pills-tab" role="tablist">
 												    <li class="nav-item">
-												        <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">수입</a>
-												    </li>
-												    <li class="nav-item">
-												        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">지출</a>
+												        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">수입 및 지출</a>
 												    </li>
 												    <li class="nav-item">
 												        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">이체</a>
 												    </li>
 												</ul>
 												<div class="tab-content insert_cont" id="pills-tabContent">
-												    <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-
-												    	<form action="" class="" method="">
-													    	<input type="hidden" id="" class="in_form form_categori" name="" value="수입">
-													    	<table class="insert_form">
-													    		<tr>
-													    			<td class="form_title">날짜</td>
-													    			<td class="form_select_date"></td>
-													    			<input type="hidden" class="form_select_date_val in_form" name="" value="">
-													    		</tr>
-													    		<tr class="insert_form_select">
-													    			<td class="form_title">자산</td>
-													    			<td class="form_select1">
-												                        <select name="" class="in_form">
-												                            <option value="">자산종류를 선택해주세요</option>
-												                            <option>현금</option>
-												                            <option>국민카드</option>
-												                            <option>우리은행</option>
-												                        </select>												    				
-													    			</td>
-													    		</tr>
-													    		<tr class="insert_form_select">
-													    			<td class="form_title">분류</td>
-													    			<td class="form_select2">
-												                        <select name="" class="in_form">
-												                            <option value="">수입내역 분류를 선택해주세요</option>
-												                            <option>월급</option>
-												                            <option>용돈</option>
-												                            <option>부수입</option>
-												                        </select>												    				
-													    			</td>
-													    		</tr>
-													    		<tr class="insert_form_txt">
-													    			<td class="form_title">금액</td>
-													    			<td class="form_money">
-														    			<input type="text" placeholder="수입금액을 기입해주세요" name="" class="in_form" numberOnly>
-													    			</td>
-													    		</tr>
-													    		<tr class="insert_form_txtarea">
-													    			<td class="form_title">내용</td>
-													    			<td class="form_cont">
-																		<textarea rows="2" placeholder="수입내용을 기입해주세요" name="" class="in_form"></textarea>												    			
-													    			</td>
-													    		</tr>
-													    	</table>
-													    	
-													    	<table class="insert_form">
-													    		<tr class="insert_form_btn">
-													    			<td class="wid_50 clear_insert_in">내용지우기</td>
-													    			<td class="wid_50 save_insert_in">저장하기</td>
-													    		</tr>												    	
-													    	</table>
-												    	</form>
-
-												    </div>
 												    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
 												    	<form action="" class="" method="">
@@ -132,8 +74,24 @@
 													    	<table class="insert_form">
 													    		<tr>
 													    			<td class="form_title">날짜</td>
-													    			<td class="form_select_date"></td>
-													    			<input type="hidden" class="form_select_date_val out_form" name="" value="">
+													    			<td class="form_select_date">
+													    				<input type="text" class="form_select_date_val form_select_year_val out_form" size="4" maxlength="4" name="" value="" readonly>년 
+													    				<input type="text" class="form_select_date_val form_select_month_val out_form" size="2" maxlength="2" name="" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val form_select_day_val out_form" size="2" maxlength="2" name="" value="" readonly>일
+													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
+													    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
+													    			</td>
+													    		</tr>
+													    		<tr class="insert_form_select">
+													    			<td class="form_title">대분류</td>
+													    			<td class="form_select0">
+												                        <select name="" class="out_form">
+												                            <option value="">대분류를 선택해주세요</option>
+												                            <option>수입</option>
+												                            <option>지출</option>
+												                        </select>												    				
+													    			</td>													    			
 													    		</tr>
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">자산</td>
@@ -150,10 +108,13 @@
 													    			<td class="form_title">분류</td>
 													    			<td class="form_select2">
 												                        <select name="" class="out_form">
-												                            <option value="">지출내역 분류를 선택해주세요</option>
-												                            <option>식비</option>
-												                            <option>문화생활비</option>
-												                            <option>교통비</option>
+												                            <option value="">내역 분류를 선택해주세요</option>
+												                            <option class="in_opt"> 수입옵션1 </option>
+												                            <option class="in_opt"> 수입옵션2 </option>
+												                            <option class="in_opt"> 수입옵션3 </option>
+												                            <option class="out_opt"> 지출옵션1 </option>
+												                            <option class="out_opt"> 지출옵션2 </option>
+												                            <option class="out_opt"> 지출옵션3 </option>												                            
 												                        </select>												    				
 													    			</td>
 													    		</tr>
@@ -187,8 +148,14 @@
 													    	<table class="insert_form">
 													    		<tr>
 													    			<td class="form_title">날짜</td>
-													    			<td class="form_select_date"></td>
-													    			<input type="hidden" class="form_select_date_val trs_form" name="" value="">
+													    			<td class="form_select_date">
+													    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="" value="" readonly>년 
+													    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="" value="" readonly>일
+													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
+													    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
+													    			</td>
 													    		</tr>
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">출금</td>
@@ -212,6 +179,16 @@
 												                        </select>												    				
 													    			</td>
 													    		</tr>
+													    		<tr class="insert_form_select">
+													    			<td class="form_title">분류</td>
+													    			<td class="form_select3">
+												                        <select name="" class="trs_form">
+												                            <option value="">내역 분류를 선택해주세요</option>
+												                            <option>카드값</option>
+												                            <option>적금</option>
+												                        </select>												    				
+													    			</td>
+													    		</tr>													    		
 													    		<tr class="insert_form_txt">
 													    			<td class="form_title">금액</td>
 													    			<td class="form_money">
