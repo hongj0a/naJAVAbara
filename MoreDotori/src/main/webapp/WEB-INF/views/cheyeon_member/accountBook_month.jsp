@@ -123,7 +123,7 @@
                            		
                            		</div>
                             	<div class="col txt_center">
-                            		<label id="select-month">2019년 7월</label>
+                            		<label id="select-month"></label>
                            		</div>
                            		<div class="col">
                            		</div>                            		                           		
@@ -187,8 +187,11 @@
     <!-- [ Main Content ] end -->
     <script src="js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
 	<script>
-	    $("#select-month").monthPicker();	
-	
+	    $("#select-month").monthPicker();
+
+	    var ttday = new Date();
+	    $("#select-month").text(ttday.getFullYear()+'년 '+ (ttday.getMonth()+1) + '월');
+	   
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');
 		$("#menu1_1").addClass('active');
