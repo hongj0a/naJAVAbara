@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.footer{
+	height: 130px;
+	background-color: #37474f;
+	color: white;
+	padding: 15px;
+	padding-left: 5%;
+	font-size: 13px;
+	text-align: center;
+}
+
+.footer div:first-child{
+	padding-top : 5px;
+	font-size: 25px;
+	font-weight: bolder;
+	margin-bottom: 5px;
+}
+
+.footer div:nth-child(2){
+	margin-bottom: 5px;	
+}
