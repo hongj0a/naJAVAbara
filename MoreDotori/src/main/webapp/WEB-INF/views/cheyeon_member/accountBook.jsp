@@ -286,6 +286,15 @@
 								    </div>
 								</div>							
                             <!-- [ Main Content ] end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>	    
+    </div>
+    <!-- footer -->
+	<jsp:include page="../main/footer.jsp"></jsp:include>
+	                        
     <!-- highchart chart -->
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="js/cheyeon_member/aBookChart.js"></script>

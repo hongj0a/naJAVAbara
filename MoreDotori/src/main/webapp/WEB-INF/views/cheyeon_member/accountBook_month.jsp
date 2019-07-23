@@ -251,6 +251,9 @@
             </div>
         </div>
     </div>
+        <!-- footer -->
+		<jsp:include page="../main/footer.jsp"></jsp:include>   
+    
     <!-- [ Main Content ] end -->
     <script src="js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
 	<script src="js/cheyeon_member/accountBookM.js"></script>

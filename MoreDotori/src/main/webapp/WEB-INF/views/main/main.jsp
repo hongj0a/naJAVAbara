@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/main.css">   
+    <link rel="stylesheet" href="css/main/main.css">    
 </head>
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -90,7 +90,6 @@
 								        </div>
 								    </div>
 								</div>
-
                             <!-- [ Main Content ] end -->
 
                         </div>
@@ -99,6 +98,8 @@
             </div>
         </div>
     </div>
-    <!-- [ Main Content ] end -->
+    <!-- footer -->
+	<jsp:include page="../main/footer.jsp"></jsp:include>  
+    
 </body>
 </html>
