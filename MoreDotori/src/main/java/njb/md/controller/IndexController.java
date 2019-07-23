@@ -38,11 +38,11 @@ public class IndexController {
 	
 	@GetMapping("/mem")
 	public String mem() {
-		return "expert/mem_management";
+		return "manager/mem_management";
 	}
 	
 	@GetMapping("/report")
 	public String report() {
-		return "expert/declaration";
+		return "manager/declaration";
 	}
 }
