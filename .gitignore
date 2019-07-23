@@ -153,3 +153,5 @@ buildNumber.properties
 .mvn/timing.properties
 
 ########## -- Maven.gitignore End
+MoreDotori/target/classes/njb/md/controller/IndexController.class
+MoreDotori/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
