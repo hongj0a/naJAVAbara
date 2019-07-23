@@ -40,4 +40,9 @@ public class IndexController {
 	public String mem() {
 		return "expert/mem_management";
 	}
+	
+	@GetMapping("/report")
+	public String report() {
+		return "expert/declaration";
+	}
 }
