@@ -35,4 +35,9 @@ public class IndexController {
 	public String expert() {
 		return "expert/expert_calendar_list";
 	}
+	
+	@GetMapping("/mem")
+	public String mem() {
+		return "expert/mem_management";
+	}
 }
