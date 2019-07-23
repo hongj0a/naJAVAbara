@@ -30,19 +30,5 @@ public class IndexController {
 	public String book2() {
 		return "cheyeon_member/accountBook_month";
 	}
-	
-	@GetMapping("/expert_cal")
-	public String expert() {
-		return "expert/expert_calendar_list";
-	}
-	
-	@GetMapping("/mem")
-	public String mem() {
-		return "manager/mem_management";
-	}
-	
-	@GetMapping("/report")
-	public String report() {
-		return "manager/declaration";
-	}
+
 }
