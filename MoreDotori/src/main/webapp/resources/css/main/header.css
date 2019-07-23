@@ -1,0 +1,223 @@
+@charset "UTF-8";
+
+body::-webkit-scrollbar{width: 10px;} 
+
+.margin_left_10{
+	margin-left: 10px;
+}
+
+.magin_right_10{
+	margin-right: 10px;
+}
+
+.width_40px{
+	width: 40px;
+}
+
+.width_100px{
+	width: 100px;
+}
+
+.width_300px{
+	width: 300px;
+}
+
+/** 헤더프로필 **/
+.profile{
+	text-align: center;
+}
+
+.profile p{
+	margin-top: 15px;
+}
+
+.profile #update_info{
+	margin-top: 5px;
+	font-size: 12px;
+	text-decoration: underline;
+}
+
+#profile_img{
+    display: block;
+    width: 100px;
+    margin: auto;	
+}
+
+#logout{
+	font-size: 15px;
+	text-decoration: none;
+	color: gray;
+}
+
+#logout:hover{
+	background-color: #f2f2f2;
+	color: gray;
+}
+
+#logout:active{
+	background-color: #d3d3d3;
+	font-weight: bold;
+}
+
+#whole_noti{
+	font-size: 15px;
+	text-decoration: none;
+	color: white;
+	background-color: #6b98f2;
+}
+
+#whole_noti:hover{
+	background-color: #5d90f6;
+}
+
+#whole_noti:active{
+	background-color: #5086F2;
+	font-weight: bold;	
+}
+
+.header_notice{
+	border-bottom: .5px solid #80808033;
+}
+
+.header_notice span{
+    font-size: 11px;
+    float: right;
+}
+
+.icon-x{
+	font-size: 18px;
+}
+
+.icon-x:hover{
+	color: gray;
+}
+
+.pcoded-header .dropdown2 .notification {
+  width: 222px;
+  padding: 0;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+.pcoded-header .dropdown2 .dropdown-menu {
+  position: absolute;
+  border: none;
+  margin-top: -6px;
+  min-width: auto;
+}
+
+.pcoded-header .dropdown2 .notification .noti-body li#notification2:hover {
+  background: none;
+}
+
+#noti_bell_count{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #f44236;
+    color: white;
+    line-height: 54px;
+    position: relative;
+    top: -5px;
+    left: -6px;
+}
+
+#noti_bell_count p{
+    position: absolute;
+    top: -17px;
+    display: block;
+    height: 19px;
+    margin: auto 0;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    width: 19px;
+}
+
+#noti_menu_scroll{
+  max-height: 330px;
+  overflow-y: auto;
+  overflow-x:hidden
+}
+
+#noti_menu_scroll::-webkit-scrollbar{width: 8px;}
+::-webkit-scrollbar-track {background-color:#fff;}
+::-webkit-scrollbar-thumb {background-color:#c0c0c0;border-radius: 10px;}
+::-webkit-scrollbar-thumb:hover {background: #f2ae30;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+width:16px;height:16px;background:#fff;} 
+
+/*헤더*/
+#moredotori_header {
+ background: #5086f2;
+ 
+/*  background: #F29D35;
+ 
+ background: #1f3145; */
+ 
+ color: rgba(255, 255, 255, 0.8);
+}
+
+/*메뉴*/
+#moredotori_menu {
+ background: #5086f2;
+ 
+/*  background: #F29D35;
+
+ background: #1f3145; */
+}
+
+/*메뉴선택 옆줄*/
+#moredotori_navbar > li.active:after, #moredotori_navbar > li.pcoded-trigger:after {
+ background: #5086f2;
+ 
+/*  background: #F29D35;
+
+ background: #a1a1a1; */
+}
+
+/*메뉴선택 점*/
+#moredotori_navbar li .pcoded-submenu > li.active > a:before, #moredotori_navbar li .pcoded-submenu > li:hover > a:before {
+ background: #5086f2;
+ 
+/*  background: #F29D35;
+ 
+ background: #1f3145; */
+}
+
+/*메뉴선택 배경 및 글씨색*/
+#moredotori_navbar > li.active > a, #moredotori_navbar > li.pcoded-trigger > a{
+	background: #7de1ff40;
+    color: #3f4d67;
+
+/*  	background: #f29d352e;
+ 	color: #3f4d67;
+ 
+   background: #ececec;
+   color: #000000; */
+}
+
+/*메뉴선택 배경 및 글씨색:hover*/
+#moredotori_navbar .nav-link:hover{
+	background: #7de1ff40;
+    color: #3f4d67;
+
+/*  	background: #f29d352e;
+ 	color: #3f4d67;
+	
+	color: #000000;
+	background: #ececec; */
+}
+
+/*선택메뉴이름색*/
+.pcoded-navbar.active-lightblue .pcoded-inner-navbar li.active > a{
+	color: #5086f2;
+	
+/* 	color: #e7a938;
+	
+	color: #000000; */
+
+	font-weight: bold;
+}
+

@@ -10,4 +10,24 @@ public class IndexController {
 		return "index";
 	}
 	
+	@GetMapping("/main")
+	public String main() {
+		return "main/main";
+	}
+
+	@GetMapping("/noti")
+	public String noti() {
+		return "main/notification";
+	}
+
+	@GetMapping("/book")
+	public String book() {
+		return "cheyeon_member/accountBook";
+	}
+
+	@GetMapping("/book2")
+	public String book2() {
+		return "cheyeon_member/accountBook_month";
+	}
+
 }
