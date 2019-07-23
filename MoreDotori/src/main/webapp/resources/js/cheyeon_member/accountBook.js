@@ -178,7 +178,7 @@
     	   calendar.set(two2day);
        });
               
-       //입력이벤트(액수입력~숫자만,콤마추가)
+        //입력이벤트(액수입력~숫자만,컴마)
 		$("input:text[numberOnly]").on("focus", function() {
 		    var x = $(this).val();
 		    x = $.fn.removeCommas(x);
@@ -193,6 +193,11 @@
 		        $(this).val(x);
 		    }
 		}).on("keyup", function() {
+		    $(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
+		
+	    //입력이벤트(날짜입력~숫자만)
+		$(".form_select_date_val").on("keyup", function() {
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
 
@@ -299,6 +304,7 @@
         	 
         	 var yymmdd = new Date(yyyy+"-"+mmmm+"-"+dddd);
         	 calendar.set(yymmdd);
+        	 
              sday = yyyy+'년 '+mmmm+'월 '+dddd+'일';
    	  	  	 $(".title_select_date").text(sday);
    	  	  	 

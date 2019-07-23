@@ -240,16 +240,6 @@
 								    				<th>금액</th>
 								    				<th>기타</th>
 								    			</tr>
-												<!--
-								    			<tr>
-								    				<td>지출</td>
-								    				<td>농협체크카드</td>
-								    				<td>식비</td>
-								    				<td>홍대불닭발</td>
-								    				<td>35,000</td>
-								    				<td class="delete_row" onclick="$.fn.delRow(this)">삭제</td>
-								    			</tr>
-								    			 -->
 								    		</table>
 								    	</div>
 								    </div>

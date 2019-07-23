@@ -38,6 +38,17 @@
 				                  <form action="" class="" method="">
 								    	<table class="inout_form">
 								    		<tr>
+								    			<td class="form_title">날짜</td>
+								    			<td class="form_select_date">
+								    				<input type="text" class="form_select_date_val form_select_year_val inout_form" size="4" maxlength="4" name="" value="" readonly>년 
+								    				<input type="text" class="form_select_date_val form_select_month_val inout_form" size="2" maxlength="2" name="" value="" readonly>월 
+								    				<input type="text" class="form_select_date_val form_select_day_val inout_form" size="2" maxlength="2" name="" value="" readonly>일
+								    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
+								    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+													<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
+								    			</td>
+								    		</tr>
+								    		<tr>
 								    			<td class="form_inout">대분류</td>
 								    			<td class="form_select0">
 							                        <select name="" class="inout_form">
@@ -46,13 +57,7 @@
 							                            <option>지출</option>
 							                        </select>						    			
 								    			</td>
-								    		</tr>						    	
-								    		<tr>
-								    			<td class="form_title">날짜</td>
-								    			<td class="form_select_date">
-								    				2020223434
-								    			</td>
-								    		</tr>
+								    		</tr>								    		
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">자산</td>
 								    			<td class="form_select1">
@@ -69,9 +74,12 @@
 								    			<td class="form_select2">
 							                        <select name="" class="inout_form">
 							                            <option value="">내역 분류를 선택해주세요</option>
-							                            <option>월급</option>
-							                            <option>용돈</option>
-							                            <option>부수입</option>
+							                            <option class="in_opt"> 수입옵션1 </option>
+							                            <option class="in_opt"> 수입옵션2 </option>
+							                            <option class="in_opt"> 수입옵션3 </option>
+							                            <option class="out_opt"> 지출옵션1 </option>
+							                            <option class="out_opt"> 지출옵션2 </option>
+							                            <option class="out_opt"> 지출옵션3 </option>												                            
 							                        </select>												    				
 								    			</td>
 								    		</tr>
@@ -90,8 +98,8 @@
 								    	</table>			                   		
 					                   </div>
 					                   <div class="modal-footer">
-					                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					                       <button type="button" class="btn btn-primary">Save changes</button>
+					                       <button type="button" class="btn btn-secondary clear_insert_inout" data-dismiss="modal">Close</button>
+					                       <button type="button" class="btn btn-primary save_insert_inout">Save changes</button>
 					                   </div>
 				                   </form>
 			               </div>
@@ -107,11 +115,70 @@
 			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			                   </div>
 			                   <div class="modal-body">
-			                   		
+				                  <form action="" class="" method="">
+							    	<input type="hidden" id="" class="trs_form form_categori" name="" value="이체">
+							    	<table class="insert_form">
+							    		<tr>
+							    			<td class="form_title">날짜</td>
+							    			<td class="form_select_date">
+							    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="" value="" readonly>년 
+							    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="" value="" readonly>월 
+							    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="" value="" readonly>일
+							    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
+							    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+												<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
+							    			</td>
+							    		</tr>
+							    		<tr class="insert_form_select">
+							    			<td class="form_title">출금</td>
+							    			<td class="form_select1">
+						                        <select name="" class="trs_form">
+						                            <option value="">출금 자산종류를 선택해주세요</option>
+						                            <option>현금</option>
+						                            <option>국민카드</option>
+						                            <option>우리은행</option>
+						                        </select>												    				
+							    			</td>
+							    		</tr>
+							    		<tr class="insert_form_select">
+							    			<td class="form_title">입금</td>
+							    			<td class="form_select2">
+						                        <select name="" class="trs_form">
+						                            <option value="">입금 자산종류를 선택해주세요</option>
+						                            <option>현금</option>
+						                            <option>국민카드</option>
+						                            <option>우리은행</option>
+						                        </select>												    				
+							    			</td>
+							    		</tr>
+							    		<tr class="insert_form_select">
+							    			<td class="form_title">분류</td>
+							    			<td class="form_select3">
+						                        <select name="" class="trs_form">
+						                            <option value="">내역 분류를 선택해주세요</option>
+						                            <option>카드값</option>
+						                            <option>적금</option>
+						                        </select>												    				
+							    			</td>
+							    		</tr>													    		
+							    		<tr class="insert_form_txt">
+							    			<td class="form_title">금액</td>
+							    			<td class="form_money">
+								    			<input type="text" placeholder="금액을 기입해주세요" name="" class="trs_form" numberOnly>
+							    			</td>
+							    		</tr>
+							    		<tr class="insert_form_txtarea">
+							    			<td class="form_title">내용</td>
+							    			<td class="form_cont">
+												<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="trs_form"></textarea>												    			
+							    			</td>
+							    		</tr>
+							    	</table>				                  		
+				                  </form>			                   		
 			                   </div>
 			                   <div class="modal-footer">
-			                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			                       <button type="button" class="btn btn-primary">Save changes</button>
+			                       <button type="button" class="btn btn-secondary clear_insert_trs" data-dismiss="modal">Close</button>
+			                       <button type="button" class="btn btn-primary save_insert_trs">Save changes</button>
 			                   </div>
 			               </div>
 			           </div>
@@ -186,12 +253,9 @@
     </div>
     <!-- [ Main Content ] end -->
     <script src="js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
+	<script src="js/cheyeon_member/accountBookM.js"></script>
 	<script>
-	    $("#select-month").monthPicker();
-
-	    var ttday = new Date();
-	    $("#select-month").text(ttday.getFullYear()+'년 '+ (ttday.getMonth()+1) + '월');
-	   
+       	//메뉴
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');
 		$("#menu1_1").addClass('active');
