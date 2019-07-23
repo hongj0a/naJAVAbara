@@ -30,4 +30,9 @@ public class IndexController {
 	public String book2() {
 		return "cheyeon_member/accountBook_month";
 	}
+	
+	@GetMapping("/expert_cal")
+	public String expert() {
+		return "expert/expert_calendar_list";
+	}
 }
