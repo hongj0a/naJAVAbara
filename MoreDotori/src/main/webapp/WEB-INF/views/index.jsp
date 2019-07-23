@@ -69,12 +69,11 @@
         }
     </style>
 </head>
-
 <body>
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html">
+                <a href="board_free.jsp">
                     <img class="img-fluid" src="images/logo-docs.png" alt="Datta Able Logo" />
                 </a>
                 <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
@@ -3211,5 +3210,4 @@ Extra References
         });
     </script>
 </body>
-
 </html>
