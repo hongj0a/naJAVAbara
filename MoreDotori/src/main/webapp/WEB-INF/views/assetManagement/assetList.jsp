@@ -282,7 +282,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr style="border-bottom : solid 1px blue;">
 		             </div>
 					  <div class="reading-list">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
@@ -331,7 +330,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href=#! data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</button>
+                                            <a href=#! data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</a>
                                         </div>
 		 			</br></br>
     				<!-- [ breadcrumb ] end -->
@@ -340,21 +339,57 @@
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                              <div class="card">
+                              <div id="cardsize1" class="card">
                               	 <div class="card-block p-0">
-                             		 <div class="text-center project-main">
-	                                   <div class="col-xl-4 col-md-6" id="colxlmd">
-										  <div id="list-size" class="reading-list">
+                             		 <div id="sizesize" class="text-center project-main">
+	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
+										  <div>
+												<table>
+												  <tr>
+												  	<th>분류</th>
+												    <th>별칭</th>
+												    <th>잔액</th>
+												    <th>메모</th>
+												    <th>삭제</th>
+												  </tr>
+												  <tr>
+												    <td>현금</td>
+												    <td>웅앵웅앵웅</td>
+												    <td>10,000원</td>
+												    <td>웅앵</td>
+												    <td><a href=#!>삭제</a></td>
+												  </tr>
+												  <tr>
+												    <td>통장</td>
+												    <td>웅앵웅앵웅</td>
+												    <td>100,000원</td>
+												  	<td>웅앵</td>
+												    <td><a href=#!>삭제</a></td>
+												  </tr>
+												  <tr>
+												    <td>신용카드</td>
+												    <td>웅앵웅앵웅</td>
+												    <td>230,000원</td>
+												    <td>웅앵</td>
+												    <td><a href=#!>삭제</a></td>
+												  </tr>
+												  <tr>
+												    <td>체크카드</td>
+												 	<td>웅앵웅앵웅</td>
+												    <td>5,000,000원</td>
+												    <td>웅앵</td>
+												    <td><a href=#!>삭제</a></td>
+												</tr>
+											</table>
                               		   </div>
                               		</div>
                               	</div>
                              </div>
                             </div>
-                            <!-- [ Main Content ] end -->
-
                         </div>
                     </div>
                 </div>
+                 <!-- [ Main Content ] end -->
             </div>
         </div>
     </div>

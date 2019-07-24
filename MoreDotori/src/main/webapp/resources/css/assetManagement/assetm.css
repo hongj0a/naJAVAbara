@@ -19,3 +19,33 @@
 	margin: auto;
 	margin-top: 20%;
 }
+
+table, td, th {  
+	border: 1px solid skyblue;
+	text-align: left;
+	width: 30px;
+	height: 60px;
+}												
+table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}												
+th, td {
+	padding: 12px;
+	text-align: center;
+}
+th {
+	border: 1px solid white;
+	background-color: skyblue;
+	color: white;
+	font-size: 16px;
+}
+
+#cardsize1{
+	width: 100%;
+	margin: 20px;
+}
+#sizesize{
+	margin: 20px;
+}

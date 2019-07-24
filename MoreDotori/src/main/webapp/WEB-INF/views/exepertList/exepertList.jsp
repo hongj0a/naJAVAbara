@@ -305,7 +305,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr style="border-bottom : solid 1px blue;">
 					  <div class="reading-list" style="float:right;">
 			             <a href=#!>최신순</a>ㅣ
 			             <a href=#!>별점순</a>ㅣ

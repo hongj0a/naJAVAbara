@@ -602,7 +602,6 @@
                         </div>
                     </div>
                    <!--  stars -->
-                    <hr style="border-bottom : solid 1px blue;">
                                      <div class="stars stars-example-css" id="stars">
                                      	<div class="br-wrapper br-theme-css-stars">
                                        			<div class="br-widget">
