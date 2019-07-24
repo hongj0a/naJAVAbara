@@ -13,7 +13,7 @@
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
-      <section class="pcoded-main-container">
+      <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
@@ -523,21 +523,20 @@
                                                <div class="modal-dialog" role="document">
                                                  <div class="modal-content">
                                                    <div class="modal-header">
-                                                     <h5 class="modal-title" id="exampleModalLiveLabel"> 활동 정지 대상 멤버 &nbsp <font color="red";>2</font></h5>
+                                                     <h5 class="modal-title" id="exampleModalLiveLabel"> 활동 정지 대상 멤버 &nbsp; <font color="red">2</font></h5>
                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                        <span aria-hidden="true">x</span>
                                                      </button>
                                                    </div>
 
-                                                       <div class="modal-body"><td>
+                                                       <div class="modal-body"><div>
 
                                                          <img class="img-fluid rounded-circle" style="width:40px;" src="images/user/avatar-1.jpg"
-                                                         alt="dashboard-user">&nbsp;김인희</td>
+                                                         alt="dashboard-user">&nbsp;김인희
                                                          <br>
-                                                         <td><img class="img-fluid rounded-circle" style="width:40px;" src="images/user/avatar-2.jpg"
-                                                         alt="dashboard-user">&nbsp;윤모카</td>
-                                                         <td></td>
-                                                         <td></td>
+                                                         <img class="img-fluid rounded-circle" style="width:40px;" src="images/user/avatar-2.jpg"
+                                                         alt="dashboard-user">&nbsp;윤모카
+                                                        
                                                          <br>
                                                          <br>
                                                          <br>
@@ -547,7 +546,7 @@
 
                                                          <div class="alert alert-light" role="alert">
                                                            <div class="i-block" data-clipboard-text="feather icon-alert-circle" data-filter="icon-alert-circle"
-                                                           data-toggle="tooltip" title data-original-title="icon-alert-circle">
+                                                           data-toggle="tooltip"  data-original-title="icon-alert-circle">
                                                          <i class="feather icon-alert-circle"></i>
                                                               스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.
                                                            </div>
@@ -645,13 +644,18 @@
                                 <!-- [ foo-table ] end -->
                                   </div>
                             <!-- [ Main Content ] end -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		
+	                    		  </div>
+			               	 </div>
+			           	    </div>
+			           	  </div>
+			       	    </div>
+			    	 </div>
+			   	   </div>
+    			</div>
+		  	 </div>
+		  </div>
+	   </div>
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
     

@@ -19,7 +19,7 @@
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
-    <section class="pcoded-main-container">
+    <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
           <div class="pcoded-content">
             <div class="pcoded-inner-content">
@@ -312,18 +312,23 @@
                                       </tbody>
                                     </table>
 
-
+									</div>	
                                 <!-- [ data-table ] end -->
                                 </div>
                               </div>
+                              </div>
+                             </div>
+                             </div>
                             <!-- [ Main Content ] end -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+							</div>
+						</div>
+					</div>
+                 </div>
+              </div>
+          </div>
         </div>
     </div>
+</div>
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
     

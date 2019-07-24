@@ -56,8 +56,8 @@
 
                                         <div class=" col-sm-3 float-sm-right">
                                           <div class="notes-list">
+                                          	<h5>(선택된)스케쥴</h5>
                                               <ul id="Note-list" class="Note-list list-group">
-                                                <h5>(선택된)스케쥴</h5>
                                               <li class="list-group-item">
 
                                                   <div class="Note" data-uid="TB-1">
@@ -112,10 +112,10 @@
                                           <div class="col-sm-10 align-items-center justify-content-center">
                                             <div class="col margin:0 auto;">
                                               <div class="col-sm-3/4 float-sm-right">
-                                                <h7>2019.07.11 am 10:29</h7>
+                                                <h6>2019.07.11 am 10:29</h6>
                                             </div>
                                               <h3 class="text-c-blue">김인희 님</h3>
-                                              <h7 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h7>
+                                              <h6 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h6>
                                               <h5>이러이러해서 상담을 신청합니다.</h5>
                                               <div class="col-sm-3/4 float-sm-right">
                                                 <div id="exampleModalLive3" class="modal fade" tabindex="-1" role="dialog"
@@ -142,7 +142,7 @@
                                                   </div>
                                                 </div>
                                               </div>
-                                              <button type="button" class="btn btn-primary" title data-toggle="modal"
+                                              <button type="button" class="btn btn-primary"  data-toggle="modal"
                                               data-target="#exampleModalLive3">수락</button>
                                               <div id="exampleModalLive4" class="modal fade" tabindex="-1" role="dialog"
                                               aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
@@ -180,7 +180,7 @@
                                                 </div>
                                               </div>
                                             </div>
-                                              <button type="button" class="btn btn-danger" title data-toggle="modal"
+                                              <button type="button" class="btn btn-danger"  data-toggle="modal"
                                               data-target="#exampleModalLive4">거절</button>
                                             </div>
                                             </div>
@@ -200,10 +200,10 @@
                                         <div class="col-sm-10 align-items-center justify-content-center">
                                           <div class="col margin:0 auto;">
                                             <div class="col-sm-3/4 float-sm-right">
-                                              <h7>2019.07.11 am 10:29</h7>
+                                              <h6>2019.07.11 am 10:29</h6>
                                           </div>
                                             <h3 class="text-c-blue">김채연 님</h3>
-                                            <h7 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h7>
+                                            <h6 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h6>
                                             <h5>이러이러해서 상담을 신청합니다.</h5>
                                             <div class="col-sm-3/4 float-sm-right">
                                               <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
@@ -230,7 +230,7 @@
                                                 </div>
                                               </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary" title data-toggle="modal"
+                                            <button type="button" class="btn btn-primary"  data-toggle="modal"
                                             data-target="#exampleModalLive">수락</button>
                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
@@ -268,7 +268,7 @@
                                               </div>
                                             </div>
                                           </div>
-                                            <button type="button" class="btn btn-danger" title data-toggle="modal"
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
                                             data-target="#exampleModalLive2">거절</button>
                                           </div>
                                           </div>
@@ -281,9 +281,10 @@
                                 </div>
 
                                 <div class=" col-sm-4 float-sm-right">
-                                  <div cloass="Detail">
+                                  <div class="Detail">
+                                  <h5>이력보기</h5>
                                       <ul id="detail" class="detail list-group">
-                                        <h5>이력보기</h5>
+                                        
                                       <li class="list-group-item">
 
                                           <div class="Note" data-uid="TB-1">
