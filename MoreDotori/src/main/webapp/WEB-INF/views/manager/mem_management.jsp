@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="card">
                                           <div class="card-block task-data">
-                                            <div class="table-responsive form-material">
+                                            <div class="table-responsive form-material" style="overflow-x:hidden">
                                               <div id="simpletable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                 <div class="row">
                                                   <div class="col-sm-3">
@@ -72,7 +72,7 @@
                                             <input type="text" class="form-control add_task_todo" placeholder="Search here...." required>
                                             <div class="input-group-append">
                                               <button class="btn btn-primary btn-icon btn-msg-send" type="button">
-                                                <i class="fas fa-search"></i>
+                                                <i class="fas fa-search" style="color:white"></i>
                                               </button>
                                             </div>
                                           </div>
@@ -103,7 +103,7 @@
                                                           <th>이름</th>
                                                           <th data-breakpoints="xs">가입일</th>
                                                           <th data-breakpoints="xs">최근접속일</th>
-                                                          <th data-breakpoints="xs">경고횟수(경고/누적)</th>
+                                                          <th data-breakpoints="xs">경고/누적</th>
                                                           <th>회원상태</th>
                                                       </tr>
                                                   </thead>
@@ -625,7 +625,9 @@
                                                  </div>
                                                </div>
                                              </div>
-	<div>
+                                             
+                                             
+										<div>
                                             <div style="float:right">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive">
                                              		   변경</button>
@@ -637,9 +639,10 @@
                                                 <option>정지</option>
                                                 <option>일반</option>
                                               </select>
-
+                                       	   </div>
                                           </div>
-                                          </div>
+                                          
+                                          
                                         </div>
                                       </div>
                                 <!-- [ foo-table ] end -->
@@ -664,6 +667,10 @@
     <script src="plugins/footable/js/footable.min.js"></script>
 
     <script type="text/javascript">
+    
+	    $("#menu9").addClass('active');
+	    $("#menu9").addClass('pcoded-trigger');
+	    
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({
