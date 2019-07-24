@@ -39,4 +39,24 @@ public class IndexController {
 	public String mypage() {
 		return "member/my_page";
 	}
+	
+	@GetMapping("/signin")
+	public String signin() {
+		return "member/sign_in";
+	}
+
+	@GetMapping("/signup")
+	public String signup() {
+		return "member/sign_up";
+	}
+
+	@GetMapping("/signuptype")
+	public String signuptype() {
+		return "member/sign_up_type";
+	}
+	
+	@GetMapping("/findaccount")
+	public String findaccount() {
+		return "member/find_account";
+	}
 }

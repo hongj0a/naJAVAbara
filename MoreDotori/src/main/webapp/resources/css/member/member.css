@@ -58,4 +58,9 @@
 .nav-tabs.mem-tab {
   border-bottom: solid 1px #eeeeee;
 }
+
+.mem-tab {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 /* find-account  end */
