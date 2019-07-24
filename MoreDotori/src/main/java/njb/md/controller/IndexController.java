@@ -30,4 +30,18 @@ public class IndexController {
 	public String book2() {
 		return "cheyeon_member/accountBook_month";
 	}
+	
+	// BOARD_nari
+	@GetMapping("/board_free")
+	public String board_free() {
+		return "board/board_free";
+	}
+	@GetMapping("/board_pr")
+	public String board_pr() {
+		return "board/board_pr";
+	}
+	@GetMapping("/board_write")
+	public String board_write() {
+		return "board/board_write";
+	}
 }

@@ -64,8 +64,8 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="widget-table.html" class="">공지사항</a></li>
-                            <li class=""><a href="widget-user-card.html" class="">PR게시판</a></li>
-                            <li class=""><a href="widget-chart.html" class="">자유게시판</a></li>
+                            <li class=""><a href="/board_pr" class="">PR게시판</a></li>
+                            <li class=""><a href="/board_free" class="">자유게시판</a></li>
                         </ul>
                     </li>
                     <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
@@ -92,8 +92,8 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="widget-table.html" class="">공지사항</a></li>
-                            <li class=""><a href="widget-user-card.html" class="">PR게시판</a></li>
-                            <li class=""><a href="widget-chart.html" class="">자유게시판</a></li>
+                            <li class=""><a href="/board_pr" class="">PR게시판</a></li>
+                            <li class=""><a href="/board_free" class="">자유게시판</a></li>
                         </ul>
                     </li>
                     <li data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
