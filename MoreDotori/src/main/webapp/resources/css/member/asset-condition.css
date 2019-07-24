@@ -1,0 +1,33 @@
+.nav-pills.asset {
+  padding: 0;
+  box-shadow: none;
+}
+
+.nav-pills.asset .nav-link.active, .nav-pills.asset .show>.nav-link {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.nav-pills.asset > li > a {
+  line-height: 7px;
+  min-width: 70px;
+}
+
+#asset-tab1, #asset-tab2 {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.card.my-statistics {
+    margin-bottom: 10px;
+}
+
+.card.my-statistics > .card-header {
+  padding: 0;
+}
+
+.card.my-statistics > .card-header > a {
+  color: black;
+  display: block;
+  padding: 20px 25px;
+}

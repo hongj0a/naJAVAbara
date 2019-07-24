@@ -30,4 +30,8 @@ public class IndexController {
 		return "cheyeon_member/accountBook_month";
 	}
 
+	@GetMapping("/asset_cond")
+	public String mem() {
+		return "member/asset_condition";
+	}
 }
