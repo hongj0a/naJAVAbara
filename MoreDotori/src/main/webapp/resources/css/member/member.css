@@ -33,12 +33,12 @@
   width: 130px;
 }
 
-.btn>i {
+.btn > i {
   margin-right: 0;
 }
 
 .form-control[readonly] {
-  background-color: #f4f7fa;
+  background-color: #f4f7fa !important;
 }
 
 .account-clause {
@@ -51,11 +51,11 @@
   margin: auto 0;
 }
 
-.nav-tabs .nav-link.active {
+.nav-tabs.mem-tab .nav-link.active {
   border-bottom: solid 2px #5086f2;
 }
 
-.nav-tabs {
+.nav-tabs.mem-tab {
   border-bottom: solid 1px #eeeeee;
 }
 /* find-account  end */

@@ -31,7 +31,12 @@ public class IndexController {
 	}
 
 	@GetMapping("/asset_cond")
-	public String mem() {
+	public String asset_cond() {
 		return "member/asset_condition";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "member/my_page";
 	}
 }
