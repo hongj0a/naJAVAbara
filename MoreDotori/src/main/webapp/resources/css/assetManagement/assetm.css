@@ -6,3 +6,16 @@
 .reading-list{
 	 float:right;
 }
+#plus-size{
+	margin: auto;
+	float:none;
+}
+.plus-imp{
+	display: inline-block !important;
+	width: 80% !important;
+}
+#contentsize-plus{
+	width: fit-content !important;
+	margin: auto;
+	margin-top: 20%;
+}

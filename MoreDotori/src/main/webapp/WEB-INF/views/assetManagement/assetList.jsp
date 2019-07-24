@@ -285,8 +285,54 @@
                     <hr style="border-bottom : solid 1px blue;">
 		             </div>
 					  <div class="reading-list">
-			             <a href=#!>+ 항목 추가</a>
-		             </div>
+                                            <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div id="contentsize-plus" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLiveLabel">항목 추가</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        </br>
+                                            			<div class="col-12">
+                                            				<span>타입 :  </span>
+                                                    		&nbsp;
+                                                    		<select class="js-example-basic-single form-control plus-imp">
+                                                            	<option value="현금">현금</option>
+                                                            	<option value="통장">통장</option>
+                                                            	<option value="신용카드">신용카드</option>
+                                                            	<option value="체크카드">체크카드</option>
+                                                        	</select> 
+                                                     		</div>
+                                                     	</br>
+                                                        <div class="col-12">
+                                                     		<span>별칭 :  </span>
+                                                     		&nbsp;
+                                                        	<input type="address" class="form-control plus-imp">
+                                                        </div>
+                                                        </br>
+                                                        <div class="col-12">
+                                                     		<span>잔액 :  </span>
+                                                     		&nbsp;
+                                                        	<input type="address" class="form-control plus-imp">
+                                                        </div>
+                                                        </br>
+                                                        <div class="col-12">
+                                                     		<span>메모 :  </span>
+                                                     		&nbsp;
+                                                        	<input type="address" class="form-control plus-imp">
+                                                        </div>	
+                                                        </br>
+                                                      </div>
+                                                        <div id="plus-size" class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                            <button type="submit" class="btn btn-primary">저장</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href=#! data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</button>
+                                        </div>
 		 			</br></br>
     				<!-- [ breadcrumb ] end -->
     				

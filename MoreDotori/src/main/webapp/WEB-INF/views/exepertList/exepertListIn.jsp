@@ -26,18 +26,26 @@
     <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="css/style.css">
-       <!-- Smart Wizard css -->
+ 
+    <!-- Smart Wizard css -->
     <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard.min.css">
     <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
     <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
     <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
+	
 	<!--  stars css  -->
     <link rel="stylesheet" href="plugins/ratting/css/bootstrap-stars.css">
     <link rel="stylesheet" href="plugins/ratting/css/css-stars.css"> 
+    
     <!-- select2 css -->
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    
     <!-- multi-select css -->
     <link rel="stylesheet" href="plugins/multi-select/css/multi-select.css">
+	
+	<!-- owl-carousel css -->
+    <link rel="stylesheet" href="plugins/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/owl-carousel/css/owl.theme.default.min.css">
 	
 	<link rel="stylesheet" href="css/exepertList/exepert.css">
 	
@@ -667,11 +675,19 @@
 	                                                        <p>이렇게 쓰면 되는 것</p>
 	                                                    </div>
 	                                                 </div>
-                                                    <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end"><div class="btn-group mr-2 sw-btn-group" role="group">
-	                                                    <button class="btn btn-primary sw-btn-prev" type="button">Previous</button>
-	                                                    <button class="btn btn-primary sw-btn-next" type="button">Next</button>
-	                                                 </div>
-	                                               </div>
+				                                        <div class="card-block">
+				                                            <div class="slider2 owl-carousel owl-theme">
+				                                                <div class="item">
+				                                                    <img src="assets/images/slider/img-slide-1.jpg" alt="" class="img-fluid">
+				                                                </div>
+				                                                <div class="item">
+				                                                    <img src="assets/images/slider/img-slide-2.jpg" alt="" class="img-fluid">
+				                                                </div>
+				                                                <div class="item">
+				                                                    <img src="assets/images/slider/img-slide-3.jpg" alt="" class="img-fluid">
+				                                                </div>
+				                                            </div>
+				                                        </div>
 	                                            </div>
                                             </div>
                                         </div>
@@ -753,6 +769,9 @@
     <script src="plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
     <script src="assets/js/pages/wizard-custom.js"></script>
 
+    <!-- owl-carousel Js -->
+    <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="js/pages/ac-slider.js"></script>
 
 </body>
 </html>
