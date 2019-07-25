@@ -300,6 +300,12 @@
 	<script src="plugins/amchart/js/pie.min.js"></script>
 
 	<script src="js/member/asset-condition.js"></script>
+	<script>
+	   	//메뉴
+		$("#menu1").addClass('active');
+		$("#menu1").addClass('pcoded-trigger');
+		$("#menu1_3").addClass('active');		
+	</script>
 </body>
 
 </html>

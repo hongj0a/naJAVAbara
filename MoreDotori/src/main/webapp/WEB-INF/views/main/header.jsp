@@ -50,7 +50,7 @@
                         <ul class="pcoded-submenu">
                             <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
                             <li id="menu1_2"><a href="" class="">자산목록관리</a></li>
-                            <li id="menu1_3"><a href="" class="">현황 및 통계 </a></li>
+                            <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
                         </ul>
                     </li>
                     <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
@@ -137,7 +137,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
             	<li>
-            		로그인
+            		<a href="/signin">로그인</a>
             	</li>
             	
                 <li>
@@ -156,7 +156,7 @@
                                         <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
                                             <p><strong>김채연</strong>님 </p> 
                                             <p>kcy8729@gmail.com</p>
-                                            <p><a href="#!" id="update_info"> 정보수정 </a></p>
+                                            <p><a href="/mypage" id="update_info"> 정보수정 </a></p>
                                         </div>
                                 </li>
                             </ul>
