@@ -11,7 +11,7 @@
 	href="fonts/fontawesome/css/fontawesome-all.min.css">
 <!-- vendor css -->
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="css/member/member.css">
 </head>
 
 <body>

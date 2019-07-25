@@ -18,10 +18,6 @@
   border: none;
 }
 
-#normal {
-  background-color: #5086f2;
-}
-
 #expert {
   background-color: #f2ae30;
 }
@@ -38,7 +34,7 @@
 }
 
 .form-control[readonly] {
-  background-color: #f4f7fa !important;
+  background-color: #f4f7fa;
 }
 
 .account-clause {
@@ -64,3 +60,47 @@
   box-shadow: none;
 }
 /* find-account  end */
+
+
+/* sign-in start */
+.auth-wrapper .auth-bg.sign-in .r:first-child {
+  top: -100px;
+  right: -100px;
+  background: linear-gradient(-135deg, #5086f2 0%, #cbb5ff 100%);
+}
+.auth-wrapper .auth-bg.sign-in .r:last-child {
+  left: -100px;
+  bottom: -100px;
+  background: linear-gradient(-135deg, #ffc9c6 0%, #f2ae30 100%);
+}
+.auth-wrapper .auth-bg.sign-in.r.s {
+  width: 20px;
+  height: 20px;
+}
+.auth-wrapper .auth-bg.sign-in .r.s:nth-child(2) {
+  top: 150px;
+  right: -150px;
+  background: #f2ae30;
+}
+.auth-wrapper .auth-bg.sign-in .r.s:nth-child(3) {
+  left: -150px;
+  bottom: 150px;
+  background: #5086f2;
+}
+/* sign-in end */
+
+
+/* sign-in start */
+/* .auth-wrapper .auth-bg.sign-in .r:first-child {
+  top: -100px;
+  right: -100px;
+  background: url('../../images/default-profile.png');
+  background-size: cover;
+}
+.auth-wrapper .auth-bg.sign-in .r:last-child {
+  left: -100px;
+  bottom: -100px;
+  background: url('../../images/default-profile.png');
+  background-size: cover;
+} */
+/* sign-in end */

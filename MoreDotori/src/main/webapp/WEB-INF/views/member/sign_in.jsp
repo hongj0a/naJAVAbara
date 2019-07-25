@@ -10,11 +10,18 @@
     <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/member/member.css">
 </head>
 
 <body>
     <div class="auth-wrapper"> <!-- 배경 이미지 삭제함 -->
         <div class="auth-content">
+        	<div class="auth-bg sign-in">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
             <div class="card">
                 <div class="card-body text-center">
                     <h2 class="mb-5">Logo Here</h2>

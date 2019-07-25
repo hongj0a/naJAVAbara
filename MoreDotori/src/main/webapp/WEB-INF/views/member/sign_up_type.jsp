@@ -9,7 +9,7 @@
 
 <!-- vendor css -->
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="css/member/member.css">
 
 </head>
 
