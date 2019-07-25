@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
     <!-- vendor css -->
     <link rel="stylesheet" href="css/style.css">
+	
+	<!-- select2 css -->
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    
+    <!-- multi-select css -->
+    <link rel="stylesheet" href="plugins/multi-select/css/multi-select.css">
+    
 
 </head>
 
@@ -55,30 +62,18 @@
                                     </ul>
                                     </div>
                                <div class="reading-list" style="float : right;">
-                             <ul class="navbar-nav mr-auto">
-						                <li class="nav-item dropdown">
-						                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">자격증 종류</a>
-						                    <ul class="dropdown-menu">
-						                        <li><a class="dropdown-item" href="#!">종합자산관리사</a></li>
-						                        <li><a class="dropdown-item" href="#!">자산관리사</a></li>
-						                        <li><a class="dropdown-item" href="#!">재무설계사</a></li>
-						                    </ul>
-						                </li>
-						                <li class="nav-item">
-						                    <div class="main-search">
-						                        <div class="input-group">
-						                            <input type="text" id="m-search" class="form-control" placeholder="전문가 이름">
-						                            <a href="#!" class="input-group-append search-close">
-						                                <i class="feather icon-x input-group-text"></i>
-						                            </a>
-						                            <span class="input-group-append search-btn btn btn-primary">
-						                                <i class="feather icon-search input-group-text"></i>
-						                            </span>
-						                        </div>
-						                    </div>
-						                </li>
-						            </ul>
-	                            </div>
+                                            <div id="search-menu">
+                                            <select class="js-example-basic-single form-control">
+                                                    <option value="AS"></option>
+                                                    <option value="AS">종합자산관리사</option>
+                                                    <option value="AS">자산관리사</option>
+                                                    <option value="AS">재무설계사</option>
+                                            </select>
+                                            </div>
+                                            <div id="search-btn">
+                                            <button type="button" class="btn btn-icon btn-primary"><i class="fas fa-search"></i></button>
+	                            			</div>
+	                            	</div>
                                 </div>
                             </div>
                         </div>
@@ -245,6 +240,16 @@
 
     <!-- Todo Js -->
     <script src="plugins/todo/js/todo.js"></script>
+
+    <!-- select2 Js -->
+    <script src="plugins/select2/js/select2.full.min.js"></script>
+
+    <!-- multi-select Js -->
+    <script src="plugins/multi-select/js/jquery.quicksearch.js"></script>
+    <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+
+    <!-- form-select-custom Js -->
+    <script src="js/pages/form-select-custom.js"></script>
 
 </body>
 </html>
