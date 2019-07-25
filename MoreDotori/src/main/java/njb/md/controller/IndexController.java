@@ -45,4 +45,30 @@ public class IndexController {
     public String report() {
        return "manager/declaration";
     }
+    
+    @GetMapping("/asset_cond")
+    public String asset_cond() {
+       return "member/asset_condition";
+    }
+    
+    @GetMapping("/mypage")
+    public String mypage() {
+       return "member/my_page";
+    }
+    
+    @GetMapping("/signin")
+    public String signin() {
+       return "member/sign_in";
+    }
+
+    @GetMapping("/signup")
+    public String signup() {
+       return "member/sign_up";
+    }
+
+    @GetMapping("/signuptype")
+    public String signuptype() {
+       return "member/sign_up_type";
+    }
+
 }       
