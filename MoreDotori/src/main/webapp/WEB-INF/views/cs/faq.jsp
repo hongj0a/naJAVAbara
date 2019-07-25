@@ -115,10 +115,14 @@
     <script src="js/board/footable.min.js"></script>
 
     <script type="text/javascript">
+		$("#menu7").addClass('active');
+		$("#menu7").addClass('pcoded-trigger');
+		$("#menu7_1").addClass('active');    
+
 		$("#menu11").addClass('active');
 		$("#menu11").addClass('pcoded-trigger');
-		$("#menu11_1").addClass('active');    
-    
+		$("#menu11_1").addClass('active');   
+		
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({

@@ -85,8 +85,8 @@
                     <li id="menu7" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu7_1"><a href="" class="">F A Q</a></li>
-                            <li id="menu7_2"><a href="" class="">Q & A</a></li>
+                            <li id="menu7_1"><a href="/faq" class="">F A Q</a></li>
+                            <li id="menu7_2"><a href="/qna" class="">Q & A</a></li>
                         </ul>
                     </li>                                   
                                        
