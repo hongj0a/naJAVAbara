@@ -223,7 +223,7 @@
                     </div>
                 </li>
                 
-                <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
+                <!-- <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li> -->
             </ul>
         </div>
     </header>
