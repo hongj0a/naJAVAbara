@@ -49,7 +49,7 @@
 																<div class="text-center">
 																	<label for="choose-image"> <img
 																		class="img-fluid rounded-circle" id="profile-image"
-																		for="choose-image" src="images/user/avatar-3.jpg"
+																		src="images/user/avatar-3.jpg"
 																		alt="dashboard-user">
 																	</label>
 																	<div class="custom-file mb-4">
@@ -90,7 +90,7 @@
 																	type="button">비밀번호 변경</button>
 															</div>
 														</div>
-														<div class="change-password" hidden>
+														<div class="change-password">
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">기존 비밀번호</label>
 																<div class="col">
@@ -174,7 +174,7 @@
 																<label class="col-form-label col-sm-3">우편번호</label>
 																<div class="col">
 																	<div class="input-group">
-																		<input type="text" class="form-control bc-none"
+																		<input type="text" class="form-control address"
 																			id="inputZipCode" name="zip-code" value="17949"
 																			readonly>
 																		<div class="input-group-append">
@@ -187,7 +187,7 @@
 															<div class="form-group row mb-1">
 																<label class="col-sm-3 col-form-label"></label>
 																<div class="col">
-																	<input type="text" class="form-control bc-none"
+																	<input type="text" class="form-control address"
 																		id="inputAddr" name="address" value="경기도 평택시 포승읍 호암길"
 																		readonly>
 																</div>
@@ -195,7 +195,7 @@
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label"></label>
 																<div class="col">
-																	<input type="type" class="form-control"
+																	<input type="text" class="form-control"
 																		id="inputAddrDetail" name="addr-details" value="38-4">
 																</div>
 															</div>
@@ -291,16 +291,16 @@
 													<!-- <p class="p-4 h5">유의사항을 확인 후 탈퇴를 진행해 주세요.</p> -->
 													<ul class="fa-ul">
 														<li class="mb-3"><span class="fa-li"><i
-																class="fas fa-angle-right"></span></i>회원 탈퇴 시, 사용하고 계신
+																class="fas fa-angle-right"></i></span>회원 탈퇴 시, 사용하고 계신
 															아이디(dlslwkd0525@naver.com)는 재사용이나 복구가 불가능합니다.</li>
 														<li class="mb-3"><span class="fa-li"><i
-																class="fas fa-angle-right"></span></i>회원님의 모든 개인정보 및 이용정보가
+																class="fas fa-angle-right"></i></span>회원님의 모든 개인정보 및 이용정보가
 															삭제되며, 삭제된 데이터는 복구되지 않습니다.</li>
 														<li class="mb-2"><span class="fa-li"><i
-																class="fas fa-angle-right"></span></i>삭제를 원하는 게시글이 있다면 반드시 회원
+																class="fas fa-angle-right"></i></span>삭제를 원하는 게시글이 있다면 반드시 회원
 															탈퇴 전 비공개 처리하거나 삭제하시기 바랍니다.</li>
-														<label class="mb-4">(탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할
-															수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.)</label>
+														<li class="mb-4">(탈퇴 후에는 회원정보가 삭제되어 본인 여부를 확인할
+															수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.)</li>
 													</ul>
 													<div class="form-group mb-4 pl-3">
 														<div class="checkbox checkbox-primary d-inline">
@@ -361,109 +361,42 @@
 	<!-- [ Main Content ] end -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#change-pwd-btn').on('click', function() {
-								$(this).parent().parent().hide();
-								$('.change-password').removeAttr('hidden');
-							});
-
-							$("#choose-image")
-									.on(
-											'change',
-											function() {
-												if (this.files && this.files[0]) {
-													var reader = new FileReader();
-
-													reader.onload = function(e) {
-														$('#profile-image')
-																.attr(
-																		'src',
-																		e.target.result);
-													}
-
-													reader
-															.readAsDataURL(this.files[0]);
-												}
-											});
-
-							$('.addSNS')
-									.on(
-											'click',
-											function() {
-												$('.inputSNS')
-														.append(
-																'<div class="input-group mb-1">'
-																		+ '<div class="input-group-prepend">'
-																		+ '<select class="form-control">'
-																		+ '<option>SNS</option>'
-																		+ '</select>'
-																		+ '</div>'
-																		+ '<input type="text" class="form-control" name="address" placeholder="SNS주소 (ex. https://www.facebook.com/000)">'
-																		+ '<div class="input-group-append">'
-																		+ '<button class="btn btn-primary subSNS" type="button">'
-																		+ '<i class="fas fa-minus"></i>'
-																		+ '</button>'
-																		+ '</div>'
-																		+ '</div>');
-											});
-
-							$(document).on(
-									'click',
-									'.subSNS',
-									function() {
-										$(this).parents('div.input-group.mb-1')
-												.remove();
-									});
-						});
-		function sample6_execDaumPostcode() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	                var extraAddr = ''; // 참고항목 변수
-
-	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                    addr = data.roadAddress;
-	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                    addr = data.jibunAddress;
-	                }
-
-	                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-	                if(data.userSelectedType === 'R'){
-	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                        extraAddr += data.bname;
-	                    }
-	                    // 건물명이 있고, 공동주택일 경우 추가한다.
-	                    if(data.buildingName !== '' && data.apartment === 'Y'){
-	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                    }
-	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                    if(extraAddr !== ''){
-	                        extraAddr = ' (' + extraAddr + ')';
-	                    }
-	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("sample6_extraAddress").value = extraAddr;
-	                
-	                } else {
-	                    document.getElementById("sample6_extraAddress").value = '';
-	                }
-
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('sample6_postcode').value = data.zonecode;
-	                document.getElementById("sample6_address").value = addr;
-	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("sample6_detailAddress").focus();
-	            }
-	        }).open();
-	    }
+		$(document).ready(function() {
+			$('#change-pwd-btn').on('click', function() {
+				$(this).parent().parent().hide();
+				$('.change-password').css('display','inline');
+			});
+			
+			$("#choose-image").on('change',	function() {
+				if (this.files && this.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						$('#profile-image').attr('src',e.target.result);
+					}
+					reader.readAsDataURL(this.files[0]);
+				}
+			});
+			$('.addSNS').on('click', function() {
+				$('.inputSNS').append(
+					'<div class="input-group mb-1">'
+					+ '<div class="input-group-prepend">'
+						+ '<select class="form-control">'
+							+ '<option>SNS</option>'
+						+ '</select>'
+					+ '</div>'
+					+ '<input type="text" class="form-control" name="address" placeholder="SNS주소 (ex. https://www.facebook.com/000)">'
+					+ '<div class="input-group-append">'
+						+ '<button class="btn btn-primary subSNS" type="button">'
+							+ '<i class="fas fa-minus"></i>'
+						+ '</button>'
+					+ '</div>'
+					+ '</div>');
+				});
+				
+			$(document).on('click', '.subSNS', function() {
+				$(this).parents('div.input-group.mb-1').remove();
+			});
+		});
 	</script>
 </body>
 

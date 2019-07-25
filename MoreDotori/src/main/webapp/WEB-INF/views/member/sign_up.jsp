@@ -26,8 +26,7 @@
 						<div class="col-sm-4">
 							<div class="text-center">
 								<label for="choose-image"> <img
-									class="img-fluid rounded-circle" id="profileImg"
-									for="choose-image" src="images/user/avatar-3.jpg"
+									class="img-fluid rounded-circle" id="profileImg" src="images/user/avatar-3.jpg"
 									alt="dashboard-user">
 								</label>
 								<div class="custom-file mb-4">
@@ -119,7 +118,7 @@
 						<div class="form-group">
 							<div class="input-group mb-1">
 								<label for="inputAddr" class="sr-only">우편번호</label> <input
-									type="text" class="form-control" id="inputZipCode"
+									type="text" class="form-control address" id="inputZipCode"
 									name="zip-code" placeholder="우편번호" readonly>
 								<div class="input-group-append">
 									<button class="btn btn-primary" name="find-address"
@@ -128,7 +127,7 @@
 							</div>
 							<div>
 								<div class="form-group mb-1">
-									<input type="text" class="form-control" id="inputAddr"
+									<input type="text" class="form-control address" id="inputAddr"
 										name="address" placeholder="주소" readonly>
 								</div>
 							</div>
@@ -363,7 +362,7 @@
 	<script
 		src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
-	<script language="javascript">
+	<script>
     $(document).ready(function() {
       // choose profile-image
       $("#chooseImg").on('change', function() {
