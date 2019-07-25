@@ -8,7 +8,7 @@
 	<!-- append css -->
 	<link rel="stylesheet" href="css/board/style_board_content.css">
 	<!-- material icon -->
-    <link rel="stylesheet" href="css/board/materialdesignicons.min.css">
+    <link rel="stylesheet" href="fonts/material/css/materialdesignicons.min.css">
 	
 </head>
 
@@ -84,7 +84,7 @@
                                                     <button type="button" class="btn btn2 btn-outline-danger" data-toggle="" data-target="" date-type="like"><span class="fas fa-heart"></span><span class="like_count">0</span></button>
                                                 </a>
                                                 <a class="warning  float-right">
-                                                    <button type="button" class="btn btn2 btn-outline-danger fas fa-frown" data-toggle="modal" data-target="#exampleModalCenter"> 신고</button>
+                                                    <button type="button" class="btn btn2 btn-outline-danger mdi mdi-alarm-light" data-toggle="modal" data-target="#exampleModalCenter"> 신고</button>
 
                                                 </a>
                                             </div>
