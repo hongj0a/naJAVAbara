@@ -253,13 +253,13 @@
 				                                        <div class="card-block">
 				                                            <div class="slider2 owl-carousel owl-theme">
 				                                                <div class="item">
-				                                                    <img src="assets/images/slider/img-slide-1.jpg" alt="" class="img-fluid">
+				                                                    <a href="" alt="" class="img-fluid"></a>
 				                                                </div>
 				                                                <div class="item">
-				                                                    <img src="assets/images/slider/img-slide-2.jpg" alt="" class="img-fluid">
+				                                                    <a href="" alt="" class="img-fluid"></a>
 				                                                </div>
 				                                                <div class="item">
-				                                                    <img src="assets/images/slider/img-slide-3.jpg" alt="" class="img-fluid">
+				                                                    <a href="" alt="" class="img-fluid"></a>
 				                                                </div>
 				                                            </div>
 				                                        </div>
@@ -296,7 +296,7 @@
     
     <!-- Smart Wizard Js -->
     <script src="plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
-    <script src="assets/js/pages/wizard-custom.js"></script>
+    <script src="js/pages/wizard-custom.js"></script>
 
     <!-- owl-carousel Js -->
     <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>

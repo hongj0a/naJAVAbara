@@ -128,7 +128,7 @@
     color:skyblue;
     font-weight: bold;
 }
-circle[Attributes Style] {
+circle .dtp-select-hour {
     r: 30;
     cx: 95.2628;
     cy: -55;
