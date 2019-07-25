@@ -101,5 +101,42 @@
 }
 
 #search-btn{
+	display: inline-block !important;
 	float: right;
+}
+#search-menu{
+	display: inline-block !important;
+	float:left;
+}
+#number-size{
+	padding: 0px;
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header { background: deepskyblue; color: #fff; text-align: center; padding: 0.3em; }
+.dtp div.dtp-actual-year {font-size: 1.5em;color: deepskyblue;}
+.dtp table.dtp-picker-days tr > td > a.selected{ background: skyblue; color: #fff; }
+.dtp .p10 > a { color: deepskyblue; text-decoration: none; }
+.dtp .dtp-actual-meridien a.selected { background: skyblue; color: #fff; }
+
+.dtp div.dtp-date, .dtp div.dtp-time { background: skyblue; text-align: center; color: #fff; padding: 10px; }
+
+.year-picker-item:hover{
+    color:skyblue;
+}
+
+.year-picker-item.active{
+    color:skyblue;
+    font-weight: bold;
+}
+circle[Attributes Style] {
+    r: 30;
+    cx: 95.2628;
+    cy: -55;
+    fill: deepskyblue !important;
+}
+.hour-hand{
+    stroke: deepskyblue !important;
+}
+.minute-hand{
+	stroke: deepskyblue !important;
 }

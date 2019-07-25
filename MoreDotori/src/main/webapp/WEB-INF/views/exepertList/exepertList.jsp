@@ -25,7 +25,8 @@
     
     <!-- multi-select css -->
     <link rel="stylesheet" href="plugins/multi-select/css/multi-select.css">
-    
+ 
+	<link rel="stylesheet" href="css/exepertList/exepert.css">
 
 </head>
 
@@ -63,16 +64,16 @@
                                     </div>
                                <div class="reading-list" style="float : right;">
                                             <div id="search-menu">
-                                            <select class="js-example-basic-single form-control">
+                                            	<select class="js-example-basic-single form-control">
                                                     <option value="AS"></option>
                                                     <option value="AS">종합자산관리사</option>
                                                     <option value="AS">자산관리사</option>
                                                     <option value="AS">재무설계사</option>
-                                            </select>
+                                              </select>
                                             </div>
-                                            <div id="search-btn">
-                                            <button type="button" class="btn btn-icon btn-primary"><i class="fas fa-search"></i></button>
-	                            			</div>
+                                           <div id="search-btn">
+                                            <button type="button" class="btn btn-icon btn-primary btn-sm"><i class="fas fa-search"></i></button>
+	                            		   </div>
 	                            	</div>
                                 </div>
                             </div>

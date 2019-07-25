@@ -36,6 +36,7 @@ th, td {
 	text-align: center;
 }
 th {
+	text-align: center;
 	border: 1px solid white;
 	background-color: skyblue;
 	color: white;
