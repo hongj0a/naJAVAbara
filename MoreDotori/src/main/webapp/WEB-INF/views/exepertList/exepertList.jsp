@@ -11,16 +11,6 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
-    <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
-    <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
-	
-	<!-- select2 css -->
     <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
     
     <!-- multi-select css -->
@@ -233,11 +223,6 @@
    </div> 
     <!-- [ Main Content ] end -->
     <jsp:include page="../main/footer.jsp"></jsp:include>
-    
-    <!-- Required Js -->
-    <script src="js/vendor-all.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/pcoded.js"></script>
 
     <!-- Todo Js -->
     <script src="plugins/todo/js/todo.js"></script>
@@ -251,6 +236,11 @@
 
     <!-- form-select-custom Js -->
     <script src="js/pages/form-select-custom.js"></script>
+    <script>
+		$("#menu2").addClass('active');
+		$("#menu2").addClass('pcoded-trigger');
+		$("#menu2_1").addClass('active');     
+    </script>
 
 </body>
 </html>

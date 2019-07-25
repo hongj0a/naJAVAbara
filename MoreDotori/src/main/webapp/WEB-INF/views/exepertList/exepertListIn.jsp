@@ -10,15 +10,6 @@
     <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
-
-    <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
-    <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
  
     <!-- Smart Wizard css -->
     <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard.min.css">
@@ -282,11 +273,6 @@
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
 
-    <!-- Required Js -->
-    <script src="js/vendor-all.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/pcoded.js"></script>
-
     <!-- Todo Js -->
     <script src="plugins/todo/js/todo.js"></script>  
 
@@ -311,6 +297,12 @@
 
     <!-- form-picker-custom Js -->
     <script src="js/pages/form-picker-custom.js"></script>
+
+    <script>
+		$("#menu2").addClass('active');
+		$("#menu2").addClass('pcoded-trigger');
+		$("#menu2_1").addClass('active');     
+    </script>    
 
 </body>
 </html>

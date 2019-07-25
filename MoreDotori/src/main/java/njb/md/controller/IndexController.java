@@ -108,6 +108,19 @@ public class IndexController {
     @GetMapping("/qna_write")
     public String qna_write() {
        return "cs/qna_write";
-    }    
+    }
     
+    //혜원
+    @GetMapping("/eList")
+    public String eList() {
+       return "exepertList/exepertList";
+    }
+    @GetMapping("/eListIn")
+    public String eListIn() {
+       return "exepertList/exepertListIn";
+    }
+    @GetMapping("/aList")
+    public String aList() {
+       return "assetManagement/assetList";
+    }
 }       

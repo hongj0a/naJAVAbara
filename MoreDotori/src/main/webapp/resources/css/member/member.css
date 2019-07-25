@@ -29,12 +29,12 @@
   width: 130px;
 }
 
-.btn > i {
+.btn.subSNS > i, .btn.addSNS > i {
   margin-right: 0;
 }
 
-.form-control[readonly] {
-  background-color: #f4f7fa;
+input.address[readonly], textarea.account-clause[readonly] {
+   background-color: #f4f7fa;
 }
 
 .account-clause {
@@ -89,18 +89,8 @@
 }
 /* sign-in end */
 
-
-/* sign-in start */
-/* .auth-wrapper .auth-bg.sign-in .r:first-child {
-  top: -100px;
-  right: -100px;
-  background: url('../../images/default-profile.png');
-  background-size: cover;
+/* my-page start */
+.change-password {
+   display: none;
 }
-.auth-wrapper .auth-bg.sign-in .r:last-child {
-  left: -100px;
-  bottom: -100px;
-  background: url('../../images/default-profile.png');
-  background-size: cover;
-} */
-/* sign-in end */
+/* my-page end */

@@ -49,15 +49,15 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
                             <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
-                            <li id="menu1_2"><a href="" class="">자산목록관리</a></li>
+                            <li id="menu1_2"><a href="/aList" class="">자산목록관리</a></li>
                             <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
                         </ul>
                     </li>
                     <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-check-square"></i></span><span class="pcoded-mtext">재무진단</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu2_1"><a href="" class="" target="_blank">전문가찾기</a></li>
-                            <li id="menu2_2"><a href="" class="" target="_blank">상담내역</a></li>
+                            <li id="menu2_1"><a href="/eList" class="">전문가찾기</a></li>
+                            <li id="menu2_2"><a href="" class="">상담내역</a></li>
                         </ul>
                     </li>
                     

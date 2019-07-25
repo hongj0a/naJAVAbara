@@ -11,15 +11,6 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
-    <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
-    <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
-
 	<link rel="stylesheet" href="css/assetManagement/assetm.css">
 
 </head>
@@ -165,14 +156,13 @@
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
 
-    <!-- Required Js -->
-    <script src="js/vendor-all.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/pcoded.js"></script>
-    
-
     <!-- Todo Js -->
     <script src="plugins/todo/js/todo.js"></script>
+    <script>
+		$("#menu1").addClass('active');
+		$("#menu1").addClass('pcoded-trigger');
+		$("#menu1_2").addClass('active');     
+    </script>
 
 </body>
 </html>
