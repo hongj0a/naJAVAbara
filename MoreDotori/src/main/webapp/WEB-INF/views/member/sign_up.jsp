@@ -25,14 +25,13 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="text-center">
-								<label for="choose-image"> <img
-									class="img-fluid rounded-circle" id="profileImg" src="images/user/avatar-3.jpg"
-									alt="dashboard-user">
+								<label for="choose-image">
+									<img class="img-fluid rounded-circle" id="profile-image"
+										src="images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
 								<div class="custom-file mb-4">
-									<input type="file" class="custom-file-input" id="chooseImg"
-										accept="image/*"> <label class="custom-file-label"
-										for="inputGroupFile01"></label>
+									<input type="file" class="custom-file-input" id="choose-image" accept="image/*">
+									<label class="custom-file-label" for="inputGroupFile01"></label>
 								</div>
 							</div>
 						</div>
@@ -365,16 +364,15 @@
 	<script>
     $(document).ready(function() {
       // choose profile-image
-      $("#chooseImg").on('change', function() {
-        if (this.files && this.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function(e) {
-            $('#profileImg').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(this.files[0]);
-        }
-      });
+      $("#choose-image").on('change',	function() {
+			if (this.files && this.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#profile-image').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(this.files[0]);
+			}
+		});
 
       // add sns form
       $('.addSNS').on('click', function() {

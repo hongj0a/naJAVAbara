@@ -8,7 +8,7 @@
   box-shadow: none;
 }
 
-.nav-pills.asset > li > a {
+.nav-pills.asset li a {
   line-height: 7px;
   min-width: 70px;
 }
@@ -22,12 +22,16 @@
     margin-bottom: 10px;
 }
 
-.card.my-statistics > .card-header {
+.card.my-statistics .card-header {
   padding: 0;
 }
 
-.card.my-statistics > .card-header > a {
+.card.my-statistics .card-header a {
   color: black;
   display: block;
   padding: 20px 25px;
+}
+
+.my-statistics .collapse .card-block {
+	width: 85%;
 }

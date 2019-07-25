@@ -125,18 +125,15 @@
 													<div class="tab-content" id="asset-tab2">
 														<div class="tab-pane fade show active" id="pills2-month"
 															role="tabpanel" aria-labelledby="tab2-month">
-															<div id="chart-highchart-combo1"
-																style="width: 100%; height: 450px;"></div>
+															<div id="chart-highchart-combo1"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-week"
 															role="tabpanel" aria-labelledby="tab2-week">
-															<div id="chart-highchart-combo2"
-																style="width: 100%; height: 450px;"></div>
+															<div id="chart-highchart-combo2"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-year"
 															role="tabpanel" aria-labelledby="tab2-year">
-															<div id="chart-highchart-combo3"
-																style="width: 100%; height: 450px;"></div>
+															<div id="chart-highchart-combo3"></div>
 														</div>
 													</div>
 												</div>
