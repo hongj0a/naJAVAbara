@@ -328,6 +328,10 @@
     <script src="plugins/fullcalendar/js/fullcalendar.min.js"></script>
 
     <script type="text/javascript">
+	    $("#menu4").addClass('active');
+	    $("#menu4").addClass('pcoded-trigger'); 
+    
+    
         // Full calendar
         $(window).on('load', function() {
             $('#external-events .fc-event').each(function() {

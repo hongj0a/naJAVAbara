@@ -62,7 +62,7 @@
                                       <input type="text" class="form-control add_task_todo" placeholder="Search here...." required>
                                       <div class="input-group-append">
                                         <button class="btn btn-primary btn-icon btn-msg-send" type="button">
-                                          <i class="fas fa-search"></i>
+                                          <i class="fas fa-search" style="color:white"></i>
                                         </button>
                                       </div>
                                     </div>
@@ -339,6 +339,11 @@
 <script src="plugins/footable/js/footable.min.js"></script>
 
 <script type="text/javascript">
+
+	$("#menu10").addClass('active');
+	$("#menu10").addClass('pcoded-trigger');
+	$("#menu10_2").addClass('active');
+	
     $(document).ready(function() {
         // [ Foo-table ]
         $('#zero-configuration').footable({

@@ -8,6 +8,7 @@
 <!-- footable css -->
     <link rel="stylesheet" href="plugins/footable/css/footable.bootstrap.min.css">
     <link rel="stylesheet" href="plugins/footable/css/footable.standalone.min.css">
+    
 </head>
 
 <body class="layout-8">
@@ -46,9 +47,6 @@
                                             <h5>회원관리 페이지</h5>
                                             <div class="card-header-right">
                                                 <div class="btn-group card-option">
-                                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="feather icon-more-horizontal"></i>
-                                                    </button>
                                                     <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
                                                         <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
                                                         <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
@@ -60,7 +58,7 @@
                                         </div>
                                         <div class="card">
                                           <div class="card-block task-data">
-                                            <div class="table-responsive form-material">
+                                            <div class="table-responsive form-material" style="overflow-x:hidden">
                                               <div id="simpletable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                 <div class="row">
                                                   <div class="col-sm-3">
@@ -74,16 +72,17 @@
                                             <input type="text" class="form-control add_task_todo" placeholder="Search here...." required>
                                             <div class="input-group-append">
                                               <button class="btn btn-primary btn-icon btn-msg-send" type="button">
-                                                <i class="fas fa-search"></i>
+                                                <i class="fas fa-search" style="color:white"></i>
                                               </button>
                                             </div>
                                           </div>
                                           </div>
                                         </div>
                                       </div>
-
-                                            <hr>
-                                            <table id="demo-foo-filtering" class="table table-striped table-hover">
+                                      
+                                      
+                                            <div class="padding=20%">
+                                            <table id="demo-foo-filtering" class="table table-striped table-hover" >
 
 
                                                 <thead>
@@ -104,7 +103,7 @@
                                                           <th>이름</th>
                                                           <th data-breakpoints="xs">가입일</th>
                                                           <th data-breakpoints="xs">최근접속일</th>
-                                                          <th data-breakpoints="xs">경고횟수(경고/누적)</th>
+                                                          <th data-breakpoints="xs">경고/누적</th>
                                                           <th>회원상태</th>
                                                       </tr>
                                                   </thead>
@@ -514,6 +513,7 @@
 
                                                 </tbody>
                                             </table>
+                                            </div>
 
 
 
@@ -548,7 +548,7 @@
                                                            <div class="i-block" data-clipboard-text="feather icon-alert-circle" data-filter="icon-alert-circle"
                                                            data-toggle="tooltip"  data-original-title="icon-alert-circle">
                                                          <i class="feather icon-alert-circle"></i>
-                                                              스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.
+                                                          		   스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.
                                                            </div>
                                                          </div>
 
@@ -625,10 +625,12 @@
                                                  </div>
                                                </div>
                                              </div>
-
+                                             
+                                             
+										<div>
                                             <div style="float:right">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive">
-                                                변경</button>
+                                             		   변경</button>
                                             </div>
 
                                             <div style="float:right;">
@@ -637,8 +639,10 @@
                                                 <option>정지</option>
                                                 <option>일반</option>
                                               </select>
-
+                                       	   </div>
                                           </div>
+                                          
+                                          
                                         </div>
                                       </div>
                                 <!-- [ foo-table ] end -->
@@ -663,13 +667,14 @@
     <script src="plugins/footable/js/footable.min.js"></script>
 
     <script type="text/javascript">
+    
+	    $("#menu9").addClass('active');
+	    $("#menu9").addClass('pcoded-trigger');
+	    
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({
                 "paging": {
-                    "enabled": true
-                },
-                "sorting": {
                     "enabled": true
                 }
             });
