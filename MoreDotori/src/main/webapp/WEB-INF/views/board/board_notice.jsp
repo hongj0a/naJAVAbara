@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NAJAVABARA::자유게시판</title>
+    <title>NAJAVABARA::공지사항</title>
 	<meta charset="utf-8">
 	<!-- append css -->
 	<!-- footable css -->
@@ -35,8 +35,8 @@
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>자유게시판</h5>
-                                            <span class="d-block m-t-5"> <code>모든 회원</code> 들의 자유로운 게시판 입니다</span>
+                                            <h5>공지사항</h5>
+                                            <span class="d-block m-t-5"> <code></code>모아도토리의 공지사항을 알려드립니다</span>
 
                                         </div>
                                         <div class="card-block">
@@ -48,23 +48,21 @@
                                                             <th>글쓴이</th>
                                                             <th>작성일</th>
                                                             <th>조회</th>
-                                                            <th>추천</th>
+                                                            <!-- th>추천</th -->
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>21</td>
-                                                            <td><a href="#">이것은 제목인데 길어지면 어쩌죠? [] </a></td>
-                                                            <td>Otto</td>
+                                                            <td><a href="#">공지사항입니다 [] </a></td>
+                                                            <td>관리자1</td>
                                                             <td>@mdo</td>
-                                                            <td>0</td>
                                                             <td>0</td>
                                                         </tr>
                                                         <tr>
                                                             <td>20</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -74,21 +72,11 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
-                                                            <td>@mdo</td>
                                                         </tr>
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -98,21 +86,11 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
-                                                            <td>@mdo</td>
                                                         </tr>
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -122,21 +100,11 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
-                                                            <td>@mdo</td>
                                                         </tr>
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -146,21 +114,11 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
-                                                            <td>@mdo</td>
                                                         </tr>
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -170,21 +128,11 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
-                                                            <td>@mdo</td>
                                                         </tr>
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Mark</td>
                                                             <td>Otto</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                            <td>@mdo</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -194,6 +142,12 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
                                                         <tr>
@@ -202,6 +156,12 @@
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
                                                         <tr>
@@ -209,6 +169,12 @@
                                                             <td>Mark</td>
                                                             <td>Otto</td>
                                                             <td>@mdo</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
                                                             <td>@mdo</td>
                                                             <td>@mdo</td>
                                                         </tr>
@@ -231,7 +197,7 @@
                                                     <button class="btn btn-primary btn-icon" type="button"><i class="fas fa-search"></i></button>
                                                 </div>
                                             </div>
-                                            <a href="/board_write" class="btn btn-primary float-sm-right">글쓰기</a>
+                                            <!-- <a href="/board_write" class="btn btn-primary float-sm-right">글쓰기</a>   -->
                                             </table>      
                                         </div>
                                     </div>

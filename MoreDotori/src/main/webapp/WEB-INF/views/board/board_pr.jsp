@@ -35,7 +35,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>PR게시판</h5>
-                                            <span class="d-block m-t-5"> 모아도토리를 이용하시는 <code>자산관리 전문가</code>분들을 소개합니다.</span>
+                                            <span class="d-block m-t-5"> 모아도토리를 이용하시는 <code>자산관리 전문가</code>분들을 소개합니다</span>
 
                                         </div>
                                         <div class="card-block">

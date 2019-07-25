@@ -32,6 +32,10 @@ public class IndexController {
 	}
 	
 	// BOARD_nari
+	@GetMapping("/board_notice")
+	public String board_notice() {
+		return "board/board_notice";
+	}
 	@GetMapping("/board_free")
 	public String board_free() {
 		return "board/board_free";
@@ -44,4 +48,25 @@ public class IndexController {
 	public String board_write() {
 		return "board/board_write";
 	}
+	@GetMapping("/board_content")
+	public String board_content(){
+		return "board/board_content";
+	}
+	
+	
+	// CUSTOMER SERVICE_nari
+	@GetMapping("/faq")
+	public String faq() {
+		return "cs/faq";
+	}
+	@GetMapping("/qna")
+	public String qna() {
+		return "cs/qna";
+	}
+	@GetMapping("/qna_write")
+	public String qna_write() {
+		return "cs/qna_write";
+	}
+	
+	
 }
