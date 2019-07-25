@@ -28,7 +28,7 @@
 
 <body class="layout-8">
     <!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar menu-light brand-lightblue active-lightblue navbar-collapsed">
+    <nav id="header_menu" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo" id="moredotori_menu">
                 <a href="/main" class="b-brand">
@@ -77,9 +77,9 @@
                     <li id="menu6" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu6_1"><a href="" class="">공지사항</a></li>
-                            <li id="menu6_2"><a href="" class="">PR게시판</a></li>
-                            <li id="menu6_3"><a href="" class="">자유게시판</a></li>
+                            <li id="menu6_1"><a href="/board_notice" class="">공지사항</a></li>
+                            <li id="menu6_2"><a href="/board_pr" class="">PR게시판</a></li>
+                            <li id="menu6_3"><a href="/board_free" class="">자유게시판</a></li>
                         </ul>
                     </li>
                     <li id="menu7" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
@@ -100,15 +100,15 @@
                     <li id="menu10" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">게시물 관리</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu10_1"><a href="" class="">공지사항</a></li>
+                            <li id="menu10_1"><a href="/board_notice" class="">공지사항</a></li>
                             <li id="menu10_2"><a href="/report" class="">신고내역</a></li>
                         </ul>
                     </li>
                      <li id="menu11" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu11_1"><a href="" class="">F A Q</a></li>
-                            <li id="menu11_2"><a href="" class="">Q & A</a></li>
+                            <li id="menu11_1"><a href="/faq" class="">F A Q</a></li>
+                            <li id="menu11_2"><a href="/qna" class="">Q & A</a></li>
                         </ul>
                     </li>                    
                 </ul>
@@ -223,7 +223,7 @@
                     </div>
                 </li>
                 
-                <!-- <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li> -->
+                <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
             </ul>
         </div>
     </header>
