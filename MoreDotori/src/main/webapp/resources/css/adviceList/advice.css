@@ -13,10 +13,12 @@
 }
 .whois2{
 	width: 70%;
-	padding-left: 10%;
+	padding-left: 12%;
 }
 .cardcoment{
 	width: 80%;
+	font-size: 15px;
+	margin-left: 10px;
 }
 .oneoneone{
 	width: 100px;
@@ -52,6 +54,12 @@
 #btncs2{
 	float: right;
 }
+#btncs3{
+	float: right;
+}
+#btncs4{
+	float: right;
+}
 #footersize{
 	justify-content: center;
 }
@@ -69,11 +77,15 @@
 }
 .dd2{
 	display:inline-block;
-	margin-left:2%;
+	margin-left:6%;
 }
 .xxxx{
 	text-align: right;
 }
 #fontss{
 	margin-top: 10px;
+}
+.cardpdsize{
+	padding-top: 3%;
+	padding-bottom: 5%;
 }

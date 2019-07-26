@@ -51,8 +51,7 @@
                          <div class="row">
                          	<div class="col-1"></div>
                             <div class="col-10">
-                                <div class="card fullcalendar-card">
-                                      
+                                <div class="card fullcalendar-card cardpdsize">
                                     <div class="card size0101">
                                         <div class="card-block">
                                         	<div class="xxxx">
@@ -174,6 +173,60 @@
 	                                            <div class="cardcoment">
 		                                            <span class="card-text">바빠서 거절합니다.</span>
 	                                        	</div>
+	                                        	<div class="col-sm-3/4 float-sm-right">
+                                              <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
+                                              aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                              <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLiveLabel">메모</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">x</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="form-group" style="padding:10px">
+                                                    <label for="message-text" class="col-form-label">&nbsp;메모하기</label>
+                                                    <div style="padding:10px;">
+                                                    <textarea class="form-control" id="message-text">
+                                                    </textarea>
+                                                  </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">저장</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary"  data-toggle="modal"
+                                            data-target="#exampleModalLive">메모</button>
+                                            
+                                            <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLiveLabel">후기</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">x</span>
+                                                  </button>
+                                                </div>
+                                                <div class="form-group" style="padding:10px">
+                                                  <label for="message-text" class="col-form-label">&nbsp;여기 별넣기</label>
+                                                  <div style="padding:10px;">
+                                                    <textarea class="form-control" id="message-text">
+                                                    </textarea>
+                                                  </div>
+                                                  </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-primary">저장</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            </div>
+                                          </div>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalLive2">후기</button>
+                                          </div>
 	                                        </div>
                                        	</div>
                                   </div>
