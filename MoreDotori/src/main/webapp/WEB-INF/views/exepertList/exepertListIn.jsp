@@ -80,9 +80,9 @@
                                                             </div>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                         </div>
+                                                        <div class="card-block">
                                                         <div class="modal-body">
                                                         <p>상담 날짜</p>
-                                                        <div class="card-block">
                                             			<div class="row">
                                             			<div class="col-md-6 m-b-30">
         		                                            <input type="text" id="min-date" class="form-control">
@@ -198,12 +198,16 @@
 		                                            </div>
 	                                            </div>
 	                                           <div class="self-intro">
-                                    	 		<h5>자기소개</h5>
-                                    	 		<p>	-웅앵웅포키포키</p>
-                                    	 		<p>	-웅앵웅포키포키</p></br></br>
-                                    	 		<h5>자격증</h5>
-                                    	 		<p>	-웅앵웅포키포키</p>
-                                    	 		<p>	-웅앵웅포키포키</p>
+	                                           	<div class="self-intro-size">
+	                                    	 		<h5>자기소개</h5>
+	                                    	 	</div>	
+	                                    	 		<p>	-웅앵웅포키포키</p>
+	                                    	 		<p>	-웅앵웅포키포키</p></br></br>
+	                                    	 	<div class="self-intro-size">
+	                                    	 		<h5>자격증</h5>
+	                                    	 	</div>	
+	                                    	 		<p>	-웅앵웅포키포키</p>
+	                                    	 		<p>	-웅앵웅포키포키</p>
                                     	 	  </div>
 	                                       	</div>
 	                                       	</br></br>
@@ -244,13 +248,13 @@
 				                                        <div class="card-block">
 				                                            <div class="slider2 owl-carousel owl-theme">
 				                                                <div class="item">
-				                                                    <a href="" alt="" class="img-fluid"></a>
+				                                                    <a href="#!" class="img-fluid"></a>
 				                                                </div>
 				                                                <div class="item">
-				                                                    <a href="" alt="" class="img-fluid"></a>
+				                                                    <a href="#!" class="img-fluid"></a>
 				                                                </div>
 				                                                <div class="item">
-				                                                    <a href="" alt="" class="img-fluid"></a>
+				                                                    <a href="#!" class="img-fluid"></a>
 				                                                </div>
 				                                            </div>
 				                                        </div>
@@ -301,7 +305,7 @@
     <script>
 		$("#menu2").addClass('active');
 		$("#menu2").addClass('pcoded-trigger');
-		$("#menu2_1").addClass('active');     
+		$("#menu2_1").addClass('active');   
     </script>    
 
 </body>

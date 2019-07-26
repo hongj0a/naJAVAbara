@@ -140,3 +140,6 @@ circle .dtp-select-hour {
 .minute-hand{
 	stroke: deepskyblue !important;
 }
+.self-intro-size{
+	margin-bottom: 20px;
+}
