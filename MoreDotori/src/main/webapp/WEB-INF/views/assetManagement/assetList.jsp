@@ -34,8 +34,8 @@
                                     <div class="find-list" style="weight:60%; float:left;">
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="/adlist">나의 자산</a></li>
-                                        <li class="breadcrumb-item"><a href="#!">자산목록 관리</a></li>
+                                        <li class="breadcrumb-item"><a href="#!">나의 자산</a></li>
+                                        <li class="breadcrumb-item"><a href="/adList">자산목록 관리</a></li>
                                     </ul>
                                     </div>
                                 </div>
