@@ -84,8 +84,8 @@
                                                         </br>
                                                       </div>
                                                         <div id="plus-size" class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                                                             <button type="submit" class="btn btn-primary">저장</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                                                         </div>
                                                     </div>
                                                 </div>
