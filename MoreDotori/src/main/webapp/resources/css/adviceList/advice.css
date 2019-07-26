@@ -4,3 +4,76 @@
 	display:none;
 	padding:20px;
 }
+.size0101{
+	margin: 50px;
+}
+.whois{
+	width: 80%;
+	padding-left: 10%;
+}
+.whois2{
+	width: 70%;
+	padding-left: 10%;
+}
+.cardcoment{
+	width: 80%;
+}
+.oneoneone{
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	color: white;
+	text-align: center;
+	line-height: 100px;
+	margin-left: 30%;
+	font-weight: bolder;
+}
+#onecolor1{
+	background-color: #ffb924;
+	margin-bottom: 5%;
+	font-size: 25px;
+}
+#onecolor2{
+	background-color: #8ade8a;
+	font-size: 18px;
+}
+#onecolor3{
+	background-color: #d28eff;
+	font-size: 18px;
+}
+#onecolor4{
+	background-color: #1eb4e6;
+	font-size: 18px;
+}
+
+#btncs1{
+	float: right;
+}
+#btncs2{
+	float: right;
+}
+#footersize{
+	justify-content: center;
+}
+
+.titlesize{
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+#modalboxsize{
+	margin-top: 50%;
+}
+.dd{
+	display:inline-block;
+}
+.dd2{
+	display:inline-block;
+	margin-left:2%;
+}
+.xxxx{
+	text-align: right;
+}
+#fontss{
+	margin-top: 10px;
+}
