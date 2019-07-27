@@ -79,7 +79,7 @@
 													    				<input type="text" class="form_select_date_val form_select_month_val out_form" size="2" maxlength="2" name="" value="" readonly>월 
 													    				<input type="text" class="form_select_date_val form_select_day_val out_form" size="2" maxlength="2" name="" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
-													    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_out_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
 													    			</td>
 													    		</tr>
@@ -153,7 +153,7 @@
 													    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="" value="" readonly>월 
 													    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
-													    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
+													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_trs_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
 													    			</td>
 													    		</tr>

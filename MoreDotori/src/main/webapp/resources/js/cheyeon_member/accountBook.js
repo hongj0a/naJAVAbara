@@ -283,11 +283,13 @@
     	 $(".badge_update_date").css("display", "none");
        });
        
-       //2) 저장버튼
-       $(".badge_save_date").click(function(){
-      	 var yyyy = $(".form_select_year_val").val();
-      	 var mmmm = $(".form_select_month_val").val();
-      	 var dddd = $(".form_select_day_val").val();
+       //2) 저장버튼(지,수)
+       $(".badge_save_date_out_form").click(function(){
+		 console.log('지출수입 날짜 저장버튼 클릭 이벤트'); 
+		  
+      	 var yyyy = $(".form_select_year_val.out_form").val();
+      	 var mmmm = $(".form_select_month_val.out_form").val();
+      	 var dddd = $(".form_select_day_val.out_form").val();
       	 
     	 if(yyyy==""|mmmm==""|dddd==""){
     		alert('날짜를 입력해주세요');
@@ -308,11 +310,52 @@
              sday = yyyy+'년 '+mmmm+'월 '+dddd+'일';
    	  	  	 $(".title_select_date").text(sday);
    	  	  	 
-   	  	  	 preyyyy = $(".form_select_year_val").val();
-   	  	  	 premmmm = $(".form_select_month_val").val();
-   	  	  	 predddd = $(".form_select_day_val").val();   	  	  	 
-    	 }
+   	  	  	 preyyyy = $(".form_select_year_val.out_form").val();
+   	  	  	 premmmm = $(".form_select_month_val.out_form").val();
+   	  	  	 predddd = $(".form_select_day_val.out_form").val();
+   	  	  	 
+   	  	  	 $(".form_select_year_val.trs_form").val(preyyyy);
+   	  	  	 $(".form_select_month_val.trs_form").val(premmmm);
+   	  	  	 $(".form_select_day_val.trs_form").val(predddd);
+    	 }    		  
        });
+       
+       //2) 저장버튼(이체)
+       $(".badge_save_date_trs_form").click(function(){
+		 console.log('이체 날짜 저장버튼 클릭 이벤트'); 
+		  
+      	 var yyyy = $(".form_select_year_val.trs_form").val();
+      	 var mmmm = $(".form_select_month_val.trs_form").val();
+      	 var dddd = $(".form_select_day_val.trs_form").val();
+      	 
+    	 if(yyyy==""|mmmm==""|dddd==""){
+    		alert('날짜를 입력해주세요');
+    	 }else if(mmmm<=0|mmmm>=13|dddd<=0|dddd>=32){
+    		alert('날짜를 입력해주세요');
+    	 }else{
+        	 $(".form_select_date_val").attr("readonly", true);
+        	 $(".form_select_date_val").css({"background-color": "#ffffff00", "border": "1px solid #f4f7fa"});
+        	 
+        	 $(".badge_save_date").css("display", "none");
+        	 $(".badge_cancle_date").css("display", "none");
+        	 
+        	 $(".badge_update_date").css("display", "inline-block");
+        	 
+        	 var yymmdd = new Date(yyyy+"-"+mmmm+"-"+dddd);
+        	 calendar.set(yymmdd);
+        	 
+             sday = yyyy+'년 '+mmmm+'월 '+dddd+'일';
+   	  	  	 $(".title_select_date").text(sday);
+   	  	  	 
+   	  	  	 preyyyy = $(".form_select_year_val.trs_form").val();
+   	  	  	 premmmm = $(".form_select_month_val.trs_form").val();
+   	  	  	 predddd = $(".form_select_day_val.trs_form").val();
+   	  	  	 
+   	  	  	 $(".form_select_year_val.out_form").val(preyyyy);
+   	  	  	 $(".form_select_month_val.out_form").val(premmmm);
+   	  	  	 $(".form_select_day_val.out_form").val(predddd);
+    	 }    		  
+       });       
        
        //3) 취소버튼
        $(".badge_cancle_date").click(function(){
