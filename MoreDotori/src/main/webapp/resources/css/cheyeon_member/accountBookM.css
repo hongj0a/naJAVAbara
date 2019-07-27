@@ -161,3 +161,7 @@
     max-width: 360px !important;
     margin: 1.75rem auto !important;
 }
+
+#inoutModal, #transferModal{
+    padding-top: 4%;
+}

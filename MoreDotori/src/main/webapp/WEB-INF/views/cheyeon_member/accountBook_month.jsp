@@ -98,8 +98,8 @@
 								    	</table>			                   		
 					                   </div>
 					                   <div class="modal-footer">
-					                       <button type="button" class="btn btn-secondary clear_insert_inout" data-dismiss="modal">Close</button>
-					                       <button type="button" class="btn btn-primary save_insert_inout">Save changes</button>
+					                       <button type="button" class="btn btn-primary save_insert_inout">저장</button>					                   
+					                       <button type="button" class="btn btn-secondary clear_insert_inout" data-dismiss="modal">취소</button>
 					                   </div>
 				                   </form>
 			               </div>
@@ -177,8 +177,8 @@
 				                  </form>			                   		
 			                   </div>
 			                   <div class="modal-footer">
-			                       <button type="button" class="btn btn-secondary clear_insert_trs" data-dismiss="modal">Close</button>
-			                       <button type="button" class="btn btn-primary save_insert_trs">Save changes</button>
+			                       <button type="button" class="btn btn-primary save_insert_trs">저장</button>
+			                       <button type="button" class="btn btn-secondary clear_insert_trs" data-dismiss="modal">취소</button>
 			                   </div>
 			               </div>
 			           </div>
