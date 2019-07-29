@@ -40,6 +40,10 @@ input.address[readonly], textarea.account-clause[readonly] {
 .account-clause {
   font-size: 12px;
 }
+
+.card.cw-560 {
+	margin: 20px 0;
+}
 /* sign-up end */
 
 /* find-account  start */
