@@ -34,11 +34,15 @@
 }
 
 input.address[readonly], textarea.account-clause[readonly] {
-   background-color: #f4f7fa;
+	background-color: #f4f7fa;
 }
 
 .account-clause {
   font-size: 12px;
+}
+
+.card.cw-560 {
+	margin: 20px 0;
 }
 /* sign-up end */
 
@@ -91,6 +95,6 @@ input.address[readonly], textarea.account-clause[readonly] {
 
 /* my-page start */
 .change-password {
-   display: none;
+	display: none;
 }
 /* my-page end */

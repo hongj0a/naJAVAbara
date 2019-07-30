@@ -8,7 +8,7 @@
   box-shadow: none;
 }
 
-.nav-pills.asset > li > a {
+.nav-pills.asset li a {
   line-height: 7px;
   min-width: 70px;
 }
@@ -26,8 +26,56 @@
   padding: 0;
 }
 
-.card.my-statistics > .card-header > a {
+.card.my-statistics .card-header a {
   color: black;
   display: block;
   padding: 20px 25px;
+}
+
+.lineAreaDashboard {
+	width: 85%;
+	height: 350px;
+	margin: 0 auto;
+}
+
+.tab2 {
+	width: 85%;
+	margin: 0 auto;
+}
+
+.chart-statistics {
+	width: 100%;
+	height: 250px;
+}
+
+#tab4-chart {
+	height: 400px;
+	margin-bottom: 40px;
+}
+
+.card.inner-card {
+	margin-bottom: 0;
+}
+
+.card.inner-card .card-body {
+	padding: 15px 20px;
+	font-size: 1em;
+}
+
+.card.inner-card i {
+	font-size: 1.8em;
+}
+
+.card.inner-card .col-form-label {
+	margin: auto 0;
+}
+
+.card.inner-card .col-form-label .mdi-numeric-1-box {
+	color: #1de9b6;
+}
+.card.inner-card .col-form-label .mdi-numeric-2-box {
+	color: #04a9f5;
+}
+.card.inner-card .col-form-label .mdi-numeric-3-box {
+	color: #a389d4;
 }
