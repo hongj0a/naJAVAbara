@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+body.layout-8 .pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.active > a, body.layout-8 .pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger > a {
+	background: #f29d352e !important;
+ 	color: #3f4d67 !important;
+}
+
+.pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.active:after, .pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger:after{
+	background: #F29D35 !important;
+}
+

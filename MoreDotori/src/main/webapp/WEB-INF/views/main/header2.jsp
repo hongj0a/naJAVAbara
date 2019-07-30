@@ -24,13 +24,14 @@
     
     <!-- append css -->
     <link rel="stylesheet" href="css/main/header.css">
+    <link rel="stylesheet" href="css/main/header2.css">
 </head>
 
 <body class="layout-8">
     <!-- [ navigation menu ] start -->
-    <nav id="header_menu" id="pcoded_navbar_blue" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
+    <nav id="header_menu" id="pcoded_navbar_orange" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
-            <div class="navbar-brand header-logo" id="moredotori_menu_blue">
+            <div class="navbar-brand header-logo" id="moredotori_menu_orange">
                 <a href="/main" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
@@ -40,26 +41,14 @@
                 <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             </div>
             <div class="navbar-content scroll-div">
-                <ul class="nav pcoded-inner-navbar" id="moredotori_navbar_blue">
-                    <!-- 회원 메뉴 -->
-                    <li id="menu0" class="nav-item pcoded-menu-caption">
-                        <label>MEMBER MENU</label>
-                    </li>                    
-                    <li id="menu1" data-username="dashboard Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
-                        <ul class="pcoded-submenu">
-                            <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
-                            <li id="menu1_2"><a href="/aList" class="">자산목록관리</a></li>
-                            <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
-                        </ul>
+                <ul class="nav pcoded-inner-navbar" id="moredotori_navbar_orange">
+                    <!-- 전문가 메뉴 -->
+                    <li id="menu3" class="nav-item pcoded-menu-caption">
+                        <label>EXPERT MENU</label>
                     </li>
-                    <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-check-square"></i></span><span class="pcoded-mtext">재무진단</span></a>
-                        <ul class="pcoded-submenu">
-                            <li id="menu2_1"><a href="/eList" class="">전문가찾기</a></li>
-                            <li id="menu2_2"><a href="" class="">상담내역</a></li>
-                        </ul>
-                    </li>
+                    <li id="menu4" data-username="widget Statistic Data Table User card Chart" class="nav-item">
+                        <a href="/expert_cal" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">상담 관리</span></a>
+                    </li>                                       
                     
                     <!-- 공통 메뉴 -->
                     <li id="menu5" class="nav-item pcoded-menu-caption">
@@ -81,6 +70,7 @@
                             <li id="menu7_2"><a href="/qna" class="">Q & A</a></li>
                         </ul>
                     </li>                                   
+                                       
                 </ul>
             </div>
         </div>
@@ -88,7 +78,7 @@
     <!-- [ navigation menu ] end -->
 
     <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed moredotori_header_blue" id="moredotori_header_blue">
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed moredotori_header_blue" id="moredotori_header_orange">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="/main" class="b-brand">
@@ -225,11 +215,8 @@
     <!-- [ chat message ] end -->
 
     <!-- Required Js -->
-    <script src="js/vendor-all.min.js">
-</script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js">
-</script>
-    <script src="js/pcoded.min.js">
-</script>
+    <script src="js/vendor-all.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/pcoded.min.js"></script>
 </body>
 </html>

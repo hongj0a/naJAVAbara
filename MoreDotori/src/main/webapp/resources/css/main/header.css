@@ -150,74 +150,125 @@ width:16px;height:16px;background:#fff;}
 
 /*헤더*/
 #moredotori_header {
- background: #5086f2;
- 
-/*  background: #F29D35;
- 
- background: #1f3145; */
- 
- color: rgba(255, 255, 255, 0.8);
+}
+
+#moredotori_header_blue{
+	background: #5086f2 !important;
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#moredotori_header_orange{
+	background: #F29D35 !important;
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+
+#moredotori_header_black{
+	background: #1f3145 !important;
+	color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /*메뉴*/
 #moredotori_menu {
- background: #5086f2;
- 
-/*  background: #F29D35;
+}
 
- background: #1f3145; */
+#moredotori_menu_blue{
+	background: #5086f2 !important;
+}
+
+#moredotori_menu_orange{
+	background: #F29D35 !important;	
+}
+
+#moredotori_menu_black{
+	background: #1f3145 !important;	
 }
 
 /*메뉴선택 옆줄*/
 #moredotori_navbar > li.active:after, #moredotori_navbar > li.pcoded-trigger:after {
- background: #5086f2;
- 
-/*  background: #F29D35;
+}
 
- background: #a1a1a1; */
+#moredotori_navbar_blue > li.active:after, #moredotori_navbar > li.pcoded-trigger:after {
+ background: #5086f2 !important;	
+}
+
+#moredotori_navbar_orange > li.active:after, #moredotori_navbar > li.pcoded-trigger:after {
+ background: #F29D35 !important;	
+}
+
+#moredotori_navbar_black > li.active:after, #moredotori_navbar > li.pcoded-trigger:after {
+ background: #a1a1a1 !important;	
 }
 
 /*메뉴선택 점*/
 #moredotori_navbar li .pcoded-submenu > li.active > a:before, #moredotori_navbar li .pcoded-submenu > li:hover > a:before {
- background: #5086f2;
- 
-/*  background: #F29D35;
- 
- background: #1f3145; */
+}
+
+#moredotori_navbar_blue li .pcoded-submenu > li.active > a:before, #moredotori_navbar li .pcoded-submenu > li:hover > a:before {
+ background: #5086f2 !important;	
+}
+
+#moredotori_navbar_orange li .pcoded-submenu > li.active > a:before, #moredotori_navbar li .pcoded-submenu > li:hover > a:before {
+ background: #F29D35 !important;	
+}
+
+#moredotori_navbar_black li .pcoded-submenu > li.active > a:before, #moredotori_navbar li .pcoded-submenu > li:hover > a:before {
+ background: #1f3145 !important;	
 }
 
 /*메뉴선택 배경 및 글씨색*/
 #moredotori_navbar > li.active > a, #moredotori_navbar > li.pcoded-trigger > a{
-	background: #7de1ff40;
-    color: #3f4d67;
+}
 
-/*  	background: #f29d352e;
- 	color: #3f4d67;
- 
-   background: #ececec;
-   color: #000000; */
+#moredotori_navbar_blue > li.active > a, #moredotori_navbar > li.pcoded-trigger > a{
+	background: #7de1ff40 !important;
+    color: #3f4d67 !important;
+}
+
+#moredotori_navbar_orange > li.active > a, #moredotori_navbar > li.pcoded-trigger > a{
+	background: #f29d352e !important;
+ 	color: #3f4d67 !important;
+}
+
+#moredotori_navbar_black > li.active > a, #moredotori_navbar > li.pcoded-trigger > a{
+   background: #ececec !important;
+   color: #000000 !important;
 }
 
 /*메뉴선택 배경 및 글씨색:hover*/
 #moredotori_navbar .nav-link:hover{
-	background: #7de1ff40;
-    color: #3f4d67;
+}
 
-/*  	background: #f29d352e;
- 	color: #3f4d67;
-	
-	color: #000000;
-	background: #ececec; */
+#moredotori_navbar_blue .nav-link:hover{
+	background: #7de1ff40 !important;
+    color: #3f4d67 !important;
+}
+
+#moredotori_navbar_orange .nav-link:hover{
+	background: #f29d352e !important;
+ 	color: #3f4d67 !important;
+}
+
+#moredotori_navbar_black .nav-link:hover{
+	color: #000000 !important;
+	background: #ececec !important;
 }
 
 /*선택메뉴이름색*/
-.pcoded-navbar.active-lightblue .pcoded-inner-navbar li.active > a{
-	color: #5086f2;
-	
-/* 	color: #e7a938;
-	
-	color: #000000; */
+#pcoded_navbar.active-lightblue .pcoded-inner-navbar li.active > a, #pcoded_navbar.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger > a, .pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.active:after, #pcoded_navbar.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger:after{
+}
 
-	font-weight: bold;
+#pcoded_navbar_blue.active-lightblue .pcoded-inner-navbar li.active > a, #pcoded_navbar_blue.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger > a, #pcoded_navbar_blue.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger:after{
+	color: #5086f2 !important;
+	font-weight: bold !important;
+}
+
+#pcoded_navbar_orange.active-lightblue .pcoded-inner-navbar li.active > a, #pcoded_navbar_orange.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger > a, #pcoded_navbar_orange.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger:after{
+	color: #e7a938 !important;
+	font-weight: bold !important;
+}
+
+#pcoded_navbar_black.active-lightblue .pcoded-inner-navbar li.active > a, #pcoded_navbar_black.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger > a, #pcoded_navbar_black.active-lightblue .pcoded-inner-navbar > li.pcoded-trigger:after{
+	color: #000000 !important;
+	font-weight: bold !important;
 }
 
