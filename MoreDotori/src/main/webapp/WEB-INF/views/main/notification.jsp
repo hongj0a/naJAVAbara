@@ -9,18 +9,6 @@
 
     <!-- append css -->
     <link rel="stylesheet" href="css/main/noti.css">
-    
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	jQuery.noConflict();
-	jQuery( document ).ready(function( $ ) {
-	    var speed = 400; // 스크롤속도
-	    $("#noti_gotop_btn").css("cursor", "pointer").click(function(){
-	        $('body, html').animate({scrollTop:0}, speed);
-	    });
-
-	});
-	</script>
 
 </head>
 
@@ -191,9 +179,9 @@
 				                    </div>							    
 							    </div>
 							    
-							    <div class="col-2 noti_gotop">
+<!-- 							    <div class="col-2 noti_gotop">
 							   		<button type="button" class="btn btn-icon btn-rounded btn-info" id="noti_gotop_btn"><i class="feather icon-chevrons-up"></i></button>
-							    </div>							    
+							    </div> -->							    
 							</div>
                             <!-- [ Main Content ] end -->
 

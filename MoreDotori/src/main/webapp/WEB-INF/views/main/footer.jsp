@@ -23,10 +23,34 @@
     <link rel="stylesheet" href="css/style.css">
     
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/footer.css">    
+    <link rel="stylesheet" href="css/main/footer.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery( document ).ready(function( $ ) {
+		$("#noti_gotop_btn").hide();
+		
+	    var speed = 400; // 스크롤속도
+	    $("#noti_gotop_btn").css("cursor", "pointer").click(function(){
+	        $('body, html').animate({scrollTop:0}, speed);
+	    });
+	});
+
+	jQuery( window ).scroll(function(){
+		if(jQuery( document ).scrollTop() == 0){
+			$("#noti_gotop_btn").hide("slow");
+		}else{
+			$("#noti_gotop_btn").show("fast");
+		}		
+	})
+	
+	</script>    
 </head>
 
 <body class="layout-8">
+	    <div class="col-2 noti_gotop">
+	   		<button type="button" class="btn btn-icon btn-rounded btn-info" id="noti_gotop_btn"><i class="feather icon-chevrons-up"></i></button>
+	    </div>
 	    <div class="footer">
 	    	<div>
 	    		MOREDOTORI

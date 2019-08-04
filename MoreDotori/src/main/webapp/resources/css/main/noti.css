@@ -70,28 +70,3 @@
 .card .card-body2{
   padding: 15px 25px !important;
 }
-
-#noti_gotop_btn{
-    float: right;
-    background-color: #6b98f2;
-    border: none;
-    font-size: 20px;
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    margin: 30px;
-    width: 55px;
-    height: 55px;
-    box-shadow: 1px 1px 1px #0000002b;
-    border-radius: 55px;
-}
-
-#noti_gotop_btn:hover{
-	background-color: #7aa3f6;
-}
-
-#noti_gotop_btn:active{
-    background-color: #6b98f2;
-    width: 54px;
-    height: 54px;
-}
