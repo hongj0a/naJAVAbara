@@ -124,10 +124,17 @@
     width:100%;
     border:0px solid red;
 }
+/*
 .form-group{
     border:0px solid blue;
     display:inline-block !important;
     width:49%;
+    
+}*/
+.form-group{
+    border:0px solid blue;
+    display:inline-block !important;
+    width:100%;
     
 }
 .reseonwhy{

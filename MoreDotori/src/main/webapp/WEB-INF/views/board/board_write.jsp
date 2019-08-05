@@ -76,17 +76,24 @@
     <!-- [ Main Content ] end -->
     
     <!-- Ckeditor js -->
-    <script src="js/board/ckeditor.js"></script>
+    <script src="js/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
-        $(window).on('load', function() {
+        $(document).ready(function() {
             // classic editor
-            ClassicEditor.create(document.querySelector('#classic-editor'))
-                .catch(error => {
-                    console.error(error);
-                });
+           CKEDITOR.replace('classic-editor' , {height: 300,language:'ko' });
+
         });
 
     </script>
+    <!-- 
+    <style>
+    	.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+		    color: inherit;
+		    font-size: 12px;
+		    font-weight: bold;
+		    padding: 0 12px;
+		}
+    </style> -->
 </body>
 </html>
