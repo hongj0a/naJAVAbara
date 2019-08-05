@@ -9,3 +9,14 @@ body.layout-8 .pcoded-navbar.active-lightblue .pcoded-inner-navbar > li.active >
  	background: #1f3145 !important;
 }
 
+#noti_gotop_btn{
+    background-color: #3f4d67;
+}
+
+#noti_gotop_btn:hover{
+	background-color: #405e7e;
+}
+
+#noti_gotop_btn:active{
+    background-color: #3f4d67;
+}

@@ -21,7 +21,7 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
+	<jsp:include page="../main/header2.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

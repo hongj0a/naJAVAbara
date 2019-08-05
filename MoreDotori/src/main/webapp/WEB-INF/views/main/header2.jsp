@@ -32,7 +32,7 @@
     <nav id="header_menu" id="pcoded_navbar_orange" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo" id="moredotori_menu_orange">
-                <a href="/main" class="b-brand">
+                <a href="/" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
                     </div>
@@ -81,7 +81,7 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed moredotori_header_blue" id="moredotori_header_orange">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
-            <a href="/main" class="b-brand">
+            <a href="/" class="b-brand">
                    <div class="b-bg">
                        <i class="feather icon-trending-up"></i>
                    </div>

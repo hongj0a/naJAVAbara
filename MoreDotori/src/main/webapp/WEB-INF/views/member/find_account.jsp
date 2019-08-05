@@ -17,7 +17,7 @@
 		<div class="card cw-740">
 			<div class="card-body text-center">
 				<div class="col-sm-12">
-					<h3 class="mb-4">Logo Here</h3>
+					<a href="/"><h3 class="mb-4">Logo Here</h3></a>
 					<!-- <h5>계정 찾기</h5> -->
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a

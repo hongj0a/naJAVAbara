@@ -31,7 +31,7 @@
     <nav id="header_menu" id="pcoded_navbar_blue" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo" id="moredotori_menu_blue">
-                <a href="/main" class="b-brand">
+                <a href="/" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
                     </div>

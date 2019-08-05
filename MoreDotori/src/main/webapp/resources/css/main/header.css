@@ -272,3 +272,15 @@ width:16px;height:16px;background:#fff;}
 	font-weight: bold !important;
 }
 
+
+#noti_gotop_btn{
+    background-color: #6b98f2;
+}
+
+#noti_gotop_btn:hover{
+	background-color: #7aa3f6;
+}
+
+#noti_gotop_btn:active{
+    background-color: #6b98f2;
+}

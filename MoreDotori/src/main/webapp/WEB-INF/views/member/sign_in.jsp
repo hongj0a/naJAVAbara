@@ -24,7 +24,7 @@
             </div>
             <div class="card">
                 <div class="card-body text-center">
-                    <h2 class="mb-5">Logo Here</h2>
+                    <a href="/"><h2 class="mb-5">Logo Here</h2></a>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" placeholder="아이디">
                     </div>
@@ -43,10 +43,10 @@
                     <button class="btn btn-primary shadow-2 mb-4 form-control">Google로 로그인</button>
                     <div>
                       <div class="mb-2 text-muted float-sm-left">
-                        <a href="sign_up.html">회원가입</a>
+                        <a href="/signup">회원가입</a>
                       </div>
                       <div class="mb-2 text-muted float-sm-right">
-                        <a href="find_account.html">계정 찾기</a>
+                        <a href="/find_account">계정 찾기</a>
                       </div>
                     </div>
                     <!--

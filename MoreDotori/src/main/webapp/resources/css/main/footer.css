@@ -23,7 +23,6 @@
 
 #noti_gotop_btn{
     float: right;
-    background-color: #6b98f2;
     border: none;
     font-size: 20px;
     position: fixed;
@@ -36,12 +35,7 @@
     border-radius: 55px;
 }
 
-#noti_gotop_btn:hover{
-	background-color: #7aa3f6;
-}
-
 #noti_gotop_btn:active{
-    background-color: #6b98f2;
     width: 54px;
     height: 54px;
 }

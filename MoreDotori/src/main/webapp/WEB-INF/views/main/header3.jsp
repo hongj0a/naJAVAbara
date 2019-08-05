@@ -32,7 +32,7 @@
     <nav id="header_menu" id="pcoded_navbar_black" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo" id="moredotori_menu_black">
-                <a href="/main" class="b-brand">
+                <a href="/" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-trending-up"></i>
                     </div>
@@ -49,20 +49,9 @@
                     <li id="menu9" data-username="widget Statistic Data Table User card Chart" class="nav-item">
                         <a href="/mem" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">회원 관리</span></a>
                     </li>
-                    <li id="menu10" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">게시물 관리</span></a>
-                        <ul class="pcoded-submenu">
-                            <li id="menu10_1"><a href="/board_notice" class="">공지사항</a></li>
-                            <li id="menu10_2"><a href="/report" class="">신고내역</a></li>
-                        </ul>
-                    </li>
-                     <li id="menu11" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
-                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
-                        <ul class="pcoded-submenu">
-                            <li id="menu11_1"><a href="/faq" class="">F A Q</a></li>
-                            <li id="menu11_2"><a href="/qna" class="">Q & A</a></li>
-                        </ul>
-                    </li>
+                    <li id="menu10" data-username="widget Statistic Data Table User card Chart" class="nav-item">
+                        <a href="/report" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">신고내역</span></a>
+                    </li>                    
 
                     <!-- 공통 메뉴 -->
                     <li id="menu5" class="nav-item pcoded-menu-caption">
