@@ -23,3 +23,6 @@ table{
     width: 30%!important;
     margin-left:5px;
 }
+.footable .label-default{
+    display: none;
+}

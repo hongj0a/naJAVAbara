@@ -115,7 +115,11 @@
                                                                 <!-- 유저정보 -->
                                                                 <div class="media-body">
                                                                     <span class="chat-header float-left">닉네임***?<small class="d-block text-c-green">2019.07.14</small></span>
-                                                                    <span class="like_warning float-right"><span><a href="#">추천 </a>|<a href="#test"> 신고</a></span>
+                                                                    <span class="like_warning float-right">
+                                                                    <span>
+	                                                                    <a href="#">추천 </a>|
+	                                                                    <a data-toggle="modal" data-target="#exampleModalCenter" style="cursor:pointer;"> 신고</a>
+                                                                    </span>
                                                                     </span>
 
                                                                 </div>
@@ -133,7 +137,11 @@
                                                                 <!-- 유저정보 -->
                                                                 <div class="media-body">
                                                                     <span class="chat-header float-left">닉네임***?<small class="d-block text-c-green">2019.07.14</small></span>
-                                                                    <span class="like_warning float-right"><span><a href="#">추천 </a>|<a href="#"> 신고</a></span>
+                                                                    <span class="like_warning float-right">
+                                                                    <span>
+	                                                                    <a href="#">추천 </a>|
+	                                                                    <a data-toggle="modal" data-target="#exampleModalCenter"style="cursor:pointer;"> 신고</a>
+                                                                    </span>
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -174,6 +182,33 @@
                                                     <div class="  radiowrap">
                                                         <div class="form-group">
                                                             <div class="radio radio-primary d-inline">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-1"  checked value="1">
+                                                                <label for="radio-p-1" class="cr">성인/도박 등 불법광고 및 스팸활동</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="radio radio-primary d-inline">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-2"value="1">
+                                                                <label for="radio-p-2" class="cr">바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="radio radio-primary d-inline">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-3"value="1">
+                                                                <label for="radio-p-3" class="cr">홈페이지 내 자체운영 원칙에 위배되는 활동</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="radio radio-primary d-inline mb-2">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-4" value="0">
+                                                                <label for="radio-p-4" class="cr">기타(반드시 사유를 작성해주세요)</label>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <!--
+                                                        
+                                                        <div class="form-group">
+                                                            <div class="radio radio-primary d-inline">
                                                                 <input type="radio" name="radio-p-1" id="radio-p-1" checked>
                                                                 <label for="radio-p-1" class="cr">영리목적/홍보성</label>
                                                             </div>
@@ -191,7 +226,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="radio radio-primary d-inline">
+                                                            <div class="radio radio-primary ">
                                                                 <input type="radio" name="radio-p-1" id="radio-p-4">
                                                                 <label for="radio-p-4" class="cr">욕설/인신공격</label>
                                                             </div>
@@ -214,9 +249,10 @@
                                                                 <label for="radio-p-7" class="cr">기타</label>
                                                             </div>
                                                         </div>
+                                                        -->
                                                         <!-- [ primary radio ] end -->
 
-                                                        <textarea class="reply_textarea form-control reseonwhy" name="" placeholder="신고 사유를 작성해주세요" rows="3"></textarea>
+                                                        <textarea class="reply_textarea form-control reseonwhy" name="text" placeholder="신고 사유를 작성해주세요" rows="3" disabled></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -256,6 +292,34 @@
                     "enabled": true
                 }*/
             });
+          /*  
+         // 라디오버튼 클릭시 이벤트 발생
+            $("input:radio[name=radio-p-1]").click(function(){
+         
+                if($("input[name=radio-p-1]:checked").val() == "1"){
+                    $("textarea[name=text]").attr("disabled",false);
+                    // radio 버튼의 value 값이 1이라면 활성화
+         
+                }else if($("input[name=radio-p-1]:checked").val() == "0"){
+                      $("textarea[name=text]").attr("disabled",true);
+                    // radio 버튼의 value 값이 0이라면 비활성화
+                }
+            }); 
+          */
+          $("input:radio[name=radio-p-1]").click(function(){
+        	  if($("input[name=radio-p-1]:checked").val() == "0"){
+                  $("textarea[name=text]").attr("disabled",false);
+               
+        	  }else if($("input[name=radio-p-1]:checked").val() == "1"){
+                  $("textarea[name=text]").attr("disabled",true);
+                  $("textarea[name=text]").val("");
+              
+            }
+          });
+          
+          
+          
+          
         });
     </script>
 </body>
