@@ -1203,6 +1203,7 @@
                                           <th>신고게시물</th>
                                           <th>신고횟수</th>
                                           <th>이력보기</th>
+                                          <th>정지하기</th>
                                         </tr>
                                       </thead>
                                         <tbody>
@@ -1266,6 +1267,10 @@
 	                                                </div>
 	                                            </div>
                                           </td>
+                                             <td>
+                                            <span data-toggle="modal" data-target="#exampleModalLive2" style="cursor:pointer;"><span class="badge badge-danger">정지</span></span>
+                                                
+                                                </td>
                                         </tr>
 				
                                         <tr>
@@ -1881,6 +1886,70 @@
                                           </tr>
                                         </tbody>
                                       </table>
+                                      
+                                      <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLiveLabel">확인메세지</h5>
+                                                            <span class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></span>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        <div class="modal-body">
+                                                            <p> <i class="feather icon-alert-circle"></i>&nbsp;&nbsp;정말로 지코 회원을 정지하시겠습니까?</p>
+                                                        </div>
+                                                        
+                                                        <br>
+                                                      
+                                                        
+                                                        
+                                                       <p class="fontSize">[ 활동정지사유 ]</p>
+                                                       <br>
+                                                        <div class="form-group">
+                                                        <div class="radio radio-primary d-inline">
+                                                            <input type="radio" name="radio-p-1" id="radio-p-1" checked="">
+                                                            <label for="radio-p-1" class="cr">성인/도박 등 불법광고 및 스팸 활동</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="radio radio-primary d-inline">
+                                                            <input type="radio" name="radio-p-1" id="radio-p-2">
+                                                            <label for="radio-p-2" class="cr">바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="radio radio-primary d-inline">
+                                                            <input type="radio" name="radio-p-1" id="radio-p-3">
+                                                            <label for="radio-p-3" class="cr">홈페이지 내 자체운영 원칙에 위배되는 활동</label>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group">
+                                                        <div class="radio radio-primary d-inline">
+                                                            <input type="radio" name="radio-p-1" id="radio-p-4">
+                                                            <label for="radio-p-4" class="cr">기타</label>
+                                                            <input type="text" class="form-control form-control-sm col-sm-11" id="colFormLabelSm" placeholder="기타를 선택한 경우 작성해주세요.">
+                                                        </div>
+                                                    </div>
+                                                        
+                                                     <br>                             
+                                                        <label for="selectBox" class="fontSize">[ 활동정지기간 ]</label>
+                                                     <select class="form-control" id="selectBox1">
+                                                       <option>1일</option>
+                                                       <option>3일</option>
+                                                       <option>7일</option>
+                                                       <option>영구정지</option>
+                                                     </select>
+                                                       
+                                                        
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                            <button type="button" class="btn btn-primary">확인</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>   
                                 <!-- [ data-table ] end -->
                                           </div>
