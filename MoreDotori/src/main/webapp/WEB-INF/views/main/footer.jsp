@@ -24,27 +24,6 @@
     
     <!-- append css -->
     <link rel="stylesheet" href="css/main/footer.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	jQuery.noConflict();
-	jQuery( document ).ready(function( $ ) {
-		$("#noti_gotop_btn").hide();
-		
-	    var speed = 400; // 스크롤속도
-	    $("#noti_gotop_btn").css("cursor", "pointer").click(function(){
-	        $('body, html').animate({scrollTop:0}, speed);
-	    });
-	});
-
-	jQuery( window ).scroll(function(){
-		if(jQuery( document ).scrollTop() == 0){
-			$("#noti_gotop_btn").hide("slow");
-		}else{
-			$("#noti_gotop_btn").show("fast");
-		}		
-	})
-	
-	</script>    
 </head>
 
 <body class="layout-8">
@@ -64,6 +43,25 @@
 	    	<div>
 	    		Copyrightⓒ 2019naJAVAbaraCompany All rights reserved.
 	    	</div>
-	    </div> 
+	    </div>
+	    
+    <script>
+		$(document).ready(function(){
+			$("#noti_gotop_btn").hide();
+			
+		    var speed = 400; // 스크롤속도
+		    $("#noti_gotop_btn").css("cursor", "pointer").click(function(){
+		        $('body, html').animate({scrollTop:0}, speed);
+		    });
+		});
+	
+		$(window).scroll(function(){
+			if($(document).scrollTop() == 0){
+				$("#noti_gotop_btn").hide("fast");
+			}else{
+				$("#noti_gotop_btn").show("fast");
+			}		
+		})
+    </script> 
 </body>
 </html>
