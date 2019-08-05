@@ -3,9 +3,6 @@
   border-bottom: 2px solid #ddd;
 }
 
-.table-hover tbody tr{
- cursor:pointer;
-}
 .inner_detail{
 }
 .inner_detail_td{
@@ -18,13 +15,50 @@
   text-align: center;
 }
 .report_detail_table tr th, .report_detail_table tr td{
-  background-color:#f7f7f7;
+  background-color:#ffffff;
+  
 }
 /* border:1px solid green; */
 .report_detail_table th{
   border-bottom: 1px solid lightGray;
 }
-
+.space{
+	padding:0% !important;
+}
+.head{
+	text-align: center !important;
+}
+.thickness{
+	line-height:0%;
+}
 .tdStyle {
   display: none !important;
+}
+.buttonChange{
+	border: 0px;
+	outline: 0px;
+	background : white;
+	cursor: pointer;
+}
+#zero-configuration, #zero-configuration th{
+	text-align: center !important;
+}
+.layout{
+	text-align: left;
+}
+#zero-configuration2, #zero-configuration2 th{
+	text-align: center;
+}
+.linkColor{
+	color:gray !important;
+}
+.modal-content{
+	padding: 3% !important;
+}
+.modal-body{
+	text-align: left;
+}
+.fontSize{
+	line-height: 10px !important;
+	font-weight: 700 !important;
 }

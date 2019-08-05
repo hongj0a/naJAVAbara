@@ -7,6 +7,8 @@
 	<meta charset="utf-8">
     <!-- Wysiwyg editor -->
     <link rel="stylesheet" href="plugins/fullcalendar/css/fullcalendar.min.css">
+    <!-- schedule/my Css -->
+    <link rel="stylesheet" href="css/schedule.css">
 </head>
 
 <body class="layout-8">
@@ -49,7 +51,7 @@
 
                                 </div>
                                 <div class="fc-view-noteContainer">
-                                        <div style="padding:20px;">
+                                        <div class="spaceTwo"> <!-- 여기이상함 -->
                                         <div id='calendar' class='calendar col-sm-9 float-sm-left'>
 
                                         </div>
@@ -98,8 +100,8 @@
                                     </div>
                                   </div>
 
-                                  <div class="listView" style="display:none;">
-                                    <div style="padding:20px;">
+                                  <div class="listView listPlace" >
+                                    <div class="spaceTwo">
                                     <div class="row">
                                     <div id='list' class='list col-sm-8 float-sm-left'>
                                       <div class="col-xl-12">
@@ -107,7 +109,7 @@
                                         <div class="card-block">
                                           <div class="row">
                                             <div class="col-sm-2">
-                                            <img src="images/ok2.png" style="width:80px;" alt="activity-user">
+                                            <img src="images/ok2.png" class="imageSize" alt="activity-user">
                                           </div>
                                           <div class="col-sm-10 align-items-center justify-content-center">
                                             <div class="col margin:0 auto;">
@@ -118,8 +120,8 @@
                                               <h6 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h6>
                                               <h5>이러이러해서 상담을 신청합니다.</h5>
                                               <div class="col-sm-3/4 float-sm-right">
-                                                <div id="exampleModalLive3" class="modal fade" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                                <div id="exampleModalLive3" class="modal fade listPlace" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLiveLabel"  aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                   <div class="modal-content">
                                                     <div class="modal-header">
@@ -128,9 +130,9 @@
                                                         <span aria-hidden="true">x</span>
                                                       </button>
                                                     </div>
-                                                    <div class="form-group" style="padding:10px">
+                                                    <div class="form-group spaceOne" >
                                                       <label for="message-text" class="col-form-label">&nbsp;김인희 님께 보내는 메세지:</label>
-                                                      <div style="padding:10px;">
+                                                      <div class="spaceOne">
                                                       <textarea class="form-control" id="message-text">
                                                       </textarea>
                                                     </div>
@@ -144,8 +146,8 @@
                                               </div>
                                               <button type="button" class="btn btn-primary"  data-toggle="modal"
                                               data-target="#exampleModalLive3">수락</button>
-                                              <div id="exampleModalLive4" class="modal fade" tabindex="-1" role="dialog"
-                                              aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                              <div id="exampleModalLive4" class="modal fade listPlace" tabindex="-1" role="dialog"
+                                              aria-labelledby="exampleModalLiveLabel"  aria-hidden="true">
                                               <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
@@ -154,9 +156,9 @@
                                                       <span aria-hidden="true">x</span>
                                                     </button>
                                                   </div>
-                                                  <div class="form-group" style="padding:10px">
+                                                  <div class="form-group spaceOne" >
                                                     <label for="message-text" class="col-form-label">&nbsp;거절메세지:</label>
-                                                    <div style="padding:10px;">
+                                                    <div class="spaceOne">
                                                       <div class="form-group">
                                                         <select class="form-control" id="selectBox1">
                                                           <option>일정 변동이 있어서</option>
@@ -195,7 +197,7 @@
                                       <div class="card-block">
                                         <div class="row">
                                           <div class="col-sm-2">
-                                          <img src="images/no2.png" style="width:80px;" alt="activity-user">
+                                          <img src="images/no2.png" class="imageSize" alt="activity-user">
                                         </div>
                                         <div class="col-sm-10 align-items-center justify-content-center">
                                           <div class="col margin:0 auto;">
@@ -206,8 +208,8 @@
                                             <h6 class="text-c-gray">예약일시 : 19.08.01 am 10:30 </h6>
                                             <h5>이러이러해서 상담을 신청합니다.</h5>
                                             <div class="col-sm-3/4 float-sm-right">
-                                              <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog"
-                                              aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                              <div id="exampleModalLive" class="modal fade listPlace" tabindex="-1" role="dialog"
+                                              aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                               <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                   <div class="modal-header">
@@ -216,9 +218,9 @@
                                                       <span aria-hidden="true">x</span>
                                                     </button>
                                                   </div>
-                                                  <div class="form-group" style="padding:10px">
+                                                  <div class="form-group spaceOne">
                                                     <label for="message-text" class="col-form-label">&nbsp;김채연 님께 보내는 메세지:</label>
-                                                    <div style="padding:10px;">
+                                                    <div class="spaceOne">
                                                     <textarea class="form-control" id="message-text">
                                                     </textarea>
                                                   </div>
@@ -232,8 +234,8 @@
                                             </div>
                                             <button type="button" class="btn btn-primary"  data-toggle="modal"
                                             data-target="#exampleModalLive">수락</button>
-                                            <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
+                                            <div id="exampleModalLive2" class="modal fade listPlace" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
                                                 <div class="modal-header">
@@ -242,9 +244,9 @@
                                                     <span aria-hidden="true">x</span>
                                                   </button>
                                                 </div>
-                                                <div class="form-group" style="padding:10px">
+                                                <div class="form-group spaceOne">
                                                   <label for="message-text" class="col-form-label">&nbsp;거절메세지:</label>
-                                                  <div style="padding:10px;">
+                                                  <div class="spaceOne">
                                                     <div class="form-group">
                                                       <select class="form-control" id="selectBox1">
                                                         <option>일정 변동이 있어서</option>
@@ -351,72 +353,72 @@
                     left: 'prev,next today',
                     center: 'title'
                 },
-                defaultDate: '2018-08-12',
+                defaultDate: '2019-08-12',
                 editable: true,
                 droppable: true,
                 events: [{
                     title: 'All Day Event',
-                    start: '2018-08-01',
+                    start: '2019-08-01',
                     borderColor: '#04a9f5',
                     backgroundColor: '#04a9f5',
                     textColor: '#fff'
                 }, {
                   title: '우재생일♥',
-                  start: '2018-08-05',
+                  start: '2019-08-05',
                   end: '2018-08-05',
                   borderColor: '#5ec1ff',
                   textColor:'#fff'
                 }, {
                     title: 'Long Event',
-                    start: '2018-08-07',
-                    end: '2018-08-10',
+                    start: '2019-08-07',
+                    end: '2019-08-10',
                     borderColor: '#f44236',
                     backgroundColor: '#f44236',
                     textColor: '#fff'
                 }, {
                     id: 999,
                     title: 'Repeating Event',
-                    start: '2018-08-09T16:00:00',
+                    start: '2019-08-09T16:00:00',
                     borderColor: '#f4c22b',
                     backgroundColor: '#f4c22b',
                     textColor: '#fff'
                 }, {
                     id: 999,
                     title: 'Repeating Event',
-                    start: '2018-08-16T16:00:00',
+                    start: '2019-08-16T16:00:00',
                     borderColor: '#3ebfea',
                     backgroundColor: '#3ebfea',
                     textColor: '#fff'
                 }, {
                     title: 'Conference',
-                    start: '2018-08-11',
+                    start: '2019-08-11',
                     end: '2018-08-13',
                     borderColor: '#1de9b6',
                     backgroundColor: '#1de9b6',
                     textColor: '#fff'
                 }, {
                     title: 'Meeting',
-                    start: '2018-08-12T10:30:00',
+                    start: '2019-08-12T10:30:00',
                     end: '2018-08-12T12:30:00'
                 }, {
                     title: 'Lunch',
-                    start: '2018-08-12T12:00:00',
+                    start: '2019-08-12T12:00:00',
                     borderColor: '#f44236',
                     backgroundColor: '#f44236',
                     textColor: '#fff'
                 }, {
                     title: 'Happy Hour',
-                    start: '2018-08-12T17:30:00',
+                    start: '2019-08-12T17:30:00',
                     borderColor: '#a389d4',
                     backgroundColor: '#a389d4',
                     textColor: '#fff'
                 }, {
                     title: 'Birthday Party',
-                    start: '2018-08-13T07:00:00'
+                    start: '2019-08-13T07:00:00'
                 }, {
                     title: 'Click for Google',
                     url: 'http://google.com/',
-                    start: '2018-08-28',
+                    start: '2019-08-28',
                     borderColor: '#a389d4',
                     backgroundColor: '#a389d4',
                     textColor: '#fff'
@@ -444,6 +446,8 @@
                $('.listView').hide();
              }
            });
+           
+           $('.note-write').css('margin-bottom','15px')
         });
     </script>    
 </body>
