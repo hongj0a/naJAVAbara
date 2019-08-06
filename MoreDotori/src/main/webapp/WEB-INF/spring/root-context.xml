@@ -11,7 +11,6 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 		
-	<!-- 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
@@ -19,7 +18,7 @@
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:JAVA"></property>
 			
 		<property name="username" value="dotori"></property>
-		<property name="password" value="morezzang"></property>
+		<property name="password" value="java"></property>
 	</bean>
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		destroy-method="close">
@@ -36,13 +35,14 @@
 	</bean>
 	<tx:annotation-driven />
 	
-	<mybatis-spring:scan base-package="che.ex04.mapper" />
+	<mybatis-spring:scan base-package="njb.md.mapper" />
      
     <context:annotation-config></context:annotation-config>
 	<context:component-scan
-		base-package="che.ex04.service"></context:component-scan>
+		base-package="njb.md.service"></context:component-scan>
+	<!-- 
 	<context:component-scan
-		base-package="che.ex04.aop"></context:component-scan>
+		base-package="njb.md.aop"></context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 	 -->
