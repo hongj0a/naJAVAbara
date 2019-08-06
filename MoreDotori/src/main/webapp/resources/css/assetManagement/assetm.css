@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+#list-size{
+	float:right;
+}
+.reading-list{
+	 float:right;
+}
+#plus-size{
+	margin: auto;
+	float:none;
+}
+.plus-imp{
+	display: inline-block !important;
+	width: 80% !important;
+}
+#contentsize-plus{
+	width: fit-content !important;
+	margin: auto;
+	margin-top: 20%;
+}
+
+table, td, th {  
+	border: 1px solid skyblue;
+	width: 30px;
+	height: 60px;
+}												
+table {
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+}												
+th, td {
+	padding: 12px;
+	text-align: center;
+}
+th {
+	border: 1px solid white;
+	background-color: skyblue;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
+#cardsize1{
+	width: 100%;
+	margin: 20px;
+}
+#sizesize{
+	margin: 20px;
+}

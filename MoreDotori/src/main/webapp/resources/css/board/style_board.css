@@ -1,0 +1,28 @@
+table a {
+    color: #888;
+}
+table a:hover{
+	color:black;
+}
+.table thead tr th:nth-child(2){ width: 60%;}
+.table thead tr th:first-child, .table tbody tr td:first-child,   
+.table thead tr th:nth-child(5), .table thead tr th:nth-child(6),
+.table tbody tr td:nth-child(5), .table tbody tr td:nth-child(6){
+    width:5%;
+}
+table thead tr th, table tbody tr td{
+    text-align: center !important;
+    padding-right:0px;
+}
+.table tbody tr td:nth-child(2){text-align: left !important; padding-left:20px;}
+table{
+    border-top:2px solid #ddd;
+}
+
+.input-group2{
+    width: 30%!important;
+    margin-left:5px;
+}
+.footable .label-default{
+    display: none;
+}
