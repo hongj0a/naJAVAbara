@@ -5,145 +5,155 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-   
-   //메인
-   @GetMapping("/")
-   public String index() {
-	 return "main/main";
-   }
-   
-   //알림
-   @GetMapping("/noti")
-   public String noti() {
-      return "main/notification";
-   }
-   
-   //가계부
-   @GetMapping("/book")
-   public String book() {
-      return "cheyeon_member/accountBook";
-   }
+	// 메인
+	@GetMapping("/")
+	public String index() {
+		return "main/main";
+	}
 
-   //가계부(월)
-   @GetMapping("/book2")
-   public String book2() {
-      return "cheyeon_member/accountBook_month";
-   }
+	// 로그인
+	@GetMapping("/signin")
+	public String signin() {
+		return "member/sign_in";
+	}
 
-    //전문가 예약리스트
-    @GetMapping("/expert_cal")
-    public String expert() {
-       return "expert/expert_cal";
-    }
-   
-    //전문가 예약리스트
-    @GetMapping("/mem")
-    public String mem() {
-       return "manager/mem";
-    }
-   
-    //신고
-    @GetMapping("/report")
-    public String report() {
-       return "manager/report";
-    }
-    
-    //자산그래프
-    @GetMapping("/asset_cond")
-    public String asset_cond() {
-       return "member/asset_condition";
-    }
-    
-    //내페이지
-    @GetMapping("/mypage")
-    public String mypage() {
-       return "member/my_page";
-    }
-    
-    //로긴
-    @GetMapping("/signin")
-    public String signin() {
-       return "member/sign_in";
-    }
-    
-    //횐가입
-    @GetMapping("/signup")
-    public String signup() {
-       return "member/sign_up";
-    }
+	// 회원가입
+	@GetMapping("/signup")
+	public String signup() {
+		return "member/sign_up";
+	}
 
-    //횐가입 종류설정
-    @GetMapping("/signuptype")
-    public String signuptype() {
-       return "member/sign_up_type";
-    }
+	// 회원가입 유형선택
+	@GetMapping("/signuptype")
+	public String signuptype() {
+		return "member/sign_up_type";
+	}
 
-    //계정찾기
-    @GetMapping("/find_account")
-    public String find_account() {
-       return "member/find_account";
-    }    
-    
-    //공지사항
-    @GetMapping("/board_notice")
-    public String board_notice() {
-       return "board/board_notice";
-    }
-    
-    //자게
-    @GetMapping("/board_free")
-    public String board_free() {
-       return "board/board_free";
-    }
-    
-    //pr게시판
-    @GetMapping("/board_pr")
-    public String board_pr() {
-       return "board/board_pr";
-    }
-    
-    //작성하기
-    @GetMapping("/board_write")
-    public String board_write() {
-       return "board/board_write";
-    }
-    
-    //게시글내용
-    @GetMapping("/board_content")
-    public String board_content(){
-       return "board/board_content";
-    }
-    
-    
-    // CUSTOMER SERVICE_nari
-    @GetMapping("/faq")
-    public String faq() {
-       return "cs/faq";
-    }
-    @GetMapping("/qna")
-    public String qna() {
-       return "cs/qna";
-    }
-    @GetMapping("/qna_write")
-    public String qna_write() {
-       return "cs/qna_write";
-    }
-    
-    //혜원
-    @GetMapping("/eList")
-    public String eList() {
-       return "exepertList/exepertList";
-    }
-    @GetMapping("/eListIn")
-    public String eListIn() {
-       return "exepertList/exepertListIn";
-    }
-    @GetMapping("/aList")
-    public String aList() {
-       return "assetManagement/assetList";
-    }
-    @GetMapping("/adList")
-    public String adList() {
-       return "adviceDetails/adviceList";
-    }
-}       
+	// 계정찾기
+	@GetMapping("/find_account")
+	public String find_account() {
+		return "member/find_account";
+	}
+
+	// 마이페이지
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "member/my_page";
+	}
+
+	// 알림
+	@GetMapping("/noti")
+	public String noti() {
+		return "main/notification";
+	}
+
+	// 일반 회원 - 가계부 작성
+	@GetMapping("/book")
+	public String book() {
+		return "asset/accountBook";
+	}
+
+	// 일반 회원 - 가계부 (월간내역)
+	@GetMapping("/book2")
+	public String book2() {
+		return "asset/accountBook_month";
+	}
+
+	// 일반 회원 - 자산 목록
+	@GetMapping("/aList")
+	public String aList() {
+		return "asset/assetList";
+	}
+
+	// 일반 회원 - 자산 현황 및 통계
+	@GetMapping("/asset_cond")
+	public String asset_cond() {
+		return "asset/asset_condition";
+	}
+
+	// 일반 회원 - 전문가 찾기
+	@GetMapping("/eList")
+	public String eList() {
+		return "exepertList/exepertList";
+	}
+
+	// 일반 회원 - 전문가 상세정보
+	@GetMapping("/eListIn")
+	public String eListIn() {
+		return "exepertList/exepertListIn";
+	}
+
+	// 일반 회원 - 상담 내역
+	@GetMapping("/adList")
+	public String adList() {
+		return "adviceDetails/adviceList";
+	}
+
+	// 전문가 - 예약리스트
+	@GetMapping("/expert_cal")
+	public String expert() {
+		return "expert/expert_cal";
+	}
+
+	// 관리자 - 회원 관리
+	@GetMapping("/mem")
+	public String mem() {
+		return "manager/mem";
+	}
+
+	// 관리자 - 신고
+	@GetMapping("/report")
+	public String report() {
+		return "manager/report";
+	}
+
+	/* 공통  */
+	// 공지사항
+	@GetMapping("/board_notice")
+	public String board_notice() {
+		return "board/board_notice";
+	}
+
+	// 자유게시판
+	@GetMapping("/board_free")
+	public String board_free() {
+		return "board/board_free";
+	}
+
+	// PR게시판
+	@GetMapping("/board_pr")
+	public String board_pr() {
+		return "board/board_pr";
+	}
+
+	// 글쓰기
+	@GetMapping("/board_write")
+	public String board_write() {
+		return "board/board_write";
+	}
+
+	// 게시글내용
+	@GetMapping("/board_content")
+	public String board_content() {
+		return "board/board_content";
+	}
+
+	// FAQ
+	@GetMapping("/faq")
+	public String faq() {
+		return "cs/faq";
+	}
+
+	// Q&A
+	@GetMapping("/qna")
+	public String qna() {
+		return "cs/qna";
+	}
+
+	// Q&A 글쓰기
+	@GetMapping("/qna_write")
+	public String qna_write() {
+		return "cs/qna_write";
+	}
+
+}
