@@ -89,3 +89,24 @@
 	padding-top: 3%;
 	padding-bottom: 5%;
 }
+#formgroupsize1{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px !important;
+}
+#formgroupsize2{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 0px !important;
+}
+.formsize{
+	resize:none !important;
+	width: 100% !important;
+	height: 150px !important;
+}
+.formday{
+	float:right;
+}
+#stars{
+	 float: right;
+}

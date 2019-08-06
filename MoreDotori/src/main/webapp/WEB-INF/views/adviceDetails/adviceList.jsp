@@ -11,6 +11,10 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
+	<!--  stars css  -->
+    <link rel="stylesheet" href="plugins/ratting/css/bootstrap-stars.css">
+    <link rel="stylesheet" href="plugins/ratting/css/css-stars.css"> 
+   
 	<link rel="stylesheet" href="css/adviceList/advice.css">
 
 </head>
@@ -184,15 +188,13 @@
                                                       <span aria-hidden="true">x</span>
                                                     </button>
                                                   </div>
-                                                  <div class="form-group" style="padding:10px">
-                                                    <label for="message-text" class="col-form-label">&nbsp;메모하기</label>
-                                                    <div style="padding:10px;">
-                                                    <textarea class="form-control" id="message-text">
+                                                  <div id="formgroupsize1" class="form-group">
+                                                    <textarea class="form-control formsize" id="message-text">
                                                     </textarea>
-                                                  </div>
+                                                     <label for="message-text" class="col-form-label">&nbsp;2019-07-28</label>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">저장</button>
+                                                    <button type="submit" class="btn btn-primary">저장</button>
                                                   </div>
                                                 </div>
                                               </div>
@@ -200,6 +202,7 @@
                                             <button type="button" class="btn btn-primary"  data-toggle="modal"
                                             data-target="#exampleModalLive">메모</button>
                                             
+                                            <div class="col-sm-3/4 float-sm-right">
                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLiveLabel" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -210,21 +213,30 @@
                                                     <span aria-hidden="true">x</span>
                                                   </button>
                                                 </div>
-                                                <div class="form-group" style="padding:10px">
-                                                  <label for="message-text" class="col-form-label">&nbsp;여기 별넣기</label>
-                                                  <div style="padding:10px;">
-                                                    <textarea class="form-control" id="message-text">
+                                                <div id="formgroupsize2" class="form-group">
+                                                 <div class="stars stars-example-css" id="stars">
+		                                     	  <div class="br-wrapper br-theme-css-stars">
+		                                     		<select id="example-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+		                                                    <option value="1">1</option>
+		                                                    <option value="2">2</option>
+		                                                    <option value="3">3</option>
+		                                                    <option value="4">4</option>
+		                                                    <option value="5">5</option>
+		                                       		</select>
+		                                       	</div>
+		                                     </div>
+                                                    <textarea class="form-control formsize" id="message-text">
                                                     </textarea>
-                                                  </div>
+                                                  <label for="message-text" class="col-form-label">&nbsp;2019-07-28</label>
                                                   </div>
                                                 <div class="modal-footer">
-                                                  <button type="button" class="btn btn-primary">저장</button>
+                                                  <button type="submit" class="btn btn-primary">저장</button>
                                                 </div>
                                               </div>
                                             </div>
                                             </div>
                                           </div>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
                                             data-target="#exampleModalLive2">후기</button>
                                           </div>
 	                                        </div>
@@ -242,6 +254,10 @@
     </div>
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
+    
+    <!-- Rating Js -->
+    <script src="assets/plugins/ratting/js/jquery.barrating.min.js"></script>
+    <script src="assets/js/pages/ac-rating.js"></script>
 
 </body>
 </html>

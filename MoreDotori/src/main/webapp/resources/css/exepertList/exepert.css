@@ -143,3 +143,15 @@ circle .dtp-select-hour {
 .self-intro-size{
 	margin-bottom: 20px;
 }
+#serchsize1{
+	width: 60%;
+}
+#serchsize2{
+	width: 40%;
+}
+#backcolor1{
+	background-color: white !important;
+}
+#backcolor2{
+	background-color: white !important;
+}
