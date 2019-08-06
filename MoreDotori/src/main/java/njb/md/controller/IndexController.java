@@ -33,19 +33,19 @@ public class IndexController {
     //전문가 예약리스트
     @GetMapping("/expert_cal")
     public String expert() {
-       return "expert/expert_calendar_list";
+       return "expert/expert_cal";
     }
    
     //전문가 예약리스트
     @GetMapping("/mem")
     public String mem() {
-       return "manager/mem_management";
+       return "manager/mem";
     }
    
     //신고
     @GetMapping("/report")
     public String report() {
-       return "manager/declaration";
+       return "manager/report";
     }
     
     //자산그래프
