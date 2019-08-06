@@ -22,7 +22,6 @@
 
 table, td, th {  
 	border: 1px solid skyblue;
-	text-align: left;
 	width: 30px;
 	height: 60px;
 }												
@@ -36,11 +35,11 @@ th, td {
 	text-align: center;
 }
 th {
-	text-align: center;
 	border: 1px solid white;
 	background-color: skyblue;
 	color: white;
 	font-size: 16px;
+	text-align: center;
 }
 
 #cardsize1{

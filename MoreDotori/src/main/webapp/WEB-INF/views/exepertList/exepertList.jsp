@@ -53,17 +53,23 @@
                                     </ul>
                                     </div>
                                <div class="reading-list" style="float : right;">
-                                            <div id="search-menu">
-                                            	<select class="js-example-basic-single form-control">
-                                                    <option value="AS"></option>
-                                                    <option value="AS">종합자산관리사</option>
-                                                    <option value="AS">자산관리사</option>
-                                                    <option value="AS">재무설계사</option>
-                                              </select>
+                                            <div id="serchsize2" class="float-left mb-3">
+                                                    <div class="form-group form-primary mb-0">
+                                                        <select name="select" id="backcolor1" class="form-control form-control-sm">
+                                                            <option value="opt1">종합자산관리사</option>
+                                                            <option value="opt2">자산관리사</option>
+                                                            <option value="opt3">재무설계사</option>
+                                                            <option value="opt4">보험설계사</option>
+                                                        </select>
+                                                        <span class="form-bar"></span>
+                                                    </div>
+                                                </div>
+                                            <div id="serchsize1" class="mb-3 float-left input-group input-group2">
+                                                <input type="text" id="backcolor2" class="form-control" placeholder="검색어를 입력하세요">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary btn-icon" type="button"><i class="fas fa-search"></i></button>
+                                                </div>
                                             </div>
-                                           <div id="search-btn">
-                                            <button type="button" class="btn btn-icon btn-primary btn-sm"><i class="fas fa-search"></i></button>
-	                            		   </div>
 	                            	</div>
                                 </div>
                             </div>

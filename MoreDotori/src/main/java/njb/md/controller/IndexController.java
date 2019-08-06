@@ -142,4 +142,8 @@ public class IndexController {
     public String aList() {
        return "assetManagement/assetList";
     }
+    @GetMapping("/adList")
+    public String adList() {
+       return "adviceDetails/adviceList";
+    }
 }       

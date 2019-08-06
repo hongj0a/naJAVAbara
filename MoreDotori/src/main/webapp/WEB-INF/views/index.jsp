@@ -2396,6 +2396,12 @@
                                                                 <a href="/aList" target="_blank">assetList</a>
                                                             </td>
                                                         </tr>
+                                                        <tr>
+                                                            <td>AdviceDetails</td>
+                                                            <td>
+                                                                <a href="/adList" target="_blank">adviceList</a>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

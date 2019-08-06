@@ -35,7 +35,7 @@
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
                                         <li class="breadcrumb-item"><a href="#!">나의 자산</a></li>
-                                        <li class="breadcrumb-item"><a href="#!">자산목록 관리</a></li>
+                                        <li class="breadcrumb-item"><a href="/adList">자산목록 관리</a></li>
                                     </ul>
                                     </div>
                                 </div>
@@ -84,8 +84,8 @@
                                                         </br>
                                                       </div>
                                                         <div id="plus-size" class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                                                             <button type="submit" class="btn btn-primary">저장</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                                                         </div>
                                                     </div>
                                                 </div>
