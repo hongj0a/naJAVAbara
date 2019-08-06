@@ -34,17 +34,17 @@ public class IndexController {
     //진영언니
     @GetMapping("/expert_cal")
     public String expert() {
-       return "expert/expert_calendar_list";
+       return "expert/expert_cal";
     }
    
     @GetMapping("/mem")
     public String mem() {
-       return "manager/mem_management";
+       return "manager/mem";
     }
    
     @GetMapping("/report")
     public String report() {
-       return "manager/declaration";
+       return "manager/report";
     }
     
     // 인희
