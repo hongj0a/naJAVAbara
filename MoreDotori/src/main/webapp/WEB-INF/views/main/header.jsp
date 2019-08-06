@@ -57,7 +57,7 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-check-square"></i></span><span class="pcoded-mtext">재무진단</span></a>
                         <ul class="pcoded-submenu">
                             <li id="menu2_1"><a href="/eList" class="">전문가찾기</a></li>
-                            <li id="menu2_2"><a href="" class="">상담내역</a></li>
+                            <li id="menu2_2"><a href="/adList" class="">상담내역</a></li>
                         </ul>
                     </li>
                     

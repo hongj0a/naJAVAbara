@@ -256,8 +256,13 @@
     <!-- [ Main Content ] end -->
     
     <!-- Rating Js -->
-    <script src="assets/plugins/ratting/js/jquery.barrating.min.js"></script>
-    <script src="assets/js/pages/ac-rating.js"></script>
+    <script src="plugins/ratting/js/jquery.barrating.min.js"></script>
+    <script src="js/pages/ac-rating.js"></script>
+    <script>
+	    $("#menu2").addClass('active');
+	    $("#menu2").addClass('pcoded-trigger');
+	    $("#menu2_2").addClass('active');
+    </script>
 
 </body>
 </html>
