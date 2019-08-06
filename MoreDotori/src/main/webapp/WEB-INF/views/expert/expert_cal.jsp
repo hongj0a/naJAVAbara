@@ -447,8 +447,38 @@
              }
            });
            
-           $('.note-write').css('margin-bottom','15px')
+           $('.note-write').css('margin-bottom','15px');
+           
+           monthChange();
+           
         });
+        
+        function monthChange() {
+        	
+        	var monthStr = {
+            		   'January' : '1월',
+            		   'February' : '2월',
+            		   'March ':'3월',
+            		   'April ':'4월',
+            		   'May ':'5월',
+            		   'June ':'6월',
+            		   'July ':'7월',
+            		   'August' : '8월',
+            		   'September ':'9월',
+            		   'October ':'10월',
+            		   'November ':'11월',
+            		   'December ':'12월'
+                }
+                
+         	// 0 : 영어로된 달 ,1 : 숫자로된 년도
+            var monthArray = $('.fc-center > h2').text().split(' ');
+            
+            var month = monthArray[0];
+            var year = monthArray[1];
+            
+            $('.fc-center > h2').text(monthStr[month] + ' ' + year);
+        }
+        
     </script>    
 </body>
 
