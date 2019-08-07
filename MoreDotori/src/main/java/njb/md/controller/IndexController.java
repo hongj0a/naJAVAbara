@@ -47,12 +47,14 @@ public class IndexController {
 		return "main/notification";
 	}
 
+/*
 	// 일반 회원 - 가계부 작성
 	@GetMapping("/book")
 	public String book() {
 		return "asset/accountBook";
 	}
-
+*/
+	
 	// 일반 회원 - 가계부 (월간내역)
 	@GetMapping("/book2")
 	public String book2() {
