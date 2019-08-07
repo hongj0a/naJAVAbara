@@ -42,11 +42,11 @@ create table EXPERT(
     E_license1 CHAR(12),
     E_license2 CHAR(12),
     E_license3 CHAR(12),
-    E_license4 CHAR(12),
-    E_license5 CHAR(12),
     E_sns1 VARCHAR2(50),
     E_sns2 VARCHAR2(50),
-    E_sns3 VARCHAR2(50)
+    E_sns3 VARCHAR2(50),
+    E_sns4 VARCHAR2(50),
+    E_sns5 VARCHAR2(50)
 );
 alter table expert add constraint EXPERT_PK primary key(M_id);
 alter table expert add constraint expert_member foreign key(M_id) references member on delete cascade;
