@@ -1,6 +1,7 @@
 
 drop sequence NOTICE_SEQ;
 drop sequence REPORTDETAIL_SEQ;
+drop sequence REPORT_SEQ;
 drop sequence REPLY_SEQ;
 drop sequence BOARD_PR_SEQ;
 drop sequence BOARD_FREE_SEQ;
