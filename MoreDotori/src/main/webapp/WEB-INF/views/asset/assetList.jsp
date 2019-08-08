@@ -117,28 +117,37 @@
 												    <td>웅앵웅앵웅</td>
 												    <td>10,000원</td>
 												    <td>웅앵</td>
-												    <td><a href=#!>삭제</a></td>
+												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
+												  	<c:forEach items="${list}" var="AssetListVO">
+														<tr>
+														<td>${list.c_asset}</td>
+														<td><a href='cont.do?seq=${list}'>${list.a_nickname}</td>
+														<td>${list.a_money}</td>
+														<td>${list.a_memo}</td>
+														<td><a href='del.do?seq=${list.a_seq}'>삭제</a></td>
+													</tr>
+													</c:forEach>
 												  <tr>
 												    <td>통장</td>
 												    <td>웅앵웅앵웅</td>
 												    <td>100,000원</td>
 												  	<td>웅앵</td>
-												    <td><a href=#!>삭제</a></td>
+												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
 												  <tr>
 												    <td>신용카드</td>
 												    <td>웅앵웅앵웅</td>
 												    <td>230,000원</td>
 												    <td>웅앵</td>
-												    <td><a href=#!>삭제</a></td>
+												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
 												  <tr>
 												    <td>체크카드</td>
 												 	<td>웅앵웅앵웅</td>
 												    <td>5,000,000원</td>
 												    <td>웅앵</td>
-												    <td><a href=#!>삭제</a></td>
+												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												</tr>
 											</table>
                               		   </div>

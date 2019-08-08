@@ -66,6 +66,8 @@ public class IndexController {
 	}
 
 	// 일반 회원 - 자산 현황 및 통계
+	
+	
 	@GetMapping("/asset_cond")
 	public String asset_cond() {
 		return "asset/asset_condition";
