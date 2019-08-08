@@ -87,6 +87,10 @@
     /* min-height: 250px; */
 }
 
+.col-10 > #container{
+	margin-top: 25px;	
+}
+
 #container .highcharts-container{
 	width: 90% !important;
 }

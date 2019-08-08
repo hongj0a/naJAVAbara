@@ -26,9 +26,9 @@ public class CodeServiceImpl implements CodeService {
 
 	@Override
 	public Code selectCodeS(String C_code) {
-		Code selectCode = mapper.selectCode(C_code);
-		log.info("#### Code : " + selectCode );
-		return selectCode;
+		Code cd = mapper.selectCode(C_code);
+		log.info("#### Code : " + cd );
+		return cd;
 	}
 
 }

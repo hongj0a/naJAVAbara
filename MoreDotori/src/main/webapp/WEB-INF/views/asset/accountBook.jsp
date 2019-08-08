@@ -72,7 +72,7 @@
 												<div class="tab-content insert_cont" id="pills-tabContent">
 												    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-												    	<form action="" class="" method="">
+												    	<form id="inoutInsertForm" class="inoutInsertForm" method="post">
 													    	<input type="hidden" id="" class="out_form form_categori" name="" value="지출">
 													    	<table class="insert_form">
 													    		<tr>
@@ -95,7 +95,9 @@
 												                            	<option>데이터를 가져오지 못했어요</option>
 												                            </c:if>
 												                            <c:forEach items="${codelistIO}" var="io_option">
-												                            	<option value="${io_option.c_code}"><c:out value="${io_option.c_name}"/></option>
+												                            	<c:if test="${io_option.c_code ne 'IO003'}">
+												                            		<option value="${io_option.c_code}"><c:out value="${io_option.c_name}"/></option>
+												                            	</c:if>
 												                            </c:forEach>
 												                        </select>												    				
 													    			</td>													    			
