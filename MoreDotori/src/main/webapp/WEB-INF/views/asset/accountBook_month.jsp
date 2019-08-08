@@ -53,13 +53,17 @@
 								    		</tr>
 								    		<tr>
 								    			<td class="form_inout">대분류</td>
-								    			<td class="form_select0">
-							                        <select name="" class="inout_form">
-							                            <option value="">대분류를 선택해주세요</option>
-							                            <option>수입</option>
-							                            <option>지출</option>
-							                        </select>						    			
-								    			</td>
+									    			<td class="form_select0">
+								                        <select name="" class="inout_form">
+								                            <option value="">대분류를 선택해주세요</option>
+								                            <c:if test="${empty codelistIO}">
+								                            	<option>데이터를 가져오지 못했어요</option>
+								                            </c:if>
+								                            <c:forEach items="${codelistIO}" var="io_option">
+								                            	<option value="${io_option.c_code}"><c:out value="${io_option.c_name}"/></option>
+								                            </c:forEach>
+								                        </select>												    				
+									    			</td>
 								    		</tr>								    		
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">자산</td>
@@ -77,12 +81,19 @@
 								    			<td class="form_select2">
 							                        <select name="" class="inout_form">
 							                            <option value="">내역 분류를 선택해주세요</option>
-							                            <option class="in_opt"> 수입옵션1 </option>
-							                            <option class="in_opt"> 수입옵션2 </option>
-							                            <option class="in_opt"> 수입옵션3 </option>
-							                            <option class="out_opt"> 지출옵션1 </option>
-							                            <option class="out_opt"> 지출옵션2 </option>
-							                            <option class="out_opt"> 지출옵션3 </option>												                            
+							                            <c:if test="${empty codelistIN}">
+							                            	<option>수입옵션 데이터를 가져오지 못했어요</option>
+							                            </c:if>
+							                            <c:forEach items="${codelistIN}" var="in_option">
+							                            	<option class="in_opt" value="${in_option.c_code}"><c:out value="${in_option.c_name}"/></option>
+							                            </c:forEach>			
+							                            									                            
+							                            <c:if test="${empty codelistOT}">
+							                            	<option>수출옵션 데이터를 가져오지 못했어요</option>
+							                            </c:if>	 
+							                            <c:forEach items="${codelistOT}" var="ot_option">
+							                            	<option class="out_opt" value="${ot_option.c_code}"><c:out value="${ot_option.c_name}"/></option>
+							                            </c:forEach>												                            
 							                        </select>												    				
 								    			</td>
 								    		</tr>
@@ -154,6 +165,7 @@
 						                        </select>												    				
 							    			</td>
 							    		</tr>
+							    		<!-- 
 							    		<tr class="insert_form_select">
 							    			<td class="form_title">분류</td>
 							    			<td class="form_select3">
@@ -163,7 +175,8 @@
 						                            <option>적금</option>
 						                        </select>												    				
 							    			</td>
-							    		</tr>													    		
+							    		</tr>
+										 -->
 							    		<tr class="insert_form_txt">
 							    			<td class="form_title">금액</td>
 							    			<td class="form_money">

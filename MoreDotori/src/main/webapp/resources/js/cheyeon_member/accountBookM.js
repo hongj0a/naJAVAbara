@@ -23,11 +23,11 @@
     		   $(".form_select2 .inout_form .in_opt").css("display", "none");
     		   $(".form_select2 .inout_form .out_opt").css("display", "none");
     		   
-    	   }else if($(".form_select0 .inout_form option:selected").val()=='수입'){
+    	   }else if($(".form_select0 .inout_form option:selected").val()=='IO001'){
     		   $(".form_select2 .inout_form .in_opt").css("display", "inline-block");
     		   $(".form_select2 .inout_form .out_opt").css("display", "none");
     		   
-    	   }else if($(".form_select0 .inout_form option:selected").val()=='지출'){
+    	   }else if($(".form_select0 .inout_form option:selected").val()=='IO002'){
     		   $(".form_select2 .inout_form .in_opt").css("display", "none");
     		   $(".form_select2 .inout_form .out_opt").css("display", "inline-block");
     	   }
