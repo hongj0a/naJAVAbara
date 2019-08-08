@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.MemberMapper">
+
+	<select id="selectAll" resultType="njb.md.domain.Member">
+		select * from MEMBER order by M_ID desc
+	</select>
+	
+	<!-- 
+  <insert id="insert" parameterType="soo.ex02.domain.Address">
+      insert into ADDRESS values(ADDRESS_SEQ.nextval, #{name}, #{addr}, SYSDATE)
+  </insert>
+  <delete id="delete" parameterType="long">
+      delete from ADDRESS where SEQ=#{seq}
+  </delete>
+   	-->
+</mapper>

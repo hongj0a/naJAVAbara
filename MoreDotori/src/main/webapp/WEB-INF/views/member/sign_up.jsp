@@ -358,8 +358,7 @@
 	<!-- Required Js -->
 	<script src="js/vendor-all.min.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
 	<script>
     $(document).ready(function() {
@@ -396,10 +395,21 @@
       $(document).on('click', '.subSNS', function() {
         $(this).parents('div.input-group.mb-1').remove();
       });
-
-      // view expert-detail
-      // $('#expert-details').removeAttr('hidden');
-
+      
+      $('#sign-up').validate({
+          focusInvalid: true,
+          rules: {
+              'id': {
+                  required: true,
+                  email: true
+              }
+          }
+      });
+      
+      // expert form 
+      /* $('#expert-details').css('display', 'block');
+      $('.card-header h5').html('전문가 회원가입'); */
+      
     });
   </script>
 </body>

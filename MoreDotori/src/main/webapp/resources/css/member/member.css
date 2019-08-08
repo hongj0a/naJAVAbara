@@ -44,6 +44,10 @@ input.address[readonly], textarea.account-clause[readonly] {
 .card.cw-560 {
 	margin: 20px 0;
 }
+
+#expert-details {
+	display: none;
+}
 /* sign-up end */
 
 /* find-account  start */
