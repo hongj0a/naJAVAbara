@@ -2,10 +2,14 @@ package njb.md.domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class AssetListVO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class AssetList {
 
   private long a_seq;
   private String m_id;

@@ -6,7 +6,11 @@
 .reading-list{
 	 float:right;
 }
-#plus-size{
+#plus-size1{
+	margin: auto;
+	float:none;
+}
+#plus-size2{
 	margin: auto;
 	float:none;
 }
@@ -14,12 +18,16 @@
 	display: inline-block !important;
 	width: 80% !important;
 }
-#contentsize-plus{
+#contentsize-plus1{
 	width: fit-content !important;
 	margin: auto;
 	margin-top: 20%;
 }
-
+#contentsize-plus2{
+	width: fit-content !important;
+	margin: auto;
+	margin-top: 20%;
+}
 table, td, th {  
 	border: 1px solid skyblue;
 	width: 30px;

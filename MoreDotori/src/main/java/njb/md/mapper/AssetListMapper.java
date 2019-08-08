@@ -1,12 +1,12 @@
 package njb.md.mapper;
 
 import java.util.List;
-import njb.md.domain.AssetListVO;
+import njb.md.domain.AssetList;
 
 public interface AssetListMapper {
-	List<AssetListVO> list();	
-	void insert(AssetListVO list);
+	List<AssetList> list();	
+	void insert(AssetList list);
 	void delete(long a_seq);
-	AssetListVO cont(long a_seq);
-	void update(AssetListVO list);
+	AssetList cont(long a_seq);
+	void update(AssetList list);
 }

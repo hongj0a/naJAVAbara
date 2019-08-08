@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import njb.md.domain.AssetListVO;
+import njb.md.domain.AssetList;
 import njb.md.mapper.AssetListMapper;
 import lombok.extern.log4j.Log4j;
 
@@ -16,30 +16,25 @@ public class AssetListServiceImpl implements AssetListService {
 	private AssetListMapper mapper;
 	
 	@Override
-	public List<AssetListVO> listS() {
-		List<AssetListVO> list = mapper.list();
-		log.info("#BoardServiceImpl listS() list : " + list);
+	public List<AssetList> listS() {
+		List<AssetList> list = mapper.list();
+		log.info("#AssetListServiceImpl listS() list : " + list);
 		return list;
 	}
-	
 	@Override
-	public void insertS(AssetListVO list) {
+	public void insertS(AssetList list) {
 		mapper.insert(list);
-
 	}
-
 	@Override
 	public void deleteS(long a_seq) {
 		mapper.delete(a_seq);
-
 	}
 	@Override
-	public AssetListVO contS(long a_seq) {
+	public AssetList contS(long a_seq) {
 		return mapper.cont(a_seq);
 	}
 	@Override
-	public void updateS(AssetListVO list) {
+	public void updateS(AssetList list) {
 		mapper.update(list);
 	}
-
 }

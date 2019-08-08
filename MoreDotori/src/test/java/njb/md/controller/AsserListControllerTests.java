@@ -41,8 +41,8 @@ public class AsserListControllerTests {
 	public void testInsert() throws Exception {
 		ResultActions ra = mockMvc
 			.perform(MockMvcRequestBuilders.post("/alist/write.do")
-			.param("m_id", "blah")
-			.param("c_asset", "orange@naver.com")
+			.param("m_id", "nari@naver.com")
+			.param("c_asset", "AS001")
 			.param("a_nickname", "flower")
 			.param("money", "5550")
 			.param("a_memo", "ddmskladmlaskdlsmkd"));

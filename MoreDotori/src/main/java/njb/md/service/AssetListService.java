@@ -1,12 +1,12 @@
 package njb.md.service;
 
 import java.util.List;
-import njb.md.domain.AssetListVO;
+import njb.md.domain.AssetList;
 
 public interface AssetListService {
-	public List<AssetListVO> listS();
-	void insertS(AssetListVO list);
+	public List<AssetList> listS();
+	void insertS(AssetList list);
 	void deleteS(long a_seq);
-	AssetListVO contS(long a_seq);
-	void updateS(AssetListVO list);
+	AssetList contS(long a_seq);
+	void updateS(AssetList list);
 }

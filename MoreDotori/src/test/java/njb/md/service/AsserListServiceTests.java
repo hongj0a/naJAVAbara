@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import chw.ex02.domain.Board;
-import chw.ex02.domain.Criteria;
+import njb.md.domain.AssetList;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -20,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AsserListServiceTests {
 	@Setter(onMethod_ = {@Autowired})
-	private BoardService service;
+	private AssetListService service;
 	
 	@Test
 	public void testExist() {
@@ -30,14 +29,13 @@ public class AsserListServiceTests {
 	
 	@Test
 	public void testListS() {
-		/*List<Board> list = service.listS();
-		log.info("#testExcist() list : " + list);*/
-		service.getList(new Criteria(2,10)).forEach(board -> log.info(board));
+		List<AssetList> list = service.listS();
+		log.info("#testExcist() list : " + list);
 	}
 	@Test
 	public void testInsertS() {
-		Board Board = new Board(-1L, "가가","나나","다다","라라", null);
-		service.insertS(Board);
+		AssetList AssetList = new AssetList(-1L, "nari@naver.com","AS001","다다", 2L, "라라");
+		service.insertS(AssetList);
 		log.info("#testInsertS() called");
 	}
 	@Test
@@ -52,8 +50,8 @@ public class AsserListServiceTests {
 	}
 	@Test
 	public void testUpdateS() {
-		Board board = new Board(2,"오오","다다","라라","무무",null);
-		service.updateS(board);
+		AssetList AssetList = new AssetList(2,"오오","AS002","라라", 3L, "무무");
+		service.updateS(AssetList);
 		log.info("#testUpdateS() called");
 	}
 }

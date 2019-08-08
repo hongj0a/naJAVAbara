@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import njb.md.domain.AssetListVO;
+import njb.md.domain.AssetList;
 import njb.md.service.AssetListService;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/aList/*")
+@RequestMapping("/alist/*")
 @AllArgsConstructor
 public class AssetListController {
 	
@@ -40,9 +40,9 @@ public class AssetListController {
 	}*/
 	@RequestMapping("/list.do")
 	public ModelAndView list() {
-		List<AssetListVO> list = service.listS();
+		List<AssetList> list = service.listS();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("List/list");
+		mv.setViewName("alist/list");
 		mv.addObject("list", list);
 		//ModelAndView mv = new ModelAndView("addr/list", "list", list);
 	
@@ -50,10 +50,10 @@ public class AssetListController {
 	}
 	@GetMapping("/write.do")
 	public String write() {
-		return "Alist/input";
+		return "alist/input";
 	}
 	@PostMapping("/write.do")
-	public String write(AssetListVO list) {
+	public String write(AssetList list) {
 		service.insertS(list);
 		return "redirect:list.do";
 	}
@@ -73,7 +73,7 @@ public class AssetListController {
 		model.addAttribute("list", service.contS(a_seq));
 	}
 	@PostMapping("/update.do")
-	public String update(AssetListVO list) {
+	public String update(AssetList list) {
 		service.updateS(list);
 		return "redirect:list.do";
 	}

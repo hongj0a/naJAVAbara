@@ -46,7 +46,7 @@
 					  <div class="reading-list">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <div id="contentsize-plus" class="modal-content">
+                                                    <div id="contentsize-plus1" class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLiveLabel">항목 추가</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -83,7 +83,7 @@
                                                         </div>	
                                                         </br>
                                                       </div>
-                                                        <div id="plus-size" class="modal-footer">
+                                                        <div id="plus-size1" class="modal-footer">
                                                             <button type="submit" class="btn btn-primary">저장</button>
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                                                         </div>
@@ -110,6 +110,7 @@
 												    <th>별칭</th>
 												    <th>잔액</th>
 												    <th>메모</th>
+												    <th>수정</th>
 												    <th>삭제</th>
 												  </tr>
 												  <tr>
@@ -117,15 +118,63 @@
 												    <td>웅앵웅앵웅</td>
 												    <td>10,000원</td>
 												    <td>웅앵</td>
+													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
 												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
-												  	<c:forEach items="${list}" var="AssetListVO">
+												  	<c:forEach items="${list}" var="alist">
 														<tr>
-														<td>${list.c_asset}</td>
-														<td><a href='cont.do?seq=${list}'>${list.a_nickname}</td>
-														<td>${list.a_money}</td>
-														<td>${list.a_memo}</td>
-														<td><a href='del.do?seq=${list.a_seq}'>삭제</a></td>
+														<td>${alist.c_asset}</td>
+														<td><a href='cont.do?seq=${alist.a_seq}'>${alist.a_nickname}</td>
+														<td>${alist.a_money}</td>
+														<td>${alist.a_memo}</td>
+			                                            <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+			                                                <div class="modal-dialog" role="document">
+			                                                       <div id="contentsize-plus2" class="modal-content">
+                                                    				 <div class="modal-header">
+			                                                            <h5 class="modal-title" id="exampleModalLiveLabel">수정</h5>
+			                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			                                                        </div>
+			                                                        <div class="modal-body">
+			                                                        </br>
+			                                            			<div class="col-12">
+			                                            				<span>타입 :  </span>
+			                                                    		&nbsp;
+			                                                    		<select class="js-example-basic-single form-control plus-imp">
+			                                                            	<option value="현금">현금</option>
+			                                                            	<option value="통장">통장</option>
+			                                                            	<option value="신용카드">신용카드</option>
+			                                                            	<option value="체크카드">체크카드</option>
+			                                                        	</select> 
+			                                                     		</div>
+			                                                     	</br>
+			                                                        <div class="col-12">
+			                                                     		<span>별칭 :  </span>
+			                                                     		&nbsp;
+			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        </div>
+			                                                        </br>
+			                                                        <div class="col-12">
+			                                                     		<span>잔액 :  </span>
+			                                                     		&nbsp;
+			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        </div>
+			                                                        </br>
+			                                                        <div class="col-12">
+			                                                     		<span>메모 :  </span>
+			                                                     		&nbsp;
+			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        </div>	
+			                                                        </br>
+			                                                      </div>
+			                                                        <div id="plus-size2" class="modal-footer">
+			                                                            <button type="submit" class="btn btn-primary">저장</button>
+			                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			                                                        </div>
+			                                                  </div>
+			                                                </div>
+			                                            </div>
+			                                            <a href='update.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+														<td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 													</tr>
 													</c:forEach>
 												  <tr>
@@ -133,6 +182,7 @@
 												    <td>웅앵웅앵웅</td>
 												    <td>100,000원</td>
 												  	<td>웅앵</td>
+													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
 												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
 												  <tr>
@@ -140,6 +190,7 @@
 												    <td>웅앵웅앵웅</td>
 												    <td>230,000원</td>
 												    <td>웅앵</td>
+													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
 												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												  </tr>
 												  <tr>
@@ -147,6 +198,7 @@
 												 	<td>웅앵웅앵웅</td>
 												    <td>5,000,000원</td>
 												    <td>웅앵</td>
+													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
 												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 												</tr>
 											</table>
