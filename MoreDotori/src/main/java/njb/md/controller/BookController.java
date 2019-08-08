@@ -22,7 +22,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/normal/*")
+@RequestMapping("/normal")
 @Log4j
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,7 +31,7 @@ public class BookController {
 	private CodeService code_service;
 	private InoutService inout_service;
 	
-	@RequestMapping("")
+	@RequestMapping("/book")
 	public ModelAndView myAccountBook() {
 		log.info("#### 가계부 ####");
 		
@@ -48,7 +48,7 @@ public class BookController {
 		return mv;
 	}
 
-	@GetMapping("/insertIO.do")
+	@GetMapping("/book/insertIO.do")
 	@ResponseBody
 	public String insertInOut(@ModelAttribute("Inout") Inout io, HttpServletRequest request) throws Exception{
 		log.info("#### 가계부입력 ####");

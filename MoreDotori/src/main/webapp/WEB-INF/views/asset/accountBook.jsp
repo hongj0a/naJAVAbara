@@ -10,9 +10,9 @@
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
     <!-- append css -->
-    <link rel="stylesheet" href="css/cheyeon_member/accountBook.css">
-    <link rel="stylesheet" href="css/cheyeon_member/jsCalendar.css">
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/accountBook.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/jsCalendar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/animation/css/animate.min.css">
 
 </head>
 <body class="layout-8">
@@ -315,9 +315,9 @@
 	                        
     <!-- highchart chart -->
 	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="js/cheyeon_member/aBookChart.js"></script>
-	<script src="js/cheyeon_member/jsCalendar.js"></script>
-	<script src="js/cheyeon_member/accountBook.js"></script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/aBookChart.js"></script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/jsCalendar.js"></script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/accountBook.js"></script>
 	<script>
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');

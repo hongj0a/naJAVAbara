@@ -14,16 +14,16 @@
     <!-- Favicon icon -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/animation/css/animate.min.css">
     <!-- prism css -->
-    <link rel="stylesheet" href="plugins/prism/css/prism.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/prism/css/prism.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/header.css">
 </head>
 
 <body class="layout-8">
@@ -48,7 +48,7 @@
                     <li id="menu1" data-username="dashboard Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
+                            <li id="menu1_1"><a href="/normal/book" class="">가계부 작성</a></li>
                             <li id="menu1_2"><a href="/aList" class="">자산목록관리</a></li>
                             <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
                         </ul>
@@ -113,7 +113,7 @@
                 <li>
                     <div class="dropdown2 dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                       	    <img src="images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
+                       	    <img src="${pageContext.request.contextPath}/images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
                             <span>김채연님</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right notification">
@@ -225,11 +225,11 @@
     <!-- [ chat message ] end -->
 
     <!-- Required Js -->
-    <script src="js/vendor-all.min.js">
+    <script src="${pageContext.request.contextPath}/js/vendor-all.min.js">
 </script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js">
+    <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js">
 </script>
-    <script src="js/pcoded.min.js">
+    <script src="${pageContext.request.contextPath}/js/pcoded.min.js">
 </script>
 </body>
 </html>
