@@ -389,12 +389,13 @@
     		   $(".form_select0 .out_form").focus();
     		   $(".form_select2 .out_form .in_opt").css("display", "none");
     		   $(".form_select2 .out_form .out_opt").css("display", "none");
-    		   
-    	   }else if($(".form_select0 .out_form option:selected").val()=='수입'){
+    	   
+    	   //IO001 : 수입, IO002 : 지출   
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO001'){
     		   $(".form_select2 .out_form .in_opt").css("display", "inline-block");
     		   $(".form_select2 .out_form .out_opt").css("display", "none");
     		   
-    	   }else if($(".form_select0 .out_form option:selected").val()=='지출'){
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO002'){
     		   $(".form_select2 .out_form .in_opt").css("display", "none");
     		   $(".form_select2 .out_form .out_opt").css("display", "inline-block");
     	   }

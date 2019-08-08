@@ -222,6 +222,10 @@
   line-height: 37px;
 }
 
+#trans_form_btn{
+	margin-bottom: 20px;
+}
+
 .form_select_date_val{
 	border: 1px solid white;
 	color: gray;

@@ -53,14 +53,14 @@ public class IndexController {
 	public String book() {
 		return "asset/accountBook";
 	}
-*/
 	
 	// 일반 회원 - 가계부 (월간내역)
 	@GetMapping("/book2")
 	public String book2() {
 		return "asset/accountBook_month";
 	}
-
+*/
+	
 	// 일반 회원 - 자산 목록
 	@GetMapping("/aList")
 	public String aList() {

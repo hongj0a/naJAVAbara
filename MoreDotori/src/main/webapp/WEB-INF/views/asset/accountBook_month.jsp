@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -233,8 +236,7 @@
 						    				<tr>
 							    				<td>2019년 07월 21일</td>
 							    				<td>이체</td>
-							    				<td><span>현금</span> ==> <span>농협적금</span></td>
-							    				<td>적금</td>
+							    				<td colspan="2"><span>현금</span> ==> <span>농협적금</span></td>
 							    				<td>현금이체</td>
 							    				<td>15,000</td>
 							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">수정</button>/<span>삭제</span></td>

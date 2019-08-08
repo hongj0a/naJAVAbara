@@ -24,7 +24,7 @@ public class BookController {
 	private CodeService code_service;
 	
 	@GetMapping("/book")
-	public ModelAndView getCodeList() {
+	public ModelAndView myAccountBook() {
 		log.info("#### 가계부 ####");
 		
 		//가계부 작성 관련 옵션들
@@ -34,6 +34,23 @@ public class BookController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("asset/accountBook");
+		mv.addObject("codelistIO", codelistIO);
+		mv.addObject("codelistIN", codelistIN);
+		mv.addObject("codelistOT", codelistOT);
+		return mv;
+	}
+
+	@GetMapping("/book2")
+	public ModelAndView myAccountMonthlyBook() {
+		log.info("#### 월가계부 ####");
+		
+		//가계부 작성 관련 옵션들
+		List<Code> codelistIO = code_service.getCodeListS("IO%");
+		List<Code> codelistIN = code_service.getCodeListS("IN%");
+		List<Code> codelistOT = code_service.getCodeListS("OT%");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("asset/accountBook_month");
 		mv.addObject("codelistIO", codelistIO);
 		mv.addObject("codelistIN", codelistIN);
 		mv.addObject("codelistOT", codelistOT);
