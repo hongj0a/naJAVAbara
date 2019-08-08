@@ -123,7 +123,7 @@
                             <ul class="noti-body">
                                 <li class="notification" id="notification2">
                                         <div class="media-body profile">
-                                        <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" id="profile_img" src="${pageContext.request.contextPath}/images/user/avatar-1.jpg" alt="Generic placeholder image">
                                             <p><strong>김채연</strong>님 </p> 
                                             <p>kcy8729@gmail.com</p>
                                             <p><a href="/mypage" id="update_info"> 정보수정 </a></p>

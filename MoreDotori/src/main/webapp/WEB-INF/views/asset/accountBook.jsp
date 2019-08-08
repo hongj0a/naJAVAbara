@@ -73,7 +73,6 @@
 												    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
 												    	<form id="inoutInsertForm" class="inoutInsertForm" method="post">
-													    	<input type="hidden" id="" class="out_form form_categori" name="" value="지출">
 													    	<table class="insert_form">
 													    		<tr>
 													    			<td class="form_title">날짜</td>
@@ -107,9 +106,7 @@
 													    			<td class="form_select1">
 												                        <select name="" class="out_form">
 												                            <option value="">자산종류를 선택해주세요</option>
-												                            <option>현금</option>
-												                            <option>국민카드</option>
-												                            <option>농협체크카드</option>
+												                            <option value="6">지갑</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>

@@ -48,12 +48,13 @@ public class BookController {
 		return mv;
 	}
 
-	@GetMapping("/book/insertIO.do")
+	@RequestMapping(value="/book/insertIO.do")
 	@ResponseBody
 	public String insertInOut(@ModelAttribute("Inout") Inout io, HttpServletRequest request) throws Exception{
 		log.info("#### 가계부입력 ####");
 		
 		try {
+			
 			inout_service.insertInoutS(io);
 		}catch(Exception e) {
 			e.printStackTrace();

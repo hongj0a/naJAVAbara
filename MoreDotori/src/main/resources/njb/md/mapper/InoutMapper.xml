@@ -9,7 +9,7 @@
 	</select>
 
 	<insert id="insertInout" parameterType="njb.md.domain.Inout">
-		insert into INOUT values(INOUT_SEQ.NEXTVAL, #{C_inout}, #{A_seq}, #{C_categori}, SYSDATE, #{I_money}, #{I_memo})
+		insert into INOUT values(INOUT_SEQ.NEXTVAL, #{C_inout}, #{A_seq}, #{C_categori}, #{I_date}, #{I_money}, #{I_memo})
 	</insert>
 	
 	<delete id="deleteInout" parameterType="long">

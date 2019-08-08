@@ -81,7 +81,7 @@
     	   $(".form_select2 .trs_form option:eq(0)").prop("selected", true);
        };       
 
-       //[1] 지출폼 내용 저장 및 html 추가
+       //[1] 수입/지출폼 내용 저장 및 html 추가
        $.fn.saveInsertOut = function(){
     	   console.log('지출 폼 내용 저장');
     	   
@@ -97,29 +97,23 @@
     		   alert('내용을 입력해주세요');
     	   }else{
     		   //db저장로직
-    		   alert('html만 추가된거임 DB추가로직짜야함');
-/*    		   
-    		   var tdStyle = '<td>';
-    		   if($(".form_categori").val()=='지출'){
-    			   tdStyle= '<td class="form_money_out">';
-    		   }else if($(".form_categori").val()=='수입'){
-    			   tdStyle= '<td class="form_money_in">';
-    		   }
-
-    		   //html 추가로직
-    		   var selDate = $(".form_select_date_val").val();
-    		   console.log(selDate);
-    		   $(".account_table tbody:last").append(
-	    			'<tr>'+
-    				'<td>'+ $(".form_categori").val() +'</td>'+
-    				'<td>'+ $(".form_select1 .out_form option:selected").val() +'</td>'+
-    				'<td>'+ $(".form_select2 .out_form option:selected").val() +'</td>'+
-    				'<td>'+ $('.form_cont .out_form').val() +'</td>'+
-    				tdStyle + $('.form_money .out_form').val() +'</td>'+
-    				'<td class="delete_row" onclick="$.fn.delRow(this)">'+ '삭제' +'</td>'+
-	    			'</tr>'    				   
-    		   );
-*/
+    		   $.ajax({
+    			   type: 'POST',
+    			   url : "book/insertIO.do",
+    			   data : $("#inoutInsertForm").serialize(),
+    			   success : function(data){
+    				   if( data == "success"){
+    					   alert('입력성공');
+    					   //수입및지출및이체정보 가져오는 메소드 추가하기
+    				   }else{
+    					   alert('입력실패');
+    				   }
+    			   },
+    			   error:function(request,status,error){
+    		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		       }
+    		   });
+    		   
     		   //입력내용 삭제
     		   $.fn.clearInsertOut();
     	   }
