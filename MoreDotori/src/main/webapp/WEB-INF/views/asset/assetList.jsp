@@ -105,6 +105,7 @@
                              		 <div id="sizesize" class="text-center project-main">
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
+										  	<form name='update' method='post' action='alist/update.do'>
 												<table>
 												  <tr>
 												  	<th>분류</th>
@@ -132,7 +133,7 @@
 			                                            			<div class="col-12">
 			                                            				<span>타입 :  </span>
 			                                                    		&nbsp;
-			                                                    		<select class="js-example-basic-single form-control plus-imp">
+			                                                    		<select id="c_asset" class="js-example-basic-single form-control plus-imp">
 			                                                            	<option value="현금">현금</option>
 			                                                            	<option value="통장">통장</option>
 			                                                            	<option value="신용카드">신용카드</option>
@@ -143,34 +144,35 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        	<input id="a_money" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input type="address" class="form-control plus-imp">
+			                                                        	<input id="a_memo" type="text" class="form-control plus-imp">
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
 			                                                        <div id="plus-size2" class="modal-footer">
-			                                                            <button type="button" class="btn btn-primary" onClick="location.href='update.do'">저장</button>
+			                                                            <button type="submit" class="btn btn-primary">저장</button>
 			                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			                                                        </div>
 			                                                  </div>
 			                                                </div>
 			                                            </div>
-			                                            <a href='cont.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+			                                            <a href='update.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
 														<td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 													</tr>
 													</c:forEach>
 											</table>
+											</form>
                               		   </div>
                               		</div>
                               	</div>
