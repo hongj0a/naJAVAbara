@@ -1,5 +1,6 @@
 package njb.md.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
+import njb.md.domain.Inout;
 import njb.md.domain.InoutForm;
 import njb.md.service.CodeService;
 import njb.md.service.InoutService;
@@ -34,6 +36,8 @@ import lombok.extern.log4j.Log4j;
 public class BookController {
 	@Setter(onMethod_ = @Autowired)
 	private CodeService code_service;
+	
+	@Setter(onMethod_ = @Autowired)
 	private InoutService inout_service;
 	
 	@RequestMapping("/book")
@@ -58,8 +62,21 @@ public class BookController {
     @ResponseBody
 	public String insertInOut(@ModelAttribute("iof") InoutForm iof, HttpServletRequest request) throws Exception{
 		log.info("#### 가계부입력 ####");
+
+		//날짜합치기
+		String ioDateS = iof.getIo_yyyy()+"-"+iof.getIo_mmmm()+"-"+iof.getIo_dddd();
+		Date ioDate = Date.valueOf(ioDateS);
+		log.info(ioDate);
 		
-		log.info("#### 가격 : " + iof.getIo_money());
+		//컴마없애기
+		String yesCM = iof.getIo_money().replace(",", "");
+		long noCM = Integer.parseInt(yesCM);
+		
+		//insert실행하기
+		Inout io = new Inout(-1, iof.getIo_inout(), iof.getIo_asset(), iof.getIo_categori(), ioDate, noCM, iof.getIo_memo());
+		log.info(io);
+		inout_service.insertInoutS(io);
+		
 		return "success";
 	}
 	

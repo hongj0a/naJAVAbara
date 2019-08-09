@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InoutForm {
-	private long io_yyyy;
-	private long io_mmmm;
-	private long io_dddd;	
+	private String io_yyyy;
+	private String io_mmmm;
+	private String io_dddd;	
 	private String io_inout;
 	private long io_asset;
 	private String io_categori;
