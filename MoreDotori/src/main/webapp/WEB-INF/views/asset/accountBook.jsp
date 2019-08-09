@@ -77,9 +77,9 @@
 													    		<tr>
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
-													    				<input type="text" class="form_select_date_val form_select_year_val out_form" size="4" maxlength="4" name="" value="" readonly>년 
-													    				<input type="text" class="form_select_date_val form_select_month_val out_form" size="2" maxlength="2" name="" value="" readonly>월 
-													    				<input type="text" class="form_select_date_val form_select_day_val out_form" size="2" maxlength="2" name="" value="" readonly>일
+													    				<input type="text" class="form_select_date_val form_select_year_val out_form" size="4" maxlength="4" name="io_yyyy" value="" readonly>년 
+													    				<input type="text" class="form_select_date_val form_select_month_val out_form" size="2" maxlength="2" name="io_mmmm" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val form_select_day_val out_form" size="2" maxlength="2" name="io_dddd" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_out_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
@@ -88,7 +88,7 @@
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">대분류</td>
 													    			<td class="form_select0">
-												                        <select name="" class="out_form">
+												                        <select name="io_inout" class="out_form">
 												                            <option value="">대분류를 선택해주세요</option>
 												                            <c:if test="${empty codelistIO}">
 												                            	<option>데이터를 가져오지 못했어요</option>
@@ -104,7 +104,7 @@
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">자산</td>
 													    			<td class="form_select1">
-												                        <select name="" class="out_form">
+												                        <select name="io_asset" class="out_form">
 												                            <option value="">자산종류를 선택해주세요</option>
 												                            <option value="6">지갑</option>
 												                        </select>												    				
@@ -113,7 +113,7 @@
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">분류</td>
 													    			<td class="form_select2">
-												                        <select name="" class="out_form">
+												                        <select name="io_categori" class="out_form">
 												                            <option value="">내역 분류를 선택해주세요</option>
 												                            <c:if test="${empty codelistIN}">
 												                            	<option>수입옵션 데이터를 가져오지 못했어요</option>
@@ -134,13 +134,13 @@
 													    		<tr class="insert_form_txt">
 													    			<td class="form_title">금액</td>
 													    			<td class="form_money">
-														    			<input type="text" placeholder="지출금액을 기입해주세요" name="" class="out_form" numberOnly>
+														    			<input type="text" placeholder="지출금액을 기입해주세요" name="io_money" class="out_form" numberOnly>
 													    			</td>
 													    		</tr>
 													    		<tr class="insert_form_txtarea">
 													    			<td class="form_title">내용</td>
 													    			<td class="form_cont">
-																		<textarea rows="2" placeholder="지출내용을 기입해주세요" name="" class="out_form"></textarea>												    			
+																		<textarea rows="2" placeholder="지출내용을 기입해주세요" name="io_memo" class="out_form"></textarea>												    			
 													    			</td>
 													    		</tr>
 													    	</table>

@@ -97,8 +97,10 @@
     		   alert('내용을 입력해주세요');
     	   }else{
     		   //db저장로직
+    		   //serialize는 form의 값들을 querystring 형태로 만들어주는 겁니다..
+    		   //즉 name1=123&name2=456 이런 형식의 문자열로 만들어주는거죠..
     		   $.ajax({
-    			   type: 'POST',
+    			   type: "POST",
     			   url : "book/insertIO.do",
     			   data : $("#inoutInsertForm").serialize(),
     			   success : function(data){
@@ -183,7 +185,7 @@
 		        if(!$.isNumeric(x)) {
 		            x = x.replace(/[^0-9]/g,"");
 		        }
-		        x = $.fn.addCommas(x);
+  				x = $.fn.addCommas(x);
 		        $(this).val(x);
 		    }
 		}).on("keyup", function() {
