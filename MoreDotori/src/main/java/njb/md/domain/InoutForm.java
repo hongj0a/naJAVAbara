@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InoutForm {
+	private long io_seq;
 	private String io_yyyy;
 	private String io_mmmm;
 	private String io_dddd;	

@@ -74,6 +74,7 @@
 
 												    	<form id="inoutInsertForm" class="inoutInsertForm" method="post">
 													    	<table class="insert_form">
+													    		<input type="hidden" name="io_seq" value="-1"/>
 													    		<tr>
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
@@ -157,14 +158,14 @@
 												    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 												    
 												    	<form action="" class="" method="">
-													    	<input type="hidden" id="" class="trs_form form_categori" name="" value="이체">
+													    	<input type="hidden" name="trs_seq" value="-1"/>
 													    	<table class="insert_form">
 													    		<tr>
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
-													    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="" value="" readonly>년 
-													    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="" value="" readonly>월 
-													    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="" value="" readonly>일
+													    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="trs_yyyy" value="" readonly>년 
+													    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="trs_mmmm" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="trs_dddd" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_trs_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
@@ -173,7 +174,7 @@
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">출금</td>
 													    			<td class="form_select1">
-												                        <select name="" class="trs_form">
+												                        <select name="trs_out_asset" class="trs_form">
 												                            <option value="">출금 자산종류를 선택해주세요</option>
 												                            <option>현금</option>
 												                            <option>국민카드</option>
@@ -184,7 +185,7 @@
 													    		<tr class="insert_form_select">
 													    			<td class="form_title">입금</td>
 													    			<td class="form_select2">
-												                        <select name="" class="trs_form">
+												                        <select name="trs_in_asset" class="trs_form">
 												                            <option value="">입금 자산종류를 선택해주세요</option>
 												                            <option>현금</option>
 												                            <option>국민카드</option>
@@ -207,13 +208,13 @@
 													    		<tr class="insert_form_txt">
 													    			<td class="form_title">금액</td>
 													    			<td class="form_money">
-														    			<input type="text" placeholder="금액을 기입해주세요" name="" class="trs_form" numberOnly>
+														    			<input type="text" placeholder="금액을 기입해주세요" name="trs_money" class="trs_form" numberOnly>
 													    			</td>
 													    		</tr>
 													    		<tr class="insert_form_txtarea">
 													    			<td class="form_title">내용</td>
 													    			<td class="form_cont">
-																		<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="trs_form"></textarea>												    			
+																		<textarea rows="2" placeholder="내용을 기입해주세요" name="trs_memo" class="trs_form"></textarea>												    			
 													    			</td>
 													    		</tr>
 													    	</table>
