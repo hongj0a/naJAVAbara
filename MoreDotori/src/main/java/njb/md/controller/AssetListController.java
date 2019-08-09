@@ -41,10 +41,10 @@ public class AssetListController {
 	@RequestMapping("/list.do")
 	public ModelAndView list() {
 		List<AssetList> list = service.listS();
+		log.info("#list: " + list);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("alist/list");
 		mv.addObject("list", list);
-		//ModelAndView mv = new ModelAndView("addr/list", "list", list);
 	
 		return mv;
 	}

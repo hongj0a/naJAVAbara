@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,25 +114,17 @@
 												    <th>수정</th>
 												    <th>삭제</th>
 												  </tr>
-												  <tr>
-												    <td>현금</td>
-												    <td>웅앵웅앵웅</td>
-												    <td>10,000원</td>
-												    <td>웅앵</td>
-													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
-												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
-												  </tr>
 												  	<c:forEach items="${list}" var="alist">
 														<tr>
 														<td>${alist.c_asset}</td>
-														<td><a href='cont.do?seq=${alist.a_seq}'>${alist.a_nickname}</td>
+														<td>${alist.a_nickname}</td>
 														<td>${alist.a_money}</td>
 														<td>${alist.a_memo}</td>
 			                                            <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
                                                     				 <div class="modal-header">
-			                                                            <h5 class="modal-title" id="exampleModalLiveLabel">수정</h5>
+                                                    				 <h5 class="modal-title" id="exampleModalLiveLabel">수정</h5>
 			                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			                                                        </div>
 			                                                        <div class="modal-body">
@@ -167,40 +160,16 @@
 			                                                        </br>
 			                                                      </div>
 			                                                        <div id="plus-size2" class="modal-footer">
-			                                                            <button type="submit" class="btn btn-primary">저장</button>
+			                                                            <button type="button" class="btn btn-primary" onClick="location.href='update.do'">저장</button>
 			                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			                                                        </div>
 			                                                  </div>
 			                                                </div>
 			                                            </div>
-			                                            <a href='update.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+			                                            <a href='cont.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
 														<td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
 													</tr>
 													</c:forEach>
-												  <tr>
-												    <td>통장</td>
-												    <td>웅앵웅앵웅</td>
-												    <td>100,000원</td>
-												  	<td>웅앵</td>
-													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
-												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
-												  </tr>
-												  <tr>
-												    <td>신용카드</td>
-												    <td>웅앵웅앵웅</td>
-												    <td>230,000원</td>
-												    <td>웅앵</td>
-													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
-												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
-												  </tr>
-												  <tr>
-												    <td>체크카드</td>
-												 	<td>웅앵웅앵웅</td>
-												    <td>5,000,000원</td>
-												    <td>웅앵</td>
-													<td><a href='update.do?seq=${alist.a_seq}'>수정</a></td>
-												    <td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
-												</tr>
 											</table>
                               		   </div>
                               		</div>
