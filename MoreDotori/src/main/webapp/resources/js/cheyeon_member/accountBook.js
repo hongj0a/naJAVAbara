@@ -138,7 +138,22 @@
     		   alert('내용을 입력해주세요');
     	   }else{
     		   //db저장로직
-    		   alert('html만 추가된거임 DB추가로직짜야함');
+    		   $.ajax({
+    			   type: "POST",
+    			   url : "book/insertTrs.do",
+    			   data : $("#trsInsertForm").serialize(),
+    			   success : function(data){
+    				   if( data == "success"){
+    					   alert('입력성공');
+    					   //수입및지출및이체정보 가져오는 메소드 추가하기
+    				   }else{
+    					   alert('입력실패');
+    				   }
+    			   },
+    			   error:function(request,status,error){
+    		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		       }
+    		   });
     		   //입력내용 삭제
     		   $.fn.clearInsertTrs();
     	   }

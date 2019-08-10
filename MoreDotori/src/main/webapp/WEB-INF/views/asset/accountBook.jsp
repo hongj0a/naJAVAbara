@@ -157,7 +157,7 @@
 												    </div>
 												    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 												    
-												    	<form action="" class="" method="">
+												    	<form action="trsInsertForm" class="trsInsertForm" method="post">
 													    	<input type="hidden" name="trs_seq" value="-1"/>
 													    	<table class="insert_form">
 													    		<tr>

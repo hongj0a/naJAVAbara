@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.TransferMapper">
+
+	<select id="selectTransSeq" resultType="njb.md.domain.Transfer">
+		select * from Transfer where T_seq=#{T_seq}
+	</select>
+
+	<insert id="insertTrans" parameterType="njb.md.domain.Transfer">
+		insert into Transfer values(Transfer_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo})
+	</insert>
+	
+	<delete id="deleteTrans" parameterType="long">
+		delete from Transfer where T_seq=#{T_seq}
+	</delete>
+	
+	<update id="updateTrans" parameterType="njb.md.domain.Transfer">
+		update Transfer
+		set C_inout=#{C_inout}, A_seq_in=#{A_seq_in}, A_seq_out=#{A_seq_out}, T_date=#{T_date}, T_money=#{T_money}, T_memo=#{T_memo}
+		where T_seq=#{T_seq}
+	</update>
+
+</mapper>

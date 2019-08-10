@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import njb.md.domain.Code;
 import njb.md.domain.Inout;
 import njb.md.domain.InoutForm;
+import njb.md.domain.Transfer;
+import njb.md.domain.TrsForm;
 import njb.md.service.CodeService;
 import njb.md.service.InoutService;
 import lombok.AllArgsConstructor;
@@ -61,7 +63,7 @@ public class BookController {
 	@RequestMapping(value ="/book/insertIO.do")
     @ResponseBody
 	public String insertInOut(@ModelAttribute("iof") InoutForm iof, HttpServletRequest request) throws Exception{
-		log.info("#### 가계부입력 ####");
+		log.info("#### 가계부입력(수입/지출) ####");
 
 		//날짜합치기
 		String ioDateS = iof.getIo_yyyy()+"-"+iof.getIo_mmmm()+"-"+iof.getIo_dddd();
@@ -79,6 +81,30 @@ public class BookController {
 		
 		return "success";
 	}
+
+	@RequestMapping(value ="/book/insertIO.do")
+    @ResponseBody
+	public String insertInOut(@ModelAttribute("trs") TrsForm trs, HttpServletRequest request) throws Exception{
+		log.info("#### 가계부입력(이체) ####");
+
+		//날짜합치기
+		String trsDateS = trs.getTrs_yyyy()+"-"+trs.getTrs_mmmm()+"-"+trs.getTrs_dddd();
+		Date trsDate = Date.valueOf(trsDateS);
+		log.info(trsDate);
+		
+		//컴마없애기
+		String yesCM = trs.getTrs_money().replace(",", "");
+		long noCM = Integer.parseInt(yesCM);
+		
+		//-1인가?
+		log.info("이체 시퀀스정보 : " + trs.getTrs_seq());
+
+		//insert실행하기
+		Transfer trsf = new Transfer(-1, trs.getTrs_inout(), trs.getTrs_in_asset(), trs.getTrs_out_asset(), trsDate, noCM, trs.getTrs_memo());
+		log.info(trsf);
+		
+		return "success";
+	}	
 	
 	@GetMapping("/book2")
 	public ModelAndView myAccountMonthlyBook() {
