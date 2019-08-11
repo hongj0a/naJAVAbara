@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import njb.md.domain.Inout;
 import njb.md.domain.Transfer;
 import njb.md.mapper.TransferMapper;
 
