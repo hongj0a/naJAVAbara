@@ -1,12 +1,17 @@
 package njb.md.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.CORBA.TypeCodePackage.BadKind;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,10 +26,14 @@ import org.springframework.web.servlet.ModelAndView;
 import njb.md.domain.Code;
 import njb.md.domain.Inout;
 import njb.md.domain.InoutForm;
+import njb.md.domain.InoutTrsList;
+import njb.md.domain.InoutTrsListDetail;
 import njb.md.domain.Transfer;
 import njb.md.domain.TrsForm;
 import njb.md.service.CodeService;
 import njb.md.service.InoutService;
+import njb.md.service.InoutTrsListService;
+import njb.md.service.TransferService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,6 +50,12 @@ public class BookController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private InoutService inout_service;
+	
+	@Setter(onMethod_ = @Autowired)
+	private TransferService trs_service;	
+
+	@Setter(onMethod_ = @Autowired)
+	private InoutTrsListService iotl_service;
 	
 	@RequestMapping("/book")
 	public ModelAndView myAccountBook() {
@@ -82,7 +97,7 @@ public class BookController {
 		return "success";
 	}
 
-	@RequestMapping(value ="/book/insertIO.do")
+	@RequestMapping(value ="/book/insertTrs.do")
     @ResponseBody
 	public String insertInOut(@ModelAttribute("trs") TrsForm trs, HttpServletRequest request) throws Exception{
 		log.info("#### 가계부입력(이체) ####");
@@ -102,9 +117,39 @@ public class BookController {
 		//insert실행하기
 		Transfer trsf = new Transfer(-1, trs.getTrs_inout(), trs.getTrs_in_asset(), trs.getTrs_out_asset(), trsDate, noCM, trs.getTrs_memo());
 		log.info(trsf);
+		trs_service.insertTransS(trsf);
 		
 		return "success";
 	}	
+	
+	@RequestMapping(value="/book/iotList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<InoutTrsListDetail> getInoutTrsList(String M_id, String selectDate,HttpServletRequest request) throws Exception{
+		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
+		List<InoutTrsList> iotList = iotl_service.getListDescDayS(M_id, selectDate);
+		
+		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
+		List<InoutTrsListDetail> list = new ArrayList<InoutTrsListDetail>();
+
+		for(InoutTrsList iot : iotList) {
+			//trs이면
+			if(iot.getC_inout().equals("IO003")) {
+				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
+				String seq_out = String.valueOf(ts.getA_seq_out());
+				InoutTrsListDetail detail = new InoutTrsListDetail(ts.getT_seq(), ts.getC_inout(), ts.getA_seq_in(), seq_out, ts.getT_date(), ts.getT_money(), ts.getT_memo());
+
+				list.add(detail);
+			//inout이면
+			}else{
+				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
+				InoutTrsListDetail detail = new InoutTrsListDetail(io.getI_seq(), io.getC_inout(), io.getA_seq(), io.getC_categori(), io.getI_date(), io.getI_money(), io.getI_memo());
+				
+				list.add(detail);
+			}
+		}
+		
+		return list;
+	}
 	
 	@GetMapping("/book2")
 	public ModelAndView myAccountMonthlyBook() {

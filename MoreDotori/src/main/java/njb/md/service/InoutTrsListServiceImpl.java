@@ -31,4 +31,32 @@ public class InoutTrsListServiceImpl implements InoutTrsListService {
 		return list;
 	}
 
+	@Override
+	public List<InoutTrsList> getListAscDayS(String M_id, String selectDate) {
+		List<InoutTrsList> list = mapper.getListAscDay(M_id, selectDate);
+		log.info("#### InoutTrsList ~ day(asc) : " + list);
+		return list;
+	}
+
+	@Override
+	public List<InoutTrsList> getListDescDayS(String M_id, String selectDate) {
+		List<InoutTrsList> list = mapper.getListDescDay(M_id, selectDate);
+		log.info("#### InoutTrsList ~ day(desc) : " + list);
+		return list;
+	}
+
+	@Override
+	public List<InoutTrsList> getListAscMonS(String M_id, String selectMonth) {
+		List<InoutTrsList> list = mapper.getListAscMon(M_id, selectMonth);
+		log.info("#### InoutTrsList ~ Month(asc) : " + list);
+		return list;
+	}
+
+	@Override
+	public List<InoutTrsList> getListDescMonS(String M_id, String selectMonth) {
+		List<InoutTrsList> list = mapper.getListDescMon(M_id, selectMonth);
+		log.info("#### InoutTrsList ~ Month(desc) : " + list);
+		return list;
+	}
+
 }
