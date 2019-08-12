@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="njb.md.mapper.InoutTrsList">
+<mapper namespace="njb.md.mapper.InoutTrsListMapper">
 
 	<select id="getListAsc" resultType="njb.md.domain.InoutTrsList">
 		select * from book where M_id=#{M_id} order by Bk_date asc

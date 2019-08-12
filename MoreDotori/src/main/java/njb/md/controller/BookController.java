@@ -125,8 +125,10 @@ public class BookController {
 	@RequestMapping(value="/book/iotList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public List<InoutTrsListDetail> getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		log.info("### 리스트를 가져올게욘 ####");
 		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
-		String selectDate = "yyyy"+"/"+"mmmm"+"/"+"dddd";
+		String selectDate = yyyy+"/"+mmmm+"/"+dddd;
+		
 		List<InoutTrsList> iotList = iotl_service.getListDescDayS(M_id, selectDate);
 		
 		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
