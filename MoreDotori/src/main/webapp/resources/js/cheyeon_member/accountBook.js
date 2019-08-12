@@ -28,6 +28,7 @@
 							   content += "<td>"+ data[i].C_inout +"</td>";
 							   content += "<td colspan='2'>"+ data[i].IOT_asset + " ===> ";
 							   content += data[i].IOT_assetgori +"</td>";
+							   content += "<td>"+ data[i].IOT_memo +"</td>";
 							   content += "<td>"+ data[i].IOT_money +"</td>";
 							   content += "<td>";
 							   content += "<span onclick=''>"+ "수정" +"</span>";
@@ -41,6 +42,7 @@
 							   content += "<td>"+ data[i].C_inout +"</td>";
 							   content += "<td>"+ data[i].IOT_asset +"</td>";
 							   content += "<td>"+ data[i].IOT_assetgori +"</td>";
+							   content += "<td>"+ data[i].IOT_memo +"</td>";
 							   content += "<td>"+ data[i].IOT_money +"</td>";
 							   content += "<td>";
 							   content += "<span onclick=''>"+ "수정" +"</span>";
@@ -116,6 +118,7 @@
 	      $(".form_select_month_val").val(premmmm);
 		  $(".form_select_day_val").val(predddd);	  	  
 		  
+		  $.fn.getInOutTrs();
 		  $.fn.animeTitle();
        });
        
@@ -165,8 +168,7 @@
     			   data : $("#inoutInsertForm").serialize(),
     			   success : function(data){
     				   if( data == "success"){
-    					   alert('입력성공');
-    					   //수입및지출및이체정보 가져오는 메소드 추가하기
+    					   $.fn.getInOutTrs();
     				   }else{
     					   alert('입력실패');
     				   }
@@ -204,8 +206,7 @@
     			   data : $("#trsInsertForm").serialize(),
     			   success : function(data){
     				   if( data == "success"){
-    					   alert('입력성공');
-    					   //수입및지출및이체정보 가져오는 메소드 추가하기
+    					   $.fn.getInOutTrs();
     				   }else{
     					   alert('입력실패');
     				   }
