@@ -11,7 +11,7 @@
       insert into ASSET values(ASSET_SEQ.nextval, #{m_id}, #{c_asset}, #{a_nickname}, #{a_money}, #{a_memo})
   </insert>
   <delete id="delete" parameterType="long">
-      delete from ASSET where A_SEQ=#{a_seq}
+      delete from ASSET where a_seq=#{a_seq}
   </delete>
   <select id="cont" resultType="njb.md.domain.AssetList">
   	 select * from ASSET where A_SEQ=#{a_seq}

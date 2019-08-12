@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/alist/*")
+@RequestMapping("/aList")
 @AllArgsConstructor
 public class AssetListController {
 	
@@ -59,6 +59,7 @@ public class AssetListController {
 	}
 	@GetMapping("/del.do")
 	public String delete(@RequestParam long a_seq) {
+		log.info("#### assewses : "+a_seq);
 		service.deleteS(a_seq);
 		return "redirect:list.do";
 	}

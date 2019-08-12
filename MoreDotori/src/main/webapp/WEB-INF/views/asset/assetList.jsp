@@ -105,7 +105,7 @@
                              		 <div id="sizesize" class="text-center project-main">
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
-										  	<form name='update' method='post' action='alist/update.do'>
+										  	<form name='update' method='post' action='aList/update.do'>
 												<table>
 												  <tr>
 												  	<th>분류</th>
@@ -134,7 +134,7 @@
 			                                                         &nbsp;&nbsp;
 			                                                     		<span>ID  : </span>
 			                                                     		&nbsp;&nbsp;
-			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" readonly>
+			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
 			                                                        </div>
 			                                                        </br>
 			                                            			<div class="col-12">
@@ -151,19 +151,19 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp">
+			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${alist.a_nickname}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_money" type="text" class="form-control plus-imp">
+			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${alist.a_money}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_memo" type="text" class="form-control plus-imp">
+			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${alist.a_memo}'>
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
@@ -174,8 +174,8 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div>
-			                                            <a href='update.do?seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
-														<td><a href='del.do?seq=${alist.a_seq}'>삭제</a></td>
+			                                            <a href='aList/update.do?a_seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+														<td><a href='aList/del.do?a_seq=${alist.a_seq}'>삭제</a></td>
 													</tr>
 													</c:forEach>
 											</table>
