@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +15,18 @@
 </head>
 
 <body>
+	<c:if test="${param.type eq 'expert'}">
+		<c:set var="type" value="expert" scope="page" />
+	</c:if>
 	<div class="auth-wrapper">
 		<div class="card cw-560">
 			<div class="card-header">
-				<h5>일반 회원 가입</h5>
+				<h5>
+				<c:choose>
+					<c:when test="${type eq 'expert'}">전문가 회원 가입</c:when>
+					<c:otherwise>일반 회원 가입</c:otherwise>
+				</c:choose>
+				</h5>
 			</div>
 			<div class="card-block">
 				<form id="sign-up" name="sign-up" action="">
@@ -105,7 +113,11 @@
 							</div>
 						</div>
 					</div>
-					<div id="expert-details">
+					<c:choose>
+						<c:when test="${type eq 'expert'}"><div id="expert-details" style="display: block;"></c:when>
+						<c:otherwise><div id="expert-details"></c:otherwise>
+					</c:choose><!-- 
+					<div id="expert-details"> -->
 						<div class="input-group mb-4">
 							<input type="text" class="form-control col-sm-4" id="inputJob"
 								name="job" placeholder="직업"> <input type="text"
@@ -361,7 +373,42 @@
 	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
 	<script>
+	function getParams() {
+	    // 파라미터가 담길 배열
+	    var param = new Array();
+	 
+	    // 현재 페이지의 url
+	    var url = decodeURIComponent(location.href);
+	    // url이 encodeURIComponent 로 인코딩 되었을때는 다시 디코딩 해준다.
+	    url = decodeURIComponent(url);
+	 
+	    var params;
+	    // url에서 '?' 문자 이후의 파라미터 문자열까지 자르기
+	    params = url.substring( url.indexOf('?')+1, url.length );
+	    // 파라미터 구분자("&") 로 분리
+	    params = params.split("&");
+	 
+	    // params 배열을 다시 "=" 구분자로 분리하여 param 배열에 key = value 로 담는다.
+	    var size = params.length;
+	    var key, value;
+	    for(var i=0 ; i < size ; i++) {
+	        key = params[i].split("=")[0];
+	        value = params[i].split("=")[1];
+	 
+	        param[key] = value;
+	    }
+	 
+	    return param;
+	}
+	
     $(document).ready(function() {
+    	gps = getParams();
+    	console.log(gps['type']);
+    	if(gps['type'] == 'expert') {
+    		//$('#expert-details').css('display', 'block');
+            
+    	}
+    	
       // choose profile-image
       $("#choose-image").on('change',	function() {
 			if (this.files && this.files[0]) {
@@ -405,11 +452,6 @@
               }
           }
       });
-      
-      // expert form 
-      /* $('#expert-details').css('display', 'block');
-      $('.card-header h5').html('전문가 회원가입'); */
-      
     });
   </script>
 </body>

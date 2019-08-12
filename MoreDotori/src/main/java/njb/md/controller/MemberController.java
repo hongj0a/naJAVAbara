@@ -15,7 +15,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@RequestMapping("select")
+	@RequestMapping("/check")
 	public ModelAndView selectAll() {
 		List<Member> list = service.selectAll();
 		ModelAndView mv = new ModelAndView("test", "list", list);

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- security:http pattern="/resources/**" security="none"></security:http -->
+	<security:http auto-config="true" use-expressions="true">
+		<security:csrf disabled="true"/>
+		
+		<security:intercept-url pattern="/normal/**" access="hasRole('ROLE_NORMAL')" />
+		<security:intercept-url pattern="/expert/**" access="hasRole('ROLE_EXPERT')" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')" />
+		<security:intercept-url pattern="/**" access="permitAll" />
+
+		<security:form-login login-page="/signin"
+			username-parameter="userId"
+			password-parameter="userPwd"
+			default-target-url="/"
+			login-processing-url=""
+			authentication-failure-url="/signin?err=true" />
+		<!-- default-target-url : 로그인 성공시 호출할 주소 
+			login-processing-url : 로그인 페이지 form에 action에 입력할 주소 지정
+			authentication-failure-url : 로그인 실패시 호출할 주소 지정
+		-->
+		<security:logout logout-url="/logout"
+			invalidate-session="true"
+			logout-success-url="/" />
+		<security:session-management invalid-session-url="/login">
+			<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="false" />
+		</security:session-management>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<!-- <security:user-service>
+				<security:user name="normal" password="normal" authorities="ROLE_NORMAL"/>
+				<security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+				<security:user name="expert" password="expert" authorities="ROLE_EXPERT"/>
+			</security:user-service> -->
+			<security:jdbc-user-service data-source-ref="dataSource" users-by-username-query="" authorities-by-username-query=""/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>
