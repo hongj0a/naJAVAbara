@@ -15,18 +15,20 @@
 </head>
 
 <body>
-	<c:if test="${param.type eq 'expert'}">
-		<c:set var="type" value="expert" scope="page" />
-	</c:if>
+	<c:choose>
+		<c:when test="${param.type eq 'expert'}">
+			<c:set var="title" value="전문가 회원 가입" />
+			<c:set var="dtStyle" value="display: block;" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="title" value="일반 회원 가입" />
+			<c:set var="dtStyle" value="display: none;" />
+		</c:otherwise>
+	</c:choose>
 	<div class="auth-wrapper">
 		<div class="card cw-560">
 			<div class="card-header">
-				<h5>
-				<c:choose>
-					<c:when test="${type eq 'expert'}">전문가 회원 가입</c:when>
-					<c:otherwise>일반 회원 가입</c:otherwise>
-				</c:choose>
-				</h5>
+				<h5><c:out value="${title}" /></h5>
 			</div>
 			<div class="card-block">
 				<form id="sign-up" name="sign-up" action="">
@@ -34,8 +36,7 @@
 						<div class="col-sm-4">
 							<div class="text-center">
 								<label for="choose-image">
-									<img class="img-fluid rounded-circle" id="profile-image"
-										src="images/user/avatar-3.jpg" alt="dashboard-user">
+									<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
 								<div class="custom-file mb-4">
 									<input type="file" class="custom-file-input" id="choose-image" accept="image/*">
@@ -45,59 +46,48 @@
 						</div>
 						<div class="col-sm-8">
 							<div class="input-group mb-4">
-								<label for="inputId" class="sr-only">아이디</label> <input
-									type="text" class="form-control" id="inputId" name="id"
-									placeholder="아이디(이메일 형식)">
+								<label for="inputId" class="sr-only">아이디</label>
+								<input type="text" class="form-control" id="inputId" name="id" placeholder="아이디(이메일 형식)">
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="id-dupl-check"
-										type="button">중복확인</button>
+									<button class="btn btn-primary" name="id-dupl-check" type="button">중복확인</button>
 								</div>
 							</div>
 							<div class="input-group mb-4">
-								<label for="inputName" class="sr-only">이름</label> <input
-									type="text" class="form-control" id="inputName" name="name"
-									placeholder="이름">
+								<label for="inputName" class="sr-only">이름</label>
+								<input type="text" class="form-control" id="inputName" name="name" placeholder="이름">
 							</div>
 							<div class="input-group mb-4">
-								<label for="inputNick" class="sr-only">닉네임</label> <input
-									type="text" class="form-control" id="inputNick" name="nickname"
-									placeholder="닉네임">
+								<label for="inputNick" class="sr-only">닉네임</label>
+								<input type="text" class="form-control" id="inputNick" name="nickname" placeholder="닉네임">
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="nick-dupl-check"
-										type="button">중복확인</button>
+									<button class="btn btn-primary" name="nick-dupl-check" type="button">중복확인</button>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwd"
-								name="password" placeholder="비밀번호">
-
+							<input type="password" class="form-control" id="inputPwd" name="password" placeholder="비밀번호">
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwdConfirm"
-								name="password-confirm" placeholder="비밀번호 확인">
+							<input type="password" class="form-control" id="inputPwdConfirm" name="password-confirm" placeholder="비밀번호 확인">
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-3">
-							<input type="text" class="form-control" id="inputPhone"
-								name="phone" placeholder="연락처 (01012345678)">
+							<input type="text" class="form-control" id="inputPhone" name="phone" placeholder="연락처 (01012345678)">
 						</div>
 					</div>
 					<div class="row justify-content-center">
 						<div class="form-group col-sm-3 mb-4">
 							<label for="male">성별&nbsp;&nbsp;</label>
-							<div class="btn-group btn-group-toggle" data-toggle="buttons"
-								id="inputGender">
-								<label class="btn btn-primary"> <input type="radio"
-									name="gender" value="male">남
-								</label> <label class="btn btn-primary"> <input type="radio"
-									name="gender" value="female">여
-								</label>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
+								<label class="btn btn-primary">
+								<input type="radio" name="gender" value="male">남</label>
+								<label class="btn btn-primary">
+								<input type="radio" name="gender" value="female">여</label>
 							</div>
 						</div>
 						<div class="form-group col-sm-9">
@@ -113,39 +103,28 @@
 							</div>
 						</div>
 					</div>
-					<c:choose>
-						<c:when test="${type eq 'expert'}"><div id="expert-details" style="display: block;"></c:when>
-						<c:otherwise><div id="expert-details"></c:otherwise>
-					</c:choose><!-- 
-					<div id="expert-details"> -->
+					<div id="expert-details" style="${dtStyle}">
 						<div class="input-group mb-4">
-							<input type="text" class="form-control col-sm-4" id="inputJob"
-								name="job" placeholder="직업"> <input type="text"
-								class="form-control col-sm-4" id="inputPosition" name="position"
-								placeholder="직급"> <input type="text"
-								class="form-control col-sm-4" id="inputCareer" name="career"
-								placeholder="경력(년차)">
+							<input type="text" class="form-control col-sm-4" id="inputJob" name="job" placeholder="직업">
+							<input type="text" class="form-control col-sm-4" id="inputPosition" name="position" placeholder="직급">
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)">
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">
-								<label for="inputAddr" class="sr-only">우편번호</label> <input
-									type="text" class="form-control address" id="inputZipCode"
-									name="zip-code" placeholder="우편번호" readonly>
+								<label for="inputAddr" class="sr-only">우편번호</label>
+								<input type="text" class="form-control address" id="inputZipCode" name="zip-code" placeholder="우편번호" readonly>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="find-address"
-										type="button">주소찾기</button>
+									<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
 								</div>
 							</div>
 							<div>
 								<div class="form-group mb-1">
-									<input type="text" class="form-control address" id="inputAddr"
-										name="address" placeholder="주소" readonly>
+									<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 								</div>
 							</div>
 							<div>
 								<div class="form-group mb-4">
-									<input type="text" class="form-control" id="inputAddrDetail"
-										name="addr-details" placeholder="상세주소">
+									<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소">
 								</div>
 							</div>
 						</div>
@@ -156,8 +135,7 @@
 										<option value="">자격증1</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense1"
-									name="license-num1" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호">
 							</div>
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
@@ -174,8 +152,7 @@
 										<option value="">자격증3</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense3"
-									name="license-num3" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense3" name="license-num3" placeholder="자격증 번호">
 							</div>
 						</div>
 						<div class="form-group mb-4 inputSNS">
@@ -185,8 +162,7 @@
 										<option value="">SNS</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" name="sns1"
-									placeholder="SNS주소 (ex. https://www.facebook.com/000)">
+								<input type="text" class="form-control" name="sns1" placeholder="SNS주소 (ex. https://www.facebook.com/000)">
 								<div class="input-group-append">
 									<button class="btn btn-primary addSNS" type="button">
 										<i class="fas fa-plus"></i>
@@ -195,14 +171,11 @@
 							</div>
 						</div>
 						<div class="form-group mb-4">
-							<textarea class="form-control" rows="8"
-								aria-label="With textarea" name="introduction"
-								placeholder="자기소개"></textarea>
+							<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개"></textarea>
 						</div>
 					</div>
 					<div class="form-group mb-4">
-						<textarea class="form-control account-clause" rows="8"
-							aria-label="With textarea" readonly>제 1 장 환영합니다!
+						<textarea class="form-control account-clause" rows="8" aria-label="With textarea" readonly>제 1 장 환영합니다!
 
 제 1 조 (목적)
 
@@ -373,42 +346,7 @@
 	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
 	<script>
-	function getParams() {
-	    // 파라미터가 담길 배열
-	    var param = new Array();
-	 
-	    // 현재 페이지의 url
-	    var url = decodeURIComponent(location.href);
-	    // url이 encodeURIComponent 로 인코딩 되었을때는 다시 디코딩 해준다.
-	    url = decodeURIComponent(url);
-	 
-	    var params;
-	    // url에서 '?' 문자 이후의 파라미터 문자열까지 자르기
-	    params = url.substring( url.indexOf('?')+1, url.length );
-	    // 파라미터 구분자("&") 로 분리
-	    params = params.split("&");
-	 
-	    // params 배열을 다시 "=" 구분자로 분리하여 param 배열에 key = value 로 담는다.
-	    var size = params.length;
-	    var key, value;
-	    for(var i=0 ; i < size ; i++) {
-	        key = params[i].split("=")[0];
-	        value = params[i].split("=")[1];
-	 
-	        param[key] = value;
-	    }
-	 
-	    return param;
-	}
-	
     $(document).ready(function() {
-    	gps = getParams();
-    	console.log(gps['type']);
-    	if(gps['type'] == 'expert') {
-    		//$('#expert-details').css('display', 'block');
-            
-    	}
-    	
       // choose profile-image
       $("#choose-image").on('change',	function() {
 			if (this.files && this.files[0]) {
