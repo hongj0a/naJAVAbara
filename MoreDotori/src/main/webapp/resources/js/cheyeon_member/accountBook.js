@@ -79,7 +79,62 @@
     	   $(".form_select0 .trs_form option:eq(0)").prop("selected", true);
     	   $(".form_select1 .trs_form option:eq(0)").prop("selected", true);
     	   $(".form_select2 .trs_form option:eq(0)").prop("selected", true);
-       };       
+       };
+       
+       //가계부 사용 목록 가져오기 (일별)
+       $.fn.getInOutTrs = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/iotList.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+				   		mmmm: $(".form_select_month_val.out_form").val(),
+				   		dddd: $(".form_select_day_val.out_form").val()},
+			   success : function(data){
+				   if(data.length > 0){
+					   var content = "";
+					   for(i=0; i<data.length; i++){
+						   if(data[i].C_inout){
+							   content += "<tr>";
+							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td>"+ data[i].C_inout +"</td>";
+							   content += "<td colspan='2'>"+ data[i].IOT_asset + " ===> ";
+							   content += data[i].IOT_assetgori +"</td>";
+							   content += "<td>"+ data[i].IOT_money +"</td>";
+							   content += "<td>";
+							   content += "<span onclick=''>"+ 수정 +"</span>";
+							   content += "<span>"+ / +"</span>";
+							   content += "<span onclick=''>"+ 삭제 +"</span>";
+							   content += "</td>";
+							   content += "</tr>";						   
+						   }else{
+							   content += "<tr>";
+							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td>"+ data[i].C_inout +"</td>";
+							   content += "<td>"+ data[i].IOT_asset +"</td>";
+							   content += "<td>"+ data[i].IOT_assetgori +"</td>";
+							   content += "<td>"+ data[i].IOT_money +"</td>";
+							   content += "<td>";
+							   content += "<span onclick=''>"+ 수정 +"</span>";
+							   content += "<span>"+ / +"</span>";
+							   content += "<span onclick=''>"+ 삭제 +"</span>";
+							   content += "</td>";
+							   content += "</tr>";
+						   }
+					   }
+					   
+					    $('.account_table > tbody:last').append(content);					   
+				   }else{
+					   
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });
+       }
 
        //[1] 수입/지출폼 내용 저장 및 html 추가
        $.fn.saveInsertOut = function(){
