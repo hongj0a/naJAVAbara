@@ -22,7 +22,7 @@
 				   var content = "";
 				   if(data.length > 0){
 					   for(i=0; i<data.length; i++){
-						   if(data[i].C_inout){
+						   if(data[i].C_inout=="IO003"){
 							   content += "<tr>";
 							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td>"+ data[i].C_inout +"</td>";

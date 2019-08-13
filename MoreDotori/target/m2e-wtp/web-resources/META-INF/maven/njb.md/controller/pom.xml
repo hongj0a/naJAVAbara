@@ -209,6 +209,13 @@
 			<version>1.9.11</version> 
 		</dependency>		
 
+		<!-- Append For ArrayJson (리스트 ajax로 출력) -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180130</version>
+		</dependency>
 		
 		<!-- Replace  -->
 		<dependency>

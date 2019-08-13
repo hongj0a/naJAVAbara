@@ -8,9 +8,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
 import org.omg.CORBA.TypeCodePackage.BadKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -124,34 +126,54 @@ public class BookController {
 	
 	@RequestMapping(value="/book/iotList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public List<InoutTrsListDetail> getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+	public ResponseEntity getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
 		log.info("### 리스트를 가져올게욘 ####");
 		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
 		String selectDate = yyyy+"/"+mmmm+"/"+dddd;
 		
 		List<InoutTrsList> iotList = iotl_service.getListDescDayS(M_id, selectDate);
-		
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        
 		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
-		List<InoutTrsListDetail> list = new ArrayList<InoutTrsListDetail>();
 
 		for(InoutTrsList iot : iotList) {
 			//trs이면
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
-				String seq_out = String.valueOf(ts.getA_seq_out());
-				InoutTrsListDetail detail = new InoutTrsListDetail(ts.getT_seq(), ts.getC_inout(), ts.getA_seq_in(), seq_out, ts.getT_date(), ts.getT_money(), ts.getT_memo());
-
-				list.add(detail);
+				//String seq_out = String.valueOf(ts.getA_seq_out());
+				//InoutTrsListDetail detail = new InoutTrsListDetail(ts.getT_seq(), ts.getC_inout(), ts.getA_seq_in(), seq_out, ts.getT_date(), ts.getT_money(), ts.getT_memo());
+				HashMap hm = new HashMap();
+				hm.put("IOT_seq", ts.getT_seq());
+				hm.put("C_inout", ts.getC_inout());
+				hm.put("IOT_asset", ts.getA_seq_in());
+				hm.put("IOT_assetgori", ts.getA_seq_out());
+				hm.put("IOT_date", ts.getT_date());
+				hm.put("IOT_money", ts.getT_money());
+				hm.put("IOT_memo", ts.getT_memo());
+				hmlist.add(hm);
 			//inout이면
 			}else{
 				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
-				InoutTrsListDetail detail = new InoutTrsListDetail(io.getI_seq(), io.getC_inout(), io.getA_seq(), io.getC_categori(), io.getI_date(), io.getI_money(), io.getI_memo());
-				
-				list.add(detail);
+				//InoutTrsListDetail detail = new InoutTrsListDetail(io.getI_seq(), io.getC_inout(), io.getA_seq(), io.getC_categori(), io.getI_date(), io.getI_money(), io.getI_memo());
+				//list.add(detail);
+
+				HashMap hm = new HashMap();
+				hm.put("IOT_seq", io.getI_seq());
+				hm.put("C_inout", io.getC_inout());
+				hm.put("IOT_asset", io.getA_seq());
+				hm.put("IOT_assetgori",io.getC_categori());
+				hm.put("IOT_date", io.getI_date());
+				hm.put("IOT_money", io.getI_money());
+				hm.put("IOT_memo", io.getI_memo());
+				hmlist.add(hm);
 			}
 		}
 		
-		return list;
+		//return list;
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/book2")
