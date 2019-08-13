@@ -45,6 +45,7 @@
                     </div>
 		             </div>
 					  <div class="reading-list">
+					  			<form name="input" method="post" action="aList/write.do">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div id="contentsize-plus1" class="modal-content">
@@ -54,33 +55,40 @@
                                                         </div>
                                                         <div class="modal-body">
                                                         </br>
+                                                        <div class="col-12">
+                                                         &nbsp;&nbsp;
+                                                     		<span>ID  : </span>
+                                                     		&nbsp;&nbsp;
+                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
+                                                        </div>
+                                                        </br>
                                             			<div class="col-12">
                                             				<span>타입 :  </span>
                                                     		&nbsp;
-                                                    		<select class="js-example-basic-single form-control plus-imp">
-                                                            	<option value="현금">현금</option>
-                                                            	<option value="통장">통장</option>
-                                                            	<option value="신용카드">신용카드</option>
-                                                            	<option value="체크카드">체크카드</option>
+                                                    		<select id="c_asset" class="js-example-basic-single form-control plus-imp">
+                                                            	<option value="AS001">현금</option>
+                                                            	<option value="AS002">통장</option>
+                                                            	<option value="AS003">신용카드</option>
+                                                            	<option value="AS004">체크카드</option>
                                                         	</select> 
                                                      		</div>
                                                      	</br>
                                                         <div class="col-12">
                                                      		<span>별칭 :  </span>
                                                      		&nbsp;
-                                                        	<input type="address" class="form-control plus-imp">
+                                                        	<input name="a_nickname" type="text" class="form-control plus-imp">
                                                         </div>
                                                         </br>
                                                         <div class="col-12">
                                                      		<span>잔액 :  </span>
                                                      		&nbsp;
-                                                        	<input type="address" class="form-control plus-imp">
+                                                        	<input name="a_money" type="text" class="form-control plus-imp">
                                                         </div>
                                                         </br>
                                                         <div class="col-12">
                                                      		<span>메모 :  </span>
                                                      		&nbsp;
-                                                        	<input type="address" class="form-control plus-imp">
+                                                        	<input name="a_memo" type="text" class="form-control plus-imp">
                                                         </div>	
                                                         </br>
                                                       </div>
@@ -91,8 +99,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href=#! data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</a>
-                                        </div>
+                                           			 <a href="aList/write.do" data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</a>
+                                        </form>
+                                    </div>
 		 			</br></br>
     				<!-- [ breadcrumb ] end -->
     				
@@ -174,8 +183,8 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div>
-			                                            <a href='aList/update.do?a_seq=${alist.a_seq}' data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
-														<td><a href='aList/del.do?a_seq=${alist.a_seq}'>삭제</a></td>
+			                                            <a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 													</tr>
 													</c:forEach>
 											</table>
