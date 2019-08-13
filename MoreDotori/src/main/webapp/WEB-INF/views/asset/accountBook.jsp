@@ -248,14 +248,15 @@
 							    		</div>								    
 								    	<div class="card account_table_card">
 								    		<table class="account_table">
-								    			<tr>
+								    			<thead>
 								    				<th>구분</th>
 								    				<th>자산</th>
 								    				<th>분류</th>
 								    				<th>내용</th>
 								    				<th>금액</th>
 								    				<th>기타</th>
-								    			</tr>
+								    			</thead>
+								    			<tbody></tbody>
 								    		</table>
 								    	</div>
 								    </div>

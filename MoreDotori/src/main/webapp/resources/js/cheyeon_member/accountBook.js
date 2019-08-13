@@ -20,9 +20,10 @@
 				   		dddd: $(".form_select_day_val.out_form").val()},
 			   success : function(data){
 				   var content = "";
+				   $('.account_table > tbody').empty();
 				   if(data.length > 0){
 					   for(i=0; i<data.length; i++){
-						   if(data[i].C_inout=="IO003"){
+						   if(data[i].C_inout == "이체"){
 							   content += "<tr>";
 							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td>"+ data[i].C_inout +"</td>";
@@ -31,8 +32,8 @@
 							   content += "<td>"+ data[i].IOT_memo +"</td>";
 							   content += "<td>"+ data[i].IOT_money +"</td>";
 							   content += "<td>";
-							   content += "<span onclick=''>"+ "수정" +"</span>";
-							   content += "<span>/</span>";
+							   //content += "<span onclick=''>"+ "수정" +"</span>";
+							   //content += "<span>/</span>";
 							   content += "<span onclick=''>"+ "삭제" +"</span>";
 							   content += "</td>";
 							   content += "</tr>";						   
@@ -43,16 +44,22 @@
 							   content += "<td>"+ data[i].IOT_asset +"</td>";
 							   content += "<td>"+ data[i].IOT_assetgori +"</td>";
 							   content += "<td>"+ data[i].IOT_memo +"</td>";
-							   content += "<td>"+ data[i].IOT_money +"</td>";
+							   
+							   if(data[i].C_inout == "수입"){
+								   content += "<td class='form_money_in'>"+ data[i].IOT_money +"</td>";
+							   }else{
+								   content += "<td class='form_money_out'>"+ data[i].IOT_money +"</td>";
+							   }
+							   
 							   content += "<td>";
-							   content += "<span onclick=''>"+ "수정" +"</span>";
-							   content += "<span>/</span>";
+							   //content += "<span onclick=''>"+ "수정" +"</span>";
+							   //content += "<span>/</span>";
 							   content += "<span onclick=''>"+ "삭제" +"</span>";
 							   content += "</td>";
 							   content += "</tr>";
 						   }
-						    $('.account_table > tbody:last').append(content);	
-					   }		   
+					   }
+					   $('.account_table > tbody:last').append(content);	
 				   }else{
 					   content += "<tr>";
 					   content += "<td colspan='6'> 해당 일에 [수입/지출/이체] 내역이 없습니다. </td>"
@@ -389,6 +396,8 @@
    	  	  	 $(".form_select_year_val.trs_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.trs_form").val(premmmm);
    	  	  	 $(".form_select_day_val.trs_form").val(predddd);
+
+     		 $.fn.getInOutTrs();
     	 }    		  
        });
        
@@ -426,6 +435,8 @@
    	  	  	 $(".form_select_year_val.out_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.out_form").val(premmmm);
    	  	  	 $(".form_select_day_val.out_form").val(predddd);
+   	  	  	 
+   	  	  	 $.fn.getInOutTrs();
     	 }    		  
        });       
        

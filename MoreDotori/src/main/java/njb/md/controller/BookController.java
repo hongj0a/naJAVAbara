@@ -142,11 +142,9 @@ public class BookController {
 			//trs이면
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
-				//String seq_out = String.valueOf(ts.getA_seq_out());
-				//InoutTrsListDetail detail = new InoutTrsListDetail(ts.getT_seq(), ts.getC_inout(), ts.getA_seq_in(), seq_out, ts.getT_date(), ts.getT_money(), ts.getT_memo());
 				HashMap hm = new HashMap();
 				hm.put("IOT_seq", ts.getT_seq());
-				hm.put("C_inout", ts.getC_inout());
+				hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
 				hm.put("IOT_asset", ts.getA_seq_in());
 				hm.put("IOT_assetgori", ts.getA_seq_out());
 				hm.put("IOT_date", ts.getT_date());
@@ -156,14 +154,12 @@ public class BookController {
 			//inout이면
 			}else{
 				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
-				//InoutTrsListDetail detail = new InoutTrsListDetail(io.getI_seq(), io.getC_inout(), io.getA_seq(), io.getC_categori(), io.getI_date(), io.getI_money(), io.getI_memo());
-				//list.add(detail);
 
 				HashMap hm = new HashMap();
 				hm.put("IOT_seq", io.getI_seq());
-				hm.put("C_inout", io.getC_inout());
+				hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
 				hm.put("IOT_asset", io.getA_seq());
-				hm.put("IOT_assetgori",io.getC_categori());
+				hm.put("IOT_assetgori", code_service.selectCodeS(io.getC_categori()).getC_name());
 				hm.put("IOT_date", io.getI_date());
 				hm.put("IOT_money", io.getI_money());
 				hm.put("IOT_memo", io.getI_memo());
@@ -171,7 +167,6 @@ public class BookController {
 			}
 		}
 		
-		//return list;
         JSONArray json = new JSONArray(hmlist);        
         return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}

@@ -300,7 +300,14 @@
 
 .account_table{
 	text-align: center;
+}
+
+.account_table thead{
 	font-size: 12.5px;
+}
+
+.account_table tbody{
+	font-size: 11.8px;
 }
 
 .account_table th, .account_table td{
@@ -308,7 +315,11 @@
 }
 
 .account_table th{
-	width: 21%;
+	width: 22%;
+}
+
+.account_table th:nth-child(5){
+	width: 16%;
 }
 
 .account_table th:first-child, .account_table th:last-child{
