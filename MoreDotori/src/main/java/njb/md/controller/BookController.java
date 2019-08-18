@@ -91,10 +91,14 @@ public class BookController {
 		String yesCM = iof.getIo_money().replace(",", "");
 		long noCM = Integer.parseInt(yesCM);
 		
-		//insert실행하기
-		Inout io = new Inout(-1, iof.getIo_inout(), iof.getIo_asset(), iof.getIo_categori(), ioDate, noCM, iof.getIo_memo());
-		log.info(io);
-		inout_service.insertInoutS(io);
+		if(iof.getIo_seq()==0) {
+			//insert실행하기
+			Inout io = new Inout(-1, iof.getIo_inout(), iof.getIo_asset(), iof.getIo_categori(), ioDate, noCM, iof.getIo_memo());
+			log.info(io);
+			inout_service.insertInoutS(io);			
+		}else {
+			//update실행하기
+		}
 		
 		return "success";
 	}

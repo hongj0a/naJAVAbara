@@ -25,13 +25,13 @@
 					   for(i=0; i<data.length; i++){
 						   if(data[i].C_inout == "이체"){
 							   content += "<tr>";
-							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
-							   content += "<td>"+ data[i].C_inout +"</td>";
-							   content += "<td colspan='2'>"+ data[i].IOT_asset + " ===> ";
+							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
+							   content += "<td colspan='2' class='account_tab_td3'>"+ data[i].IOT_asset + " ===> ";
 							   content += data[i].IOT_assetgori +"</td>";
-							   content += "<td>"+ data[i].IOT_memo +"</td>";
-							   content += "<td>"+ data[i].IOT_money +"</td>";
-							   content += "<td>";
+							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
+							   content += "<td class='account_tab_td6'>"+ data[i].IOT_money +"</td>";
+							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
 							   content += "<span onclick=''>"+ "삭제" +"</span>";
@@ -39,19 +39,19 @@
 							   content += "</tr>";						   
 						   }else{
 							   content += "<tr>";
-							   content += "<td style='display:none'>"+ data[i].IOT_seq + "</td>";
-							   content += "<td>"+ data[i].C_inout +"</td>";
-							   content += "<td>"+ data[i].IOT_asset +"</td>";
-							   content += "<td>"+ data[i].IOT_assetgori +"</td>";
-							   content += "<td>"+ data[i].IOT_memo +"</td>";
+							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
+							   content += "<td class='account_tab_td3'>"+ data[i].IOT_asset +"</td>";
+							   content += "<td class='account_tab_td4'>"+ data[i].IOT_assetgori +"</td>";
+							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
 							   
 							   if(data[i].C_inout == "수입"){
-								   content += "<td class='form_money_in'>"+ data[i].IOT_money +"</td>";
+								   content += "<td class='form_money_in account_tab_td6'>"+ data[i].IOT_money +"</td>";
 							   }else{
-								   content += "<td class='form_money_out'>"+ data[i].IOT_money +"</td>";
+								   content += "<td class='form_money_out account_tab_td6'>"+ data[i].IOT_money +"</td>";
 							   }
 							   
-							   content += "<td>";
+							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
 							   content += "<span onclick=''>"+ "삭제" +"</span>";
@@ -134,6 +134,7 @@
        //[1] 지출폼 내용 clear
        $.fn.clearInsertOut = function(){
     	   console.log('지출 폼 내용 삭제');
+    	   $('.io_seq.out_form').val('0');
     	   $('.form_money .out_form').val('');
     	   $('.form_cont .out_form').val('');
     	   $(".form_select0 .out_form option:eq(0)").prop("selected", true);
@@ -144,6 +145,7 @@
        //[2] 이체폼 내용 clear
        $.fn.clearInsertTrs = function(){
     	   console.log('이체 폼 내용 삭제');
+    	   $('.trs_seq.trs_form').val('0');
     	   $('.form_money .trs_form').val('');
     	   $('.form_cont .trs_form').val('');
     	   $(".form_select0 .trs_form option:eq(0)").prop("selected", true);
@@ -299,6 +301,15 @@
        //2. 이체 클릭이벤트(저장하기클릭)
        $(".save_insert_trs").click(function(){
     	   $.fn.saveInsertTrs();
+       });
+       
+       //탭 클릭 이벤트
+       $(".insert_tab li a").click(function(){
+    	   if($(this).hasClass('active')){
+    	   }else{
+        	   $.fn.clearInsertTrs();
+        	   $.fn.clearInsertOut();    		   
+    	   }
        });
        
        //차트 클릭이벤트

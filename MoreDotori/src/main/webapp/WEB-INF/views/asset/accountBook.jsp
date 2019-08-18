@@ -33,13 +33,11 @@
 
                             <!-- [ Main Content ] start -->
                             	<div class="row" id="account_header">
-                            		<div class="col">
-                            		</div>
+                            		<!-- <div class="col"></div> -->
                              		<div class="col txt_center">
                              			<div class="title_select_date animation-toggle animated" data-animate="fadeIn"> </div>
                             		</div>
-                            		<div class="col">
-                            		</div>                            		                           		
+                            		<!-- <div class="col"></div> -->                       		                           		
                             	</div>
                             	<div class="row" id="account_menu">
                             		<div class="col">
@@ -73,8 +71,8 @@
 												    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
 												    	<form id="inoutInsertForm" class="inoutInsertForm" method="post">
+													    	<input type="hidden" name="io_seq" class="io_seq out_form" value="0"/>
 													    	<table class="insert_form">
-													    		<input type="hidden" name="io_seq" value="-1"/>
 													    		<tr>
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
@@ -157,8 +155,9 @@
 												    </div>
 												    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 												    
-												    	<form action="trsInsertForm" class="trsInsertForm" method="post">
-													    	<input type="hidden" name="trs_seq" value="-1"/>
+												    	<form id="trsInsertForm" class="trsInsertForm" method="post">
+													    	<input type="hidden" name="trs_seq" class="trs_seq trs_form" value="0"/>
+													    	<input type="hidden" name="trs_inout" class="trs_inout trs_form" value="IO003"/>
 													    	<table class="insert_form">
 													    		<tr>
 													    			<td class="form_title">날짜</td>
@@ -176,9 +175,9 @@
 													    			<td class="form_select1">
 												                        <select name="trs_out_asset" class="trs_form">
 												                            <option value="">출금 자산종류를 선택해주세요</option>
-												                            <option>현금</option>
-												                            <option>국민카드</option>
-												                            <option>우리은행</option>
+												                            <option value="6">지갑</option>
+												                            <option value="7">국민카드</option>
+												                            <option value="5">돼지저금통</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>
@@ -187,9 +186,9 @@
 													    			<td class="form_select2">
 												                        <select name="trs_in_asset" class="trs_form">
 												                            <option value="">입금 자산종류를 선택해주세요</option>
-												                            <option>현금</option>
-												                            <option>국민카드</option>
-												                            <option>우리은행</option>
+												                            <option value="6">지갑</option>
+												                            <option value="7">국민카드</option>
+												                            <option value="5">돼지저금통</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>

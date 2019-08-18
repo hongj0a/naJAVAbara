@@ -12,7 +12,7 @@
 	margin : 0px 0px 10px 0px;
 }
 
-#account_header div:nth-child(2){
+#account_header .txt_center{
 	font-size: 25px;
 }
 
