@@ -34,7 +34,7 @@
 							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
-							   content += "<span onclick=''>"+ "삭제" +"</span>";
+							   content += "<span onclick='' class='delete_trs_row'>"+ "삭제" +"</span>";
 							   content += "</td>";
 							   content += "</tr>";						   
 						   }else{
@@ -54,7 +54,7 @@
 							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
-							   content += "<span onclick=''>"+ "삭제" +"</span>";
+							   content += "<span class='delete_io_row'>"+ "삭제" +"</span>";
 							   content += "</td>";
 							   content += "</tr>";
 						   }
@@ -73,7 +73,6 @@
 			   
     	   });
        }
-
 
 
 		/*달력*/
@@ -494,7 +493,57 @@
     		   $(".form_select2 .out_form .out_opt").css("display", "inline-block");
     	   }
        });
-              
+       
+       
+       //삭제버튼 누르기
+       //span(삭제)가 dynamically created여서 이벤트 delegation으로 해야헌디
+       $(document).on('click', '.delete_io_row', function(){
+    	   var clickBtn = $(this);
+    	   var tr = clickBtn.parent().parent();
+    	   var td = tr.children();
+    	   var seq = td.eq(0).text();
+    	   var data = "seq="+seq;
+    		   
+		   $.ajax({
+			   type: "POST",
+			   url : "book/deleteIO.do",
+			   data : data,
+			   success : function(data){
+				   if( data == "success"){
+					   $.fn.getInOutTrs();
+				   }else{
+					   alert('수정실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });    	   
+       });
+       
+       $(document).on('click', '.delete_trs_row', function(){
+    	   var clickBtn = $(this);
+    	   var tr = clickBtn.parent().parent();
+    	   var td = tr.children();
+    	   var seq = td.eq(0).text();
+    	   var data = "seq="+seq;
+    		   
+		   $.ajax({
+			   type: "POST",
+			   url : "book/deleteTrs.do",
+			   data : data,
+			   success : function(data){
+				   if( data == "success"){
+					   $.fn.getInOutTrs();
+				   }else{
+					   alert('수정실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });    	   
+       });       
        
        //input엔터키 못먹게하기
        $('input[type="text"]').keydown(function() {

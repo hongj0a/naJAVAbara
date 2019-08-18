@@ -117,14 +117,32 @@ public class BookController {
 		String yesCM = trs.getTrs_money().replace(",", "");
 		long noCM = Integer.parseInt(yesCM);
 		
-		//-1인가?
-		log.info("이체 시퀀스정보 : " + trs.getTrs_seq());
-
-		//insert실행하기
-		Transfer trsf = new Transfer(-1, trs.getTrs_inout(), trs.getTrs_in_asset(), trs.getTrs_out_asset(), trsDate, noCM, trs.getTrs_memo());
-		log.info(trsf);
-		trs_service.insertTransS(trsf);
+		if(trs.getTrs_seq()==0) {
+			//insert실행하기
+			Transfer trsf = new Transfer(-1, trs.getTrs_inout(), trs.getTrs_in_asset(), trs.getTrs_out_asset(), trsDate, noCM, trs.getTrs_memo());
+			log.info(trsf);
+			trs_service.insertTransS(trsf);			
+		}else {
+			//update실행하기
+			
+		}
 		
+		return "success";
+	}	
+	
+	@RequestMapping(value ="/book/deleteIO.do")
+    @ResponseBody
+	public String deleteInout(long seq, HttpServletRequest request) throws Exception{
+		log.info("### 수입 및 이체를 삭제해욘 ####");
+		inout_service.deleteInoutS(seq);
+		return "success";
+	}
+
+	@RequestMapping(value ="/book/deleteTrs.do")
+    @ResponseBody
+	public String deleteTrs(long seq, HttpServletRequest request) throws Exception{
+		log.info("### 수입 및 이체를 삭제해욘2 ####");
+		trs_service.deleteTransS(seq);
 		return "success";
 	}	
 	

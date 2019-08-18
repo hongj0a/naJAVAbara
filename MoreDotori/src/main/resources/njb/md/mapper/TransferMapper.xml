@@ -9,7 +9,8 @@
 	</select>
 
 	<insert id="insertTrans" parameterType="njb.md.domain.Transfer">
-		insert into Transfer values(Transfer_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo})
+		<!-- insert into Transfer values(Transfer_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo}) -->
+		insert into Transfer values(INOUT_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo})
 	</insert>
 	
 	<delete id="deleteTrans" parameterType="long">
