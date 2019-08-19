@@ -545,6 +545,39 @@
 		   });    	   
        });       
        
+       //tr클릭이벤트
+       $(document).on('click', '#account_table_body tr', function(){
+    	   var tr = $(this);
+    	   var td = tr.children();
+
+    	   var inout = td.eq(1).text();
+    	   //이체
+    	   if(inout=="이체"){
+    		   $('.trs_nav.nav-link').trigger("click");
+    		   
+    	   //수입 및 지출
+    	   }else{
+    		   $('.inout_nav.nav-link').trigger("click");
+    		   
+        	   $('.io_seq.out_form').val(td.eq(0).text());
+        	   $('.form_money .out_form').val(td.eq(5).text());
+        	   $('.form_cont .out_form').val(td.eq(4).text());
+        	   
+        	   for(var i=0; i<3; i++){
+        		   if($(".form_select0 .out_form option:eq("+ i +")").text()==td.eq(1).text()){
+        			   $(".form_select0 .out_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }
+        	   
+        	   $('.form_select1 .out_form').val(td.eq(2).text()).prop("selected", true);
+
+
+        	   //$(".form_select0 .out_form option:eq(0)").prop("selected", true);
+        	   //$(".form_select1 .out_form option:eq(0)").prop("selected", true);
+        	   $(".form_select2 .out_form option:eq(0)").prop("selected", true);    		   
+    	   }
+       });
+       
        //input엔터키 못먹게하기
        $('input[type="text"]').keydown(function() {
     	    if (event.keyCode === 13) {

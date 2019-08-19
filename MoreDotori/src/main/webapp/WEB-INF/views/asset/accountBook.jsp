@@ -61,10 +61,10 @@
 								            <div class="col-7 mwidth_350">
 												<ul class="nav nav-pills insert_tab" id="pills-tab" role="tablist">
 												    <li class="nav-item">
-												        <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">수입 및 지출</a>
+												        <a class="inout_nav nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">수입 및 지출</a>
 												    </li>
 												    <li class="nav-item">
-												        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">이체</a>
+												        <a class="trs_nav nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">이체</a>
 												    </li>
 												</ul>
 												<div class="tab-content insert_cont" id="pills-tabContent">
@@ -255,7 +255,7 @@
 								    				<th>금액</th>
 								    				<th>기타</th>
 								    			</thead>
-								    			<tbody></tbody>
+								    			<tbody id="account_table_body"></tbody>
 								    		</table>
 								    	</div>
 								    </div>
