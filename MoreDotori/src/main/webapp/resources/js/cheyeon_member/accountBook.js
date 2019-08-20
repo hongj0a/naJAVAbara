@@ -74,7 +74,21 @@
     	   });
        }
 
+       //시퀀스 체크 메소드
+       $.fn.checkSeq = function(){
+    	   if($(".io_seq.out_form").val()=='0'){
+    		   $(".wid_50.save_insert_out").text('저장하기');
+    	   }else{
+    		   $(".wid_50.save_insert_out").text('수정하기');
+    	   }
 
+    	   if($(".trs_seq.trs_form").val()=='0'){
+    		   $(".wid_50.save_insert_trs").text('저장하기');
+    	   }else{
+    		   $(".wid_50.save_insert_trs").text('수정하기');
+    	   }
+       }
+       
 		/*달력*/
 	   var calendar = jsCalendar.new("#my-calendar");
        
@@ -134,6 +148,8 @@
        $.fn.clearInsertOut = function(){
     	   console.log('지출 폼 내용 삭제');
     	   $('.io_seq.out_form').val('0');
+    	   $.fn.checkSeq();
+    	   
     	   $('.form_money .out_form').val('');
     	   $('.form_cont .out_form').val('');
     	   $(".form_select0 .out_form option:eq(0)").prop("selected", true);
@@ -512,7 +528,7 @@
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
 				   }else{
-					   alert('수정실패');
+					   alert('삭제실패');
 				   }
 			   },
 			   error:function(request,status,error){
@@ -536,7 +552,7 @@
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
 				   }else{
-					   alert('수정실패');
+					   alert('삭제실패');
 				   }
 			   },
 			   error:function(request,status,error){
@@ -545,7 +561,7 @@
 		   });    	   
        });       
        
-       //tr클릭이벤트
+       //tr 클릭이벤트 ==> input에 클릭한 내용 뜨게 하기
        $(document).on('click', '#account_table_body tr', function(){
     	   var tr = $(this);
     	   var td = tr.children();
@@ -559,22 +575,29 @@
     	   }else{
     		   $('.inout_nav.nav-link').trigger("click");
     		   
+    		   //input 가져오기
         	   $('.io_seq.out_form').val(td.eq(0).text());
+        	   $.fn.checkSeq();
         	   $('.form_money .out_form').val(td.eq(5).text());
         	   $('.form_cont .out_form').val(td.eq(4).text());
         	   
-        	   for(var i=0; i<3; i++){
+        	   //select box 가져오기
+        	   //option갯수 가져오는 메소드 size()가 있는데 jquery버전이 높다면 length를 사용해야함
+        	   for(var i=0; i<$(".form_select0 .out_form option").length; i++){
         		   if($(".form_select0 .out_form option:eq("+ i +")").text()==td.eq(1).text()){
         			   $(".form_select0 .out_form option:eq("+ i +")").prop("selected", true);
         		   }
         	   }
         	   
+        	   //자산vo합치면 option내용별로 수정필요 (예시 위의 for문)
         	   $('.form_select1 .out_form').val(td.eq(2).text()).prop("selected", true);
-
-
-        	   //$(".form_select0 .out_form option:eq(0)").prop("selected", true);
-        	   //$(".form_select1 .out_form option:eq(0)").prop("selected", true);
-        	   $(".form_select2 .out_form option:eq(0)").prop("selected", true);    		   
+        	   
+        	   
+        	   for(var i=0; i<$(".form_select2 .out_form option").length; i++){
+        		   if($(".form_select2 .out_form option:eq("+ i +")").text()==td.eq(3).text()){
+        			   $(".form_select2 .out_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }
     	   }
        });
        

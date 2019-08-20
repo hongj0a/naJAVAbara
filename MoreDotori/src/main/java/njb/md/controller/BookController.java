@@ -98,6 +98,9 @@ public class BookController {
 			inout_service.insertInoutS(io);			
 		}else {
 			//update실행하기
+			Inout io = new Inout(iof.getIo_seq(), iof.getIo_inout(), iof.getIo_asset(), iof.getIo_categori(), ioDate, noCM, iof.getIo_memo());
+			log.info(io);
+			inout_service.updateInoutS(io);	
 		}
 		
 		return "success";

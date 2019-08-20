@@ -38,10 +38,9 @@ public class InoutServiceImpl implements InoutService {
 	}
 
 	@Override
-	public Inout updateInoutS(Inout io) {
+	public void updateInoutS(Inout io) {
 		log.info("#### 수입및지출 내역 수정하기 : " + io);
-		Inout inout = mapper.updateInout(io);
-		return inout;
+		mapper.updateInout(io);
 	}
 
 }
