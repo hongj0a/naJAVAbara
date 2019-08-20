@@ -78,14 +78,18 @@
        $.fn.checkSeq = function(){
     	   if($(".io_seq.out_form").val()=='0'){
     		   $(".wid_50.save_insert_out").text('저장하기');
+    		   $(".wid_50.clear_insert_out").text('내용지우기');
     	   }else{
     		   $(".wid_50.save_insert_out").text('수정하기');
+    		   $(".wid_50.clear_insert_out").text('수정 취소하기');
     	   }
 
     	   if($(".trs_seq.trs_form").val()=='0'){
     		   $(".wid_50.save_insert_trs").text('저장하기');
+    		   $(".wid_50.clear_insert_trs").text('내용지우기');
     	   }else{
     		   $(".wid_50.save_insert_trs").text('수정하기');
+    		   $(".wid_50.clear_insert_trs").text('수정 취소하기');
     	   }
        }
        
