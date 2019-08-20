@@ -6,5 +6,5 @@ public interface TransferService {
 	Transfer selectTransSeqS(long T_seq);
 	void insertTransS(Transfer ts);
 	void deleteTransS(long T_seq);
-	Transfer updateTransS(Transfer ts);	
+	void updateTransS(Transfer ts);	
 }

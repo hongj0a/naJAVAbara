@@ -27,8 +27,8 @@
 							   content += "<tr>";
 							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
-							   content += "<td colspan='2' class='account_tab_td3'>"+ data[i].IOT_asset + " ===> ";
-							   content += data[i].IOT_assetgori +"</td>";
+							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_asset + "</span> ===> <span class='account_tab_td3_sp2'>";
+							   content += data[i].IOT_assetgori +"</span></td>";
 							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
 							   content += "<td class='account_tab_td6'>"+ data[i].IOT_money +"</td>";
 							   content += "<td class='account_tab_td7'>";
@@ -161,6 +161,8 @@
        $.fn.clearInsertTrs = function(){
     	   console.log('이체 폼 내용 삭제');
     	   $('.trs_seq.trs_form').val('0');
+    	   $.fn.checkSeq();
+    	   
     	   $('.form_money .trs_form').val('');
     	   $('.form_cont .trs_form').val('');
     	   $(".form_select0 .trs_form option:eq(0)").prop("selected", true);
@@ -514,6 +516,9 @@
        //삭제버튼 누르기
        //span(삭제)가 dynamically created여서 이벤트 delegation으로 해야헌디
        $(document).on('click', '.delete_io_row', function(){
+    	   $.fn.clearInsertTrs();
+    	   $.fn.clearInsertOut();
+    	   
     	   var clickBtn = $(this);
     	   var tr = clickBtn.parent().parent();
     	   var td = tr.children();
@@ -534,10 +539,13 @@
 			   error:function(request,status,error){
 		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		       }
-		   });    	   
+		   });
        });
        
        $(document).on('click', '.delete_trs_row', function(){
+    	   $.fn.clearInsertTrs();
+    	   $.fn.clearInsertOut();
+    	   
     	   var clickBtn = $(this);
     	   var tr = clickBtn.parent().parent();
     	   var td = tr.children();
@@ -562,14 +570,24 @@
        });       
        
        //tr 클릭이벤트 ==> input에 클릭한 내용 뜨게 하기
-       $(document).on('click', '#account_table_body tr', function(){
-    	   var tr = $(this);
+       $(document).on('click', '#account_table_body tr .account_tab_td2, #account_table_body tr .account_tab_td3, #account_table_body tr .account_tab_td4, #account_table_body tr .account_tab_td5, #account_table_body tr .account_tab_td6', function(){
+    	   var tr = $(this).parent();
     	   var td = tr.children();
 
     	   var inout = td.eq(1).text();
     	   //이체
     	   if(inout=="이체"){
     		   $('.trs_nav.nav-link').trigger("click");
+    		   
+    		   //input 가져오기
+        	   $('.trs_seq.trs_form').val(td.eq(0).text());
+        	   $.fn.checkSeq();
+        	   $('.form_money .trs_form').val(td.eq(4).text());
+        	   $('.form_cont .trs_form').val(td.eq(3).text());
+        	   
+        	   //자산합치면 수정필요
+        	   $('.form_select1 .trs_form').val(td.eq(2).children('.account_tab_td3_sp1').html()).prop("selected", true);
+        	   $('.form_select2 .trs_form').val(td.eq(2).children('.account_tab_td3_sp2').html()).prop("selected", true);
     		   
     	   //수입 및 지출
     	   }else{

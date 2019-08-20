@@ -127,7 +127,9 @@ public class BookController {
 			trs_service.insertTransS(trsf);			
 		}else {
 			//update실행하기
-			
+			Transfer trsf = new Transfer(trs.getTrs_seq(), trs.getTrs_inout(), trs.getTrs_in_asset(), trs.getTrs_out_asset(), trsDate, noCM, trs.getTrs_memo());
+			log.info(trsf);
+			trs_service.updateTransS(trsf);
 		}
 		
 		return "success";

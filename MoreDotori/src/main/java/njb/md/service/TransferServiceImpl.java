@@ -38,10 +38,9 @@ public class TransferServiceImpl implements TransferService {
 	}
 
 	@Override
-	public Transfer updateTransS(Transfer ts) {
+	public void updateTransS(Transfer ts) {
 		log.info("#### 이체 내역 수정하기 : " + ts);
-		Transfer trs = mapper.updateTrans(ts);
-		return trs;
+		mapper.updateTrans(ts);
 	}
 
 }

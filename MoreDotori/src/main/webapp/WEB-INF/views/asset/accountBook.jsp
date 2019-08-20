@@ -105,7 +105,9 @@
 													    			<td class="form_select1">
 												                        <select name="io_asset" class="out_form">
 												                            <option value="">자산종류를 선택해주세요</option>
+												                            <option value="5">돼지저금통</option>
 												                            <option value="6">지갑</option>
+												                            <option value="7">국민카드</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>
@@ -175,9 +177,10 @@
 													    			<td class="form_select1">
 												                        <select name="trs_out_asset" class="trs_form">
 												                            <option value="">출금 자산종류를 선택해주세요</option>
+												                            <option value="5">돼지저금통</option>
 												                            <option value="6">지갑</option>
 												                            <option value="7">국민카드</option>
-												                            <option value="5">돼지저금통</option>
+												                            <option value="8">국민통장</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>
@@ -189,6 +192,7 @@
 												                            <option value="6">지갑</option>
 												                            <option value="7">국민카드</option>
 												                            <option value="5">돼지저금통</option>
+												                            <option value="8">국민통장</option>
 												                        </select>												    				
 													    			</td>
 													    		</tr>
