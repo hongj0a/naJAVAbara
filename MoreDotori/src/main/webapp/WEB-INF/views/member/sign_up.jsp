@@ -18,10 +18,12 @@
 	<c:choose>
 		<c:when test="${param.type eq 'expert'}">
 			<c:set var="title" value="전문가 회원 가입" />
+			<c:set var="imgRequired" value="required" />
 			<c:set var="dtStyle" value="display: block;" />
 		</c:when>
 		<c:otherwise>
 			<c:set var="title" value="일반 회원 가입" />
+			<c:set var="imgRequired" value="" />
 			<c:set var="dtStyle" value="display: none;" />
 		</c:otherwise>
 	</c:choose>
@@ -34,29 +36,29 @@
 				<form id="sign-up" name="sign-up" action="">
 					<div class="row">
 						<div class="col-sm-4">
-							<div class="text-center">
+							<div class="text-center form-group">
 								<label for="choose-image">
 									<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
-								<div class="custom-file mb-4">
-									<input type="file" class="custom-file-input" id="choose-image" accept="image/*">
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" name="choose-image" id="choose-image" accept="image/*" ${imgRequired}>
 									<label class="custom-file-label" for="inputGroupFile01"></label>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-8">
-							<div class="input-group mb-4">
+							<div class="input-group form-group mb-4">
 								<label for="inputId" class="sr-only">아이디</label>
 								<input type="text" class="form-control" id="inputId" name="id" placeholder="아이디(이메일 형식)">
 								<div class="input-group-append">
 									<button class="btn btn-primary" name="id-dupl-check" type="button">중복확인</button>
 								</div>
 							</div>
-							<div class="input-group mb-4">
+							<div class="input-group form-group mb-4">
 								<label for="inputName" class="sr-only">이름</label>
 								<input type="text" class="form-control" id="inputName" name="name" placeholder="이름">
 							</div>
-							<div class="input-group mb-4">
+							<div class="input-group form-group mb-4">
 								<label for="inputNick" class="sr-only">닉네임</label>
 								<input type="text" class="form-control" id="inputNick" name="nickname" placeholder="닉네임">
 								<div class="input-group-append">
@@ -95,7 +97,7 @@
 							<div class="input-group" id="inputBirth">
 								<select class="form-control" name="birth-year">
 									<option value="">년</option>
-								</select> <select class="form-control" name="birth-year">
+								</select> <select class="form-control" name="birth-month">
 									<option value="">월</option>
 								</select> <select class="form-control" name="birth-day">
 									<option value="">일</option>
@@ -104,7 +106,7 @@
 						</div>
 					</div>
 					<div id="expert-details" style="${dtStyle}">
-						<div class="input-group mb-4">
+						<div class="form-group input-group mb-4">
 							<input type="text" class="form-control col-sm-4" id="inputJob" name="job" placeholder="직업">
 							<input type="text" class="form-control col-sm-4" id="inputPosition" name="position" placeholder="직급">
 							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)">
@@ -117,18 +119,14 @@
 									<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
 								</div>
 							</div>
-							<div>
-								<div class="form-group mb-1">
-									<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
-								</div>
+							<div class="mb-1">
+								<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 							</div>
 							<div>
-								<div class="form-group mb-4">
-									<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소">
-								</div>
+								<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-4">
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
 									<select class="form-control" name="license1">
@@ -146,7 +144,7 @@
 								<input type="text" class="form-control" id="inputLicense2"
 									name="license-num2" placeholder="자격증 번호">
 							</div>
-							<div class="input-group mb-4">
+							<div class="input-group">
 								<div class="input-group-prepend">
 									<select class="form-control" name="license3">
 										<option value="">자격증3</option>
@@ -345,7 +343,7 @@
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 
-	<script>
+	<script>	
     $(document).ready(function() {
       // choose profile-image
       $("#choose-image").on('change',	function() {
@@ -387,7 +385,80 @@
               'id': {
                   required: true,
                   email: true
+              },
+              'name': {
+            	  required: true
+              },
+              'nickname': {
+            	  required: true
+              },
+              'password': {
+            	  required: true,
+            	  minlength: 8,
+                  maxlength: 16
+              },
+              'password-confirm': {
+            	  required: true,
+                  minlength: 8,
+                  equalTo: 'input[name="password"]'
+              },
+              'phone': {
+                  required: true
+              },
+              'gender': {
+            	  required: true
+              },
+              'birth-year': {
+            	  required: true
+              },
+			  'birth-month': {
+				  required: true
+              },
+			  'birth-day': {
+				  required: true
+              },
+              'job': {
+            	  required: true
+              },
+			  'position': {
+				  required: true
+              },
+			  'career': {
+				  required: true
+              },
+              'addr-details': {
+            	  required: true
+              },
+              'license-num1': {
+            	  required: true
+              },
+              'introduction': {
+            	  required: true,
+            	  minlength: 30
               }
+          },
+          errorPlacement: function errorPlacement(error, element) {
+              var $parent = $(element).parents('.form-group');
+
+              if ($parent.find('.jquery-validation-error').length) {
+                  return;
+              }
+              if($parent.find('.mb-2').length) {
+            	  return;
+              }
+              
+              $parent.append(
+                      error.addClass('jquery-validation-error small form-text invalid-feedback')
+                  );
+              $parent.removeClass('mb-4');
+              $parent.addClass('mb-2');
+          },
+          unhighlight: function(element) {
+        	  var $parent = $(element).parents('.form-group');
+              $parent.removeClass('mb-2');
+              $parent.addClass('mb-4');
+              
+              $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
           }
       });
     });
