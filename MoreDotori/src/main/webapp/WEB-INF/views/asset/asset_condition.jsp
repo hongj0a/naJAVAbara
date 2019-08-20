@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,8 @@
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- [ Main Content ] start -->
+	<jsp:useBean id="today" class="java.util.Date" />
+	<fmt:formatDate var="now" value="${today}" pattern="yyyy년 MM월 dd일"/>
 	<div class="pcoded-main-container">
 		<div class="pcoded-wrapper">
 			<div class="pcoded-content">
@@ -29,7 +32,7 @@
 								<div class="col-sm-12">
 									<h3 class="mb-5 text-center">홍길동 님의 자산현황 및 통계</h3>
 									<h6 class="mb-3 text-right">
-										오늘은 <span class="font-weight-bold">2019년 7월 15일</span> 입니다.
+										오늘은 <span class="font-weight-bold">${now}</span> 입니다.
 									</h6>
 									<div id="my-statistics" role="tablist"
 										aria-multiselectable="true">
@@ -153,7 +156,7 @@
 												data-parent="#my-statistics" aria-labelledby="ch3">
 												<div class="card-block tab2">
 													<div class="text-center">
-														<h4 class="mb-3">2019년 7월 15일</h4>
+														<h4 class="mb-3">${now}</h4>
 														<h6 class="mb-5">홍길동 님, 하루에 3500원을 사용하시는 것을 권장 드려요.</h6>
 													</div>
 													<div class="row">
