@@ -33,7 +33,7 @@
 				<h5><c:out value="${title}" /></h5>
 			</div>
 			<div class="card-block">
-				<form id="sign-up" name="sign-up" action="">
+				<form id="sign-up" name="sign-up" action="/insert.do"  method="post" enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="text-center form-group">
@@ -49,18 +49,18 @@
 						<div class="col-sm-8">
 							<div class="input-group form-group mb-4">
 								<label for="inputId" class="sr-only">아이디</label>
-								<input type="email" class="form-control" id="inputId" name="id" placeholder="아이디(이메일 형식)" required>
+								<input type="email" class="form-control" id="inputId" name="m_id" placeholder="아이디(이메일 형식)" required>
 								<div class="input-group-append">
 									<input type="button" class="btn btn-primary" name="id-dupl-check" onclick="duplCheckId()" value="중복확인">
 								</div>
 							</div>
 							<div class="input-group form-group mb-4">
 								<label for="inputName" class="sr-only">이름</label>
-								<input type="text" class="form-control" id="inputName" name="name" placeholder="이름" required>
+								<input type="text" class="form-control" id="inputName" name="m_name" placeholder="이름" required>
 							</div>
 							<div class="input-group form-group mb-4">
 								<label for="inputNick" class="sr-only">닉네임</label>
-								<input type="text" class="form-control" id="inputNick" name="nickname" placeholder="닉네임" required>
+								<input type="text" class="form-control" id="inputNick" name="m_nickname" placeholder="닉네임" required>
 								<div class="input-group-append">
 									<input type="button" class="btn btn-primary" name="nick-dupl-check" onclick="duplCheckNick()" value="중복확인">
 								</div>
@@ -69,7 +69,7 @@
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwd" name="password" placeholder="비밀번호" required>
+							<input type="password" class="form-control" id="inputPwd" name="m_password" placeholder="비밀번호" required>
 						</div>
 					</div>
 					<div>
@@ -79,7 +79,7 @@
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="text" class="form-control" id="inputPhone" name="phone" placeholder="연락처 (01012345678)" required>
+							<input type="text" class="form-control" id="inputPhone" name="m_phone" placeholder="연락처 (01012345678)" required>
 						</div>
 					</div>
 					<div class="row justify-content-center">
@@ -87,9 +87,9 @@
 							<label for="male">성별&nbsp;&nbsp;</label>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
 								<label class="btn btn-primary">
-								<input type="radio" name="gender" value="male" required>남</label>
+								<input type="radio" name="m_gender" value="M" required>남</label>
 								<label class="btn btn-primary">
-								<input type="radio" name="gender" value="female">여</label>
+								<input type="radio" name="m_gender" value="F">여</label>
 							</div>
 						</div>
 						<div class="form-group col-sm-9">

@@ -1,0 +1,49 @@
+package njb.md.service;
+
+import java.io.File;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+@Service
+public class FileServiceImpl implements FileService {
+
+	@Override
+	public boolean upload(MultipartFile file) {
+		String FILE_STORE = "C:\\KIH\\sts-bundle\\workspace\\naJAVAbara\\MoreDotori\\src\\main\\webapp\\resources\\images\\profile-images";
+		// 나중에 경로 바꾸셈
+		
+		File fStore = new File(FILE_STORE);
+		if(!fStore.exists()) fStore.mkdirs();
+		
+		String oFilename = file.getOriginalFilename();
+		String saveFilename = oFilename;
+		
+		if(saveFilename != null) {
+			saveFilename = saveFilename.trim();
+			if(saveFilename.length() != 0) {
+				if(new File(FILE_STORE, saveFilename).exists()) {
+					int idx = saveFilename.lastIndexOf(".");
+					String fName = saveFilename.substring(0,  idx);
+					String fExt = saveFilename.substring(idx+1);
+					
+					saveFilename = fName+"_"+System.currentTimeMillis()+"."+fExt;
+				}
+				try {
+					file.transferTo(new File(FILE_STORE, saveFilename));
+					return true;
+				}catch(Exception e) {
+					return false;
+				}
+			}else {
+				return false;
+			}
+		}else {
+			return false;
+		}
+	}
+}
+
