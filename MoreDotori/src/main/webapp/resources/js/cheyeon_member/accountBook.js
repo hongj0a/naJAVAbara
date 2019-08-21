@@ -27,8 +27,8 @@
 							   content += "<tr>";
 							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
-							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_asset + "</span> ===> <span class='account_tab_td3_sp2'>";
-							   content += data[i].IOT_assetgori +"</span></td>";
+							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
+							   content += data[i].IOT_asset +"</span></td>";
 							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
 							   content += "<td class='account_tab_td6'>"+ data[i].IOT_money +"</td>";
 							   content += "<td class='account_tab_td7'>";

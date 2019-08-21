@@ -1,5 +1,7 @@
 package njb.md.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import njb.md.domain.Transfer;
 
 public interface TransferMapper {
@@ -7,4 +9,6 @@ public interface TransferMapper {
 	void insertTrans(Transfer ts);
 	void deleteTrans(long T_seq);
 	void updateTrans(Transfer ts);
+	void updateAssetPlus(@Param("A_seq") long A_seq, @Param("T_money") long T_money);
+	void updateAssetMinus(@Param("A_seq") long A_seq, @Param("T_money") long T_money);
 }

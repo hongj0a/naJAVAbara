@@ -28,11 +28,18 @@ public class TransferServiceImpl implements TransferService {
 		log.info("#### 이체 내역 입력하기 : " + ts );
 		
 		mapper.insertTrans(ts);
+		
+		mapper.updateAssetMinus(ts.getA_seq_out(), ts.getT_money());
+		mapper.updateAssetPlus(ts.getA_seq_in(), ts.getT_money());
 	}
 
 	@Override
 	public void deleteTransS(long T_seq) {
 		log.info("#### 이체 내역 삭제하기 : " + T_seq);
+
+		Transfer ts = mapper.selectTransSeq(T_seq);
+		mapper.updateAssetMinus(ts.getA_seq_in(), ts.getT_money());
+		mapper.updateAssetPlus(ts.getA_seq_out(), ts.getT_money());
 		
 		mapper.deleteTrans(T_seq);
 	}
@@ -40,7 +47,15 @@ public class TransferServiceImpl implements TransferService {
 	@Override
 	public void updateTransS(Transfer ts) {
 		log.info("#### 이체 내역 수정하기 : " + ts);
+		
+		Transfer trs = mapper.selectTransSeq(ts.getT_seq());
+		mapper.updateAssetMinus(trs.getA_seq_in(), trs.getT_money());
+		mapper.updateAssetPlus(trs.getA_seq_out(), trs.getT_money());
+		
 		mapper.updateTrans(ts);
+		
+		mapper.updateAssetMinus(ts.getA_seq_out(), ts.getT_money());
+		mapper.updateAssetPlus(ts.getA_seq_in(), ts.getT_money());
 	}
 
 }

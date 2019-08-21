@@ -22,5 +22,16 @@
 		set C_inout=#{C_inout}, A_seq_in=#{A_seq_in}, A_seq_out=#{A_seq_out}, T_date=#{T_date}, T_money=#{T_money}, T_memo=#{T_memo}
 		where T_seq=#{T_seq}
 	</update>
+	
+	<update id="updateAssetPlus">
+		update Asset
+		set A_money=A_money+#{T_money}
+		where A_seq=#{A_seq}
+	</update>
 
+	<update id="updateAssetMinus">
+		update Asset
+		set A_money=A_money-#{T_money}
+		where A_seq=#{A_seq}
+	</update>
 </mapper>

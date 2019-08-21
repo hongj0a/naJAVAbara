@@ -21,5 +21,17 @@
 		set C_inout=#{C_inout}, A_seq=#{A_seq}, C_categori=#{C_categori}, I_date=#{I_date}, I_money=#{I_money}, I_memo=#{I_memo}
 		where I_seq=#{I_seq}
 	</update>
+	
+	<update id="updateAssetPlus" parameterType="njb.md.domain.Inout">
+		update Asset
+		set A_money=A_money+#{I_money}
+		where A_seq=#{A_seq}
+	</update>
+
+	<update id="updateAssetMinus" parameterType="njb.md.domain.Inout">
+		update Asset
+		set A_money=A_money-#{I_money}
+		where A_seq=#{A_seq}
+	</update>
 
 </mapper>
