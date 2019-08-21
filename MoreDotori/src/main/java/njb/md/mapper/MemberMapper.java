@@ -1,9 +1,10 @@
 package njb.md.mapper;
 
-import java.util.List;
-
 import njb.md.domain.Member;
 
 public interface MemberMapper {
-	List<Member> selectAll();
+	void insertMember(Member member);
+	void authMember(Member member);
+	String duplIdCheck(String id);
+	String duplNickCheck(String nick);
 }

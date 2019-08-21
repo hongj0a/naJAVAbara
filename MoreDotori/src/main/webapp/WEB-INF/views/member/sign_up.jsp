@@ -49,37 +49,37 @@
 						<div class="col-sm-8">
 							<div class="input-group form-group mb-4">
 								<label for="inputId" class="sr-only">아이디</label>
-								<input type="text" class="form-control" id="inputId" name="id" placeholder="아이디(이메일 형식)">
+								<input type="email" class="form-control" id="inputId" name="id" placeholder="아이디(이메일 형식)" required>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="id-dupl-check" type="button">중복확인</button>
+									<input type="button" class="btn btn-primary" name="id-dupl-check" onclick="duplCheckId()" value="중복확인">
 								</div>
 							</div>
 							<div class="input-group form-group mb-4">
 								<label for="inputName" class="sr-only">이름</label>
-								<input type="text" class="form-control" id="inputName" name="name" placeholder="이름">
+								<input type="text" class="form-control" id="inputName" name="name" placeholder="이름" required>
 							</div>
 							<div class="input-group form-group mb-4">
 								<label for="inputNick" class="sr-only">닉네임</label>
-								<input type="text" class="form-control" id="inputNick" name="nickname" placeholder="닉네임">
+								<input type="text" class="form-control" id="inputNick" name="nickname" placeholder="닉네임" required>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="nick-dupl-check" type="button">중복확인</button>
+									<input type="button" class="btn btn-primary" name="nick-dupl-check" onclick="duplCheckNick()" value="중복확인">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwd" name="password" placeholder="비밀번호">
+							<input type="password" class="form-control" id="inputPwd" name="password" placeholder="비밀번호" required>
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwdConfirm" name="password-confirm" placeholder="비밀번호 확인">
+							<input type="password" class="form-control" id="inputPwdConfirm" name="password-confirm" placeholder="비밀번호 확인" required>
 						</div>
 					</div>
 					<div>
-						<div class="form-group mb-3">
-							<input type="text" class="form-control" id="inputPhone" name="phone" placeholder="연락처 (01012345678)">
+						<div class="form-group mb-4">
+							<input type="text" class="form-control" id="inputPhone" name="phone" placeholder="연락처 (01012345678)" required>
 						</div>
 					</div>
 					<div class="row justify-content-center">
@@ -87,7 +87,7 @@
 							<label for="male">성별&nbsp;&nbsp;</label>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
 								<label class="btn btn-primary">
-								<input type="radio" name="gender" value="male">남</label>
+								<input type="radio" name="gender" value="male" required>남</label>
 								<label class="btn btn-primary">
 								<input type="radio" name="gender" value="female">여</label>
 							</div>
@@ -95,11 +95,11 @@
 						<div class="form-group col-sm-9">
 							<label for="inputBirth">생년월일</label>
 							<div class="input-group" id="inputBirth">
-								<select class="form-control" name="birth-year" id="birth-year">
+								<select class="form-control" name="birth-year" id="birth-year" required>
 									<option value="">년</option>
-								</select> <select class="form-control" name="birth-month" id="birth-month">
+								</select> <select class="form-control" name="birth-month" id="birth-month" required>
 									<option value="">월</option>
-								</select> <select class="form-control" name="birth-day" id="birth-day">
+								</select> <select class="form-control" name="birth-day" id="birth-day" required>
 									<option value="">일</option>
 								</select>
 							</div>
@@ -107,23 +107,23 @@
 					</div>
 					<div id="expert-details" style="${dtStyle}">
 						<div class="form-group input-group mb-4">
-							<input type="text" class="form-control col-sm-4" id="inputJob" name="job" placeholder="직업">
-							<input type="text" class="form-control col-sm-4" id="inputPosition" name="position" placeholder="직급">
-							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)">
+							<input type="text" class="form-control col-sm-4" id="inputJob" name="job" placeholder="직업" required>
+							<input type="text" class="form-control col-sm-4" id="inputPosition" name="position" placeholder="직급" required>
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)" required>
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">
 								<label for="inputAddr" class="sr-only">우편번호</label>
 								<input type="text" class="form-control address" id="inputZipCode" name="zip-code" placeholder="우편번호" readonly>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
+									<input type="button" class="btn btn-primary" name="find-address" onclick="findPostcode()" value="주소찾기">
 								</div>
 							</div>
 							<div class="mb-1">
 								<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 							</div>
 							<div>
-								<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소">
+								<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소" required>
 							</div>
 						</div>
 						<div class="form-group mb-4">
@@ -133,7 +133,7 @@
 										<option value="">자격증1</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호" required>
 							</div>
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
@@ -169,7 +169,7 @@
 							</div>
 						</div>
 						<div class="form-group mb-4">
-							<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개"></textarea>
+							<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개" required></textarea>
 						</div>
 					</div>
 					<div class="form-group mb-4">
@@ -341,8 +341,13 @@
 	<!-- Required Js -->
 	<script src="js/vendor-all.min.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="plugins/sweetalert/js/sweetalert.min.js"></script>
+	
 	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="plugins/jquery-validation/js/messages_ko.js"></script>
+	
 	<script src="js/member/sign-up.js"></script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </body>
 
 </html>

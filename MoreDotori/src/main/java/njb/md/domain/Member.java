@@ -2,13 +2,9 @@ package njb.md.domain;
 
 import java.sql.Date;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Member {
 	String m_id;		//아이디
 	String m_name;		//이름
