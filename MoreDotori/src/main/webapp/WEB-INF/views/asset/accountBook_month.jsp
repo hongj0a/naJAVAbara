@@ -9,8 +9,8 @@
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
     <!-- append css -->
-    <link rel="stylesheet" href="css/cheyeon_member/accountBookM.css">
-    <link rel="stylesheet" href="css/cheyeon_member/jquery.monthpicker-0.1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/accountBookM.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/jquery.monthpicker-0.1.css">
 </head>
 
 <body class="layout-8">
@@ -218,7 +218,7 @@
                             	<div class="col-10">
                             		<div class="tablesCard_header">
                             			<span>
-                            				<a href="/book">돌아가기</a>
+                            				<a href="/normal/book">돌아가기</a>
                             			</span>
                             			
                             			<span class="fl_right accountbook_search">
@@ -270,8 +270,8 @@
 		<jsp:include page="../main/footer.jsp"></jsp:include>   
     
     <!-- [ Main Content ] end -->
-    <script src="js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
-	<script src="js/cheyeon_member/accountBookM.js"></script>
+    <script src="${pageContext.request.contextPath}/js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/accountBookM.js"></script>
 	<script>
        	//메뉴
 		$("#menu1").addClass('active');

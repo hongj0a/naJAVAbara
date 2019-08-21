@@ -5,11 +5,11 @@
 <mapper namespace="njb.md.mapper.AbookSumMapper">
 
 	<select id="selectAllAsset" resultType="long">
-		select sum(A_Money) as assetSum from asset where M_id=#{M_id};
+		select sum(A_Money) as sumAssetMoney from asset where M_id=#{M_id}
 	</select>
 
 	<select id="selectInDay" resultType="long">
-		select sum(io.I_money) as inSum
+		select sum(io.I_money) as sumInMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
@@ -18,7 +18,7 @@
 	</select>	
 
 	<select id="selectOutDay" resultType="long">
-		select sum(io.I_money) as inSum
+		select sum(io.I_money) as sumOutMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
@@ -27,7 +27,7 @@
 	</select>
 
 	<select id="selectAvgInDays" resultType="long">
-		select round(avg(io.I_money),-2)
+		select round(avg(io.I_money),-2) as avgInMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="selectAvgOutDays" resultType="long">
-		select round(avg(io.I_money),-2)
+		select round(avg(io.I_money),-2) as avgOutMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="selectMaxInDay" resultType="long">
-		select I_seq
+		select I_seq as maxInSeq
 		from (select io.I_seq, io.I_date, io.I_money
 		from inout io
 		join asset ass 
@@ -58,5 +58,38 @@
 		order by io.I_money desc)
 		where rownum=1
 	</select>
-
+	
+	<select id="selectMaxOutDay" resultType="long">
+		select I_seq as maxOutSeq
+		from (select io.I_seq, io.I_date, io.I_money
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout='IO002'
+		order by io.I_money desc)
+		where rownum=1
+	</select>
+	
+	<select id="selectInMonth" resultType="long">
+		select sum(io.I_money) as sumInMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout='IO001'
+	</select>
+	
+	<select id="selectOutMonth" resultType="long">
+		select sum(io.I_money) as sumOutMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout='IO002'
+	</select>	
+	
 </mapper>

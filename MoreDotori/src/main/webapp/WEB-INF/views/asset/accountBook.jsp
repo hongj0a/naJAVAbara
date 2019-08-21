@@ -47,7 +47,7 @@
 										<span class="badge badge-pill badge-secondary badge_cancle">취소</span>                            			
                             		</div>
                             		<div class="col txt_right">
-                            			<a href="/book2">월 전체내역 및 검색</a>
+                            			<a href="/normal/book2">월 전체내역 및 검색</a>
                             		</div>
                             	</div>
 								<div class="row">
@@ -240,12 +240,12 @@
 							    		<div class="account_total">
 							    			<table>
 							    				<tr>
-							    					<th>자산 총 액</th>
-							    					<td>3000원</td>
+							    					<th>총 자산</th>
+							    					<td id="selAllAsset">-</td>
 							    					<th>수입</th>
-							    					<td>3000원</td>
+							    					<td id="selInDay">-</td>
 							    					<th>지출</th>
-							    					<td>3000원</td>							    												    					
+							    					<td id="selOutDay">-</td>							    												    					
 							    				</tr>
 							    			</table>
 							    		</div>								    
@@ -268,7 +268,7 @@
 								    <div class="col-10">
 								    	<div class="card">
 								    		<div class="row">
-										    	<div class="col-2 chart_menu">
+										    	<div class="col chart_menu">
 										    		<div class="row">
 	                                                    <div class="form-group">
 	                                                    	<div> @월 총 수입 </div>
@@ -294,14 +294,18 @@
 								    		</div>
 								    	</div>
 								    </div>
-								    <div class="col-2">
+								    <div class="col">
 								    	<div class="card sum_menu">
-								    		<div> 남은 한달 예산 </div>
-								    		<div> 333,000원 </div>								    	
-								    		<div> 일평균지출 </div>
-								    		<div> 521,232원 </div>
-								    		<div> 최대지출일 </div>
-								    		<div> 7월 11일 </div>
+								    		<div class="sum_title"> 남은 한달 예산 </div>
+								    		<div id="month_rest" class="form_money_in">  333,000원 </div>								    	
+								    		<div class="sum_title"> 일평균지출 </div>
+								    		<div id="selAvgOutDays" class="form_money_out"> 521,232원 </div>								    	
+								    		<div class="sum_title"> 일평균수입 </div>
+								    		<div id="selAvgInDays" class="form_money_in"> 521,232원 </div>
+								    		<div class="sum_title"> 최대지출일 </div>
+								    		<div id="selMaxOutDay" class="form_money_out"> 7월 11일 </div>
+								    		<div class="sum_title"> 최대수입일 </div>
+								    		<div id="selMaxInDay" class="form_money_in">  7월 11일 </div>								    		
 								    	</div>
 								    </div>
 								</div>							

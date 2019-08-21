@@ -73,6 +73,28 @@
 			   
     	   });
        }
+       
+       //가계부 합계 등등 가져오기
+       $.fn.getSum = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/sumList.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+				   		mmmm: $(".form_select_month_val.out_form").val(),
+				   		dddd: $(".form_select_day_val.out_form").val()},
+			   success : function(data){
+				   $('#selAllAsset').text(data.allAsset+'원');
+				   $('#selInDay').text(data.inDay+'원');
+				   $('#selOutDay').text(data.outDay+'원');
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });   	   
+       }
 
        //시퀀스 체크 메소드
        $.fn.checkSeq = function(){
@@ -114,6 +136,7 @@
     		$(".back_today").text('today : '+tday);
     		
     		$.fn.getInOutTrs();
+    		$.fn.getSum();
     		$.fn.animeTitle();
        };
        
@@ -143,6 +166,7 @@
 		  $(".form_select_day_val").val(predddd);	  	  
 		  
 		  $.fn.getInOutTrs();
+		  $.fn.getSum();
 		  $.fn.animeTitle();
        });
        
@@ -199,6 +223,7 @@
     			   success : function(data){
     				   if( data == "success"){
     					   $.fn.getInOutTrs();
+    					   $.fn.getSum();
     				   }else{
     					   alert('입력실패');
     				   }
@@ -237,6 +262,7 @@
     			   success : function(data){
     				   if( data == "success"){
     					   $.fn.getInOutTrs();
+    					   $.fn.getSum();
     				   }else{
     					   alert('입력실패');
     				   }
@@ -430,6 +456,7 @@
    	  	  	 $(".form_select_day_val.trs_form").val(predddd);
 
      		 $.fn.getInOutTrs();
+		     $.fn.getSum();
     	 }    		  
        });
        
@@ -469,6 +496,7 @@
    	  	  	 $(".form_select_day_val.out_form").val(predddd);
    	  	  	 
    	  	  	 $.fn.getInOutTrs();
+			 $.fn.getSum();
     	 }    		  
        });       
        
@@ -536,6 +564,7 @@
 			   success : function(data){
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
+					   $.fn.getSum();
 				   }else{
 					   alert('삭제실패');
 				   }
@@ -563,6 +592,7 @@
 			   success : function(data){
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
+					   $.fn.getSum();
 				   }else{
 					   alert('삭제실패');
 				   }

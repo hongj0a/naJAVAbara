@@ -339,18 +339,14 @@
 	text-align: center;
 }
 
-.sum_menu div:nth-child(2), .sum_menu div:nth-child(4){
+.sum_menu div:nth-child(even){
 	margin-bottom: 30px;
 }
 
-.sum_menu div:first-child, .sum_menu div:nth-child(3), .sum_menu div:nth-child(5){
+.sum_menu div:last-child{
+	margin-bottom: 0px;
+}
+
+.sum_menu .sum_title{
 	font-size: 18px;
-}
-
-.sum_menu div:nth-child(4), .sum_menu div:nth-child(6){
-	color: #F29D35;	
-}
-
-.sum_menu div:nth-child(2){
-	color: #5086F2;
 }

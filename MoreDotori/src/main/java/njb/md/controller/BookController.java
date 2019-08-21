@@ -1,15 +1,14 @@
 package njb.md.controller;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONArray;
-import org.omg.CORBA.TypeCodePackage.BadKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,11 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,9 +24,9 @@ import njb.md.domain.Code;
 import njb.md.domain.Inout;
 import njb.md.domain.InoutForm;
 import njb.md.domain.InoutTrsList;
-import njb.md.domain.InoutTrsListDetail;
 import njb.md.domain.Transfer;
 import njb.md.domain.TrsForm;
+import njb.md.service.AbookSumService;
 import njb.md.service.CodeService;
 import njb.md.service.InoutService;
 import njb.md.service.InoutTrsListService;
@@ -58,6 +53,9 @@ public class BookController {
 
 	@Setter(onMethod_ = @Autowired)
 	private InoutTrsListService iotl_service;
+	
+	@Setter(onMethod_ = @Autowired)
+	private AbookSumService abs_service;
 	
 	@RequestMapping("/book")
 	public ModelAndView myAccountBook() {
@@ -153,7 +151,7 @@ public class BookController {
 	
 	@RequestMapping(value="/book/iotList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+	public ResponseEntity<Object> getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
 		log.info("### 리스트를 가져올게욘 ####");
 		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
 		String selectDate = yyyy+"/"+mmmm+"/"+dddd;
@@ -161,7 +159,7 @@ public class BookController {
 		List<InoutTrsList> iotList = iotl_service.getListDescDayS(M_id, selectDate);
 
 		HttpHeaders responseHeaders = new HttpHeaders();
-        ArrayList<HashMap> hmlist = new ArrayList<HashMap>();
+        ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
         
 		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
 
@@ -169,7 +167,7 @@ public class BookController {
 			//trs이면
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
-				HashMap hm = new HashMap();
+				HashMap<Object,Object> hm = new HashMap<Object,Object>();
 				hm.put("IOT_seq", ts.getT_seq());
 				hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
 				hm.put("IOT_asset", ts.getA_seq_in());
@@ -182,7 +180,7 @@ public class BookController {
 			}else{
 				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
 
-				HashMap hm = new HashMap();
+				HashMap<Object,Object> hm = new HashMap<Object,Object>();
 				hm.put("IOT_seq", io.getI_seq());
 				hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
 				hm.put("IOT_asset", io.getA_seq());
@@ -194,8 +192,43 @@ public class BookController {
 			}
 		}
 		
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
         JSONArray json = new JSONArray(hmlist);        
-        return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/book/sumList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<Object,Object> getSumList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		log.info("### 리스트를 가져올게욘2 ####");
+		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
+		String selectDate = yyyy+"/"+mmmm+"/"+dddd;
+		String selectMonth = yyyy+"/"+mmmm;
+
+        HashMap<Object,Object> hm = new HashMap<Object, Object>();
+        
+        hm.put("allAsset", abs_service.selectAllAssetS(M_id));
+        hm.put("inDay", abs_service.selectInDayS(M_id, selectDate));
+        hm.put("outDay", abs_service.selectOutDayS(M_id, selectDate));
+        hm.put("avgInDays", abs_service.selectAvgInDaysS(M_id, selectMonth));
+        hm.put("avgOutDays", abs_service.selectAvgOutDaysS(M_id, selectMonth));
+        
+        long selMaxInday = abs_service.selectMaxInDayS(M_id, selectMonth);
+        Inout io1 = inout_service.selectInoutSeqS(selMaxInday);
+		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
+		String maxInDay = transFormat.format(io1.getI_date());        
+        hm.put("maxInDay", maxInDay);
+        
+        long selMaxOutday = abs_service.selectMaxOutDayS(M_id, selectMonth);
+        Inout io2 = inout_service.selectInoutSeqS(selMaxOutday);
+		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM/dd");
+		String maxOutDay = transFormat.format(io2.getI_date());        
+        hm.put("maxOutDay", maxOutDay);
+        
+        hm.put("inMonth", abs_service.selectInMonthS(M_id, selectMonth));
+        hm.put("outMonth", abs_service.selectOutMonthS(M_id, selectMonth));
+		
+        return hm;
 	}
 	
 	@GetMapping("/book2")
