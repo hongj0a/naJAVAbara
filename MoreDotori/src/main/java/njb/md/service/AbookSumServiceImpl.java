@@ -53,7 +53,7 @@ public class AbookSumServiceImpl implements AbookSumService {
 		if(rs==null) {
 			return 0;
 		}else {
-			long result = (long) mapper.selectMaxInDay(M_id, selectMonth);
+			long result = Long.valueOf(String.valueOf(mapper.selectMaxInDay(M_id, selectMonth)));
 			return result;
 		}
 	}
@@ -65,7 +65,7 @@ public class AbookSumServiceImpl implements AbookSumService {
 		if(rs==null) {
 			return 0;
 		}else {
-			long result = (long) mapper.selectMaxOutDay(M_id, selectMonth);
+			long result = Long.valueOf(String.valueOf(mapper.selectMaxOutDay(M_id, selectMonth)));
 			return result;
 		}
 	}

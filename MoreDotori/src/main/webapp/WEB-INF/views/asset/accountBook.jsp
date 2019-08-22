@@ -271,7 +271,7 @@
 										    	<div class="col chart_menu">
 										    		<div class="row">
 	                                                    <div class="form-group">
-	                                                    	<div> @월 총 수입 </div>
+	                                                    	<div> <span class="selectMonthIO"></span>월 총 수입 </div>
 	                                                        <div class="checkbox checkbox-fill d-inline">
 	                                                            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-1" checked>
 	                                                            <label for="checkbox-fill-1" class="cr"> 122,332 </label>
@@ -280,7 +280,7 @@
 										    		</div>
 										    		<div class="row">
 	                                                    <div class="form-group">
-	                                                    	<div> @월 총 지출 </div>
+	                                                    	<div> <span class="selectMonthIO"></span>월 총 지출 </div>
 	                                                        <div class="checkbox checkbox-fill d-inline">
 	                                                            <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2" checked>
 	                                                            <label for="checkbox-fill-2" class="cr"> 122,332 </label>
@@ -297,15 +297,15 @@
 								    <div class="col">
 								    	<div class="card sum_menu">
 								    		<div class="sum_title"> 남은 한달 예산 </div>
-								    		<div id="month_rest" class="form_money_in">  333,000원 </div>								    	
-								    		<div class="sum_title"> 일평균지출 </div>
-								    		<div id="selAvgOutDays" class="form_money_out"> 521,232원 </div>								    	
-								    		<div class="sum_title"> 일평균수입 </div>
-								    		<div id="selAvgInDays" class="form_money_in"> 521,232원 </div>
+								    		<div id="month_rest" class="form_money_in"> - </div>								    	
+								    		<div class="sum_title"> 평균지출 </div>
+								    		<div id="selAvgOutDays" class="form_money_out"> - </div>								    	
+								    		<div class="sum_title"> 평균수입 </div>
+								    		<div id="selAvgInDays" class="form_money_in"> - </div>
 								    		<div class="sum_title"> 최대지출일 </div>
-								    		<div id="selMaxOutDay" class="form_money_out"> 7월 11일 </div>
+								    		<div id="selMaxOutDay" class="form_money_out"> - </div>
 								    		<div class="sum_title"> 최대수입일 </div>
-								    		<div id="selMaxInDay" class="form_money_in">  7월 11일 </div>								    		
+								    		<div id="selMaxInDay" class="form_money_in"> - </div>								    		
 								    	</div>
 								    </div>
 								</div>							

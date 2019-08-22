@@ -7,6 +7,24 @@
                $('.title_select_date').removeClass(anim);
            }, 1000); 
        };
+       
+       //숫자컴마메소드
+       $.fn.comma = function(num){
+    	    var len, point, str; 
+    	       
+    	    num = num + ""; 
+    	    point = num.length % 3 ;
+    	    len = num.length; 
+    	   
+    	    str = num.substring(0, point); 
+    	    while (point < len) { 
+    	        if (str != "") str += ","; 
+    	        str += num.substring(point, point + 3); 
+    	        point += 3; 
+    	    } 
+    	     
+    	    return str;
+       };
 
        //가계부 사용 목록 가져오기 (일별)
        $.fn.getInOutTrs = function(){
@@ -30,7 +48,7 @@
 							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
 							   content += data[i].IOT_asset +"</span></td>";
 							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
-							   content += "<td class='account_tab_td6'>"+ data[i].IOT_money +"</td>";
+							   content += "<td class='account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
 							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
@@ -46,9 +64,9 @@
 							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
 							   
 							   if(data[i].C_inout == "수입"){
-								   content += "<td class='form_money_in account_tab_td6'>"+ data[i].IOT_money +"</td>";
+								   content += "<td class='form_money_in account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
 							   }else{
-								   content += "<td class='form_money_out account_tab_td6'>"+ data[i].IOT_money +"</td>";
+								   content += "<td class='form_money_out account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
 							   }
 							   
 							   content += "<td class='account_tab_td7'>";
@@ -85,9 +103,41 @@
 				   		mmmm: $(".form_select_month_val.out_form").val(),
 				   		dddd: $(".form_select_day_val.out_form").val()},
 			   success : function(data){
-				   $('#selAllAsset').text(data.allAsset+'원');
-				   $('#selInDay').text(data.inDay+'원');
-				   $('#selOutDay').text(data.outDay+'원');
+				   $('#selAllAsset').text($.fn.comma(data.allAsset)+' 원');
+				   $('#selInDay').text($.fn.comma(data.inDay)+' 원');
+				   $('#selOutDay').text($.fn.comma(data.outDay)+' 원');
+				   
+				   if($('#month_money').val()==0){
+					   $('#month_rest').text('예산을 설정해주세요');
+				   }else{
+					   $('#month_rest').text($.fn.comma(($('#month_money').val()-data.outMonth))+' 원');
+				   }
+				   
+				   if(data.avgOutDays==0){
+					   $('#selAvgOutDays').text('정보없음'); 
+				   }else{
+					   $('#selAvgOutDays').text($.fn.comma(data.avgOutDays)+' 원'); 
+				   }
+				   
+				   if(data.avgInDays==0){
+					   $('#selAvgInDays').text('정보없음'); 
+				   }else{
+					   $('#selAvgInDays').text($.fn.comma(data.avgInDays)+' 원');
+				   }
+				   
+				   if(data.maxInDay==0){
+					   $('#selMaxOutDay').text('정보없음');
+				   }else{
+					   $('#selMaxOutDay').text(data.maxInDay+' 일');
+				   }
+				   
+				   if(data.maxOutDay==0){
+					   $('#selMaxInDay').text('정보없음');
+				   }else{
+					   $('#selMaxInDay').text(data.maxOutDay+' 일');
+				   }
+				   
+				   
 			   },
 			   error:function(request,status,error){
 		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -133,6 +183,7 @@
     		$(".form_select_year_val").val(tyyyy);
     		$(".form_select_month_val").val(tmm);
     		$(".form_select_day_val").val(tdd);
+  		  	$(".selectMonthIO").text(tmm);
     		$(".back_today").text('today : '+tday);
     		
     		$.fn.getInOutTrs();
@@ -163,7 +214,8 @@
 	  	  
 	  	  $(".form_select_year_val").val(preyyyy);
 	      $(".form_select_month_val").val(premmmm);
-		  $(".form_select_day_val").val(predddd);	  	  
+		  $(".form_select_day_val").val(predddd);
+		  $(".selectMonthIO").text(premmmm);
 		  
 		  $.fn.getInOutTrs();
 		  $.fn.getSum();
@@ -393,6 +445,8 @@
     	 $(".badge_update").css("display", "inline-block");   
     	 
     	 mmoney = $("#month_money").val();
+    	 
+ 		 $.fn.getSum();
     	 alert('저장로직짜셈');
        });
        
@@ -454,6 +508,7 @@
    	  	  	 $(".form_select_year_val.trs_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.trs_form").val(premmmm);
    	  	  	 $(".form_select_day_val.trs_form").val(predddd);
+   	  	  	 $(".selectMonthIO").text(premmmm);
 
      		 $.fn.getInOutTrs();
 		     $.fn.getSum();
@@ -494,6 +549,7 @@
    	  	  	 $(".form_select_year_val.out_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.out_form").val(premmmm);
    	  	  	 $(".form_select_day_val.out_form").val(predddd);
+   	  	  	 $(".selectMonthIO").text(premmmm);
    	  	  	 
    	  	  	 $.fn.getInOutTrs();
 			 $.fn.getSum();

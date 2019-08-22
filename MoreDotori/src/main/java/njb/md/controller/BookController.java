@@ -218,9 +218,9 @@ public class BookController {
         	hm.put("maxInDay", 0);
         }else {
             Inout io1 = inout_service.selectInoutSeqS(selMaxInday);
-    		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
+    		SimpleDateFormat transFormat = new SimpleDateFormat("dd");
     		String maxInDay = transFormat.format(io1.getI_date());
-            hm.put("maxInDay", maxInDay);       	
+            hm.put("maxInDay", maxInDay);     	
         }
         
         long selMaxOutday = abs_service.selectMaxOutDayS(M_id, selectMonth);
@@ -228,7 +228,7 @@ public class BookController {
         	hm.put("maxOutDay", 0);
         }else {
             Inout io2 = inout_service.selectInoutSeqS(selMaxOutday);
-    		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM/dd");
+    		SimpleDateFormat transFormat2 = new SimpleDateFormat("dd");
     		String maxOutDay = transFormat2.format(io2.getI_date());        
             hm.put("maxOutDay", maxOutDay);       	
         }
