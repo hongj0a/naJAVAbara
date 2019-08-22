@@ -1,4 +1,4 @@
-Highcharts.chart('container', {
+/*Highcharts.chart('container', {
     title: {
         text: ''
     },
@@ -21,4 +21,4 @@ Highcharts.chart('container', {
         data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
     }]
-});
+});*/

@@ -274,7 +274,7 @@
 	                                                    	<div> <span class="selectMonthIO"></span>월 총 수입 </div>
 	                                                        <div class="checkbox checkbox-fill d-inline">
 	                                                            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-1" checked>
-	                                                            <label for="checkbox-fill-1" class="cr"> 122,332 </label>
+	                                                            <label for="checkbox-fill-1" class="cr" id="selectMonthIn"> 122,332 </label>
 	                                                        </div>
 	                                                    </div>
 										    		</div>
@@ -283,7 +283,7 @@
 	                                                    	<div> <span class="selectMonthIO"></span>월 총 지출 </div>
 	                                                        <div class="checkbox checkbox-fill d-inline">
 	                                                            <input type="checkbox" name="checkbox-fill-2" id="checkbox-fill-2" checked>
-	                                                            <label for="checkbox-fill-2" class="cr"> 122,332 </label>
+	                                                            <label for="checkbox-fill-2" class="cr" id="selectMonthOut"> 122,332 </label>
 	                                                        </div>
 	                                                    </div>
 										    		</div>

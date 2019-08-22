@@ -125,19 +125,20 @@
 					   $('#selAvgInDays').text($.fn.comma(data.avgInDays)+' 원');
 				   }
 				   
-				   if(data.maxInDay==0){
+				   if(data.maxOutDay==0){
 					   $('#selMaxOutDay').text('정보없음');
 				   }else{
-					   $('#selMaxOutDay').text(data.maxInDay+' 일');
+					   $('#selMaxOutDay').text(data.maxOutDay+' 일');
 				   }
 				   
-				   if(data.maxOutDay==0){
+				   if(data.maxInDay==0){
 					   $('#selMaxInDay').text('정보없음');
 				   }else{
-					   $('#selMaxInDay').text(data.maxOutDay+' 일');
+					   $('#selMaxInDay').text(data.maxInDay+' 일');
 				   }
 				   
-				   
+				   $('#selectMonthIn').text($.fn.comma(data.inMonth)+' 원');
+				   $('#selectMonthOut').text($.fn.comma(data.outMonth)+' 원');
 			   },
 			   error:function(request,status,error){
 		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -716,3 +717,29 @@
     	    }
     	});
        
+       
+       //그래프
+       Highcharts.chart('container', {
+    	    title: {
+    	        text: ''
+    	    },
+
+    	    subtitle: {
+    	        text: ''
+    	    },
+
+
+    	    xAxis: {
+    	        categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+    	    },
+
+    	    series: [{
+    	        name: '수입',
+    	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+    	    }, {
+    	        name: '지출',
+    	        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+    	    }]
+    	});
