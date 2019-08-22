@@ -59,13 +59,13 @@
                                                          &nbsp;&nbsp;
                                                      		<span>ID  : </span>
                                                      		&nbsp;&nbsp;
-                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
+                                                        	<input name="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}'>
                                                         </div>
                                                         </br>
                                             			<div class="col-12">
                                             				<span>타입 :  </span>
                                                     		&nbsp;
-                                                    		<select id="c_asset" class="js-example-basic-single form-control plus-imp">
+                                                    		<select name="c_asset" class="js-example-basic-single form-control plus-imp">
                                                             	<option value="AS001">현금</option>
                                                             	<option value="AS002">통장</option>
                                                             	<option value="AS003">신용카드</option>
@@ -144,6 +144,7 @@
 			                                                     		<span>ID  : </span>
 			                                                     		&nbsp;&nbsp;
 			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
+			                                                        	
 			                                                        </div>
 			                                                        </br>
 			                                            			<div class="col-12">

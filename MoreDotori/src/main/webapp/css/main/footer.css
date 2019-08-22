@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.footer{
+	height: 130px;
+	background-color: #37474f;
+	color: white;
+	padding: 15px;
+	padding-left: 5%;
+	font-size: 13px;
+	text-align: center;
+}
+
+.footer div:first-child{
+	padding-top : 5px;
+	font-size: 25px;
+	font-weight: bolder;
+	margin-bottom: 5px;
+}
+
+.footer div:nth-child(2){
+	margin-bottom: 5px;	
+}
+
+#noti_gotop_btn{
+    float: right;
+    border: none;
+    font-size: 20px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 30px;
+    width: 55px;
+    height: 55px;
+    box-shadow: 1px 1px 1px #0000002b;
+    border-radius: 55px;
+}
+
+#noti_gotop_btn:active{
+    width: 54px;
+    height: 54px;
+}
