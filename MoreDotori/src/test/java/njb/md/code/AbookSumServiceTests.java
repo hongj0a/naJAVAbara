@@ -54,15 +54,17 @@ public class AbookSumServiceTests {
 	@Test
 	public void testReturnDateTest() {
 		log.info("#### 반환값 확인 테스트 ###");
-		long maxInDateSeq = service.selectMaxInDayS("inhee@naver.com", "2019/08");
-		
-		
-		Inout io = ioservice.selectInoutSeqS(maxInDateSeq);
-		log.info("===> 결과 : " + io.getI_date());
-		
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
-		String date = transFormat.format(io.getI_date());
-		log.info("===> 결과2 : " + date);
+		long maxInDateSeq = service.selectMaxInDayS("inhee@naver.com", "2019/09");
+			
+		if(maxInDateSeq==0) {
+			log.info("===> 결과 : 결과없음");
+		}else {
+			Inout io = ioservice.selectInoutSeqS(maxInDateSeq); 
+			log.info("===> 결과 : " + io.getI_date());
+			  
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd"); String
+			date = transFormat.format(io.getI_date()); log.info("===> 결과2 : " + date);		
+		}
 	}
 }
 

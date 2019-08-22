@@ -214,16 +214,24 @@ public class BookController {
         hm.put("avgOutDays", abs_service.selectAvgOutDaysS(M_id, selectMonth));
         
         long selMaxInday = abs_service.selectMaxInDayS(M_id, selectMonth);
-        Inout io1 = inout_service.selectInoutSeqS(selMaxInday);
-		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
-		String maxInDay = transFormat.format(io1.getI_date());
-        hm.put("maxInDay", maxInDay);
+        if(selMaxInday==0) {
+        	hm.put("maxInDay", 0);
+        }else {
+            Inout io1 = inout_service.selectInoutSeqS(selMaxInday);
+    		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
+    		String maxInDay = transFormat.format(io1.getI_date());
+            hm.put("maxInDay", maxInDay);       	
+        }
         
         long selMaxOutday = abs_service.selectMaxOutDayS(M_id, selectMonth);
-        Inout io2 = inout_service.selectInoutSeqS(selMaxOutday);
-		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM/dd");
-		String maxOutDay = transFormat2.format(io2.getI_date());        
-        hm.put("maxOutDay", maxOutDay);
+        if(selMaxOutday==0) {
+        	hm.put("maxOutDay", 0);
+        }else {
+            Inout io2 = inout_service.selectInoutSeqS(selMaxOutday);
+    		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM/dd");
+    		String maxOutDay = transFormat2.format(io2.getI_date());        
+            hm.put("maxOutDay", maxOutDay);       	
+        }
         
         hm.put("inMonth", abs_service.selectInMonthS(M_id, selectMonth));
         hm.put("outMonth", abs_service.selectOutMonthS(M_id, selectMonth));

@@ -49,13 +49,25 @@ public class AbookSumServiceImpl implements AbookSumService {
 	@Override
 	public long selectMaxInDayS(String M_id, String selectMonth) {
 		log.info("### 월 중 최대 수입이 큰 날 가져오기 ###");
-		return mapper.selectMaxInDay(M_id, selectMonth);
+		Object rs = mapper.selectMaxInDay(M_id, selectMonth);
+		if(rs==null) {
+			return 0;
+		}else {
+			long result = (long) mapper.selectMaxInDay(M_id, selectMonth);
+			return result;
+		}
 	}
 
 	@Override
 	public long selectMaxOutDayS(String M_id, String selectMonth) {
 		log.info("### 월 중 최대 지출이 큰 날 가져오기 ###");
-		return mapper.selectMaxOutDay(M_id, selectMonth);
+		Object rs = mapper.selectMaxOutDay(M_id, selectMonth);
+		if(rs==null) {
+			return 0;
+		}else {
+			long result = (long) mapper.selectMaxOutDay(M_id, selectMonth);
+			return result;
+		}
 	}
 
 	@Override

@@ -5,7 +5,9 @@
 <mapper namespace="njb.md.mapper.AbookSumMapper">
 
 	<select id="selectAllAsset" resultType="long">
-		select sum(A_Money) as sumAssetMoney from asset where M_id=#{M_id}
+		select case when sum(A_Money) is null then 0
+		else sum(A_Money) end as sumAssetMoney
+		from asset where M_id=#{M_id}
 	</select>
 
 	<select id="selectInDay" resultType="long">
@@ -50,7 +52,7 @@
 		and io.C_inout='IO002'
 	</select>
 	
-	<select id="selectMaxInDay" resultType="long">
+	<select id="selectMaxInDay" resultType="Object">
 		select I_seq as maxInSeq
 		from (select io.I_seq, io.I_date, io.I_money
 		from inout io
@@ -63,7 +65,7 @@
 		where rownum=1
 	</select>
 	
-	<select id="selectMaxOutDay" resultType="long">
+	<select id="selectMaxOutDay" resultType="Object">
 		select I_seq as maxOutSeq
 		from (select io.I_seq, io.I_date, io.I_money
 		from inout io
@@ -77,7 +79,8 @@
 	</select>
 	
 	<select id="selectInMonth" resultType="long">
-		select sum(io.I_money) as sumInMoney
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumInMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
@@ -87,13 +90,15 @@
 	</select>
 	
 	<select id="selectOutMonth" resultType="long">
-		select sum(io.I_money) as sumOutMoney
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumOutMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
 		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
 		and ass.M_id=#{M_id}
 		and io.C_inout='IO002'
-	</select>	
+	</select>
+	
 	
 </mapper>

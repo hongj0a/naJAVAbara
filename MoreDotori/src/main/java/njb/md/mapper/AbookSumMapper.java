@@ -16,9 +16,9 @@ public interface AbookSumMapper {
 	//일평균 지출메소드
 	long selectAvgOutDays(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
 	//최대수입일 메소드
-	long selectMaxInDay(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
+	Object selectMaxInDay(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
 	//최대지출일 메소드
-	long selectMaxOutDay(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
+	Object selectMaxOutDay(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
 	//월별 수입 메소드
 	long selectInMonth(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth);
 	//월별 지출 메소드
