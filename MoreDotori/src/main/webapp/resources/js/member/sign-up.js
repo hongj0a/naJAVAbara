@@ -17,14 +17,20 @@ $(document).ready(function() {
   var date = new Date();
   var year = date.getFullYear();
 
-  for (var i = year; i >= year - 100; i--) {
+  for(var i=year; i>=year-100; i--) {
     $('#birth-year').append('<option value="' + i + '">' + i + '년</option>');
   }
-  for (i = 1; i <= 12; i++) {
-    $('#birth-month').append('<option value="' + i + '">' + i + '월</option>');
+  for(i=1; i<=12; i++) {
+	var j = i.toString();
+	if(i<10) { j = '0' + j; }
+	
+    $('#birth-month').append('<option value="' + j + '">' + i + '월</option>');
   }
-  for (i = 1; i <= 31; i++) {
-    $('#birth-day').append('<option value="' + i + '">' + i + '일</option>');
+  for(i=1; i<=31; i++) {
+	var j = i.toString();
+	if(i<10) { j = '0' + j; }
+    
+	$('#birth-day').append('<option value="' + j + '">' + i + '일</option>');
   }
 
   // add license select options
@@ -32,27 +38,30 @@ $(document).ready(function() {
   for (i = 1; i <= 3; i++) {
     var $selectName = $('select[name=license' + i + ']');
     for (j = 1; j <= 6; j++) {
-      $selectName.append('<option value="' + j + '">' + arrLicense[j - 1] + '</option>');
+      $selectName.append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
     }
   }
 
   // add sns form
   $('.addSNS').on('click', function() {
-    $('.inputSNS').append(
-      '<div class="input-group mb-1">' +
-      '<div class="input-group-prepend">' +
-      '<select class="form-control" name="sns-type' + 2 + '">' +
-      '<option value="">SNS</option>' +
-      '</select>' +
-      '</div>' +
-      '<input type="text" class="form-control" name="sns' + 2 + '" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
-      '<div class="input-group-append">' +
-      '<button class="btn btn-primary subSNS" type="button">' +
-      '<i class="fas fa-minus"></i>' +
-      '</button>' +
-      '</div>' +
-      '</div>'
-    );
+	var cntSNS = $('select[name*="sns-type"]').length;
+	if(cntSNS<5) {
+		$('.inputSNS').append(
+		  '<div class="input-group mb-1">' +
+  	        '<div class="input-group-prepend">' +
+	          '<select class="form-control" name="sns-type' + (cntSNS+1) + '">' +
+	            '<option value="">SNS</option>' +
+	          '</select>' +
+	        '</div>' +
+	        '<input type="text" class="form-control" name="sns' + (cntSNS+1) + '" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
+	        '<div class="input-group-append">' +
+	          '<button class="btn btn-primary subSNS" type="button">' +
+	            '<i class="fas fa-minus"></i>' +
+	          '</button>' +
+	        '</div>' +
+	      '</div>'
+	    );
+	}
   });
 
   $(document).on('click', '.subSNS', function() {
@@ -62,18 +71,18 @@ $(document).ready(function() {
   $('#sign-up').validate({
     focusInvalid: true,
     rules: {
-      'nickname': {
+      'm_nickname': {
         minlength: 2,
         maxlength: 16
       },
-      'password': {
+      'm_password': {
         minlength: 8,
         maxlength: 16
       },
       'password-confirm': {
-        equalTo: 'input[name="password"]'
+        equalTo: 'input[name="m_password"]'
       },
-      'phone': {
+      'm_phone': {
         digits: true,
         minlength: 10,
         maxlength: 11

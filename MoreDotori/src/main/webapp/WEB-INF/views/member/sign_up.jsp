@@ -20,11 +20,13 @@
 			<c:set var="title" value="전문가 회원 가입" />
 			<c:set var="imgRequired" value="required" />
 			<c:set var="dtStyle" value="display: block;" />
+			<c:set var="mCode" value="MB002" />
 		</c:when>
 		<c:otherwise>
 			<c:set var="title" value="일반 회원 가입" />
 			<c:set var="imgRequired" value="" />
 			<c:set var="dtStyle" value="display: none;" />
+			<c:set var="mCode" value="MB001" />
 		</c:otherwise>
 	</c:choose>
 	<div class="auth-wrapper">
@@ -33,7 +35,8 @@
 				<h5><c:out value="${title}" /></h5>
 			</div>
 			<div class="card-block">
-				<form id="sign-up" name="sign-up" action="/insert.do"  method="post" enctype="multipart/form-data">
+				<form id="sign-up" name="sign-up" action="/join.do"  method="post" enctype="multipart/form-data">
+					<input type="hidden" name="c_member" value="${mCode }">
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="text-center form-group">
@@ -107,9 +110,9 @@
 					</div>
 					<div id="expert-details" style="${dtStyle}">
 						<div class="form-group input-group mb-4">
-							<input type="text" class="form-control col-sm-4" id="inputJob" name="job" placeholder="직업" required>
-							<input type="text" class="form-control col-sm-4" id="inputPosition" name="position" placeholder="직급" required>
-							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)" required>
+							<input type="text" class="form-control col-sm-4" id="inputJob" name="e_job" placeholder="직업" required>
+							<input type="text" class="form-control col-sm-4" id="inputPosition" name="e_position" placeholder="직급" required>
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="e_career" placeholder="경력(년차)" required>
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">
@@ -169,7 +172,7 @@
 							</div>
 						</div>
 						<div class="form-group mb-4">
-							<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개" required></textarea>
+							<textarea class="form-control" rows="8" aria-label="With textarea" name="e_introduce" placeholder="자기소개" required></textarea>
 						</div>
 					</div>
 					<div class="form-group mb-4">

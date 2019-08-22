@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j;
 public class FileServiceImpl implements FileService {
 
 	@Override
-	public boolean upload(MultipartFile file) {
+	public String upload(MultipartFile file) {
 		String FILE_STORE = "C:\\KIH\\sts-bundle\\workspace\\naJAVAbara\\MoreDotori\\src\\main\\webapp\\resources\\images\\profile-images";
 		// 나중에 경로 바꾸셈
 		
@@ -34,15 +34,15 @@ public class FileServiceImpl implements FileService {
 				}
 				try {
 					file.transferTo(new File(FILE_STORE, saveFilename));
-					return true;
+					return file.getOriginalFilename();
 				}catch(Exception e) {
-					return false;
+					return null;
 				}
 			}else {
-				return false;
+				return null;
 			}
 		}else {
-			return false;
+			return null;
 		}
 	}
 }

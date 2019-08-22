@@ -3,50 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njb.md.mapper.MemberMapper">
-
-	<resultMap type="njb.md.domain.Member" id="memberMap">
-	    <id property="m_id" column="m_id"/>
-	    <result property="m_id" column="m_id"/>
-	    <result property="m_name" column="m_name"/>
-	    <result property="m_nickname" column="m_nickname"/>
-	    <result property="m_password" column="m_password"/>
-	    <result property="m_phone" column="m_phone"/>
-	    <result property="m_birth" column="m_birth"/>
-	    <result property="m_gender" column="m_gender"/>
-	    <result property="m_profile" column="m_profile"/>
-	    <result property="m_jdate" column="m_jdate"/>
-	    <result property="m_ldate" column="m_ldate"/>
-	    <result property="c_member" column="c_member"/>
-	    <result property="c_mstate" column="c_mstate"/>
-	    <result property="m_month" column="m_month"/>
-	    
-	    <result property="m_count" column="m_count"/>
-	    <result property="m_accrue" column="m_accrue"/>
-	    <result property="m_cdate" column="m_cdate"/>
-	    <result property="m_reason" column="m_reason"/>
-	    
-	    <!-- <collection property="authList" resultMap="authMap"></collection> -->
-  	</resultMap>
-  	
-  	<resultMap type="njb.md.domain.Mauth" id="mauthMap">
-  		<result property="ma_id" column="ma_id"/>
-	    <result property="ma_auth" column="ma_auth"/>
-  	</resultMap>
-<!-- 
-	<insert id="insertMember" parameterType="memberMap">
-      insert into MEMBER values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}
-      , #{m_birth}, #{m_gender}, #{m_profile}, SYSDATE, #{m_ldate}, #{c_member}, #{c_mstate}
-      , #{m_month}, #{m_count}, #{m_accrue}, #{m_cdate}, #{m_reason})
+	<insert id="insertMember" parameterType="njb.md.domain.Member">
+      insert into MEMBER(M_ID, M_NAME, M_NICKNAME, M_PASSWORD, M_PHONE, M_BIRTH, M_GENDER, M_PROFILE, C_MEMBER)
+      values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile}, #{c_member})
  	</insert>
-	
-	<insert id="authMember" parameterMap="memberMap">
-	  insert into MAUTH values(#{ma_id}, #{ma_auth})
+ 	<insert id="insertExpert" parameterType="njb.md.domain.Expert">
+ 	  insert into EXPERT values(#{m_id}, #{e_job}, #{e_position}, #{e_career}, #{e_address}, #{e_introduce}, #{e_starpoint},
+ 	  #{e_license1}, #{e_license2}, #{e_license3}, #{e_sns1}, #{e_sns2}, #{e_sns3}, #{e_sns4}, #{e_sns5})
+ 	</insert>
+	<insert id="authMember" parameterType="njb.md.domain.Mauth">
+	  insert into MAUTH values(#{m_id}, #{ma_auth})
 	</insert>
-	 -->
+	
 	<select id="duplIdCheck" parameterType="string" resultType="string">
 		select m_id from MEMBER where m_id = #{m_id}
 	</select>
-	
 	<select id="duplNickCheck" parameterType="string" resultType="string">
 		select m_nickname from MEMBER where m_nickname = #{m_nickname}
 	</select>

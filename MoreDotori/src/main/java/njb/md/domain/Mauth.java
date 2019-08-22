@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Mauth {
-	String ma_id;
+	String m_id;
 	String ma_auth;
 }
