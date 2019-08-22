@@ -9,6 +9,7 @@ public class Expert {
 	String e_position;
 	int e_career;
 	String e_address;
+	String e_detailaddr;
 	String e_introduce;
 	int e_starpoint;
 	

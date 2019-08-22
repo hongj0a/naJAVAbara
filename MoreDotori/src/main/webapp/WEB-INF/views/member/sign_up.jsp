@@ -44,7 +44,7 @@
 									<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" name="choose-image" id="choose-image" accept="image/*" ${imgRequired}>
+									<input type="file" class="custom-file-input" name="chooseImg" id="choose-image" accept="image/*" ${imgRequired}>
 									<label class="custom-file-label" for="inputGroupFile01"></label>
 								</div>
 							</div>
@@ -98,11 +98,11 @@
 						<div class="form-group col-sm-9">
 							<label for="inputBirth">생년월일</label>
 							<div class="input-group" id="inputBirth">
-								<select class="form-control" name="birth-year" id="birth-year" required>
+								<select class="form-control" name="birth" id="birth-year" required>
 									<option value="">년</option>
-								</select> <select class="form-control" name="birth-month" id="birth-month" required>
+								</select> <select class="form-control" name="birth" id="birth-month" required>
 									<option value="">월</option>
-								</select> <select class="form-control" name="birth-day" id="birth-day" required>
+								</select> <select class="form-control" name="birth" id="birth-day" required>
 									<option value="">일</option>
 								</select>
 							</div>
@@ -117,7 +117,7 @@
 						<div class="form-group">
 							<div class="input-group mb-1">
 								<label for="inputAddr" class="sr-only">우편번호</label>
-								<input type="text" class="form-control address" id="inputZipCode" name="zip-code" placeholder="우편번호" readonly>
+								<input type="text" class="form-control address" id="inputZipCode" name="zipCode" placeholder="우편번호" readonly>
 								<div class="input-group-append">
 									<input type="button" class="btn btn-primary" name="find-address" onclick="findPostcode()" value="주소찾기">
 								</div>
@@ -126,44 +126,44 @@
 								<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 							</div>
 							<div>
-								<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" placeholder="상세주소" required>
+								<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" placeholder="상세주소" required>
 							</div>
 						</div>
 						<div class="form-group mb-4">
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license1">
+									<select class="form-control" name="license">
 										<option value="">자격증1</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호" required>
+								<input type="text" class="form-control" id="inputLicense1" name="licenseNum" placeholder="자격증 번호" required>
 							</div>
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license2">
+									<select class="form-control" name="license">
 										<option value="">자격증2</option>
 									</select>
 								</div>
 								<input type="text" class="form-control" id="inputLicense2"
-									name="license-num2" placeholder="자격증 번호">
+									name="licenseNum" placeholder="자격증 번호">
 							</div>
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license3">
+									<select class="form-control" name="license">
 										<option value="">자격증3</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense3" name="license-num3" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense3" name="licenseNum" placeholder="자격증 번호">
 							</div>
 						</div>
 						<div class="form-group mb-4 inputSNS">
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="sns-type1">
+									<select class="form-control" name="sns">
 										<option value="">SNS</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" name="sns1" placeholder="SNS주소 (ex. https://www.facebook.com/000)">
+								<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 (ex. https://www.facebook.com/000)">
 								<div class="input-group-append">
 									<button class="btn btn-primary addSNS" type="button">
 										<i class="fas fa-plus"></i>
@@ -329,7 +329,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<div class="checkbox checkbox-primary d-inline">
-							<input type="checkbox" id="inputAgreeClause" name="agree-clause">
+							<input type="checkbox" id="inputAgreeClause" name="agree-clause" required>
 							<label for="inputAgreeClause" class="cr">위 약관에 동의합니다.</label>
 						</div>
 					</div>

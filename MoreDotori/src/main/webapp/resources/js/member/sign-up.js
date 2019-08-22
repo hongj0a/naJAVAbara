@@ -35,25 +35,22 @@ $(document).ready(function() {
 
   // add license select options
   var arrLicense = ['AFPK', 'CFP', 'FP', 'IFP', 'CPM', 'ChFC'];
-  for (i = 1; i <= 3; i++) {
-    var $selectName = $('select[name=license' + i + ']');
-    for (j = 1; j <= 6; j++) {
-      $selectName.append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
-    }
+  for (j = 1; j <= 6; j++) {
+    $('select[name=license]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
   }
 
   // add sns form
   $('.addSNS').on('click', function() {
-	var cntSNS = $('select[name*="sns-type"]').length;
+	var cntSNS = $('select[name="snsUrl"]').length;
 	if(cntSNS<5) {
 		$('.inputSNS').append(
 		  '<div class="input-group mb-1">' +
   	        '<div class="input-group-prepend">' +
-	          '<select class="form-control" name="sns-type' + (cntSNS+1) + '">' +
+	          '<select class="form-control" name="sns">' +
 	            '<option value="">SNS</option>' +
 	          '</select>' +
 	        '</div>' +
-	        '<input type="text" class="form-control" name="sns' + (cntSNS+1) + '" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
+	        '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
 	        '<div class="input-group-append">' +
 	          '<button class="btn btn-primary subSNS" type="button">' +
 	            '<i class="fas fa-minus"></i>' +
