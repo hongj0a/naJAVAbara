@@ -45,6 +45,13 @@ public class AbookSumServiceTests {
 	}
 
 	@Test
+	public void testSelectInDayS() {
+		log.info("#### 오늘 하루 총수입 ####");
+		long selectInDay = service.selectInDayS("inhee@naver.com", "2019/08/22");
+		log.info("===> 결과 : " + selectInDay);
+	}
+	
+	@Test
 	public void testReturnDateTest() {
 		log.info("#### 반환값 확인 테스트 ###");
 		long maxInDateSeq = service.selectMaxInDayS("inhee@naver.com", "2019/08");

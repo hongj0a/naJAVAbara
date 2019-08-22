@@ -216,13 +216,13 @@ public class BookController {
         long selMaxInday = abs_service.selectMaxInDayS(M_id, selectMonth);
         Inout io1 = inout_service.selectInoutSeqS(selMaxInday);
 		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
-		String maxInDay = transFormat.format(io1.getI_date());        
+		String maxInDay = transFormat.format(io1.getI_date());
         hm.put("maxInDay", maxInDay);
         
         long selMaxOutday = abs_service.selectMaxOutDayS(M_id, selectMonth);
         Inout io2 = inout_service.selectInoutSeqS(selMaxOutday);
 		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM/dd");
-		String maxOutDay = transFormat.format(io2.getI_date());        
+		String maxOutDay = transFormat2.format(io2.getI_date());        
         hm.put("maxOutDay", maxOutDay);
         
         hm.put("inMonth", abs_service.selectInMonthS(M_id, selectMonth));

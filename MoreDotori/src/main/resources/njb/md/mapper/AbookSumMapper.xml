@@ -9,7 +9,8 @@
 	</select>
 
 	<select id="selectInDay" resultType="long">
-		select sum(io.I_money) as sumInMoney
+		select case sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumInMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
