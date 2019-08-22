@@ -9,7 +9,7 @@
 	</select>
 
 	<select id="selectInDay" resultType="long">
-		select case sum(io.I_money) is null then 0
+		select case when sum(io.I_money) is null then 0
 		else sum(io.I_money) end as sumInMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
@@ -19,7 +19,8 @@
 	</select>	
 
 	<select id="selectOutDay" resultType="long">
-		select sum(io.I_money) as sumOutMoney
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumOutMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
@@ -28,7 +29,8 @@
 	</select>
 
 	<select id="selectAvgInDays" resultType="long">
-		select round(avg(io.I_money),-2) as avgInMoney
+		select case when round(avg(io.I_money),-2) is null then 0
+		else round(avg(io.I_money),-2) end as avgInMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
@@ -38,7 +40,8 @@
 	</select>
 	
 	<select id="selectAvgOutDays" resultType="long">
-		select round(avg(io.I_money),-2) as avgOutMoney
+		select case when round(avg(io.I_money),-2) is null then 0
+		else round(avg(io.I_money),-2) end as avgOutMoney
 		from inout io
 		join asset ass 
 		on io.A_seq=ass.A_seq 
