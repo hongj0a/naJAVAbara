@@ -114,7 +114,7 @@
                              		 <div id="sizesize" class="text-center project-main">
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
-										  	<form name='update' method='post' action='aList/update.do'>
+										  	<form name='update' method='post' action='aList/cont.do'>
 												<table>
 												  <tr>
 												  	<th>분류</th>
@@ -130,7 +130,8 @@
 														<td>${alist.a_nickname}</td>
 														<td>${alist.a_money}</td>
 														<td>${alist.a_memo}</td>
-			                                            <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+														<td><a href='aList/update.do?a_seq=${alist.a_seq}'>수정</a></td>
+			                                            <!-- <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
                                                     				 <div class="modal-header">
@@ -183,8 +184,9 @@
 			                                                        </div>
 			                                                  </div>
 			                                                </div>
-			                                            </div>
+			                                            </div> 
 			                                            <a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+			                                            -->
 														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 													</tr>
 													</c:forEach>

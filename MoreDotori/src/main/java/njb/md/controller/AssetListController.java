@@ -71,9 +71,15 @@ public class AssetListController {
 		model.addAttribute("list", service.contS(a_seq));
 	}
 	@GetMapping("/update.do")
-	public void update(@RequestParam("a_seq") long a_seq, Model model) {
+	public ModelAndView update(@RequestParam("a_seq") long a_seq, Model model) {
 		log.info("/update.do");
+		List<AssetList> list = service.listS();
 		model.addAttribute("list", service.contS(a_seq));
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("asset/assetUpdate");
+		mv.addObject("list", list);
+		
+		return mv;
 	}
 	@PostMapping("/update.do")
 	public String update(AssetList list) {
