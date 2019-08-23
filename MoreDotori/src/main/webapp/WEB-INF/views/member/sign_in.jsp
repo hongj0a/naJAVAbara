@@ -26,7 +26,7 @@
 			<div class="card">
 				<div class="card-body text-center">
 					<a href="/"><h2 class="mb-5">Logo Here</h2></a>
-					<form action="" method="post">
+					<form action="/login" method="post">
 						<div class="input-group mb-3">
 							<input type="text" name="userId" class="form-control"
 								placeholder="아이디">

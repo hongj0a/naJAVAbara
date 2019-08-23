@@ -13,6 +13,7 @@ public class Minfo {
 	
 	String zipCode;
 	String address;
+	String career;
 
 	ArrayList<String> license;
 	ArrayList<String> licenseNum;

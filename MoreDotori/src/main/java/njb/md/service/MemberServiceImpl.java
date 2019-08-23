@@ -13,15 +13,16 @@ import njb.md.mapper.MemberMapper;
 @Log4j
 @Service
 public class MemberServiceImpl implements MemberService {
-//	@Autowired
-//	private PasswordEncoder pwencoder;
+	@Autowired
+	private PasswordEncoder pwencoder;
 	
 	@Autowired
 	private MemberMapper mapper;
 	
 	public boolean joinMember(Member member, Expert expert) {
-//		String encoded = pwencoder.encode(member.getM_password());
-//		member.setM_password(encoded);
+		String encoded = pwencoder.encode(member.getM_password());
+		member.setM_password(encoded);
+		
 		int ie_result = -1;
 		int im_result = mapper.insertMember(member);
 		
@@ -29,8 +30,6 @@ public class MemberServiceImpl implements MemberService {
 		mauth.setM_id(member.getM_id());
 		
 		switch(member.getC_member()) {
-			case "MB000":
-				mauth.setMa_auth("ROLE_ADMIN"); break;
 			case "MB001":
 				mauth.setMa_auth("ROLE_NORMAL"); break;
 			case "MB002":

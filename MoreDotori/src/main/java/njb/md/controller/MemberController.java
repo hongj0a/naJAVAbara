@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,26 +44,23 @@ public class MemberController {
 		return map;
 	}
 	
-	@PostMapping("/join.do")
+	@RequestMapping("/join.do")
 	public String join(Member member, Expert expert, Minfo minfo) {
-		log.info("# member: " + member);
-		log.info("# expert: " + expert);
-		log.info("# minfo: " + minfo);
-		
 		String birth = "";
 		for(String add : minfo.getBirth()) birth += add;
 		member.setM_birth(birth);
 		
 		if(minfo.getChooseImg() != null)
 			member.setM_profile(fservice.upload(minfo.getChooseImg()));
-
-		String address = "";
+		
 		if(member.getC_member().equals("MB002")) {
 			ArrayList<String> license = new ArrayList<String>();
 			ArrayList<String> sns = new ArrayList<String>();
 
-			address = minfo.getZipCode() + "-" + minfo.getAddress();
+			String address = minfo.getZipCode() + "-" + minfo.getAddress();
 			expert.setE_address(address);
+			
+			expert.setE_career(Integer.parseInt(minfo.getCareer()));
 			
 			ArrayList<String> tmp = minfo.getLicense();
 			ArrayList<String> tmpVal = minfo.getLicenseNum();

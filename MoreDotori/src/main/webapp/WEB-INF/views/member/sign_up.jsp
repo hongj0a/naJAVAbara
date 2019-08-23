@@ -111,7 +111,7 @@
 						<div class="form-group input-group mb-4">
 							<input type="text" class="form-control col-sm-4" id="inputJob" name="e_job" placeholder="직업" ${imgRequired}>
 							<input type="text" class="form-control col-sm-4" id="inputPosition" name="e_position" placeholder="직급" ${imgRequired}>
-							<input type="text" class="form-control col-sm-4" id="inputCareer" name="e_career" placeholder="경력(년차)" ${imgRequired}>
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)" ${imgRequired}>
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">

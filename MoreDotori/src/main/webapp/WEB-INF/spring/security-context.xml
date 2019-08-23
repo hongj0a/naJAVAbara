@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
 	<!-- security:http pattern="/resources/**" security="none"></security:http -->
 	<security:http auto-config="true" use-expressions="true">
 		<security:csrf disabled="true"/>
@@ -20,7 +22,6 @@
 			username-parameter="userId"
 			password-parameter="userPwd"
 			default-target-url="/"
-			login-processing-url=""
 			authentication-failure-url="/signin?err=true" />
 		<!-- default-target-url : 로그인 성공시 호출할 주소 
 			login-processing-url : 로그인 페이지 form에 action에 입력할 주소 지정
@@ -42,6 +43,7 @@
 				<security:user name="expert" password="expert" authorities="ROLE_EXPERT"/>
 			</security:user-service> -->
 			<security:jdbc-user-service data-source-ref="dataSource" users-by-username-query="" authorities-by-username-query=""/>
+			<security:password-encoder ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>
