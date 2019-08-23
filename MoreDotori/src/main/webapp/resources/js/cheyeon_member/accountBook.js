@@ -95,7 +95,7 @@
 							   content += "<td class='account_tab_td7'>";
 							   //content += "<span onclick=''>"+ "수정" +"</span>";
 							   //content += "<span>/</span>";
-							   content += "<span onclick='' class='delete_trs_row'>"+ "삭제" +"</span>";
+							   content += "<span class='delete_trs_row'>"+ "삭제" +"</span>";
 							   content += "</td>";
 							   content += "</tr>";						   
 						   }else{

@@ -60,7 +60,9 @@
 								                            	<option>데이터를 가져오지 못했어요</option>
 								                            </c:if>
 								                            <c:forEach items="${codelistIO}" var="io_option">
-								                            	<option value="${io_option.c_code}"><c:out value="${io_option.c_name}"/></option>
+								                            	<c:if test="${io_option.c_code ne 'IO003'}">
+								                            		<option value="${io_option.c_code}"><c:out value="${io_option.c_name}"/></option>
+								                            	</c:if>
 								                            </c:forEach>
 								                        </select>												    				
 									    			</td>
@@ -70,16 +72,16 @@
 								    			<td class="form_select1">
 							                        <select name="" class="inout_form">
 							                            <option value="">자산종류를 선택해주세요</option>
-							                            <option>현금</option>
-							                            <option>국민카드</option>
-							                            <option>우리은행</option>
+							                            <option value="5">돼지저금통</option>
+							                            <option value="6">지갑</option>
+							                            <option value="7">국민카드</option>
 							                        </select>												    				
 								    			</td>
 								    		</tr>
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">분류</td>
 								    			<td class="form_select2">
-							                        <select name="" class="inout_form">
+							                        <select name="io_categori" class="out_form">
 							                            <option value="">내역 분류를 선택해주세요</option>
 							                            <c:if test="${empty codelistIN}">
 							                            	<option>수입옵션 데이터를 가져오지 못했어요</option>
@@ -148,9 +150,10 @@
 							    			<td class="form_select1">
 						                        <select name="" class="trs_form">
 						                            <option value="">출금 자산종류를 선택해주세요</option>
-						                            <option>현금</option>
-						                            <option>국민카드</option>
-						                            <option>우리은행</option>
+						                            <option value="5">돼지저금통</option>
+						                            <option value="6">지갑</option>
+						                            <option value="7">국민카드</option>
+						                            <option value="8">국민통장</option>
 						                        </select>												    				
 							    			</td>
 							    		</tr>
@@ -159,9 +162,10 @@
 							    			<td class="form_select2">
 						                        <select name="" class="trs_form">
 						                            <option value="">입금 자산종류를 선택해주세요</option>
-						                            <option>현금</option>
-						                            <option>국민카드</option>
-						                            <option>우리은행</option>
+						                            <option value="6">지갑</option>
+						                            <option value="7">국민카드</option>
+						                            <option value="5">돼지저금통</option>
+						                            <option value="8">국민통장</option>
 						                        </select>												    				
 							    			</td>
 							    		</tr>
@@ -227,8 +231,8 @@
                             			</span>
                             		</div>
                             		<div class="card tablesCard">
-                            			<table>
-							    			<tr>
+                            			<table class="account_table">
+							    			<thead>
 							    				<th>날짜</th>
 							    				<th>구분</th>
 							    				<th>자산</th>
@@ -236,7 +240,8 @@
 							    				<th>내용</th>
 							    				<th>금액</th>
 							    				<th>기타</th>
-						    				</tr>
+							    			</thead>
+								    		<tbody id="account_table_body">
 						    				<tr>
 							    				<td>2019년 07월 21일</td>
 							    				<td>지출</td>
@@ -253,7 +258,8 @@
 							    				<td>현금이체</td>
 							    				<td>15,000</td>
 							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">수정</button>/<span>삭제</span></td>
-						    				</tr> 						    				                         				
+						    				</tr>
+						    				</tbody>					    				                         				
                             			</table>
                             		</div>
                             	</div>
@@ -270,7 +276,7 @@
 		<jsp:include page="../main/footer.jsp"></jsp:include>   
     
     <!-- [ Main Content ] end -->
-    <script src="${pageContext.request.contextPath}/js/cheyeon_member/jquery.monthpicker-0.1.js"></script>
+    <%-- <script src="${pageContext.request.contextPath}/js/cheyeon_member/jquery.monthpicker-0.1.js"></script> --%>
 	<script src="${pageContext.request.contextPath}/js/cheyeon_member/accountBookM.js"></script>
 	<script>
        	//메뉴

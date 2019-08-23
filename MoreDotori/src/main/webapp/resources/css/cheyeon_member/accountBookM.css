@@ -55,7 +55,6 @@
 
 .tablesCard table{
 	width:100%;
-	line-height: 30px;
 	text-align: center;
 	font-size: 13.5px;
 }
@@ -65,13 +64,6 @@
 	border: 1px solid #80808047;
 }
 
-.tablesCard table th:nth-child(2), .tablesCard table td:nth-child(2), .tablesCard table th:last-child, .tablesCard table td:last-child{
-	width: 10.2857142857%;
-}
-
-.tablesCard table th:first-child, .tablesCard table td:first-child, .tablesCard table th:nth-child(5), .tablesCard table td:nth-child(5){
-	width: 18.2857142857%;
-}
 
 .row_setting .btn{
 	padding: 0px;
