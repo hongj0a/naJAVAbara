@@ -7,8 +7,7 @@
 <meta charset="utf-8">
 
 <!-- fontawesome icon -->
-<link rel="stylesheet"
-	href="fonts/fontawesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
 <!-- vendor css -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/member/member.css">
@@ -36,7 +35,7 @@
 			</div>
 			<div class="card-block">
 				<form id="sign-up" name="sign-up" action="/join.do"  method="post" enctype="multipart/form-data">
-					<input type="hidden" name="c_member" value="${mCode }">
+					<input type="hidden" name="c_member" value="${mCode}">
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="text-center form-group">
@@ -110,9 +109,9 @@
 					</div>
 					<div id="expert-details" style="${dtStyle}">
 						<div class="form-group input-group mb-4">
-							<input type="text" class="form-control col-sm-4" id="inputJob" name="e_job" placeholder="직업" required>
-							<input type="text" class="form-control col-sm-4" id="inputPosition" name="e_position" placeholder="직급" required>
-							<input type="text" class="form-control col-sm-4" id="inputCareer" name="e_career" placeholder="경력(년차)" required>
+							<input type="text" class="form-control col-sm-4" id="inputJob" name="e_job" placeholder="직업" ${imgRequired}>
+							<input type="text" class="form-control col-sm-4" id="inputPosition" name="e_position" placeholder="직급" ${imgRequired}>
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="e_career" placeholder="경력(년차)" ${imgRequired}>
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">
@@ -126,7 +125,7 @@
 								<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 							</div>
 							<div>
-								<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" placeholder="상세주소" required>
+								<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" placeholder="상세주소" ${imgRequired}>
 							</div>
 						</div>
 						<div class="form-group mb-4">
@@ -136,7 +135,7 @@
 										<option value="">자격증1</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense1" name="licenseNum" placeholder="자격증 번호" required>
+								<input type="text" class="form-control" id="inputLicense1" name="licenseNum" placeholder="자격증 번호" ${imgRequired}>
 							</div>
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
@@ -172,7 +171,7 @@
 							</div>
 						</div>
 						<div class="form-group mb-4">
-							<textarea class="form-control" rows="8" aria-label="With textarea" name="e_introduce" placeholder="자기소개" required></textarea>
+							<textarea class="form-control" rows="8" aria-label="With textarea" name="e_introduce" placeholder="자기소개" ${imgRequired}></textarea>
 						</div>
 					</div>
 					<div class="form-group mb-4">
@@ -349,8 +348,8 @@
 	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
 	<script src="plugins/jquery-validation/js/messages_ko.js"></script>
 	
-	<script src="js/member/sign-up.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="js/member/sign-up.js"></script>
 </body>
 
 </html>

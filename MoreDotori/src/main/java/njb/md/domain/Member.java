@@ -24,4 +24,5 @@ public class Member {
 	int m_accrue;		//경고누적수
 	Date m_cdate;		//정지해제일
 	String m_reason;	//정지사유
+	int enabled;		//활성화여부
 }

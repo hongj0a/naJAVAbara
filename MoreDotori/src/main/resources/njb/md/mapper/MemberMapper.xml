@@ -5,11 +5,13 @@
 <mapper namespace="njb.md.mapper.MemberMapper">
 	<insert id="insertMember" parameterType="njb.md.domain.Member">
       insert into MEMBER(M_ID, M_NAME, M_NICKNAME, M_PASSWORD, M_PHONE, M_BIRTH, M_GENDER, M_PROFILE, C_MEMBER)
-      values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile}, #{c_member})
+      values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile, jdbcType=VARCHAR}, #{c_member})
  	</insert>
  	<insert id="insertExpert" parameterType="njb.md.domain.Expert">
- 	  insert into EXPERT values(#{m_id}, #{e_job}, #{e_position}, #{e_career}, #{e_address}, #{e_introduce}, #{e_starpoint},
- 	  #{e_license1}, #{e_license2}, #{e_license3}, #{e_sns1}, #{e_sns2}, #{e_sns3}, #{e_sns4}, #{e_sns5})
+ 	  insert into EXPERT values(#{m_id}, #{e_job}, #{e_position}, #{e_career}, #{e_address}, #{e_detailaddr}, #{e_introduce},
+ 	  #{e_starpoint}, #{e_license1, jdbcType=VARCHAR}, #{e_license2, jdbcType=VARCHAR}, #{e_license3, jdbcType=VARCHAR},
+ 	  #{e_sns1, jdbcType=VARCHAR}, #{e_sns2, jdbcType=VARCHAR}, #{e_sns3, jdbcType=VARCHAR}, #{e_sns4, jdbcType=VARCHAR},
+ 	  #{e_sns5, jdbcType=VARCHAR})
  	</insert>
 	<insert id="authMember" parameterType="njb.md.domain.Mauth">
 	  insert into MAUTH values(#{m_id}, #{ma_auth})

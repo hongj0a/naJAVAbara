@@ -45,51 +45,62 @@ public class MemberController {
 	
 	@PostMapping("/join.do")
 	public String join(Member member, Expert expert, Minfo minfo) {
-		String birth = "";
-		ArrayList<String> license = new ArrayList<String>();
-		ArrayList<String> sns = new ArrayList<String>();
+		log.info("# member: " + member);
+		log.info("# expert: " + expert);
+		log.info("# minfo: " + minfo);
 		
+		String birth = "";
 		for(String add : minfo.getBirth()) birth += add;
 		member.setM_birth(birth);
 		
-		String address = minfo.getZipCode() + "-" + minfo.getAddress();
-		expert.setE_address(address);
-		
-		ArrayList<String> tmp = minfo.getLicense();
-		ArrayList<String> tmpVal = minfo.getLicenseNum();
-		for(int i=0; i<tmp.size(); i++) {
-			if(tmp.get(i) != null && !(tmpVal.get(i).equals(""))) 
-				license.add(tmp.get(i) + "-" + tmpVal.get(i));
-		}
-		switch(license.size()) {
-			case 3: expert.setE_license3(license.get(2));
-			case 2: expert.setE_license2(license.get(1));
-			case 1: expert.setE_license1(license.get(0));
-		}
-		
-		tmp = minfo.getSns();
-		tmpVal = minfo.getSnsUrl();
-		for(int i=0; i<tmp.size(); i++) {
-			if(tmp.get(i) != null && !(tmpVal.get(i).equals("")))
-				sns.add(tmp.get(i) + "-" + tmpVal.get(i));
-		}
-		
-		switch(license.size()) {
-			case 5: expert.setE_license3(license.get(4));
-			case 4: expert.setE_license2(license.get(3));
-			case 3: expert.setE_license1(license.get(2));
-			case 2: expert.setE_license2(license.get(1));
-			case 1: expert.setE_license1(license.get(0));
-			default: break;
+		if(minfo.getChooseImg() != null)
+			member.setM_profile(fservice.upload(minfo.getChooseImg()));
+
+		String address = "";
+		if(member.getC_member().equals("MB002")) {
+			ArrayList<String> license = new ArrayList<String>();
+			ArrayList<String> sns = new ArrayList<String>();
+
+			address = minfo.getZipCode() + "-" + minfo.getAddress();
+			expert.setE_address(address);
+			
+			ArrayList<String> tmp = minfo.getLicense();
+			ArrayList<String> tmpVal = minfo.getLicenseNum();
+			for(int i=0; i<tmp.size(); i++) {
+				if(tmp.get(i) != null && !(tmpVal.get(i).equals(""))) 
+					license.add(tmp.get(i) + "-" + tmpVal.get(i));
+			}
+			
+			log.info("# license: " + license);
+			switch(license.size()) {
+				case 3: expert.setE_license3(license.get(2));
+				case 2: expert.setE_license2(license.get(1));
+				case 1: expert.setE_license1(license.get(0));
+			}
+			
+			tmp = minfo.getSns();
+			tmpVal = minfo.getSnsUrl();
+			for(int i=0; i<tmp.size(); i++) {
+				if(tmp.get(i) != null && !(tmpVal.get(i).equals("")))
+					sns.add(tmp.get(i) + "-" + tmpVal.get(i));
+			}
+			
+			log.info("# sns: " + sns);
+			switch(sns.size()) {
+				case 5: expert.setE_sns5(sns.get(4));
+				case 4: expert.setE_sns4(sns.get(3));
+				case 3: expert.setE_sns3(sns.get(2));
+				case 2: expert.setE_sns2(sns.get(1));
+				case 1: expert.setE_sns1(sns.get(0));
+			}
 		}
 		
 		log.info("# member: " + member);
 		log.info("# expert: " + expert);
 		log.info("# minfo: " + minfo);
-//		
-//		member.setM_profile(fservice.upload(minfo.getChooseImg()));
-//		mservice.joinMember(member, expert);
-//		
+		
+		mservice.joinMember(member, expert);
+		
 		return "redirect:/";
 	}
 }
