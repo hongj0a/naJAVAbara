@@ -77,8 +77,8 @@
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
 													    				<input type="text" class="form_select_date_val form_select_year_val out_form" size="4" maxlength="4" name="io_yyyy" value="" readonly>년 
-													    				<input type="text" class="form_select_date_val form_select_month_val out_form" size="2" maxlength="2" name="io_mmmm" value="" readonly>월 
-													    				<input type="text" class="form_select_date_val form_select_day_val out_form" size="2" maxlength="2" name="io_dddd" value="" readonly>일
+													    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val out_form" size="2" maxlength="3" name="io_mmmm" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val out_form" size="2" maxlength="3" name="io_dddd" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_out_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
@@ -165,8 +165,8 @@
 													    			<td class="form_title">날짜</td>
 													    			<td class="form_select_date">
 													    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="trs_yyyy" value="" readonly>년 
-													    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="trs_mmmm" value="" readonly>월 
-													    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="trs_dddd" value="" readonly>일
+													    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val trs_form" size="3" maxlength="2" name="trs_mmmm" value="" readonly>월 
+													    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val trs_form" size="3" maxlength="2" name="trs_dddd" value="" readonly>일
 													    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 													    				<span class="badge badge-pill badge-primary badge_save_date badge_save_date_trs_form">저장</span>
 																		<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 

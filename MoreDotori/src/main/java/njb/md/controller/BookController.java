@@ -239,6 +239,33 @@ public class BookController {
         return hm;
 	}
 	
+	@RequestMapping(value="/book/chartData.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<String,List<Long>> getChartData(String M_id, String yyyy, HttpServletRequest request) throws Exception{
+		log.info("### 차트데이터를 가져올게욘 ####");
+		
+        HashMap<String,List<Long>> hm = new HashMap<String,List<Long>>();
+        List<Long> inData = new ArrayList<Long>();
+        List<Long> outData = new ArrayList<Long>();
+        
+        for(int i=1; i<=12; i++) {
+        	if(i<10) {
+        		String mon = "0"+i;
+        		inData.add(abs_service.selectInMonthS(M_id, yyyy+"/"+mon));
+        		outData.add(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon));
+        	}else {
+        		inData.add(abs_service.selectInMonthS(M_id, yyyy+"/"+i));
+        		outData.add(abs_service.selectOutMonthS(M_id, yyyy+"/"+i));
+        	}
+        }
+        
+        hm.put("inData", inData);
+        hm.put("outData", outData);        
+        
+        return hm;
+	}
+		
+	
 	@GetMapping("/book2")
 	public ModelAndView myAccountMonthlyBook() {
 		log.info("#### 월가계부 ####");

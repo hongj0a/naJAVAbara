@@ -26,6 +26,49 @@
     	    return str;
        };
 
+       //그래프
+       $.fn.chartUpdate = function(inArray, outArray){
+       Highcharts.chart('container', {
+    	    title: {
+    	        text: ''
+    	    },
+    	    subtitle: {
+    	        text: ''
+    	    },
+    	    xAxis: {
+    	        categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+    	    },
+    	    series: [{
+    	        name: '수입',
+    	        data: [inArray[0], inArray[1], inArray[2], inArray[3], inArray[4], inArray[5], inArray[6], inArray[7], inArray[8], inArray[9], inArray[10], inArray[11]]
+    	    }, {
+    	        name: '지출',
+    	        data: [outArray[0], outArray[1], outArray[2], outArray[3], outArray[4], outArray[5], outArray[6], outArray[7], outArray[8], outArray[9], outArray[10], outArray[11]]
+    	    }]
+    	});
+       }
+       
+       //차트에 출력할 값 가져오기 (월별)
+       $.fn.getChartData = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/chartData.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+			   },
+			   success : function(data){
+				  var inArray = data.inData;
+				  var outArray = data.outData;
+				  $.fn.chartUpdate(inArray, outArray);
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });       	   
+       }
+       
        //가계부 사용 목록 가져오기 (일별)
        $.fn.getInOutTrs = function(){
     	   $.ajax({
@@ -189,6 +232,7 @@
     		
     		$.fn.getInOutTrs();
     		$.fn.getSum();
+    		$.fn.getChartData();
     		$.fn.animeTitle();
        };
        
@@ -220,6 +264,7 @@
 		  
 		  $.fn.getInOutTrs();
 		  $.fn.getSum();
+		  $.fn.getChartData();
 		  $.fn.animeTitle();
        });
        
@@ -277,6 +322,7 @@
     				   if( data == "success"){
     					   $.fn.getInOutTrs();
     					   $.fn.getSum();
+    					   $.fn.getChartData();
     				   }else{
     					   alert('입력실패');
     				   }
@@ -316,6 +362,7 @@
     				   if( data == "success"){
     					   $.fn.getInOutTrs();
     					   $.fn.getSum();
+    					   $.fn.getChartData();
     				   }else{
     					   alert('입력실패');
     				   }
@@ -377,9 +424,32 @@
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
 		
+		//한자리 입력 시 앞에 0 붙이기
+		$.fn.leadingZeros = function(date, num){
+			 var zero = '';
+			 date = date.toString();
+			
+			 if (date.length < num) {
+			  for (i = 0; i < num - date.length; i++)
+			   zero += '0';
+			 }
+			 return zero + date;			
+		}
+
 	    //입력이벤트(날짜입력~숫자만)
 		$(".form_select_date_val").on("keyup", function() {
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
+		
+		//입력이벤트(두자리만)
+		$(".form_select_date_val2").on("keyup", function() {
+		    if($(this).val()>0 && $(this).val()<10){
+			    $(this).val($.fn.leadingZeros($(this).val(),2));
+		    }
+		    
+		    if($(this).val().length==3){
+		    	$(this).val($(this).val().substr(1,2));
+		    }
 		});
 
 	   /* Form 저장 및 내용 지우기 이벤트  */
@@ -513,6 +583,7 @@
 
      		 $.fn.getInOutTrs();
 		     $.fn.getSum();
+		     $.fn.getChartData();
     	 }    		  
        });
        
@@ -554,6 +625,7 @@
    	  	  	 
    	  	  	 $.fn.getInOutTrs();
 			 $.fn.getSum();
+			 $.fn.getChartData();
     	 }    		  
        });       
        
@@ -622,6 +694,7 @@
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
 					   $.fn.getSum();
+					   $.fn.getChartData();
 				   }else{
 					   alert('삭제실패');
 				   }
@@ -650,6 +723,7 @@
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
 					   $.fn.getSum();
+					   $.fn.getChartData();
 				   }else{
 					   alert('삭제실패');
 				   }
@@ -715,31 +789,4 @@
     	    if (event.keyCode === 13) {
     	        event.preventDefault();
     	    }
-    	});
-       
-       
-       //그래프
-       Highcharts.chart('container', {
-    	    title: {
-    	        text: ''
-    	    },
-
-    	    subtitle: {
-    	        text: ''
-    	    },
-
-
-    	    xAxis: {
-    	        categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
-    	    },
-
-    	    series: [{
-    	        name: '수입',
-    	        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-    	    }, {
-    	        name: '지출',
-    	        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-    	    }]
     	});
