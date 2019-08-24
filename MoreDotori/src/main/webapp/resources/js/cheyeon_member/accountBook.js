@@ -85,7 +85,7 @@
 				   if(data.length > 0){
 					   for(i=0; i<data.length; i++){
 						   if(data[i].C_inout == "이체"){
-							   content += "<tr>";
+							   content += "<tr class='trstr'>";
 							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
 							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
@@ -99,7 +99,12 @@
 							   content += "</td>";
 							   content += "</tr>";						   
 						   }else{
-							   content += "<tr>";
+							   if(data[i].C_inout == "수입"){
+								   content += "<tr class='intr'>";
+							   }else{
+								   content += "<tr class='outtr'>";
+							   }
+							   
 							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
 							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
 							   content += "<td class='account_tab_td3'>"+ data[i].IOT_asset +"</td>";

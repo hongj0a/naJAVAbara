@@ -326,6 +326,26 @@
 	width: 8%;
 }
 
+#account_table_body tr{
+  opacity: .85;
+  transition: 0.3s;
+}
+
+#account_table_body .intr:hover{
+	opacity: 1;
+	background-color: #d1f2ff;
+}
+
+#account_table_body .outtr:hover{
+	opacity: 1;
+	background-color: #ffe9c0;
+}
+
+#account_table_body .trstr:hover{
+	opacity: 1;
+	background-color: #ebe0ff;
+}
+
 .form_money_out{
 	color: #F29D35;
 }

@@ -239,26 +239,8 @@
 							    				<th>분류</th>
 							    				<th>내용</th>
 							    				<th>금액</th>
-							    				<th>기타</th>
 							    			</thead>
 								    		<tbody id="account_table_body">
-						    				<tr>
-							    				<td>2019년 07월 21일</td>
-							    				<td>지출</td>
-							    				<td>현금</td>
-							    				<td>문화생활비</td>
-							    				<td>영화존내봤음</td>
-							    				<td>5,000</td>
-							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inoutModal">수정</button>/<span>삭제</span></td>
-						    				</tr>
-						    				<tr>
-							    				<td>2019년 07월 21일</td>
-							    				<td>이체</td>
-							    				<td colspan="2"><span>현금</span> ==> <span>농협적금</span></td>
-							    				<td>현금이체</td>
-							    				<td>15,000</td>
-							    				<td class="row_setting"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transferModal">수정</button>/<span>삭제</span></td>
-						    				</tr>
 						    				</tbody>					    				                         				
                             			</table>
                             		</div>

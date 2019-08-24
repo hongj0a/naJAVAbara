@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -197,7 +198,7 @@ public class BookController {
         return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value="/book2/iotList.do", produces="application/json; charset=utf-8")
+	@RequestMapping(value="/book2/iotMList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<Object> getInoutTrsList(String M_id, String yyyy, String mmmm, HttpServletRequest request) throws Exception{
 		log.info("### 리스트를 가져올게욘 ####");
@@ -216,8 +217,8 @@ public class BookController {
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
 				
-	    		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
-	    		String getDay = transFormat.format(ts.getT_date());				
+	    		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일",Locale.KOREA);
+	    		String getDay = transFormat.format(ts.getT_date());	
 				
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();
 				hm.put("IOT_seq", ts.getT_seq());
@@ -225,16 +226,14 @@ public class BookController {
 				hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
 				hm.put("IOT_asset", ts.getA_seq_in());
 				hm.put("IOT_assetgori", ts.getA_seq_out());
-				hm.put("IOT_date", ts.getT_date());
 				hm.put("IOT_money", ts.getT_money());
 				hm.put("IOT_memo", ts.getT_memo());
 				hmlist.add(hm);
-				
 			//inout이면
 			}else{
 				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
 
-	    		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
+	    		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 E요일",Locale.KOREA);
 	    		String getDay2 = transFormat2.format(io.getI_date());					
 				
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();
@@ -243,7 +242,6 @@ public class BookController {
 				hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
 				hm.put("IOT_asset", io.getA_seq());
 				hm.put("IOT_assetgori", code_service.selectCodeS(io.getC_categori()).getC_name());
-				hm.put("IOT_date", io.getI_date());
 				hm.put("IOT_money", io.getI_money());
 				hm.put("IOT_memo", io.getI_memo());
 				hmlist.add(hm);

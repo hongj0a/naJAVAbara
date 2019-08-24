@@ -77,7 +77,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	$.fn.getInOutTrs = function(year, month){
  	   $.ajax({
 		   type: "GET",
-		   url : "book2/iotList.do",
+		   url : "book2/iotMList.do",
 		   dataType : "json",
 		   data : { M_id: "inhee@naver.com",
 			   		yyyy: year,
@@ -89,7 +89,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 			   if(data.length > 0){
 				   for(i=0; i<data.length; i++){
 					   if(data[i].C_inout == "이체"){
-						   content += "<tr>";
+						   content += "<tr class='trstr' data-toggle='modal' data-target='#transferModal'>";
 						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
 						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
 						   content += "<td class=''>"+ data[i].C_inout + "</td>";
@@ -97,13 +97,14 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 						   content += data[i].IOT_asset +"</span></td>";
 						   content += "<td class=''>"+ data[i].IOT_memo +"</td>";
 						   content += "<td class=''>"+ $.fn.comma(data[i].IOT_money) +"</td>";
-						   content += "<td class='row_setting'>";
-						   content += "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#transferModal'>수정</button>";
-						   content += "/<span onclick='' class='delete_trs_row'>"+ "삭제" +"</span>";
-						   content += "</td>";
 						   content += "</tr>";		   
 					   }else{
-						   content += "<tr>";
+						   if(data[i].C_inout == "수입"){
+							   content += "<tr class='intr' data-toggle='modal' data-target='#inoutModal'>";
+						   }else{
+							   content += "<tr class='outtr' data-toggle='modal' data-target='#inoutModal'>";
+						   }						   
+						   
 						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
 						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
 						   content += "<td class=''>"+ data[i].C_inout +"</td>";
@@ -116,11 +117,6 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 						   }else{
 							   content += "<td class='form_money_out'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
 						   }
-						   
-						   content += "<td class='row_setting'>";
-						   content += "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#inoutModal'>수정</button>"
-						   content += "/<span class='delete_io_row'>"+ "삭제" +"</span>";
-						   content += "</td>";
 						   content += "</tr>";		   
 					   }
 				   }
