@@ -12,12 +12,12 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
-	<link rel="stylesheet" href="css/assetManagement/assetm.css">
+	<link rel="stylesheet" href="../css/assetManagement/assetm.css">
 
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
+	<jsp:include page="../main/header4.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -34,7 +34,7 @@
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
 										  	<form name='update' method='post' action='aList/update.do'>
-												  	<c:forEach items="${list}" var="alist">
+												  	
 			                                            <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
@@ -48,7 +48,7 @@
 			                                                         &nbsp;&nbsp;
 			                                                     		<span>ID  : </span>
 			                                                     		&nbsp;&nbsp;
-			                                                        	<input id="m_id" type="hidden" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
+			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${list.m_id}" value='${list.m_id}' readonly>
 			                                                        </div>
 			                                                        </br>
 			                                            			<div class="col-12">
@@ -65,19 +65,19 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${alist.a_nickname}'>
+			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${list.a_nickname}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${alist.a_money}'>
+			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${list.a_money}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${alist.a_memo}'>
+			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${list.a_memo}'>
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
@@ -89,7 +89,7 @@
 			                                                </div>
 			                                            </div>
 													</tr>
-													</c:forEach>
+													
 											</form>
                               		   </div>
                               		</div>
@@ -103,11 +103,11 @@
             </div>
         </div>
     </div>
-    <jsp:include page="../main/footer.jsp"></jsp:include>
+    <jsp:include page="../main/footer2.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
 
     <!-- Todo Js -->
-    <script src="plugins/todo/js/todo.js"></script>
+    <script src="../plugins/todo/js/todo.js"></script>
     <script>
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');

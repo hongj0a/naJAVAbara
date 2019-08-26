@@ -130,8 +130,10 @@
 														<td>${alist.a_nickname}</td>
 														<td>${alist.a_money}</td>
 														<td>${alist.a_memo}</td>
-														<td><a href='aList/update.do?a_seq=${alist.a_seq}'>수정</a></td>
-			                                            <!-- <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+														 <a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+													</c:forEach>
+			                                             <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
                                                     				 <div class="modal-header">
@@ -144,7 +146,7 @@
 			                                                         &nbsp;&nbsp;
 			                                                     		<span>ID  : </span>
 			                                                     		&nbsp;&nbsp;
-			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}' readonly>
+			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${list.m_id}" value='${list.m_id}' readonly>
 			                                                        	
 			                                                        </div>
 			                                                        </br>
@@ -162,19 +164,19 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${alist.a_nickname}'>
+			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${list.a_nickname}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${alist.a_money}'>
+			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${list.a_money}'>
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${alist.a_memo}'>
+			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${list.a_memo}'>
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
@@ -185,11 +187,7 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div> 
-			                                            <a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
-			                                            -->
-														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
-													</tr>
-													</c:forEach>
+			                                           </tr>
 											</table>
 											</form>
                               		   </div>
