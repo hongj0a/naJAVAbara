@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
 
 .txt_right{
 	text-align: right;
@@ -172,4 +173,14 @@
 
 #inoutModal, #transferModal{
     padding-top: 4%;
+}
+
+.noData_txt{
+	font-size: 25px;
+	padding-top: 30px;
+	font-family: 'Jua', sans-serif;
+}
+
+.noData_txt + img {
+	padding-bottom: 30px;
 }

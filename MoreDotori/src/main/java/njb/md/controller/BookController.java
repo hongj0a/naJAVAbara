@@ -82,7 +82,7 @@ public class BookController {
 		log.info("#### 가계부입력(수입/지출) ####");
 
 		//날짜합치기
-		String ioDateS = iof.getIo_yyyy()+"-"+iof.getIo_mmmm()+"-"+iof.getIo_dddd();
+		String ioDateS = iof.getIo_yyyy().trim()+"-"+iof.getIo_mmmm().trim()+"-"+iof.getIo_dddd().trim();
 		Date ioDate = Date.valueOf(ioDateS);
 		log.info(ioDate);
 		

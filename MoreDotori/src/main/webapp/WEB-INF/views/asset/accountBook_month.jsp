@@ -45,8 +45,8 @@
 								    			<td class="form_title">날짜</td>
 								    			<td class="form_select_date">
 								    				<input type="text" class="form_select_date_val form_select_year_val inout_form" size="4" maxlength="4" name="io_yyyy" value="" readonly>년 
-								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val inout_form" size="2" maxlength="2" name="io_mmmm" value="" readonly>월 
-								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val inout_form" size="2" maxlength="2" name="io_dddd" value="" readonly>일
+								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val inout_form" size="3" maxlength="3" name="io_mmmm" value="" readonly>월 
+								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val inout_form" size="3" maxlength="3" name="io_dddd" value="" readonly>일
 								    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 								    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
 													<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
@@ -55,7 +55,7 @@
 								    		<tr>
 								    			<td class="form_inout">대분류</td>
 									    			<td class="form_select0">
-								                        <select name="" class="inout_form">
+								                        <select name="io_inout" class="inout_form">
 								                            <option value="">대분류를 선택해주세요</option>
 								                            <c:if test="${empty codelistIO}">
 								                            	<option>데이터를 가져오지 못했어요</option>
@@ -71,7 +71,7 @@
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">자산</td>
 								    			<td class="form_select1">
-							                        <select name="" class="inout_form">
+							                        <select name="io_asset" class="inout_form">
 							                            <option value="">자산종류를 선택해주세요</option>
 							                            <option value="5">돼지저금통</option>
 							                            <option value="6">지갑</option>
@@ -103,13 +103,13 @@
 								    		<tr class="inout_form_txt">
 								    			<td class="form_title">금액</td>
 								    			<td class="form_money">
-									    			<input type="text" placeholder="금액을 기입해주세요" name="" class="inout_form" numberOnly>
+									    			<input type="text" placeholder="금액을 기입해주세요" name="io_money" class="inout_form" numberOnly>
 								    			</td>
 								    		</tr>
 								    		<tr class="inout_form_txtarea">
 								    			<td class="form_title">내용</td>
 								    			<td class="form_cont">
-													<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="inout_form"></textarea>												    			
+													<textarea rows="2" placeholder="내용을 기입해주세요" name="io_memo" class="inout_form"></textarea>												    			
 								    			</td>
 								    		</tr>
 								    	</table>
@@ -262,12 +262,14 @@
     
     <!-- [ Main Content ] end -->
     <%-- <script src="${pageContext.request.contextPath}/js/cheyeon_member/jquery.monthpicker-0.1.js"></script> --%>
-	<script src="${pageContext.request.contextPath}/js/cheyeon_member/accountBookM.js"></script>
 	<script>
-       	//메뉴
-		$("#menu1").addClass('active');
-		$("#menu1").addClass('pcoded-trigger');
-		$("#menu1_1").addClass('active');
+     //메뉴
+	 $("#menu1").addClass('active');
+	 $("#menu1").addClass('pcoded-trigger');
+	 $("#menu1_1").addClass('active');
+
+     var contextPath = "${pageContext.request.contextPath}";
 	</script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/accountBookM.js"></script>
 </body>
 </html>

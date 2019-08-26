@@ -107,7 +107,13 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 						   
 						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
 						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
-						   content += "<td class=''>"+ data[i].C_inout +"</td>";
+						   
+						   if(data[i].C_inout == "수입"){
+							   content += "<td class='form_money_in'>"+ data[i].C_inout +"</td>";
+						   }else{
+							   content += "<td class='form_money_out'>"+ data[i].C_inout +"</td>";
+						   }						   
+						   
 						   content += "<td class=''>"+ data[i].IOT_asset +"</td>";
 						   content += "<td class=''>"+ data[i].IOT_assetgori +"</td>";
 						   content += "<td class=''>"+ data[i].IOT_memo +"</td>";
@@ -123,7 +129,10 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 				   $('.account_table > tbody:last').append(content);
 			   }else{
 				   content += "<tr>";
-				   content += "<td colspan='7'> 해당 일에 [수입/지출/이체] 내역이 없습니다. </td>"
+				   content += "<td colspan='7'>"
+				   content += "<div class='noData_txt'> 해당 월에 수입, 지출, 이체 내역이 없습니다 </div>"
+				   content += "<img src='"+contextPath+"/images/najavabara/나자바바라4.png' alt='해당 일에 입력한 데이터가 없습니다.' width='40%'>";
+				   content += "</td>";
 				   content += "</tr>";	
 				   $('.account_table > tbody:last').append(content);			   
 			 }
@@ -176,7 +185,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   $(".form_select2 .inout_form .out_opt").css("display", "inline-block");
 	   }
    });	    
-    
+   
    /*폼작성*/
    //[1] 수입및지출 내용 clear
    $.fn.clearInsertInOut = function(){
@@ -206,11 +215,30 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   alert('내용을 입력해주세요');
 	   }else{
 		   //db저장로직
-		   alert('html만 추가된거임 DB추가로직짜야함');
-		   //입력내용 삭제
-		   $.fn.clearInsertInOut();
-	       //모달 클릭이벤트
-		   $(".close").trigger("click");
+		   $.ajax({
+			   type: "POST",
+			   url : "book/insertIO.do",
+			   data : $("#inoutInsertForm").serialize(),
+			   success : function(data){
+				   if( data == "success"){
+					   	var selYear = $('.form_select_year_val.inout_form').val();
+					   	var selMonth = $('.form_select_month_val.inout_form').val();
+					   
+						$("#select-month").text($.trim(selYear) + "년 " + $.trim(selMonth) + "월");
+						$.fn.getInOutTrs($.trim(selYear),$.trim(selMonth));
+
+					   //입력내용 삭제
+					   $.fn.clearInsertInOut();
+				       //모달 클릭이벤트
+					   $(".close").trigger("click");
+				   }else{
+					   alert('입력실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });		   
 	   }
    };
    
@@ -249,6 +277,10 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   $(".close").trigger("click");
 	   }
    };       
+   
+   $(".close").click(function(){
+	   $('.badge_cancle_date').trigger("click");
+   });
    
    //숫자입력시 컴마넣기
    $.fn.addCommas = function(x){
