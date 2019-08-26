@@ -217,7 +217,7 @@ public class BookController {
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
 				
-	    		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일",Locale.KOREA);
+	    		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy. MM. dd. E요일",Locale.KOREA);
 	    		String getDay = transFormat.format(ts.getT_date());	
 				
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();
@@ -233,7 +233,7 @@ public class BookController {
 			}else{
 				Inout io = inout_service.selectInoutSeqS(iot.getBk_seq());
 
-	    		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy년 MM월 dd일 E요일",Locale.KOREA);
+	    		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy. MM. dd. E요일",Locale.KOREA);
 	    		String getDay2 = transFormat2.format(io.getI_date());					
 				
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();

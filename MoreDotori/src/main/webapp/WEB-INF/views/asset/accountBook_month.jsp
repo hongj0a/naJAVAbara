@@ -38,14 +38,15 @@
 			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			                   </div>
 			                   <div class="modal-body">
-				                  <form action="" class="" method="">
+				                  <form id="inoutInsertForm" class="inoutInsertForm" method="post">
+								    	<input type="hidden" name="io_seq" class="io_seq out_form" value="0"/>
 								    	<table class="inout_form">
 								    		<tr>
 								    			<td class="form_title">날짜</td>
 								    			<td class="form_select_date">
-								    				<input type="text" class="form_select_date_val form_select_year_val inout_form" size="4" maxlength="4" name="" value="" readonly>년 
-								    				<input type="text" class="form_select_date_val form_select_month_val inout_form" size="2" maxlength="2" name="" value="" readonly>월 
-								    				<input type="text" class="form_select_date_val form_select_day_val inout_form" size="2" maxlength="2" name="" value="" readonly>일
+								    				<input type="text" class="form_select_date_val form_select_year_val inout_form" size="4" maxlength="4" name="io_yyyy" value="" readonly>년 
+								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val inout_form" size="2" maxlength="2" name="io_mmmm" value="" readonly>월 
+								    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val inout_form" size="2" maxlength="2" name="io_dddd" value="" readonly>일
 								    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 								    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
 													<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 
@@ -66,7 +67,7 @@
 								                            </c:forEach>
 								                        </select>												    				
 									    			</td>
-								    		</tr>								    		
+								    		</tr>   		
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">자산</td>
 								    			<td class="form_select1">
@@ -81,7 +82,7 @@
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">분류</td>
 								    			<td class="form_select2">
-							                        <select name="io_categori" class="out_form">
+							                        <select name="io_categori" class="inout_form">
 							                            <option value="">내역 분류를 선택해주세요</option>
 							                            <c:if test="${empty codelistIN}">
 							                            	<option>수입옵션 데이터를 가져오지 못했어요</option>
@@ -111,13 +112,13 @@
 													<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="inout_form"></textarea>												    			
 								    			</td>
 								    		</tr>
-								    	</table>			                   		
+								    	</table>
+								    	</form>			                   		
 					                   </div>
 					                   <div class="modal-footer">
 					                       <button type="button" class="btn btn-primary save_insert_inout">저장</button>					                   
 					                       <button type="button" class="btn btn-secondary clear_insert_inout" data-dismiss="modal">취소</button>
 					                   </div>
-				                   </form>
 			               </div>
 			           </div>
 			       </div>
@@ -131,15 +132,17 @@
 			                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 			                   </div>
 			                   <div class="modal-body">
-				                  <form action="" class="" method="">
+				                  <form id="trsInsertForm" class="trsInsertForm" method="post">
+							    	<input type="hidden" name="trs_seq" class="trs_seq trs_form" value="0"/>
+							    	<input type="hidden" name="trs_inout" class="trs_inout trs_form" value="IO003"/>
 							    	<input type="hidden" id="" class="trs_form form_categori" name="" value="이체">
 							    	<table class="insert_form">
 							    		<tr>
 							    			<td class="form_title">날짜</td>
 							    			<td class="form_select_date">
-							    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="" value="" readonly>년 
-							    				<input type="text" class="form_select_date_val form_select_month_val trs_form" size="2" maxlength="2" name="" value="" readonly>월 
-							    				<input type="text" class="form_select_date_val form_select_day_val trs_form" size="2" maxlength="2" name="" value="" readonly>일
+							    				<input type="text" class="form_select_date_val form_select_year_val trs_form" size="4" maxlength="4" name="trs_yyyy" value="" readonly>년 
+							    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_month_val trs_form" size="3" maxlength="3" name="trs_mmmm" value="" readonly>월 
+							    				<input type="text" class="form_select_date_val2 form_select_date_val form_select_day_val trs_form" size="3" maxlength="3" name="trs_dddd" value="" readonly>일
 							    				<span class="badge badge-pill badge-info badge_update_date">수정</span>
 							    				<span class="badge badge-pill badge-primary badge_save_date">저장</span>
 												<span class="badge badge-pill badge-secondary badge_cancle_date">취소</span> 

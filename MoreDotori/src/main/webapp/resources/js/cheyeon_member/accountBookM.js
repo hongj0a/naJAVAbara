@@ -93,7 +93,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
 						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
 						   content += "<td class=''>"+ data[i].C_inout + "</td>";
-						   content += "<td colspan='2' class=''><span class=''>"+ data[i].IOT_assetgori + "</span> ===> <span class=''>";
+						   content += "<td colspan='2' class=''><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
 						   content += data[i].IOT_asset +"</span></td>";
 						   content += "<td class=''>"+ data[i].IOT_memo +"</td>";
 						   content += "<td class=''>"+ $.fn.comma(data[i].IOT_money) +"</td>";
@@ -148,7 +148,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
     $("#select-month").text(ttday.getFullYear()+'년 '+ ttmonth + '월');
     $.fn.getInOutTrs(ttday.getFullYear(),ttmonth);
     
- //////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
     
    //자산분류 미선택시
    $(".form_select1 .inout_form").click(function(){
@@ -181,11 +181,13 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    //[1] 수입및지출 내용 clear
    $.fn.clearInsertInOut = function(){
 	   console.log('지출 폼 내용 삭제');
+	   $('.io_seq.out_form').val('0');
 	   $('.form_money .inout_form').val('');
 	   $('.form_cont .inout_form').val('');
 	   $(".form_select0 .inout_form option:eq(0)").prop("selected", true);
 	   $(".form_select1 .inout_form option:eq(0)").prop("selected", true);
 	   $(".form_select2 .inout_form option:eq(0)").prop("selected", true);
+	   $('.badge_cancle_date').trigger("click");
    };
    
    //[2] 수입및지출 내용 저장
@@ -215,11 +217,13 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    //[1] 이체 내용 지우기
    $.fn.clearInsertTrs = function(){
 	   console.log('이체 폼 내용 삭제');
+	   $('.trs_seq.trs_form').val('0');
 	   $('.form_money .trs_form').val('');
 	   $('.form_cont .trs_form').val('');
 	   $(".form_select0 .trs_form option:eq(0)").prop("selected", true);
 	   $(".form_select1 .trs_form option:eq(0)").prop("selected", true);
 	   $(".form_select2 .trs_form option:eq(0)").prop("selected", true);
+	   $('.badge_cancle_date').trigger("click");
    }; 
    
    //[2] 이체 내용 저장하기
@@ -274,12 +278,39 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
 	
+	//한자리 입력 시 앞에 0 붙이기
+	$.fn.leadingZeros = function(date, num){
+		 var zero = '';
+		 date = date.toString();
+		
+		 if (date.length < num) {
+		  for (i = 0; i < num - date.length; i++)
+		   zero += '0';
+		 }
+		 return zero + date;			
+	}	
+	
     //입력이벤트(날짜입력~숫자만)
 	$(".form_select_date_val").on("keyup", function() {
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	});      
    
+	//입력이벤트(두자리만)
+	$(".form_select_date_val2").on("keyup", function() {
+	    if($(this).val()>0 && $(this).val()<10){
+		    $(this).val($.fn.leadingZeros($(this).val(),2));
+	    }
+	    
+	    if($(this).val().length==3){
+	    	$(this).val($(this).val().substr(1,2));
+	    }
+	});	
+	
    /*날짜버튼 이벤트*/
+   var preyyyy = 0;
+   var premmmm = 0;
+   var predddd = 0;   	
+	
    //1) 수정버튼
    $(".badge_update_date").click(function(){
 	 $(".form_select_date_val").attr("readonly", false);
@@ -289,15 +320,13 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	 $(".badge_cancle_date").css("display", "inline-block");
 	 
 	 $(".badge_update_date").css("display", "none");
+	 
+	 preyyyy = $('.form_select_date_val.form_select_year_val').val();
+	 premmmm = $('.form_select_date_val.form_select_month_val').val();
+	 predddd = $('.form_select_date_val.form_select_day_val').val();
    });
    
    //2) 저장버튼
-   //db에서 이전 년도정보 넣어주셈 *******************
-   //var preyyyy= $(".form_select_year_val").val();
-   var preyyyy = 0;
-   var premmmm = 0;
-   var predddd = 0;      
-   
    $(".badge_save_date").click(function(){
   	 var yyyy = $(".form_select_year_val").val();
   	 var mmmm = $(".form_select_month_val").val();
@@ -364,5 +393,56 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    //2. 이체 클릭이벤트(저장하기클릭)
    $(".save_insert_trs").click(function(){
 	   $.fn.saveInsertTrs();
+   });
+   
+   //tr클릭이벤트
+   $(document).on('click', '#account_table_body tr', function(){
+	   var tr = $(this);
+	   var td = tr.children();
+	   
+	   var inout = td.eq(2).text();
+	   var getDate = td.eq(1).text().split('.');
+	   
+	   //이체
+	   if(inout == "이체"){
+		   $('.trs_seq.trs_form').val(td.eq(0).text());
+		   
+		   $('.form_select_date_val.form_select_year_val.trs_form').val(getDate[0]);
+		   $('.form_select_date_val.form_select_month_val.trs_form').val(getDate[1]);
+		   $('.form_select_date_val.form_select_day_val.trs_form').val(getDate[2]);
+
+		   $('.form_cont .trs_form').val(td.eq(4).text());
+		   $('.form_money .trs_form').val(td.eq(5).text());
+		   
+    	   $('.form_select1 .trs_form').val(td.eq(3).children('.account_tab_td3_sp1').html()).prop("selected", true);
+    	   $('.form_select2 .trs_form').val(td.eq(3).children('.account_tab_td3_sp2').html()).prop("selected", true);
+	   }else{
+		   $('.io_seq.out_form').val(td.eq(0).text());
+		   
+		   $('.form_select_date_val.form_select_year_val.inout_form').val(getDate[0]);
+		   $('.form_select_date_val.form_select_month_val.inout_form').val(getDate[1]);
+		   $('.form_select_date_val.form_select_day_val.inout_form').val(getDate[2]);
+		   
+		   $('.form_cont .inout_form').val(td.eq(5).text());
+		   $('.form_money .inout_form').val(td.eq(6).text());	
+		   
+    	   //select box 가져오기
+    	   //option갯수 가져오는 메소드 size()가 있는데 jquery버전이 높다면 length를 사용해야함
+    	   for(var i=0; i<$(".form_select0 .inout_form option").length; i++){
+    		   if($(".form_select0 .inout_form option:eq("+ i +")").text()==td.eq(2).text()){
+    			   $(".form_select0 .inout_form option:eq("+ i +")").prop("selected", true);
+    		   }
+    	   }
+    	   
+    	   //자산vo합치면 option내용별로 수정필요 (예시 위의 for문)
+    	   $('.form_select1 .inout_form').val(td.eq(3).text()).prop("selected", true);
+    	   
+    	   
+    	   for(var i=0; i<$(".form_select2 .inout_form option").length; i++){
+    		   if($(".form_select2 .inout_form option:eq("+ i +")").text()==td.eq(4).text()){
+    			   $(".form_select2 .inout_form option:eq("+ i +")").prop("selected", true);
+    		   }
+    	   }		   
+	   }
    });
 	   
