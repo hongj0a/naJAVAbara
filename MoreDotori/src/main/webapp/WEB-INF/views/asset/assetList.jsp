@@ -59,7 +59,7 @@
                                                          &nbsp;&nbsp;
                                                      		<span>ID  : </span>
                                                      		&nbsp;&nbsp;
-                                                        	<input name="m_id" type="text" class="form-control plus-imp" placeholder="${alist.m_id}" value='${alist.m_id}'>
+                                                        	<input name="m_id" type="text" class="form-control plus-imp" placeholder='${alist.m_id}' value='${alist.m_id}'>
                                                         </div>
                                                         </br>
                                             			<div class="col-12">
@@ -115,8 +115,9 @@
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
 										  	<form name='update' method='post' action='aList/cont.do'>
-												<table>
+												<table id="assetListmodaljs">
 												  <tr>
+												  	<th class="idhidden">아이디</th>
 												  	<th>분류</th>
 												    <th>별칭</th>
 												    <th>잔액</th>
@@ -126,14 +127,13 @@
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
 														<tr>
+														<td class="idhidden">${alist.m_id}</td>
 														<td>${alist.c_asset}</td>
 														<td>${alist.a_nickname}</td>
 														<td>${alist.a_money}</td>
 														<td>${alist.a_memo}</td>
-														 <a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
-														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
-													</c:forEach>
-			                                             <td><div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+														<td class="updatetd"><a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
                                                     				 <div class="modal-header">
@@ -141,14 +141,13 @@
 			                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			                                                        </div>
 			                                                        <div class="modal-body">
-			                                                        </br>
-			                                                         <div class="col-12">
+			                                                       <!--  </br>
+			                                                        <div class="col-12">
 			                                                         &nbsp;&nbsp;
-			                                                     		<span>ID  : </span>
-			                                                     		&nbsp;&nbsp;
-			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${list.m_id}" value='${list.m_id}' readonly>
+			                                                     	<span>ID  : </span>
+			                                                     		&nbsp;&nbsp; -->
+			                                                        	<input id="m_id" type="hidden" class="form-control plus-imp" readonly>
 			                                                        	
-			                                                        </div>
 			                                                        </br>
 			                                            			<div class="col-12">
 			                                            				<span>타입 :  </span>
@@ -164,19 +163,19 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp" value='${list.a_nickname}'>
+			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_money" type="text" class="form-control plus-imp" value='${list.a_money}'>
+			                                                        	<input id="a_money" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_memo" type="text" class="form-control plus-imp" value='${list.a_memo}'>
+			                                                        	<input id="a_memo" type="text" class="form-control plus-imp">
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
@@ -187,7 +186,9 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div> 
+			                                            <td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 			                                           </tr>
+													</c:forEach>
 											</table>
 											</form>
                               		   </div>
@@ -212,6 +213,9 @@
 		$("#menu1").addClass('pcoded-trigger');
 		$("#menu1_2").addClass('active');     
     </script>
+
+	<!-- assetUpdatemodal js -->
+	<script src="js/asset/assetUpdate.js"></script>
 
 </body>
 </html>

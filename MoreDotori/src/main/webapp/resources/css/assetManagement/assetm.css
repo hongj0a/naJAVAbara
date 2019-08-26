@@ -57,3 +57,6 @@ th {
 #sizesize{
 	margin: 20px;
 }
+.idhidden{
+	display:none;
+}

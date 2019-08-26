@@ -48,7 +48,7 @@
 			                                                         &nbsp;&nbsp;
 			                                                     		<span>ID  : </span>
 			                                                     		&nbsp;&nbsp;
-			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder="${list.m_id}" value='${list.m_id}' readonly>
+			                                                        	<input id="m_id" type="text" class="form-control plus-imp" placeholder='${list.m_id}' value='${list.m_id}' readonly>
 			                                                        </div>
 			                                                        </br>
 			                                            			<div class="col-12">
