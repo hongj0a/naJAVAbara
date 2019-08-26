@@ -1,6 +1,7 @@
 package njb.md.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,10 @@ import njb.md.mapper.MemberMapper;
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
-	private PasswordEncoder pwencoder;
-	
-	@Autowired
 	private MemberMapper mapper;
 	
 	public boolean joinMember(Member member, Expert expert) {
+		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
 		String encoded = pwencoder.encode(member.getM_password());
 		member.setM_password(encoded);
 		

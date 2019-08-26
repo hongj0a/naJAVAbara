@@ -28,11 +28,11 @@
 					<a href="/"><h2 class="mb-5">Logo Here</h2></a>
 					<form action="/login" method="post">
 						<div class="input-group mb-3">
-							<input type="text" name="userId" class="form-control"
+							<input type="text" name="username" class="form-control"
 								placeholder="아이디">
 						</div>
 						<div class="input-group mb-4">
-							<input type="password" name="userPwd" class="form-control"
+							<input type="password" name="password" class="form-control"
 								placeholder="비밀번호">
 						</div>
 						<!--
@@ -45,6 +45,7 @@
                     -->
 						<button type="submit" class="btn btn-primary shadow-2 mb-3 form-control" id="signin">로그인</button>
 						<button class="btn btn-primary shadow-2 mb-4 form-control">Google로 로그인</button>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>
 					<div>
 						<div class="mb-2 text-muted float-sm-left">
