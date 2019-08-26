@@ -7,4 +7,5 @@ public interface InoutService {
 	void insertInoutS(Inout io);
 	void deleteInoutS(long I_seq);
 	void updateInoutS(Inout io);
+	Inout searchInoutS(long I_seq, String searchStr);
 }

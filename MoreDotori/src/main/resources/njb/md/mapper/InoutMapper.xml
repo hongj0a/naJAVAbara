@@ -33,5 +33,11 @@
 		set A_money=A_money-#{I_money}
 		where A_seq=#{A_seq}
 	</update>
-
+	
+	<select id="searchInout" parameterType="map" resultType="njb.md.domain.Inout">
+		select * 
+		from INOUT
+		where I_seq=#{I_seq}
+		and I_memo like #{searchStr}
+	</select>
 </mapper>

@@ -39,5 +39,4 @@
 		and to_char(Bk_date, 'YYYY/MM')=#{selectMonth}
 		order by Bk_date desc
 	</select>
-
 </mapper>

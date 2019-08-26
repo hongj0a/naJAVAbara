@@ -1,5 +1,8 @@
 package njb.md.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,4 +61,15 @@ public class TransferServiceImpl implements TransferService {
 		mapper.updateAssetPlus(ts.getA_seq_in(), ts.getT_money());
 	}
 
+	@Override
+	public Transfer searchInoutS(long T_seq, String searchStr) {
+		log.info("검색");
+		Map<String, Object> map =  new HashMap<String, Object>();
+		map.put("T_seq", T_seq);
+		
+		String percentPlus = "%"+searchStr+"%";
+		map.put("searchStr", percentPlus);
+		Transfer trs = mapper.searchInout(map);
+		return trs;
+	}	
 }

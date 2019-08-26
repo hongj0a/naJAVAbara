@@ -1,5 +1,7 @@
 package njb.md.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 import njb.md.domain.Transfer;
@@ -11,4 +13,5 @@ public interface TransferMapper {
 	void updateTrans(Transfer ts);
 	void updateAssetPlus(@Param("A_seq") long A_seq, @Param("T_money") long T_money);
 	void updateAssetMinus(@Param("A_seq") long A_seq, @Param("T_money") long T_money);
+	Transfer searchInout(Map<String, Object> map);
 }

@@ -1,5 +1,8 @@
 package njb.md.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +71,17 @@ public class InoutServiceImpl implements InoutService {
 		}else {
 			mapper.updateAssetMinus(io);
 		}
+	}
+	
+	@Override
+	public Inout searchInoutS(long I_seq, String searchStr) {
+		log.info("검색");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("I_seq", I_seq);
+		
+		String percentPlus = "%"+searchStr+"%";
+		map.put("searchStr", percentPlus);
+		Inout io = mapper.searchInout(map);
+		return io;
 	}
 }

@@ -50,6 +50,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 				pop.find("#monthList li").click(function(){
 					$("#select-month").text(curYear + "년 " + $(this).data("month").zf(2) + "월");
 					$.fn.getInOutTrs(curYear,$(this).data("month").zf(2));
+					$('#serachingtxt').val('');
 					pop.hide();
 				});
 			};
@@ -270,11 +271,30 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   alert('내용을 입력해주세요');
 	   }else{
 		   //db저장로직
-		   alert('html만 추가된거임 DB추가로직짜야함');
-		   //입력내용 삭제
-		   $.fn.clearInsertTrs();
-		   //모달 클릭이벤트
-		   $(".close").trigger("click");
+		   $.ajax({
+			   type: "POST",
+			   url : "book/insertTrs.do",
+			   data : $("#trsInsertForm").serialize(),
+			   success : function(data){
+				   if( data == "success"){
+					   	var selYear = $('.form_select_year_val.trs_form').val();
+					   	var selMonth = $('.form_select_month_val.trs_form').val();
+					   
+						$("#select-month").text($.trim(selYear) + "년 " + $.trim(selMonth) + "월");
+						$.fn.getInOutTrs($.trim(selYear),$.trim(selMonth));
+					   
+					   //입력내용 삭제
+					   $.fn.clearInsertTrs();
+					   //모달 클릭이벤트
+					   $(".close").trigger("click");
+				   }else{
+					   alert('입력실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });		   
 	   }
    };       
    
@@ -427,10 +447,80 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   $.fn.saveInsertTrs();
    });
    
+   $("#searching").click(function(){
+	   var searchingtxt = $.trim($('#serachingtxt').val());
+ 	   $.ajax({
+		   type: "GET",
+		   url : "book2/iotSearchList.do",
+		   dataType : "json",
+		   data : { M_id: "inhee@naver.com",
+			   searchStr: searchingtxt
+		   },
+		   success : function(data){
+			   var content = "";
+			   $('.account_table > tbody').empty();
+			   if(data.length > 0){
+				   for(i=0; i<data.length; i++){
+					   if(data[i].C_inout == "이체"){
+						   content += "<tr class='trstr' data-toggle='modal' data-target='#transferModal'>";
+						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
+						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
+						   content += "<td class=''>"+ data[i].C_inout + "</td>";
+						   content += "<td colspan='2' class=''><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
+						   content += data[i].IOT_asset +"</span></td>";
+						   content += "<td class=''>"+ data[i].IOT_memo +"</td>";
+						   content += "<td class=''>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+						   content += "</tr>";		   
+					   }else{
+						   if(data[i].C_inout == "수입"){
+							   content += "<tr class='intr' data-toggle='modal' data-target='#inoutModal'>";
+						   }else{
+							   content += "<tr class='outtr' data-toggle='modal' data-target='#inoutModal'>";
+						   }						   
+						   
+						   content += "<td style='display:none' class=''>"+ data[i].IOT_seq + "</td>";
+						   content += "<td class=''>"+ data[i].IOT_date +"</td>";
+						   
+						   if(data[i].C_inout == "수입"){
+							   content += "<td class='form_money_in'>"+ data[i].C_inout +"</td>";
+						   }else{
+							   content += "<td class='form_money_out'>"+ data[i].C_inout +"</td>";
+						   }						   
+						   
+						   content += "<td class=''>"+ data[i].IOT_asset +"</td>";
+						   content += "<td class=''>"+ data[i].IOT_assetgori +"</td>";
+						   content += "<td class=''>"+ data[i].IOT_memo +"</td>";
+						   
+						   if(data[i].C_inout == "수입"){
+							   content += "<td class='form_money_in'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+						   }else{
+							   content += "<td class='form_money_out'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+						   }
+						   content += "</tr>";		   
+					   }
+				   }
+				   $('.account_table > tbody:last').append(content);
+			   }else{
+				   content += "<tr>";
+				   content += "<td colspan='7'>"
+				   content += "<div class='noData_txt'> 검색된 정보가 없습니다 </div>"
+				   content += "<img src='"+contextPath+"/images/najavabara/나자바바라4.png' alt='검색 데이터가 없습니다.' width='40%'>";
+				   content += "</td>";
+				   content += "</tr>";	
+				   $('.account_table > tbody:last').append(content);			   
+			 }
+			   $("#select-month").text("검색결과");
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	   });	   
+   });
+   
    //tr클릭이벤트
    $(document).on('click', '#account_table_body tr', function(){
 	   var tr = $(this);
-	   var td = tr.children();
+	   var td = tr.children();	
 	   
 	   var inout = td.eq(2).text();
 	   var getDate = td.eq(1).text().split('.');

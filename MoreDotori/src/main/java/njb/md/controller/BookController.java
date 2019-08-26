@@ -111,7 +111,7 @@ public class BookController {
 		log.info("#### 가계부입력(이체) ####");
 
 		//날짜합치기
-		String trsDateS = trs.getTrs_yyyy()+"-"+trs.getTrs_mmmm()+"-"+trs.getTrs_dddd();
+		String trsDateS = trs.getTrs_yyyy().trim()+"-"+trs.getTrs_mmmm().trim()+"-"+trs.getTrs_dddd().trim();
 		Date trsDate = Date.valueOf(trsDateS);
 		log.info(trsDate);
 		
@@ -253,6 +253,62 @@ public class BookController {
         return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}	
 	
+	@RequestMapping(value="/book2/iotSearchList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<Object> getSearchList(String M_id, String searchStr, HttpServletRequest request) throws Exception{
+		log.info("### 검색 결과를 가져올게욘 ####");
+		
+		List<InoutTrsList> iotList = iotl_service.getListAscS(M_id);
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
+        
+		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
+		for(InoutTrsList iot : iotList) {
+			//trs이면
+			if(iot.getC_inout().equals("IO003")) {
+				Transfer ts = trs_service.searchInoutS(iot.getBk_seq(), searchStr);
+				
+				if(ts!=null) {
+		    		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy. MM. dd. E요일",Locale.KOREA);
+		    		String getDay = transFormat.format(ts.getT_date());	
+					
+					HashMap<Object,Object> hm = new HashMap<Object,Object>();
+					hm.put("IOT_seq", ts.getT_seq());
+					hm.put("IOT_date", getDay);
+					hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
+					hm.put("IOT_asset", ts.getA_seq_in());
+					hm.put("IOT_assetgori", ts.getA_seq_out());
+					hm.put("IOT_money", ts.getT_money());
+					hm.put("IOT_memo", ts.getT_memo());
+					hmlist.add(hm);					
+				}
+			//inout이면
+			}else{
+				Inout io = inout_service.searchInoutS(iot.getBk_seq(), searchStr);
+
+				if(io!=null) {
+		    		SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy. MM. dd. E요일",Locale.KOREA);
+		    		String getDay2 = transFormat2.format(io.getI_date());					
+					
+					HashMap<Object,Object> hm = new HashMap<Object,Object>();
+					hm.put("IOT_seq", io.getI_seq());
+					hm.put("IOT_date", getDay2);
+					hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
+					hm.put("IOT_asset", io.getA_seq());
+					hm.put("IOT_assetgori", code_service.selectCodeS(io.getC_categori()).getC_name());
+					hm.put("IOT_money", io.getI_money());
+					hm.put("IOT_memo", io.getI_memo());
+					hmlist.add(hm);					
+				}
+			}
+		}
+		
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}	
+	
 	@RequestMapping(value="/book/sumList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public HashMap<Object,Object> getSumList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
@@ -338,4 +394,5 @@ public class BookController {
 		mv.addObject("codelistOT", codelistOT);
 		return mv;
 	}
+	
 }

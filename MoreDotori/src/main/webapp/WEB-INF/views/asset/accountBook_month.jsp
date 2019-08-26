@@ -135,7 +135,6 @@
 				                  <form id="trsInsertForm" class="trsInsertForm" method="post">
 							    	<input type="hidden" name="trs_seq" class="trs_seq trs_form" value="0"/>
 							    	<input type="hidden" name="trs_inout" class="trs_inout trs_form" value="IO003"/>
-							    	<input type="hidden" id="" class="trs_form form_categori" name="" value="이체">
 							    	<table class="insert_form">
 							    		<tr>
 							    			<td class="form_title">날짜</td>
@@ -151,7 +150,7 @@
 							    		<tr class="insert_form_select">
 							    			<td class="form_title">출금</td>
 							    			<td class="form_select1">
-						                        <select name="" class="trs_form">
+						                        <select name="trs_out_asset" class="trs_form">
 						                            <option value="">출금 자산종류를 선택해주세요</option>
 						                            <option value="5">돼지저금통</option>
 						                            <option value="6">지갑</option>
@@ -163,7 +162,7 @@
 							    		<tr class="insert_form_select">
 							    			<td class="form_title">입금</td>
 							    			<td class="form_select2">
-						                        <select name="" class="trs_form">
+						                        <select name="trs_in_asset" class="trs_form">
 						                            <option value="">입금 자산종류를 선택해주세요</option>
 						                            <option value="6">지갑</option>
 						                            <option value="7">국민카드</option>
@@ -187,13 +186,13 @@
 							    		<tr class="insert_form_txt">
 							    			<td class="form_title">금액</td>
 							    			<td class="form_money">
-								    			<input type="text" placeholder="금액을 기입해주세요" name="" class="trs_form" numberOnly>
+								    			<input type="text" placeholder="금액을 기입해주세요" name="trs_money" class="trs_form" numberOnly>
 							    			</td>
 							    		</tr>
 							    		<tr class="insert_form_txtarea">
 							    			<td class="form_title">내용</td>
 							    			<td class="form_cont">
-												<textarea rows="2" placeholder="내용을 기입해주세요" name="" class="trs_form"></textarea>												    			
+												<textarea rows="2" placeholder="내용을 기입해주세요" name="trs_memo" class="trs_form"></textarea>												    			
 							    			</td>
 							    		</tr>
 							    	</table>				                  		
@@ -229,8 +228,8 @@
                             			</span>
                             			
                             			<span class="fl_right accountbook_search">
-                            				<input type="text"/>
-                            				<span><i class="feather icon-search"></i></span>
+                            				<input id="serachingtxt" type="text" placeholder="내용 검색"/>
+                            				<span id="searching"><i class="feather icon-search"></i></span>
                             			</span>
                             		</div>
                             		<div class="card tablesCard">
