@@ -115,9 +115,10 @@
 								    	</table>
 								    	</form>			                   		
 					                   </div>
-					                   <div class="modal-footer">
-					                       <button type="button" class="btn btn-primary save_insert_inout">저장</button>					                   
+					                   <div class="modal-footer">	
+					                       <button type="button" class="btn btn-warning del_insert_inout">삭제</button>				                   
 					                       <button type="button" class="btn btn-secondary clear_insert_inout" data-dismiss="modal">취소</button>
+					                       <button type="button" class="btn btn-primary save_insert_inout">저장</button>
 					                   </div>
 			               </div>
 			           </div>
@@ -199,8 +200,9 @@
 				                  </form>			                   		
 			                   </div>
 			                   <div class="modal-footer">
-			                       <button type="button" class="btn btn-primary save_insert_trs">저장</button>
+					               <button type="button" class="btn btn-warning del_insert_trs">삭제</button>	
 			                       <button type="button" class="btn btn-secondary clear_insert_trs" data-dismiss="modal">취소</button>
+			                       <button type="button" class="btn btn-primary save_insert_trs">저장</button>
 			                   </div>
 			               </div>
 			           </div>

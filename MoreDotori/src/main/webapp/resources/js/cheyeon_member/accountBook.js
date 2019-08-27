@@ -315,6 +315,10 @@
     		   alert('액수를 입력해주세요');
     	   }else if($('.form_cont .out_form').val()==''){
     		   alert('내용을 입력해주세요');
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO001'&&$(".form_select2 .out_form option:selected").hasClass('out_opt')){
+    		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO002'&&$(".form_select2 .out_form option:selected").hasClass('in_opt')){
+    		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
     	   }else{
     		   //db저장로직
     		   //serialize는 form의 값들을 querystring 형태로 만들어주는 겁니다..

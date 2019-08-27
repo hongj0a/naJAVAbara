@@ -161,9 +161,16 @@
 	display: none;
 }
 
-
-.modal-header, .modal-footer{
+.modal-header{
 	border: none !important;
+}
+
+.modal-footer{
+	display: inline-block !important;
+}
+
+.modal-footer .clear_insert_inout, .modal-footer .save_insert_inout, .modal-footer .clear_insert_trs, .modal-footer .save_insert_trs{
+	float : right;
 }
 
 .modal-dialog{

@@ -214,6 +214,10 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   alert('액수를 입력해주세요');
 	   }else if($('.form_cont .inout_form').val()==''){
 		   alert('내용을 입력해주세요');
+	   }else if($(".form_select0 .inout_form option:selected").val()=='IO001'&&$(".form_select2 .inout_form option:selected").hasClass('out_opt')){
+		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
+	   }else if($(".form_select0 .inout_form option:selected").val()=='IO002'&&$(".form_select2 .inout_form option:selected").hasClass('in_opt')){
+		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
 	   }else{
 		   //db저장로직
 		   $.ajax({
@@ -436,6 +440,34 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    $(".save_insert_inout").click(function(){
 	   $.fn.saveInsertInOut();
    });
+   
+   //1. 수입지출 클릭이벤트 (삭제하기클릭)
+   $(".del_insert_inout").click(function(){
+	   $(".badge_cancle_date").trigger("click");
+	   var seq = $(".io_seq.out_form").val();
+	   var yyyy = $.trim($(".form_select_year_val.inout_form").val());
+	   var mmmm = $.trim($(".form_select_month_val.inout_form").val());
+	   
+	   var data = "seq="+seq;
+	   
+	   $.ajax({
+		   type: "POST",
+		   url : "book/deleteIO.do",
+		   data : data,
+		   success : function(data){
+			   if( data == "success"){
+					$("#select-month").text(yyyy + "년 " + mmmm + "월");
+					$.fn.getInOutTrs(yyyy,mmmm);
+				   $(".close").trigger("click");
+			   }else{
+				   alert('삭제실패');
+			   }
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	   });	   
+   });
 
    //2. 이체 클릭이벤트(내용지우기클릭)
    $(".clear_insert_trs").click(function(){
@@ -446,6 +478,34 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    $(".save_insert_trs").click(function(){
 	   $.fn.saveInsertTrs();
    });
+   
+   //2. 이체 클릭이벤트 (삭제하기클릭)
+   $(".del_insert_trs").click(function(){
+	   $(".badge_cancle_date").trigger("click");
+	   var seq = $(".trs_seq.trs_form").val();
+	   var data = "seq="+seq;
+	   var yyyy = $.trim($(".form_select_year_val.trs_form").val());
+	   var mmmm = $.trim($(".form_select_month_val.trs_form").val());
+	   
+	   $.ajax({
+		   type: "POST",
+		   url : "book/deleteTrs.do",
+		   data : data,
+		   success : function(data){
+			   if( data == "success"){
+					$("#select-month").text(yyyy + "년 " + mmmm + "월");
+					$.fn.getInOutTrs(yyyy,mmmm);				   
+				   $(".close").trigger("click");
+			   }else{
+				   alert('삭제실패');
+			   }
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	   }); 	   
+   });
+
    
    $("#searching").click(function(){
 	   var searchingtxt = $.trim($('#serachingtxt').val());
