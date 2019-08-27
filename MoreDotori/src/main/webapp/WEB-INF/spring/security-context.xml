@@ -15,6 +15,7 @@
 		<security:intercept-url pattern="/expert_cal" access="hasRole('ROLE_EXPERT')" />
 		<security:intercept-url pattern="/mem" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/board_free" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/mypage" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/**" access="permitAll" />
 
 		<security:form-login login-page="/signin"
