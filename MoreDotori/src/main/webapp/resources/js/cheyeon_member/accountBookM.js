@@ -73,12 +73,68 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	     
 	    return str;
    };
-		
+   
+	//리스트 수 가져오기
+   var pageBlock = 1;
+   $.fn.getInOutTrsCount = function(year, month){
+ 	   $.ajax({
+		   type: "GET",
+		   url : "book2/returnListCount.do",
+		   dataType : "json",
+		   data : { M_id: "inhee@naver.com",
+			   		yyyy: year,
+			   		mmmm: month
+		   },
+		   success : function(data){
+			   var view = 15;						//한 페이지당 보일 row 수
+			   var pageBlockSu = 5;					//쪽블럭에 나올 쪽수
+			   var pageSu = Math.ceil(data/view);	//전체 쪽수
+			   if(pageSu == 0) pageSu=1;
+
+			   var content ="";
+			   $('.pageNum').empty();
+			   
+			   pageBlock = Math.ceil(pageSu/pageBlockSu);
+			   
+			   var block = 1;
+			   for(var i=1; i<pageSu+1; i++){
+				   content += "<span class='pNum pBlock"+block+"'>"+i+"</span>";
+				   if(i%pageBlockSu==0) block++;
+			   }
+			   
+			   $('.pageNum').append(content);
+			   
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	   });	   
+   }
+   
+   //쪽번호 블록나누기
+   $.fn.paging = function(selp){
+	   var pNumList = $('.pageNum').children();
+	   var spanCount = $('.pNum').length;
+	   
+	   for(var j=0; j<spanCount; j++){
+		   if(pNumList.eq(j).text()==selp){
+			   pNumList.eq(j).css("color", "red");
+			   var selpClass = pNumList.eq(j).attr("class");
+			   var selpClassArr = selpClass.split(' ');
+			   var realClass = selpClassArr[1];
+			   
+			   
+		   }
+	   }
+   }
+   
 	//리스트가져오기
 	$.fn.getInOutTrs = function(year, month, selp){
-		if(selp == null){
+		if(selp == null || selp == 0){
 			selp = 1;
 		}
+		
+		$.fn.getInOutTrsCount(year, month, selp);
 		
  	   $.ajax({
 		   type: "GET",
@@ -142,6 +198,8 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 				   content += "</tr>";	
 				   $('.account_table > tbody:last').append(content);			   
 			 }
+			   
+			  $.fn.paging(selp);
 		   },
 		   error:function(request,status,error){
 	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

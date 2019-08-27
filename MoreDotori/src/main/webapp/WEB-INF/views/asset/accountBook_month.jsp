@@ -248,6 +248,8 @@
 						    				</tbody>					    				                         				
                             			</table>
                             		</div>
+                            		<div class="pageNum">
+                            		</div>
                             	</div>
                             </div>
                             <!-- [ Main Content ] end -->

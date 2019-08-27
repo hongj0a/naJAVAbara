@@ -1,4 +1,4 @@
-.monthPicker { font-family: Verdana, Dotum, Gulim; font-size: 11px; letter-spacing:-1px; width:400px; height: 110px; border: solid 3px  #f1f1f1; display: none; }
+.monthPicker { font-family: Verdana, Dotum, Gulim; font-size: 11px; letter-spacing:-1px; width:400px; border: solid 3px  #f1f1f1; display: none; }
 .monthPicker .year { text-align:center; padding:12px; }
 .monthPicker a {cursor:pointer;}
 .monthPicker span a { border: solid 1px  #ebebeb; padding: 0 2px; height: 20px; font-size: 10px; color: #bfbfbf; text-decoration:none }
