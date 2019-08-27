@@ -75,14 +75,19 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    };
 		
 	//리스트가져오기
-	$.fn.getInOutTrs = function(year, month){
+	$.fn.getInOutTrs = function(year, month, selp){
+		if(selp == null){
+			selp = 1;
+		}
+		
  	   $.ajax({
 		   type: "GET",
 		   url : "book2/iotMList.do",
 		   dataType : "json",
 		   data : { M_id: "inhee@naver.com",
 			   		yyyy: year,
-			   		mmmm: month
+			   		mmmm: month,
+			   		selp: selp
 		   },
 		   success : function(data){
 			   var content = "";

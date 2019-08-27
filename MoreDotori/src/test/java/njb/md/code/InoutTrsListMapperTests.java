@@ -29,4 +29,12 @@ public class InoutTrsListMapperTests {
 		}
 	}
 
+	@Test
+	public void testSublist() {
+		log.info("#inoutMapper: " + mapper.getClass().getName());
+		List<InoutTrsList> list = mapper.getListAscMon("inhee@naver.com", "2019/08");
+		for(InoutTrsList ls : list.subList(10, 10)) {
+			log.info("sdfsdfsfd   ==>  " + ls);
+		}
+	}	
 }

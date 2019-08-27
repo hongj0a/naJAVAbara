@@ -149,7 +149,7 @@ public class BookController {
 		trs_service.deleteTransS(seq);
 		return "success";
 	}	
-	
+
 	@RequestMapping(value="/book/iotList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public ResponseEntity<Object> getInoutTrsList(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
@@ -198,21 +198,61 @@ public class BookController {
         return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}
 	
+	
+	@RequestMapping(value ="/book2/returnListCount.do", produces="application/json; charset=utf-8")
+    @ResponseBody	
+	public long returnListCount(String M_id, String yyyy, String mmmm, HttpServletRequest request) throws Exception{
+		log.info("### 리스트의 수를 가져올게욘 ####");
+		String selectMonth = yyyy+"/"+mmmm;
+
+		List<InoutTrsList> iotList = iotl_service.getListAscMonS(M_id, selectMonth);
+		long listCount = iotList.size();
+		return listCount;
+	}
+		
+	
 	@RequestMapping(value="/book2/iotMList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<Object> getInoutTrsList(String M_id, String yyyy, String mmmm, HttpServletRequest request) throws Exception{
+	public ResponseEntity<Object> getInoutTrsListp(String M_id, String yyyy, String mmmm, String selp, HttpServletRequest request) throws Exception{
 		log.info("### 리스트를 가져올게욘 ####");
 		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
 		String selectMonth = yyyy+"/"+mmmm;
+		int selpage = Integer.parseInt(selp);
 		
 		List<InoutTrsList> iotList = iotl_service.getListAscMonS(M_id, selectMonth);
 
 		HttpHeaders responseHeaders = new HttpHeaders();
         ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
         
+        //페이징
+    	int startindex = 0;
+    	int lastindex = 0;
+    	int view = 15;
+    	
+    	if(iotList.size() < view) {
+        	startindex = 0;
+    		lastindex = iotList.size();
+    	}else {
+            if(selpage == 1) {
+            	startindex = 0;
+            	lastindex = view;
+            }else{
+            	startindex = view * (selpage-1);
+            	lastindex = startindex + view;
+            	
+            	if(startindex >= iotList.size()) {
+            		startindex = 0;
+            		lastindex = view;
+            	}
+            	
+            	if(lastindex >= iotList.size()){
+            		lastindex = iotList.size();
+            	}
+            }   		
+    	}    	
+        
 		//수입 및 지출, 이체정보를 함께 출력하기 위해 list생성하기
-
-		for(InoutTrsList iot : iotList) {
+		for(InoutTrsList iot : iotList.subList(startindex, lastindex)) {
 			//trs이면
 			if(iot.getC_inout().equals("IO003")) {
 				Transfer ts = trs_service.selectTransSeqS(iot.getBk_seq());
