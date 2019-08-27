@@ -76,13 +76,14 @@ public class AssetListController {
 		log.info("#a_seq: " + a_seq);
 		AssetList list = service.contS(a_seq);
 		//model.addAttribute("list", service.contS(a_seq));
-		ModelAndView mv = new ModelAndView("asset/assetUpdate", "list", list);
+		ModelAndView mv = new ModelAndView("asset/assetList", "list", list);
 		log.info("#update list : " +list);
 		//mv.setViewName("asset/assetUpdate", "list", list);
 		
 		return mv;
 	}
 	@PostMapping("/update.do")
+	//@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String update(AssetList list) {
 		service.updateS(list);
 		return "redirect:../aList";

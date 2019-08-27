@@ -127,6 +127,7 @@
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
 														<tr>
+														<td class="idhidden">${alist.a_seq}</td>
 														<td class="idhidden">${alist.m_id}</td>
 														<td>${alist.c_asset}</td>
 														<td>${alist.a_nickname}</td>
@@ -141,6 +142,7 @@
 			                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			                                                        </div>
 			                                                        <div class="modal-body">
+			                                                        	<input id="a_seq" type="hidden" class="form-control plus-imp">
 			                                                       <!--  </br>
 			                                                        <div class="col-12">
 			                                                         &nbsp;&nbsp;
