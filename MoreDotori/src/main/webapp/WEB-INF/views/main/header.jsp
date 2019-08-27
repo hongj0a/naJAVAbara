@@ -12,18 +12,18 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="/plugins/animation/css/animate.min.css">
     <!-- prism css -->
-    <link rel="stylesheet" href="plugins/prism/css/prism.min.css">
+    <link rel="stylesheet" href="/plugins/prism/css/prism.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
 </head>
 
 <body class="layout-8">
@@ -113,7 +113,7 @@
                 <li>
                     <div class="dropdown2 dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                       	    <img src="images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
+                       	    <img src="/images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
                             <span>김채연님</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right notification">
@@ -123,7 +123,7 @@
                             <ul class="noti-body">
                                 <li class="notification" id="notification2">
                                         <div class="media-body profile">
-                                        <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" id="profile_img" src="/images/user/avatar-1.jpg" alt="Generic placeholder image">
                                             <p><strong>김채연</strong>님 </p> 
                                             <p>kcy8729@gmail.com</p>
                                             <p><a href="/mypage" id="update_info"> 정보수정 </a></p>
@@ -225,11 +225,11 @@
     <!-- [ chat message ] end -->
 
     <!-- Required Js -->
-    <script src="js/vendor-all.min.js">
+    <script src="/js/vendor-all.min.js">
 </script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js">
+    <script src="/plugins/bootstrap/js/bootstrap.min.js">
 </script>
-    <script src="js/pcoded.min.js">
+    <script src="/js/pcoded.min.js">
 </script>
 </body>
 </html>

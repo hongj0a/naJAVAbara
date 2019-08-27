@@ -10,8 +10,9 @@
    </typeAliases>
    
    <!--
-   <mappers>
-   	   <mapper resource="che/ex03/mapper/BoardMapper.xml"/>
-   </mappers>
+  
     -->
+   <mappers>
+   	   <mapper resource="njb/md/mapper/BoardMapper_SQL.xml"/>
+   </mappers>
 </configuration>

@@ -12,18 +12,18 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
-    <link rel="stylesheet" href="plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="/plugins/animation/css/animate.min.css">
     <!-- prism css -->
-    <link rel="stylesheet" href="plugins/prism/css/prism.min.css">
+    <link rel="stylesheet" href="/plugins/prism/css/prism.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/footer.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body class="layout-8">

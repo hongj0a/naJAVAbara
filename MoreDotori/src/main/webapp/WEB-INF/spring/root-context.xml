@@ -15,7 +15,7 @@
 		<property name="driverClassName"
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
-			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:JAVA"></property>
+			value="jdbc:log4jdbc:oracle:thin:@nas1.gmcg.kr:22521:orcl"></property>
 			
 		<property name="username" value="dotori"></property>
 		<property name="password" value="java"></property>
@@ -28,6 +28,7 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/njb/md/**/mappers/*.xml" />
 	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -35,11 +36,16 @@
 	</bean>
 	<tx:annotation-driven />
 	
-	<mybatis-spring:scan base-package="njb.md.mapper" />
-     
+		
+	
+<!-- 	<mybatis-spring:scan base-package="njb.md.mapper" /> -->
+    <mybatis-spring:scan base-package="njb.md.customer.mapper" />
+    
     <context:annotation-config></context:annotation-config>
+<!-- 	<context:component-scan
+		base-package="njb.md.service"></context:component-scan> -->
 	<context:component-scan
-		base-package="njb.md.service"></context:component-scan>
+		base-package="njb.md.customer.service"></context:component-scan>
 	<!-- 
 	<context:component-scan
 		base-package="njb.md.aop"></context:component-scan>

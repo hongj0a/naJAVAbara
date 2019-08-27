@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.customer.mapper.BoardMapper">
+
+
+<!-- boardMgr -->
+
+	<select id="selectBoardMgrList2" resultType="njb.md.customer.domain.BoardMgrVO">
+		SELECT
+			B_code,
+			B_title,
+			B_subtitle,
+			B_use_YN,
+			B_reply_YN,
+			B_comment_YN,
+			B_report_YN,
+			B_file_YN
+		FROM BOARD_MGR
+
+	</select>
+	<select id="selectBoardMgrList" resultType="njb.md.customer.domain.BoardMgrVO">
+		SELECT
+			B_code,
+			B_title,
+			B_subtitle,
+			B_use_YN,
+			B_reply_YN,
+			B_comment_YN,
+			B_report_YN,
+			B_file_YN
+		FROM BOARD_MGR
+
+	</select>
+	
+	<select id="selectBoardMgr" resultType="njb.md.customer.domain.BoardMgrVO" parameterType="njb.md.customer.domain.BoardMgrVO">
+		SELECT
+			B_code,
+			B_title,
+			B_subtitle,
+			B_use_YN,
+			B_reply_YN,
+			B_comment_YN,
+			B_report_YN,
+			B_file_YN
+		FROM BOARD_MGR
+		WHERE 1=1
+		AND B_code = #{b_code}
+	</select>
+	
+	<insert id="insertBoardMgr">
+			INSERT INTO BOARD_MGR (
+				B_code,
+				B_title,
+				B_subtitle,
+				B_use_YN,
+				B_reply_YN,
+				B_comment_YN,
+				B_report_YN,
+				B_file_YN,
+				reg_id,
+				reg_dt,
+				mod_id,
+				mod_dt
+			)
+			VALUES (
+				#{b_code},
+				#{b_title},
+				#{b_subtitle},
+				#{b_use_yn},
+				#{b_reply_yn},
+				#{b_comment_yn},
+				#{b_report_yn},
+				#{b_file_yn},
+				#{reg_id},
+				TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+				#{mod_id},
+				TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+			)
+	</insert>
+	
+	<update id="updateBoardMgr">
+		UPDATE BOARD_MGR SET
+			B_title = #{B_title},
+			B_subtitle = #{B_subtitle},
+			B_use_YN =#{b_use_yn},
+			B_reply_YN =#{b_reply_yn},
+			B_comment_YN =#{b_comment_yn},
+			B_report_YN =#{b_report_yn},
+			B_file_YN =#{b_file_yn},
+			mod_id =#{mod_id},
+			mod_dt=TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+		WHERE B_CODE=#{b_code}
+	</update>
+
+	<delete id="deleteBoardMgr">
+		DELETE FROM BOARD_MGR WHERE B_code = #{b_code}
+	</delete>
+	
+	<resultMap id="boardtet" type="njb.md.customer.domain.BoardVO">
+		<result property="b_content" column="B_content" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+
+<!-- board -->
+	<select id="selectBoardList" resultMap="boardtet">
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY A.B_SEQ ) NUM,
+			A.B_seq,
+			A.B_code,
+			A.B_subjcet,
+			A.B_content,
+			<!-- clob형 데이터 select DBMS_LOB.SUBSTR(A.B_content, DBMS_LOB.GETLENGTH(A.B_content),1), -->
+			A.B_con_seq,
+			A.B_reply_seq,
+			A.B_cont_lv,
+			A.B_parent_seq,
+			A.B_readnum,
+			A.B_heartnum,
+			A.B_reportnum,
+			A.B_filekey,
+			A.B_del_YN,
+			A.reg_id,
+			TO_CHAR(TO_DATE(A.reg_dt , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') reg_dt, 
+			A.mod_id,
+			A.mod_dt,
+			A.fcategori
+		FROM BOARD A
+		WHERE A.B_code= #{b_code}
+		<if test="searchType == 'opt1' and searchWord != '' ">
+		   AND A.B_subjcet = #{searchWord}
+		</if>
+		ORDER BY A.B_SEQ desc
+	</select>
+	
+	<select id="selectBoard" resultType="njb.md.customer.domain.BoardVO">
+		SELECT
+			B_seq,
+			B_code,
+			B_subjcet,
+			B_content,
+			B_con_seq,
+			B_reply_seq,
+			B_cont_lv,
+			B_parent_seq,
+			B_readnum,
+			B_heartnum,
+			B_reportnum,
+			B_filekey,
+			B_del_YN,
+			reg_id,
+			reg_dt,
+			mod_id,
+			mod_dt,
+			fcategori
+		FROM BOARD
+		WHERE B_code= #{b_code}
+		AND B_con_seq = #{b_con_seq}	
+	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO BOARD (
+			B_seq,
+			B_code,
+			B_subjcet,
+			B_content,
+			B_con_seq,
+			B_reply_seq,
+			B_cont_lv,
+			B_parent_seq,
+			B_readnum,
+			B_heartnum,
+			B_reportnum,
+			B_filekey,
+			B_del_YN,
+			reg_id,
+			reg_dt,
+			mod_id,
+			mod_dt,
+			fcategori
+		)
+		VALUES (
+		  	BOARD_SEQ.nextval,
+		    #{b_code},
+		    #{b_subjcet},
+		    #{b_content},
+		    BOARD_SEQ.CURRVAL,
+		    #{b_reply_seq},
+		    #{b_cont_lv},
+		    #{b_parent_seq},
+		    #{b_readNum},
+		    #{b_heartnum},
+		    #{b_reportnum},
+		    #{b_filekey},
+		    #{b_del_yn},
+		    #{reg_id},
+		    TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+		    #{mod_id},
+		    TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+		    #{fcategori}
+		)
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE BOARD SET
+			B_subjcet = #{b_subjcet},
+			B_content= #{b_content},
+			mod_id = #{reg_id},
+			mod_dt= TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+			fcategori = #{fcategori}
+		WHERE B_code= #{b_code}
+		AND B_con_seq = #{b_con_seq}
+	</update>
+	
+	<update id="deleteBoard"><!-- 삭제유무를 Y로 바꿈 실제 delete 아님 -->
+		UPDATE BOARD SET
+			B_del_YN = 'Y',
+			mod_id = #{reg_id},
+			mod_dt= TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+		WHERE B_code= #{b_code}
+		AND B_con_seq = #{b_con_seq}
+	
+	</update>
+	
+	<!-- 조회수 -->
+	<update id="readNum">
+		UPDATE BOARD SET
+			B_readnum =#{b_readnum}+1
+		WHERE B_code= #{b_code}
+		AND B_con_seq = #{b_con_seq}
+	</update>
+	<!-- 추천수 -->
+	<update id="heartNum">
+		UPDATE BOARD SET
+			B_heartnum =B_heartnum+1
+		WHERE B_code= #{b_code}
+		AND B_con_seq = #{b_con_seq}
+	</update>
+	
+
+
+	
+</mapper>

@@ -27,8 +27,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<context:component-scan base-package="njb.md.customer.controller" />
+	<context:component-scan base-package="njb.md.admin.controller" />
+	<context:component-scan base-package="njb.md.manager.controller" />
 	<context:component-scan base-package="njb.md.controller" />
-	
-	
-	
 </beans:beans>
