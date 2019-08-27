@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +36,7 @@
 				<h5><c:out value="${title}" /></h5>
 			</div>
 			<div class="card-block">
-				<form id="sign-up" name="sign-up" action="/join.do"  method="post" enctype="multipart/form-data">
+				<form id="sign-up" name="sign-up" action="/join.do?${_csrf.parameterName}=${_csrf.token}"  method="post" enctype="multipart/form-data">
 					<input type="hidden" name="c_member" value="${mCode}">
 					<div class="row">
 						<div class="col-sm-4">

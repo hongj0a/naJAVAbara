@@ -22,10 +22,10 @@ public class CommonController {
 	}
 
 	@GetMapping("/signin")
-	public ModelAndView loginInput(String error, String logout, Model model) {
+	public String loginInput(String error, String logout, Model model) {
 
-		log.info("error: " + error);
-		log.info("logout: " + logout);
+//		log.info("error: " + error);
+//		log.info("logout: " + logout);
 
 		if (error != null) {
 			model.addAttribute("error", "Login Error Check Your Account");
@@ -34,8 +34,7 @@ public class CommonController {
 		if (logout != null) {
 			model.addAttribute("logout", "Logout!!");
 		}
-		
-		return new ModelAndView("member/sign_in", "model", model);
+		return "member/sign_in";
 	}
 
 	@GetMapping("/customLogout")

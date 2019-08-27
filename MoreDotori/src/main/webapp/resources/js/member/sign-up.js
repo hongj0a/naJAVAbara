@@ -242,8 +242,3 @@ function findPostcode() {
     }
   }).open();
 }
-//
-//function fucku(){
-//	var data = $('#sign-up').serialize();
-//	console.log(data);
-//}

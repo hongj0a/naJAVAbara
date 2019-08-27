@@ -8,10 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
 import njb.md.domain.Expert;
@@ -44,7 +42,7 @@ public class MemberController {
 		return map;
 	}
 	
-	@RequestMapping("/join.do")
+	@PostMapping("/join.do")
 	public String join(Member member, Expert expert, Minfo minfo) {
 		String birth = "";
 		for(String add : minfo.getBirth()) birth += add;

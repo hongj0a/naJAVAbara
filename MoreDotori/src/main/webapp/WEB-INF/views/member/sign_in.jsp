@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +26,7 @@
 				<div class="card-body text-center">
 					<a href="/"><h2 class="mb-5">Logo Here</h2></a>
 					<form action="/login" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<div class="input-group mb-3">
 							<input type="text" name="username" class="form-control"
 								placeholder="아이디">
@@ -45,7 +45,6 @@
                     -->
 						<button type="submit" class="btn btn-primary shadow-2 mb-3 form-control" id="signin">로그인</button>
 						<button class="btn btn-primary shadow-2 mb-4 form-control">Google로 로그인</button>
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					</form>
 					<div>
 						<div class="mb-2 text-muted float-sm-left">

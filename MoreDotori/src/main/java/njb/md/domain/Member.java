@@ -26,6 +26,6 @@ public class Member {
 	private Date m_cdate;		//정지해제일
 	private String m_reason;	//정지사유
 	
-	private int m_enabled;		//활성화여부
+	private boolean m_enabled;		//활성화여부
 	private List<Mauth> authList;
 }

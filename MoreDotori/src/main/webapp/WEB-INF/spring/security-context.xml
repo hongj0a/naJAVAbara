@@ -2,44 +2,32 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="customUserDetailsService" class="njb.md.security.CustomUserDetailsService"></bean>
 	<bean id="customAccessDenied" class="njb.md.security.CustomAccessDeniedHandler"></bean>
-	
+	<bean id="customLoginSuccess" class="njb.md.security.CustomLoginSuccessHandler"></bean>
+
 	<security:http>
-		<!-- <security:csrf disabled="true"/> -->
-		
-		<!-- <security:intercept-url pattern="/normal/**" access="hasRole('ROLE_NORMAL')" />
-		<security:intercept-url pattern="/expert/**" access="hasRole('ROLE_EXPERT')" />
-		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')" /> -->
-		<!-- <security:intercept-url pattern="/book" access="hasRole('ROLE_NORMAL')" />
+		<security:intercept-url pattern="/book" access="hasRole('ROLE_NORMAL')" />
 		<security:intercept-url pattern="/expert_cal" access="hasRole('ROLE_EXPERT')" />
 		<security:intercept-url pattern="/mem" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/board_free" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')" /> -->
-		<!-- <security:intercept-url pattern="/**" access="permitAll" /> -->
+		<security:intercept-url pattern="/board_free" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/**" access="permitAll" />
 
-		<security:form-login login-page="/signin" />
-		<!-- default-target-url : 로그인 성공시 호출할 주소 
-			login-processing-url : 로그인 페이지 form에 action에 입력할 주소 지정
-			authentication-failure-url : 로그인 실패시 호출할 주소 지정
-		-->
-		<!-- <security:logout logout-url="/logout"
+		<security:form-login login-page="/signin"
+			authentication-success-handler-ref="customLoginSuccess" />
+		<security:logout logout-url="/logout"
 			invalidate-session="true"
-			logout-success-url="/"
-			delete-cookies="remember-me,JSESSION_ID" /> -->
+			delete-cookies="remember-me,JSESSION_ID" />
+		
 		<security:access-denied-handler ref="customAccessDenied" />
 	</security:http>
 
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailsService">
-			<!-- <security:jdbc-user-service data-source-ref="dataSource"
-			users-by-username-query="select M_ID as username, M_PASSWORD as password, M_ENABLED as enabled from MEMBER where M_ID=?"
-			authorities-by-username-query="select M_ID as username, MA_AUTH as authority from MAUTH where M_ID=?"/> -->
 			<security:password-encoder ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
