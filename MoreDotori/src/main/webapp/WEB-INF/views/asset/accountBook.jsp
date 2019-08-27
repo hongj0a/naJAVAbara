@@ -236,7 +236,7 @@
 									    </div>								    	
 								    	</div>
 								    </div>
-								    <div class="col">
+								    <div class="col" style="height:333px">
 							    		<div class="account_total">
 							    			<table>
 							    				<tr>

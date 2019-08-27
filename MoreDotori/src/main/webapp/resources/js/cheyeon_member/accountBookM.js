@@ -94,12 +94,19 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 			   var content ="";
 			   $('.pageNum').empty();
 			   
+			   //마지막 페이지블록
 			   pageBlock = Math.ceil(pageSu/pageBlockSu);
+			   
+			   content += "<span style='display:none' class='page_prev'> < </span>";
 			   
 			   var block = 1;
 			   for(var i=1; i<pageSu+1; i++){
-				   content += "<span class='pNum pBlock"+block+"'>"+i+"</span>";
+				   content += "<span style='display:none' class='pNum pBlock"+block+"'>"+i+"</span>";
 				   if(i%pageBlockSu==0) block++;
+			   }
+
+			   if(pageBlock>1){
+				   content += "<span class='page_next'> > </span>";
 			   }
 			   
 			   $('.pageNum').append(content);
@@ -115,21 +122,39 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    $.fn.paging = function(selp){
 	   var pNumList = $('.pageNum').children();
 	   var spanCount = $('.pNum').length;
+	   var realClass = null;
 	   
+	   //해당페이지에 색보이게하기
 	   for(var j=0; j<spanCount; j++){
 		   if(pNumList.eq(j).text()==selp){
 			   pNumList.eq(j).css("color", "red");
 			   var selpClass = pNumList.eq(j).attr("class");
 			   var selpClassArr = selpClass.split(' ');
-			   var realClass = selpClassArr[1];
-			   
-			   
+			   realClass = selpClassArr[1];
 		   }
 	   }
+	   
+	   //해당페이지의 페이지블록만 보이게하기
+	   for(var j=0; j<spanCount; j++){
+		   if(pNumList.eq(j).hasClass(realClass)){
+			   pNumList.eq(j).addClass("act");
+		   }
+	   }	   
    }
+
+   $(document).on('click', '.page_next', function(){
+	   var pBlock = $('.act').attr("class");
+	   var pBlockArr = pBlock.split(' ');
+	   var pBlockClass = pBlockArr[1];
+	   
+	   var pBlockName = pBlockClass.split('pBlock');
+	   var pBlockNum = pBlockName[1];
+	   console.log(pBlockNum);
+   });
    
 	//리스트가져오기
 	$.fn.getInOutTrs = function(year, month, selp){
+		selp=4;
 		if(selp == null || selp == 0){
 			selp = 1;
 		}

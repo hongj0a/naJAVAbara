@@ -195,3 +195,7 @@
 .pageNum{
 	text-align: center;
 }
+
+.act{
+	display: inline-block !important;
+}
