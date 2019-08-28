@@ -39,16 +39,17 @@ table {
 	table-layout: fixed;
 }												
 th, td {
-	padding: 12px;
+	padding: 5px;
 	text-align: center;
+	font-size:13px;
 }
 th {
 	border: 1px solid white;
 	background-color: skyblue;
 	color: white;
-	font-size: 16px;
 	text-align: center;
 }
+.hove:hover{background-color:#f5f5f5;}
 
 #cardsize1{
 	width: 100%;
