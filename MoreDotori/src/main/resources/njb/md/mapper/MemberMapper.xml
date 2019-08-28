@@ -61,6 +61,10 @@
 		select m_nickname from MEMBER where m_nickname = #{m_nickname}
 	</select>
 	
+	<select id="getExpert" parameterType="string" resultType="njb.md.domain.Expert">
+		select * from Expert where m_id = #{m_id}
+	</select>
+	
 	<update id="updateState" parameterType="map">
 	  update MEMBER set C_MSTATE = #{mstate} where M_ID = #{mid}
 	</update>

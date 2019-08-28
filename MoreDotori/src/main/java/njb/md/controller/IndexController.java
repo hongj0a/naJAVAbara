@@ -11,12 +11,6 @@ public class IndexController {
 		return "main/main";
 	}
 
-//	// 로그인
-//	@GetMapping("/signin")
-//	public String signin() {
-//		return "member/sign_in";
-//	}
-
 	// 회원가입
 	@GetMapping("/signup")
 	public String signup() {

@@ -16,6 +16,8 @@ public interface MemberMapper {
 	String duplIdCheck(String id);
 	String duplNickCheck(String nick);
 	
+	Expert getExpert(String id);
+	
 	int updateState(Map<String, Object> map);
 	int setEnable(Map<String, Object> map);
 }

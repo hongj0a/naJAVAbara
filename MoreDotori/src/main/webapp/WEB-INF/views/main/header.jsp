@@ -186,7 +186,14 @@
 	                            <ul class="noti-body">
 	                                <li class="notification" id="notification2">
 	                                        <div class="media-body profile">
-	                                        <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
+	                                        <c:choose>
+				                        		<c:when test="${empty profile}">
+			                                        <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
+				                        		</c:when>
+				                        		<c:otherwise>
+			                                        <img class="img-radius" id="profile_img" src="images/profile-images/${profile}" alt="Generic placeholder image">
+				                        		</c:otherwise>
+				                        	</c:choose>
 	                                            <p><strong><sec:authentication property="principal.member.m_name"/></strong> 님 </p> 
 	                                            <p><sec:authentication property="principal.member.m_id"/></p>
 	                                            <p><a href="/mypage" id="update_info"> 정보수정 </a></p>

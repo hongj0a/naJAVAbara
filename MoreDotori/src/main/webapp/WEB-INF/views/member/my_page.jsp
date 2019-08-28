@@ -69,8 +69,9 @@
 															</div>
 															<div class="col-sm-8">
 																<div class="form-group row mb-4">
-																	<label class="col-sm-3 col-form-label">아이디</label> <label
-																		class="col-sm-9 col-form-label"><sec:authentication property="principal.member.m_id"/></label>
+																	<label class="col-sm-3 col-form-label">아이디</label>
+																	<label class="col-sm-9 col-form-label"><sec:authentication property="principal.member.m_id" var="mid"/></label>
+																	<input type="hidden" id="mid" value="${mid}">
 																</div>
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">이름</label> <label
@@ -125,12 +126,22 @@
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">성별&nbsp;&nbsp;</label>
 															<div class="col">
-																<div class="btn-group btn-group-toggle"
-																	data-toggle="buttons" id="inputGender">
-																	<label class="btn btn-primary">
+																<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
+																	<sec:authentication property="principal.member.m_gender" var="gender" />
+																	<c:choose>
+																		<c:when test="${gender eq 'M'}">
+																			<c:set var="mactive" value="active" />
+																			<c:set var="factive" value="" />
+																		</c:when>
+																		<c:when test="${gender eq 'F'}">
+																			<c:set var="factive" value="active" />
+																			<c:set var="mactive" value="" />
+																		</c:when>
+																	</c:choose>
+																	<label class="btn btn-primary ${mactive}">
 																		<input type="radio" name="gender" value="male">남
 																	</label>
-																	<label class="btn btn-primary active">
+																	<label class="btn btn-primary ${mactive}">
 																		<input type="radio" name="gender" value="female">여
 																	</label>
 																</div>
@@ -153,111 +164,113 @@
 																<label class="col-form-label mr-2">일</label>
 															</div>
 														</div>
-														<div id="expert-details">
-															<div class="row">
-																<div class="form-group col-sm-4 mb-4">
-																	<label for="job" class="col-form-label">직업</label>
-																	<input type="text" class="form-control" id="inputJob" name="job" value="자산관리사">
-																</div>
-																<div class="form-group col-sm-4">
-																	<label for="job" class="col-form-label">직급</label>
-																	<input type="text" class="form-control" id="inputPosition" name="position" value="사원">
-																</div>
-																<div class="form-group col-sm-4">
-																	<label for="job" class="col-form-label">경력</label>
-																	<div class="form-inline">
-																		<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career" value="3">
-																		<label for="job" class="col-form-label">년차</label>
+														<sec:authorize access="hasRole('ROLE_EXPERT')">
+															<div id="expert-details">
+																<div class="row">
+																	<div class="form-group col-sm-4 mb-4">
+																		<label for="job" class="col-form-label">직업</label>
+																		<input type="text" class="form-control" id="inputJob" name="job" value="자산관리사">
 																	</div>
-																</div>
-															</div>
-															<div class="form-group row mb-1">
-																<label class="col-form-label col-sm-3">우편번호</label>
-																<div class="col">
-																	<div class="input-group">
-																		<input type="text" class="form-control address" id="inputZipCode" name="zip-code" value="17949" readonly>
-																		<div class="input-group-append">
-																			<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
+																	<div class="form-group col-sm-4">
+																		<label for="job" class="col-form-label">직급</label>
+																		<input type="text" class="form-control" id="inputPosition" name="position" value="사원">
+																	</div>
+																	<div class="form-group col-sm-4">
+																		<label for="job" class="col-form-label">경력</label>
+																		<div class="form-inline">
+																			<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career" value="3">
+																			<label for="job" class="col-form-label">년차</label>
 																		</div>
 																	</div>
 																</div>
-															</div>
-															<div class="form-group row mb-1">
-																<label class="col-sm-3 col-form-label"></label>
-																<div class="col">
-																	<input type="text" class="form-control address" id="inputAddr" name="address" value="경기도 평택시 포승읍 호암길" readonly>
+																<div class="form-group row mb-1">
+																	<label class="col-form-label col-sm-3">우편번호</label>
+																	<div class="col">
+																		<div class="input-group">
+																			<input type="text" class="form-control address" id="inputZipCode" name="zip-code" value="17949" readonly>
+																			<div class="input-group-append">
+																				<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group row mb-1">
+																	<label class="col-sm-3 col-form-label"></label>
+																	<div class="col">
+																		<input type="text" class="form-control address" id="inputAddr" name="address" value="경기도 평택시 포승읍 호암길" readonly>
+																	</div>
+																</div>
+																<div class="form-group row mb-4">
+																	<label class="col-sm-3 col-form-label"></label>
+																	<div class="col">
+																		<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" value="38-4">
+																	</div>
+																</div>
+																<div class="form-group">
+																	<div class="input-group mb-1">
+																		<label for="inputLicense1" class="sr-only">자격증1</label>
+																		<div class="input-group-prepend">
+																			<select class="form-control">
+																				<option value="">자격증1</option>
+																			</select>
+																		</div>
+																		<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호">
+																	</div>
+																	<div class="input-group mb-1">
+																		<label for="inputLicense2" class="sr-only">자격증2</label>
+																		<div class="input-group-prepend">
+																			<select class="form-control">
+																				<option value="">자격증2</option>
+																			</select>
+																		</div>
+																		<input type="text" class="form-control" id="inputLicense2" name="license-num2" placeholder="자격증 번호">
+																	</div>
+																	<div class="input-group mb-4">
+																		<label for="inputLicense3" class="sr-only">자격증3</label>
+																		<div class="input-group-prepend">
+																			<select class="form-control">
+																				<option value="">자격증3</option>
+																			</select>
+																		</div>
+																		<input type="text" class="form-control" id="inputLicense3" name="license-num3" placeholder="자격증 번호">
+																	</div>
+																</div>
+																<div class="form-group mb-4 inputSNS">
+																	<div class="input-group mb-1">
+																		<div class="input-group-prepend">
+																			<select class="form-control" name="sns-type1">
+																				<option value="facebook">Facebook</option>
+																				<option value="instagram">Instagram</option>
+																			</select>
+																		</div>
+																		<input type="text" class="form-control" name="sns1" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="https://www.facebook.com/InheeKimS2">
+																		<div class="input-group-append">
+																			<button class="btn btn-primary addSNS" type="button">
+																				<i class="fas fa-plus"></i>
+																			</button>
+																		</div>
+																	</div>
+																	<div class="input-group mb-1">
+																		<div class="input-group-prepend">
+																			<select class="form-control" name="sns-type2">
+																				<option value="instagram">Instagram</option>
+																				<option value="facebook">Facebook</option>
+																			</select>
+																		</div>
+																		<input type="text" class="form-control" name="sns2" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="http://www.instagram.com/2nniyan">
+																		<div class="input-group-append">
+																			<button class="btn btn-primary subSNS" type="button">
+																				<i class="fas fa-minus"></i>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group mb-4">
+																	<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개">안녕하세요!
+	금융관련 방송 다수 출연했습니다.</textarea>
 																</div>
 															</div>
-															<div class="form-group row mb-4">
-																<label class="col-sm-3 col-form-label"></label>
-																<div class="col">
-																	<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" value="38-4">
-																</div>
-															</div>
-															<div class="form-group">
-																<div class="input-group mb-1">
-																	<label for="inputLicense1" class="sr-only">자격증1</label>
-																	<div class="input-group-prepend">
-																		<select class="form-control">
-																			<option value="">자격증1</option>
-																		</select>
-																	</div>
-																	<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호">
-																</div>
-																<div class="input-group mb-1">
-																	<label for="inputLicense2" class="sr-only">자격증2</label>
-																	<div class="input-group-prepend">
-																		<select class="form-control">
-																			<option value="">자격증2</option>
-																		</select>
-																	</div>
-																	<input type="text" class="form-control" id="inputLicense2" name="license-num2" placeholder="자격증 번호">
-																</div>
-																<div class="input-group mb-4">
-																	<label for="inputLicense3" class="sr-only">자격증3</label>
-																	<div class="input-group-prepend">
-																		<select class="form-control">
-																			<option value="">자격증3</option>
-																		</select>
-																	</div>
-																	<input type="text" class="form-control" id="inputLicense3" name="license-num3" placeholder="자격증 번호">
-																</div>
-															</div>
-															<div class="form-group mb-4 inputSNS">
-																<div class="input-group mb-1">
-																	<div class="input-group-prepend">
-																		<select class="form-control" name="sns-type1">
-																			<option value="facebook">Facebook</option>
-																			<option value="instagram">Instagram</option>
-																		</select>
-																	</div>
-																	<input type="text" class="form-control" name="sns1" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="https://www.facebook.com/InheeKimS2">
-																	<div class="input-group-append">
-																		<button class="btn btn-primary addSNS" type="button">
-																			<i class="fas fa-plus"></i>
-																		</button>
-																	</div>
-																</div>
-																<div class="input-group mb-1">
-																	<div class="input-group-prepend">
-																		<select class="form-control" name="sns-type2">
-																			<option value="instagram">Instagram</option>
-																			<option value="facebook">Facebook</option>
-																		</select>
-																	</div>
-																	<input type="text" class="form-control" name="sns2" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="http://www.instagram.com/2nniyan">
-																	<div class="input-group-append">
-																		<button class="btn btn-primary subSNS" type="button">
-																			<i class="fas fa-minus"></i>
-																		</button>
-																	</div>
-																</div>
-															</div>
-															<div class="form-group mb-4">
-																<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개">안녕하세요!
-금융관련 방송 다수 출연했습니다.</textarea>
-															</div>
-														</div>
+														</sec:authorize>
 														<div class="form-group row justify-content-center">
 															<button type="submit" name="save-info-btn" class="btn btn-primary">저장</button>
 														</div>
@@ -275,7 +288,7 @@
 													<ul class="fa-ul">
 														<li class="mb-3">
 															<span class="fa-li"><i class="fas fa-angle-right"></i></span>
-															회원 탈퇴 시, 사용하고 계신 아이디(dlslwkd0525@naver.com)는 재사용이나 복구가 불가능합니다.</li>
+															회원 탈퇴 시, 사용하고 계신 아이디(${mid})는 재사용이나 복구가 불가능합니다.</li>
 														<li class="mb-3">
 															<span class="fa-li"><i class="fas fa-angle-right"></i></span>
 															회원님의 모든 개인정보 및 이용정보가 삭제되며, 삭제된 데이터는 복구되지 않습니다.</li>
@@ -338,6 +351,25 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
 		$(document).ready(function() {
+			$(function () {
+			  var token = $("meta[name='_csrf']").attr("content");
+			  var header = $("meta[name='_csrf_header']").attr("content");
+			  $(document).ajaxSend(function(e, xhr, options) {
+			    xhr.setRequestHeader(header, token);
+			  });
+			});
+			
+			$.ajax({
+				url: '/getExpert.do',
+				data: {
+					mid: $('#mid').val()
+				},
+				dataType: 'JSON',
+				type: 'POST',
+				success: function(data){
+					alert('hello!');
+				}
+			});
 			$('#change-pwd-btn').on('click', function() {
 				$(this).parent().parent().hide();
 				$('.change-password').css('display','inline');
@@ -352,6 +384,27 @@
 					reader.readAsDataURL(this.files[0]);
 				}
 			});
+			
+			// add birthday select options
+			  var date = new Date();
+			  var year = date.getFullYear();
+
+			  for(var i=year; i>=year-100; i--) {
+			    $('#birth-year').append('<option value="' + i + '">' + i + '년</option>');
+			  }
+			  for(i=1; i<=12; i++) {
+				var j = i.toString();
+				if(i<10) { j = '0' + j; }
+				
+			    $('#birth-month').append('<option value="' + j + '">' + i + '월</option>');
+			  }
+			  for(i=1; i<=31; i++) {
+				var j = i.toString();
+				if(i<10) { j = '0' + j; }
+			    
+				$('#birth-day').append('<option value="' + j + '">' + i + '일</option>');
+			  }
+			
 			$('.addSNS').on('click', function() {
 				$('.inputSNS').append(
 					'<div class="input-group mb-1">'
@@ -374,14 +427,6 @@
 			});
 		});
 
-		$(function () {
-		  var token = $("meta[name='_csrf']").attr("content");
-		  var header = $("meta[name='_csrf_header']").attr("content");
-		  $(document).ajaxSend(function(e, xhr, options) {
-		    xhr.setRequestHeader(header, token);
-		  });
-		});
-		
 		function checkPassword(){
 			$.ajax({
 				url: '/checkPwd.do',

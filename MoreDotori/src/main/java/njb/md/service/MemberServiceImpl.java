@@ -52,6 +52,13 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 	}
 	
+	public Map<Object, Object> getExpertById(String id) {
+		Expert expert = mapper.getExpert(id);
+		log.info("expert: " + expert);
+		
+		return null;
+	}
+	
 	public int duplCheck(String type, String name) {
 		int result = -1;
 		

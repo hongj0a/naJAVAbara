@@ -105,6 +105,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@PostMapping("/getExpert.do")
+	@ResponseBody
+	public Map<Object, Object> getExpert(String mid) {
+		mservice.getExpertById(mid);
+		return null;
+	}
+	
 	@PostMapping("/checkPwd.do")
 	@ResponseBody
 	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
