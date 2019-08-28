@@ -381,7 +381,7 @@ public class BookController {
     	int lastindex = 0;
     	int view = 15;
     	
-    	if(iotList.size() < view) {
+    	if(hmlist.size() < view) {
         	startindex = 0;
     		lastindex = hmlist.size();
     	}else {
