@@ -453,7 +453,7 @@ public class BookController {
 	@RequestMapping(value="/book/chartData.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public HashMap<String,List<Long>> getChartData(String M_id, String yyyy, HttpServletRequest request) throws Exception{
-		log.info("### 차트데이터를 가져올게욘 ####");
+		log.info("### 가계부의 차트데이터를 가져올게욘 ####");
 		
         HashMap<String,List<Long>> hm = new HashMap<String,List<Long>>();
         List<Long> inData = new ArrayList<Long>();
@@ -475,7 +475,6 @@ public class BookController {
         
         return hm;
 	}
-		
 	
 	@GetMapping("/book2")
 	public ModelAndView myAccountMonthlyBook() {
@@ -493,5 +492,83 @@ public class BookController {
 		mv.addObject("codelistOT", codelistOT);
 		return mv;
 	}
+
+	@GetMapping("/asset_cond")
+	public ModelAndView myAccount_cond() {
+		log.info("#### 통계페이지 ####");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("asset/asset_condition");
+		return mv;
+	}	
 	
+	@RequestMapping(value="/asset_cond/tab1chartData.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<String,List<String>> getTab1ChartData(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		log.info("### [ tab1 : 수입 및 지출 통계 ] 차트데이터를 가져올게욘 ####");
+        int yearint = Integer.parseInt(yyyy);
+        int monint = Integer.parseInt(mmmm);
+        int dayint = Integer.parseInt(dddd);
+		
+        HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
+        
+        //tab1-chart1 데이터
+        List<String> dataName1 = new ArrayList<String>();
+        List<String> inData1 = new ArrayList<String>();
+        List<String> outData1 = new ArrayList<String>();
+        
+        if(monint+1!=12) {
+            for(int i=monint+1; i<13; i++) {
+            	int prevYear = yearint-1;
+            	
+            	if(i<10) {
+            		String mon = "0"+i;
+            		dataName1.add(prevYear+"년 "+mon+"월");
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, prevYear+"/"+mon)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, prevYear+"/"+mon)));  
+            	}else {
+            		dataName1.add(prevYear+"년 "+i+"월");        		
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, prevYear+"/"+i)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, prevYear+"/"+i)));  
+            	}
+            }
+            
+            for(int j=1; j<=monint; j++) {
+            	if(j<10) {
+            		String mon = "0"+j;
+            		dataName1.add(mon+"월");
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+mon)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon)));  
+            	}else {        		
+            		dataName1.add(j+"월");
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+j)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+j)));  
+            	}           	
+            }
+        }else {
+            for(int i=1; i<=12; i++) {
+            	if(i<10) {
+            		String mon = "0"+i;
+            		dataName1.add(mon+"월");
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+mon)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon)));
+            	}else {
+            		dataName1.add(i+"월"); 
+            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+i)));
+            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+i)));
+            	}
+            }        	
+        }
+
+        hm.put("dataName1", dataName1);
+        hm.put("inData1", inData1);
+        hm.put("outData1", outData1);        
+        
+        ///////////////////////////////////////////////////////////////////////////////
+        
+        
+        
+        
+        return hm;
+	}
 }

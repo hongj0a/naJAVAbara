@@ -67,12 +67,14 @@ public class IndexController {
 		return "asset/assetList";
 	}
 
+/*	
 	// 일반 회원 - 자산 현황 및 통계
 	@GetMapping("/asset_cond")
 	public String asset_cond() {
 		return "asset/asset_condition";
 	}
-
+*/
+	
 	// 일반 회원 - 전문가 찾기
 	@GetMapping("/eList")
 	public String eList() {

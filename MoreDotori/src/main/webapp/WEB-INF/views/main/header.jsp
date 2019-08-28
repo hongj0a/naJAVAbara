@@ -50,7 +50,7 @@
                         <ul class="pcoded-submenu">
                             <li id="menu1_1"><a href="/normal/book" class="">가계부 작성</a></li>
                             <li id="menu1_2"><a href="/aList" class="">자산목록관리</a></li>
-                            <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
+                            <li id="menu1_3"><a href="/normal/asset_cond" class="">현황 및 통계 </a></li>
                         </ul>
                     </li>
                     <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">

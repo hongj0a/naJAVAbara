@@ -5,8 +5,8 @@
 <head>
 	<title>NAJAVABARA</title>
 	<meta charset="utf-8">
-  	<link rel="stylesheet" href="css/member/asset-condition.css">
-  	<link rel="stylesheet" href="fonts/material/css/materialdesignicons.min.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/asset-condition.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
 </head>
 
 <body class="layout-8">
@@ -29,7 +29,7 @@
 								<div class="col-sm-12">
 									<h3 class="mb-5 text-center">홍길동 님의 자산현황 및 통계</h3>
 									<h6 class="mb-3 text-right">
-										오늘은 <span class="font-weight-bold">2019년 7월 15일</span> 입니다.
+										오늘은 <span class="font-weight-bold"><span id="today_yy"></span>년 <span id="today_mm"></span>월 <span id="today_dd"></span>일</span> 입니다.
 									</h6>
 									<div id="my-statistics" role="tablist"
 										aria-multiselectable="true">
@@ -295,14 +295,14 @@
 	<!-- [ Main Content ] end -->
 
 	<!-- chart -->
-	<script src="plugins/chart-highchart/js/highcharts.js"></script>
-	<script src="plugins/chart-am4/js/core.js"></script>
-	<script src="plugins/chart-am4/js/charts.js"></script>
-	<script src="plugins/amchart/js/amcharts.js"></script>
-	<script src="plugins/amchart/js/serial.js"></script>
-	<script src="plugins/amchart/js/pie.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/chart-highchart/js/highcharts.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/core.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/charts.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/amcharts.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/serial.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/pie.min.js"></script>
 
-	<script src="js/member/asset-condition.js"></script>
+	<script src="${pageContext.request.contextPath}/js/member/asset-condition.js"></script>
 	<script>
 	   	//메뉴
 		$("#menu1").addClass('active');
