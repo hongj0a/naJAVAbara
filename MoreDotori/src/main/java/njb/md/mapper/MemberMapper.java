@@ -1,5 +1,7 @@
 package njb.md.mapper;
 
+import java.util.Map;
+
 import njb.md.domain.Expert;
 import njb.md.domain.Mauth;
 import njb.md.domain.Member;
@@ -13,4 +15,7 @@ public interface MemberMapper {
 	
 	String duplIdCheck(String id);
 	String duplNickCheck(String nick);
+	
+	int updateState(Map<String, Object> map);
+	int setEnable(Map<String, Object> map);
 }

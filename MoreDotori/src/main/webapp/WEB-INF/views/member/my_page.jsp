@@ -1,10 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>NAJAVABARA</title>
 <meta charset="utf-8">
+
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <link rel="stylesheet" href="css/member/member.css">
 </head>
@@ -78,8 +83,7 @@
 																			<input type="text" class="form-control"
 																				id="inputNick" name="nickname" value="<sec:authentication property="principal.member.m_nickname"/>">
 																			<div class="input-group-append">
-																				<button class="btn btn-primary"
-																					name="nick-dupl-check" type="button">중복확인</button>
+																				<button class="btn btn-primary" name="nick-dupl-check" type="button">중복확인</button>
 																			</div>
 																		</div>
 																	</div>
@@ -89,38 +93,33 @@
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">비밀번호</label>
 															<div class="col">
-																<button class="btn btn-primary" id="change-pwd-btn"
-																	type="button">비밀번호 변경</button>
+																<button class="btn btn-primary" id="change-pwd-btn" type="button">비밀번호 변경</button>
 															</div>
 														</div>
 														<div class="change-password">
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">기존 비밀번호</label>
 																<div class="col">
-																	<input type="password" class="form-control"
-																		id="inputPwd" name="password">
+																	<input type="password" class="form-control" id="inputPwd" name="password">
 																</div>
 															</div>
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">새 비밀번호</label>
 																<div class="col">
-																	<input type="password" class="form-control"
-																		id="inputNewPwd" name="new-password">
+																	<input type="password" class="form-control" id="inputNewPwd" name="new-password">
 																</div>
 															</div>
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">새 비밀번호 확인</label>
 																<div class="col">
-																	<input type="password" class="form-control"
-																		id="inputPwdConfirm" name="new-password-confirm">
+																	<input type="password" class="form-control" id="inputPwdConfirm" name="new-password-confirm">
 																</div>
 															</div>
 														</div>
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">연락처</label>
 															<div class="col">
-																<input type="text" class="form-control" id="inputPhone"
-																	name="phone" value="<sec:authentication property="principal.member.m_phone"/>">
+																<input type="text" class="form-control" id="inputPhone" name="phone" value="<sec:authentication property="principal.member.m_phone"/>">
 															</div>
 														</div>
 														<div class="form-group row mb-4">
@@ -265,9 +264,10 @@
 													</form>
 												</div>
 											</div>
-											<div class="tab-pane fade" id="withdrawal" role="tabpanel"
-												aria-labelledby="withdrawal-tab">
-												<form>
+											<div class="tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
+												<form id="withdrawal" action="/withdrawal.do" method="post">
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+													<input type="hidden" name="mid" value='<sec:authentication property="principal.member.m_id"/>'/>
 													<div class="input-group mb-4">
 														<label class="h5 p-3 m-0">유의사항을 확인 후 탈퇴를 진행해 주세요.</label>
 													</div>
@@ -287,7 +287,7 @@
 													</ul>
 													<div class="form-group mb-4 pl-3">
 														<div class="checkbox checkbox-primary d-inline">
-															<input type="checkbox" id="inputAgree" name="agree">
+															<input type="checkbox" id="inputAgree" name="agree" required>
 															<label for="inputAgree" class="cr">유의사항을 모두 확인하였으며, 이에 동의합니다.</label>
 														</div>
 													</div>
@@ -306,12 +306,12 @@
 																	</p>
 																	<div class="row justify-content-center">
 																		<div class="col-sm-7 mb-3">
-																			<input type="password" class="form-control" name="pwd-confirm">
+																			<input type="password" class="form-control" id="pwd-confirm">
 																		</div>
 																	</div>
 																</div>
 																<div class="modal-footer justify-content-center">
-																	<button type="button" class="btn btn-primary">탈퇴하기</button>
+																	<button type="submit" onclick="checkPassword()" class="btn btn-primary">탈퇴하기</button>
 																</div>
 															</div>
 														</div>
@@ -373,6 +373,43 @@
 				$(this).parents('div.input-group.mb-1').remove();
 			});
 		});
+
+		$(function () {
+		  var token = $("meta[name='_csrf']").attr("content");
+		  var header = $("meta[name='_csrf_header']").attr("content");
+		  $(document).ajaxSend(function(e, xhr, options) {
+		    xhr.setRequestHeader(header, token);
+		  });
+		});
+		
+		function checkPassword(){
+			$.ajax({
+				url: '/checkPwd.do',
+				data: {
+					pwd: $('#pwd-confirm').val()
+				},
+				type: 'POST',
+				dataType: 'JSON',
+				success: function(data) {
+					switch (data.rst) {
+						case 1:
+							alert('?!?!??!?!??');
+							$('#withdrawal').submit();
+							break;
+						case 0:
+							$mbody = $('.modal-body');
+							if ($mbody.find('.error.pwd-check-error').length) {
+						      break;
+						    }
+							$mbody.append('<div class="error pwd-check-error">비밀번호를 확인해주세요.</div>');
+							break;
+						default:
+							console.log('error??');
+					}
+				}
+			});
+			
+		}
 	</script>
 </body>
 

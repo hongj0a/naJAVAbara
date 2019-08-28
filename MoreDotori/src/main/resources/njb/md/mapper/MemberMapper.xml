@@ -60,4 +60,11 @@
 	<select id="duplNickCheck" parameterType="string" resultType="string">
 		select m_nickname from MEMBER where m_nickname = #{m_nickname}
 	</select>
+	
+	<update id="updateState" parameterType="map">
+	  update MEMBER set C_MSTATE = #{mstate} where M_ID = #{mid}
+	</update>
+	<update id="setEnable" parameterType="map">
+	  update MEMBER set M_ENABLED = #{menabled} where M_ID = #{mid}
+	</update>
 </mapper>

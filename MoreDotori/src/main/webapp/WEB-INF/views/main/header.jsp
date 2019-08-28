@@ -193,11 +193,12 @@
 	                                        </div>
 	                                </li>
 	                            </ul>
-	                            <a href="/logout">
-	                            <div class="noti-footer" id="logout">
-	                                                                   로그아웃 
-	                            </div>
-	                            </a>
+	                            <form id="logout" action="/logout" method="post">
+	                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		                            <a href="javascript:$('#logout').submit();">
+		                        	    <div class="noti-footer" id="logout">로그아웃</div>
+		                            </a>
+	                            </form>
 	                        </div>
 	                    </div>
                     </li>

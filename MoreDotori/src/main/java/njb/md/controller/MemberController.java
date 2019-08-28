@@ -1,11 +1,15 @@
 package njb.md.controller;
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +19,7 @@ import lombok.extern.log4j.Log4j;
 import njb.md.domain.Expert;
 import njb.md.domain.Member;
 import njb.md.domain.Minfo;
+import njb.md.security.domain.CustomUser;
 import njb.md.service.FileService;
 import njb.md.service.MemberService;
 
@@ -96,6 +101,36 @@ public class MemberController {
 		log.info("# minfo: " + minfo);
 		
 		mservice.joinMember(member, expert);
+		
+		return "redirect:/";
+	}
+	
+	@PostMapping("/checkPwd.do")
+	@ResponseBody
+	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
+		
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+//		log.info("user: " + user);
+		if(pwencoder.matches(pwd, user.getMember().getM_password()))
+			result = 1;
+		else
+			result = 0;
+		
+		map.put("rst", result);
+		return map;
+	}
+	
+	@PostMapping("/withdrawal.do")
+	public String withdrawal(String mid) {
+		log.info("# mid: " + mid);
+		
+		if(mservice.withdrawal(mid) != 0)
+			log.info("탈퇴 성공");
+		else 
+			log.info("탈퇴 실패");
 		
 		return "redirect:/";
 	}

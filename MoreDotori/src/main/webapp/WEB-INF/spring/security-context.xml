@@ -21,8 +21,8 @@
 		<security:form-login login-page="/signin"
 			authentication-success-handler-ref="customLoginSuccess" />
 		<security:logout logout-url="/logout"
-			invalidate-session="true"
-			delete-cookies="remember-me,JSESSION_ID" />
+			logout-success-url="/"
+			delete-cookies="JSESSION_ID" />
 		
 		<security:access-denied-handler ref="customAccessDenied" />
 	</security:http>

@@ -6,4 +6,5 @@ import njb.md.domain.Member;
 public interface MemberService {
 	boolean joinMember(Member member, Expert expert);
 	int duplCheck(String type, String name);
+	int withdrawal(String mid);
 }

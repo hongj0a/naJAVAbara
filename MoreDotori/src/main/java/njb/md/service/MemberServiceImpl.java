@@ -1,5 +1,8 @@
 package njb.md.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -59,6 +62,26 @@ public class MemberServiceImpl implements MemberService {
 			if(mapper.duplNickCheck(name) != null) result = 1;
 			else result = 0;
 		}
+		
+		return result;
+	}
+	
+	public int withdrawal(String mid) {
+		int result = -1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("mid", mid);
+		map.put("mstate", "MS003");
+		
+		result *= mapper.updateState(map);
+
+		map.remove("mstate");
+		map.put("menabled", "0");
+		
+		result *= mapper.setEnable(map);
+		
+//		log.info("# map: " + map);
 		
 		return result;
 	}
