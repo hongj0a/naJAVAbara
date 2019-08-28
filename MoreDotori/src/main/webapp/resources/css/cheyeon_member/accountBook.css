@@ -304,6 +304,13 @@
 	overflow-y: scroll !important;	
 }
 
+.card.account_table_card::-webkit-scrollbar{width: 8px;}
+::-webkit-scrollbar-track {background-color:#fff;}
+::-webkit-scrollbar-thumb {background-color:#c0c0c0;border-radius: 10px;}
+::-webkit-scrollbar-thumb:hover {background: #f2ae30;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+width:16px;height:16px;background:#fff;} 
+
 .account_table{
 	text-align: center;
 }
@@ -376,3 +383,4 @@
 .sum_menu .sum_title{
 	font-size: 18px;
 }
+
