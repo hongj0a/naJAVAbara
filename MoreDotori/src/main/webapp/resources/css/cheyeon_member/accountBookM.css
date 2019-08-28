@@ -196,6 +196,15 @@
 	text-align: center;
 }
 
+.pNum{
+	padding : 0 10px;
+	cursor : pointer;
+}
+
+.pNum:hover{
+	font-weight: bold;
+}
+
 .act{
 	display: inline-block !important;
 }

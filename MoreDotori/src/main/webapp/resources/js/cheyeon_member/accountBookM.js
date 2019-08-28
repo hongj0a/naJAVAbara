@@ -89,7 +89,6 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 			   var view = 15;						//한 페이지당 보일 row 수
 			   var pageBlockSu = 5;					//쪽블럭에 나올 쪽수
 			   var pageSu = Math.ceil(data/view);	//전체 쪽수
-			   if(pageSu == 0) pageSu=1;
 
 			   var content ="";
 			   $('.pageNum').empty();
@@ -97,16 +96,16 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 			   //마지막 페이지블록
 			   pageBlock = Math.ceil(pageSu/pageBlockSu);
 			   
-			   content += "<span style='display:none' class='page_prev'> < </span>";
+			   content += "<span style='display:none;cursor:pointer' class='page_prev'> <i class='feather icon-chevron-left'></i> </span>";
 			   
 			   var block = 1;
-			   for(var i=1; i<pageSu+1; i++){
+			   for(var i=1; i<=pageSu; i++){
 				   content += "<span style='display:none' class='pNum pBlock"+block+"'>"+i+"</span>";
 				   if(i%pageBlockSu==0) block++;
 			   }
 
 			   if(pageBlock>1){
-				   content += "<span class='page_next'> > </span>";
+				   content += "<span style='display:none;cursor:pointer' class='page_next'> <i class='feather icon-chevron-right'></i> </span>";
 			   }
 			   
 			   $('.pageNum').append(content);
@@ -125,21 +124,36 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   var realClass = null;
 	   
 	   //해당페이지에 색보이게하기
-	   for(var j=0; j<spanCount; j++){
+	   for(var j=0; j<=spanCount; j++){
 		   if(pNumList.eq(j).text()==selp){
-			   pNumList.eq(j).css("color", "red");
+			   pNumList.eq(j).css("color", "#F29D35");
 			   var selpClass = pNumList.eq(j).attr("class");
 			   var selpClassArr = selpClass.split(' ');
 			   realClass = selpClassArr[1];
 		   }
 	   }
 	   
-	   //해당페이지의 페이지블록만 보이게하기
-	   for(var j=0; j<spanCount; j++){
+	   for(var j=0; j<=spanCount; j++){
+		   //해당페이지의 페이지블록만 보이게하기
 		   if(pNumList.eq(j).hasClass(realClass)){
 			   pNumList.eq(j).addClass("act");
 		   }
-	   }	   
+		   
+		   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
+		   var pBlockName = realClass.split('pBlock');
+		   var pBlockNum = pBlockName[1];
+		   pBlockNum *= 1;
+		   if(pBlockNum>=pageBlock){
+			   $('.page_next').css("display", "none");
+		   }else{
+			   $('.page_next').css("display", "inline-block");
+		   } 
+		   if(pBlockNum<=1){
+			   $('.page_prev').css("display", "none");
+		   }else{
+			   $('.page_prev').css("display", "inline-block");
+		   }		   
+	   }
    }
 
    $(document).on('click', '.page_next', function(){
@@ -149,12 +163,59 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   
 	   var pBlockName = pBlockClass.split('pBlock');
 	   var pBlockNum = pBlockName[1];
+
 	   console.log(pBlockNum);
+	   
+	   $('.'+pBlockClass).removeClass("act");
+	   
+	   pBlockNum *= 1;	//숫자로형변환
+	   pBlockNum += 1;
+	   $('.pBlock'+pBlockNum).addClass("act");
+	   
+	   //현 블록이 마지막 블록이면 next버튼이 보이지 않게 하라
+	   if(pBlockNum>=pageBlock){
+		   $('.page_next').css("display", "none");
+	   }else{
+		   $('.page_next').css("display", "inline-block");
+	   } 
+	   if(pBlockNum<=1){
+		   $('.page_prev').css("display", "none");
+	   }else{
+		   $('.page_prev').css("display", "inline-block");
+	   }
    });
+ 
+   $(document).on('click', '.page_prev', function(){
+	   var pBlock = $('.act').attr("class");
+	   var pBlockArr = pBlock.split(' ');
+	   var pBlockClass = pBlockArr[1];
+	   
+	   var pBlockName = pBlockClass.split('pBlock');
+	   var pBlockNum = pBlockName[1];
+
+	   console.log(pBlockNum);
+	   
+	   $('.'+pBlockClass).removeClass("act");
+	   
+	   pBlockNum *= 1;	//숫자로형변환
+	   pBlockNum -= 1;
+	   $('.pBlock'+pBlockNum).addClass("act");
+	   
+	   //현 블록이 마지막 블록이면 next버튼이 보이지 않게 하라
+	   if(pBlockNum>=pageBlock){
+		   $('.page_next').css("display", "none");
+	   }else{
+		   $('.page_next').css("display", "inline-block");
+	   } 
+	   if(pBlockNum<=1){
+		   $('.page_prev').css("display", "none");
+	   }else{
+		   $('.page_prev').css("display", "inline-block");
+	   }
+   });   
    
 	//리스트가져오기
 	$.fn.getInOutTrs = function(year, month, selp){
-		selp=4;
 		if(selp == null || selp == 0){
 			selp = 1;
 		}
@@ -231,6 +292,21 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	       }
 	   });
 	}
+	
+	
+	//쪽번호 클릭이벤트
+	$(document).on('click', '.pNum', function(){
+		var selDate = $("#select-month").text();
+		selDate = selDate.split(' ');
+		
+		var selYear = selDate[0].split('년');
+		selYear = $.trim(selYear[0]);
+		
+		var selMonth = selDate[1].split('월');
+		selMonth = $.trim(selMonth[0]);
+		
+		$.fn.getInOutTrs(selYear,selMonth,$(this).text());		
+	});
 		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
