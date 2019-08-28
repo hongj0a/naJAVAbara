@@ -54,13 +54,10 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                        </br>
                                                         <div class="col-12">
-                                                         &nbsp;&nbsp;
-                                                     		<span>ID  : </span>
-                                                     		&nbsp;&nbsp;
-                                                        	<input name="m_id" type="text" class="form-control plus-imp" placeholder='${alist.m_id}' value='${alist.m_id}'>
-                                                        </div>
+                                                      	   <!--  <input name="a_seq" class="form-control plus-imp"> -->
+                                                        	<input name="m_id" id="m_id" type="hidden" vlaue="inhee@naver.com" class="form-control plus-imp" placeholder='${alist.m_id}' value='${alist.m_id}' readonly>
+			                                            </div>
                                                         </br>
                                             			<div class="col-12">
                                             				<span>타입 :  </span>
@@ -114,7 +111,7 @@
                              		 <div id="sizesize" class="text-center project-main">
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
-										  	<form name='update' method='post' action='aList/cont.do'>
+										  	<form name='update' method='post' action='aList/update.do'>
 												<table id="assetListmodaljs">
 												  <tr>
 												  	<th class="idhidden">아이디</th>
@@ -134,6 +131,8 @@
 														<td>${alist.a_money}</td>
 														<td>${alist.a_memo}</td>
 														<td class="updatetd"><a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+			                                            </c:forEach>
 			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
@@ -142,19 +141,19 @@
 			                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			                                                        </div>
 			                                                        <div class="modal-body">
-			                                                        	<input id="a_seq" type="hidden" class="form-control plus-imp">
+			                                                        	<input name="a_seq" id="a_seq" type="hidden" class="form-control plus-imp">
 			                                                       <!--  </br>
 			                                                        <div class="col-12">
 			                                                         &nbsp;&nbsp;
 			                                                     	<span>ID  : </span>
 			                                                     		&nbsp;&nbsp; -->
-			                                                        	<input id="m_id" type="hidden" class="form-control plus-imp" readonly>
+			                                                        	<input name="m_id" id="m_id" type="hidden" value="inhee@naver.com" class="form-control plus-imp" readonly>
 			                                                        	
 			                                                        </br>
 			                                            			<div class="col-12">
 			                                            				<span>타입 :  </span>
 			                                                    		&nbsp;
-			                                                    		<select id="c_asset" class="js-example-basic-single form-control plus-imp">
+			                                                    		<select name="c_asset" id="c_asset" class="js-example-basic-single form-control plus-imp">
 			                                                            	<option value="AS001">현금</option>
 			                                                            	<option value="AS002">통장</option>
 			                                                            	<option value="AS003">신용카드</option>
@@ -165,19 +164,19 @@
 			                                                        <div class="col-12">
 			                                                     		<span>별칭 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_nickname" type="text" class="form-control plus-imp">
+			                                                        	<input name="a_nickname" id="a_nickname" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>잔액 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_money" type="text" class="form-control plus-imp">
+			                                                        	<input name="a_money" id="a_money" type="text" class="form-control plus-imp">
 			                                                        </div>
 			                                                        </br>
 			                                                        <div class="col-12">
 			                                                     		<span>메모 :  </span>
 			                                                     		&nbsp;
-			                                                        	<input id="a_memo" type="text" class="form-control plus-imp">
+			                                                        	<input name="a_memo" id="a_memo" type="text" class="form-control plus-imp">
 			                                                        </div>	
 			                                                        </br>
 			                                                      </div>
@@ -188,9 +187,9 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div> 
-			                                            <td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+			                                            
 			                                           </tr>
-													</c:forEach>
+													
 											</table>
 											</form>
                               		   </div>
@@ -217,7 +216,7 @@
     </script>
 
 	<!-- assetUpdatemodal js -->
-	<script src="js/asset/assetUpdate.js"></script>
+/<script src="js/asset/assetUpdate.js"></script>
 
 </body>
 </html>

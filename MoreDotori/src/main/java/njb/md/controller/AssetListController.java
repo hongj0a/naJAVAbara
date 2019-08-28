@@ -53,9 +53,10 @@ public class AssetListController {
 	public String write() {
 		return "asset/assetList";
 	}
+	
 	@PostMapping("/write.do")
 	public String write(AssetList list) {
-		log.info("#write list m_id"+ list.getM_id());
+		log.info("##write list"+ list);
 		service.insertS(list);
 		return "redirect:../aList";
 	}
@@ -71,6 +72,7 @@ public class AssetListController {
 		model.addAttribute("list", service.contS(a_seq));
 	}
 	@GetMapping("/update.do")
+	//@RequestMapping(value = "/update.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView update(@RequestParam("a_seq") long a_seq, Model model) {
 		log.info("/update.do");
 		log.info("#a_seq: " + a_seq);
@@ -82,9 +84,10 @@ public class AssetListController {
 		
 		return mv;
 	}
-	@PostMapping("/update.do")
+	@PostMapping("/update.do")  
 	//@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String update(AssetList list) {
+		log.info("### update list : " + list);
 		service.updateS(list);
 		return "redirect:../aList";
 	}
