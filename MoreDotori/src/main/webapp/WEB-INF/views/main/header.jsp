@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" /> -->
+
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -12,7 +16,8 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon2.ico" type="image/x-icon" />
+    <link rel="icon" href="/images/favicon2.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -24,6 +29,8 @@
     
     <!-- append css -->
     <link rel="stylesheet" href="/css/main/header.css">
+    
+
 </head>
 
 <body class="layout-8">
@@ -33,7 +40,9 @@
             <div class="navbar-brand header-logo" id="moredotori_menu_blue">
                 <a href="/" class="b-brand">
                     <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
+                    <!-- 왼쪽에서 나올 때 -->
+                      <!-- <i class="feather icon-trending-up"></i> -->
+                     <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%; -webkit-transform:none; transform:none;opacity: 1;"/>
                     </div>
                     <span class="b-title">MORE DOTORI</span>
                 </a>
@@ -93,13 +102,16 @@
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="/main" class="b-brand">
                    <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
+                   <!-- 모바일 헤더일 때 -->
+                      <!-- <i class="feather icon-trending-up"></i> -->
+                        <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%;"/>
                    </div>
                    <span class="b-title">MORE DOTORI</span>
                </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="#!">
             <i class="feather icon-more-horizontal"></i>
+            
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">

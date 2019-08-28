@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 .footer{
-	height: 130px;
+	/* height: 130px; */
+	height: auto;
 	background-color: #37474f;
 	color: white;
 	padding: 15px;
@@ -19,6 +20,14 @@
 
 .footer div:nth-child(2){
 	margin-bottom: 5px;	
+}
+
+/* footer Logo */
+.footerlogo{
+	with:auto;
+	height:80px;
+	display:block;
+	margin:0 auto;
 }
 
 #noti_gotop_btn{
