@@ -32,25 +32,25 @@
 					            </ol>
 					            <div class="carousel-inner">
 					                <div class="carousel-item active">
-					                    <img class="d-block w-100" src="images/main/women2.jpg" alt="First slide">
-					                    <div class="carousel-caption d-none d-md-block">
+					                    <img class="d-block w-100" src="images/main/main_1.jpg" alt="First slide">
+					                    <!-- <div class="carousel-caption d-none d-md-block">
 					                        <h5 class="text-white">First slide label</h5>
 					                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-					                    </div>
+					                    </div> -->
 					                </div>
 					                <div class="carousel-item">
-					                    <img class="d-block w-100" src="images/main/notebook2.jpg" alt="Second slide">
-					                    <div class="carousel-caption d-none d-md-block">
+					                    <img class="d-block w-100" src="images/main/main_2.jpg" alt="Second slide">
+					                    <!-- <div class="carousel-caption d-none d-md-block">
 					                        <h5 class="text-white">Second slide label</h5>
 					                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-					                    </div>
+					                    </div> -->
 					                </div>
 					                <div class="carousel-item">
-					                    <img class="d-block w-100" src="images/main/coin_and_laptop2.jpg" alt="Third slide">
-					                    <div class="carousel-caption d-none d-md-block">
+					                    <img class="d-block w-100" src="images/main/main_3.jpg" alt="Third slide">
+					                    <!-- <div class="carousel-caption d-none d-md-block">
 					                        <h5 class="text-white">Third slide label</h5>
 					                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-					                    </div>
+					                    </div> -->
 					                </div>
 					            </div>
 					            <a class="carousel-control-prev" href="#carouselExampleIndicatorscaption" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
@@ -60,34 +60,34 @@
 
 								<div class="card-deck padding_30px" id="main_no_margin">
 								    <div class="card">
-								        <img class="card-img-top" src="images/slider/img-slide-4.jpg" alt="Card image cap">
+								        <img class="card-img-top" src="images/slider/img-slide-1.jpg" alt="Card image cap">
 								        <div class="card-body">
-								            <h5 class="card-title">Card title</h5>
-								            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								            <h5 class="card-title">절약하는 습관을 만듭니다</h5>
+								            <p class="card-text">머리 속으로 절약만 한다고 돈이 과연 남을까요?<br>모아도토리와 함께 확실한 절약 습관을 길러봅시다. <br>당신이라면 분명히 할 수 있습니다.</p>
 								        </div>
-								        <div class="card-footer">
+								        <!-- <div class="card-footer">
 								            <small class="text-muted">Last updated 3 mins ago</small>
-								        </div>
+								        </div> -->
 								    </div>
 								    <div class="card">
 								        <img class="card-img-top" src="images/slider/img-slide-2.jpg" alt="Card image cap">
 								        <div class="card-body">
-								            <h5 class="card-title">Card title</h5>
-								            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+								            <h5 class="card-title">월급 받은지 3일 후 텅장?!</h5>
+								            <p class="card-text">괜찮아요? 텅장 때문에 많이 놀라셨죠? <br> 더이상 텅장을 만나고 싶지 않다면 모아도토리와 함께하세요.</p>
 								        </div>
-								        <div class="card-footer">
+								        <!-- <div class="card-footer">
 								            <small class="text-muted">Last updated 3 mins ago</small>
-								        </div>
+								        </div> -->
 								    </div>
 								    <div class="card">
-								        <img class="card-img-top" src="images/slider/img-slide-1.jpg" alt="Card image cap">
+								        <img class="card-img-top" src="images/slider/img-slide-3.jpg" alt="Card image cap">
 								        <div class="card-body">
-								            <h5 class="card-title">Card title</h5>
-								            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+								            <h5 class="card-title">경조사가 줄줄이 있다?!</h5>
+								            <p class="card-text">내 지갑사정 모르는 남의 결혼식은 항상 줄지어있죠. <br>언제 결혼하든 진심으로 부조할 수 있는 사람이 되고싶지 않은가요?</p>
 								        </div>
-								        <div class="card-footer">
+								        <!-- <div class="card-footer">
 								            <small class="text-muted">Last updated 3 mins ago</small>
-								        </div>
+								        </div> -->
 								    </div>
 								</div>
                             <!-- [ Main Content ] end -->
