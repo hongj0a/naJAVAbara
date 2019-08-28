@@ -125,7 +125,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   
 	   //해당페이지에 색보이게하기
 	   for(var j=0; j<=spanCount; j++){
-		   if(pNumList.eq(j).text()==selp){
+		   if((pNumList.eq(j).text())==selp){
 			   pNumList.eq(j).css("color", "#F29D35");
 			   var selpClass = pNumList.eq(j).attr("class");
 			   var selpClassArr = selpClass.split(' ');
@@ -670,15 +670,159 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   }); 	   
    });
 
+	//리스트 수 가져오기
+   var spageBlock = 1;
+   $.fn.getSearchCount = function(searchingtxt, selp){
+ 	   $.ajax({
+		   type: "GET",
+		   url : "book2/returnSlistCount.do",
+		   dataType : "json",
+		   data : { M_id: "inhee@naver.com",
+			   		searchStr: searchingtxt
+		   },
+		   success : function(data){
+			   var view = 15;						//한 페이지당 보일 row 수
+			   var pageBlockSu = 5;					//쪽블럭에 나올 쪽수
+			   var pageSu = Math.ceil(data/view);	//전체 쪽수
+
+			   var content ="";
+			   $('.pageNum').empty();
+			   
+			   //마지막 페이지블록
+			   spageBlock = Math.ceil(pageSu/pageBlockSu);
+			   
+			   content += "<span style='display:none;cursor:pointer' class='page_prevs'> <i class='feather icon-chevron-left'></i> </span>";
+			   
+			   var block = 1;
+			   for(var i=1; i<=pageSu; i++){
+				   content += "<span style='display:none' class='psNum psBlock"+block+"'>"+i+"</span>";
+				   if(i%pageBlockSu==0) block++;
+			   }
+
+			   if(spageBlock>1){
+				   content += "<span style='display:none;cursor:pointer' class='page_nexts'> <i class='feather icon-chevron-right'></i> </span>";
+			   }
+			   
+			   $('.pageNum').append(content);
+			   $.fn.spaging(selp);
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+	   });	   
+   }   
    
-   $("#searching").click(function(){
-	   var searchingtxt = $.trim($('#serachingtxt').val());
+   //쪽번호 블록나누기
+   $.fn.spaging = function(selp){
+	   var pNumList = $('.pageNum').children();
+	   var spanCount = $('.psNum').length;
+	   var realClass = null;
+	   
+	   //해당페이지에 색보이게하기
+	   for(var j=0; j<=spanCount; j++){
+		   if(pNumList.eq(j).text()==selp){
+			   pNumList.eq(j).css("color", "#F29D35");
+			   var selpClass = pNumList.eq(j).attr("class");
+			   var selpClassArr = selpClass.split(' ');
+			   realClass = selpClassArr[1];
+		   }
+	   }
+	   
+	   for(var j=0; j<=spanCount; j++){
+		   //해당페이지의 페이지블록만 보이게하기
+		   if(pNumList.eq(j).hasClass(realClass)){
+			   pNumList.eq(j).addClass("act");
+		   }
+		   
+		   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
+		   var pBlockName = realClass.split('psBlock');
+		   var pBlockNum = pBlockName[1];
+		   pBlockNum *= 1;
+		   if(pBlockNum>=spageBlock){
+			   $('.page_nexts').css("display", "none");
+		   }else{
+			   $('.page_nexts').css("display", "inline-block");
+		   } 
+		   if(pBlockNum<=1){
+			   $('.page_prevs').css("display", "none");
+		   }else{
+			   $('.page_prevs').css("display", "inline-block");
+		   }		   
+	   }
+   }
+
+   $(document).on('click', '.page_nexts', function(){
+	   var pBlock = $('.act').attr("class");
+	   var pBlockArr = pBlock.split(' ');
+	   var pBlockClass = pBlockArr[1];
+	   
+	   var pBlockName = pBlockClass.split('psBlock');
+	   var pBlockNum = pBlockName[1];
+
+	   $('.'+pBlockClass).removeClass("act");
+	   
+	   pBlockNum *= 1;	//숫자로형변환
+	   pBlockNum += 1;
+	   $('.psBlock'+pBlockNum).addClass("act");
+	   
+	   //현 블록이 마지막 블록이면 next버튼이 보이지 않게 하라
+	   if(pBlockNum>=spageBlock){
+		   $('.page_nexts').css("display", "none");
+	   }else{
+		   $('.page_nexts').css("display", "inline-block");
+	   } 
+	   if(pBlockNum<=1){
+		   $('.page_prevs').css("display", "none");
+	   }else{
+		   $('.page_prevs').css("display", "inline-block");
+	   }
+   });
+ 
+   $(document).on('click', '.page_prevs', function(){
+	   var pBlock = $('.act').attr("class");
+	   var pBlockArr = pBlock.split(' ');
+	   var pBlockClass = pBlockArr[1];
+	   
+	   var pBlockName = pBlockClass.split('psBlock');
+	   var pBlockNum = pBlockName[1];
+
+	   console.log(pBlockNum);
+	   
+	   $('.'+pBlockClass).removeClass("act");
+	   
+	   pBlockNum *= 1;	//숫자로형변환
+	   pBlockNum -= 1;
+	   $('.psBlock'+pBlockNum).addClass("act");
+	   
+	   //현 블록이 마지막 블록이면 next버튼이 보이지 않게 하라
+	   if(pBlockNum>=spageBlock){
+		   $('.page_nexts').css("display", "none");
+	   }else{
+		   $('.page_nexts').css("display", "inline-block");
+	   } 
+	   if(pBlockNum<=1){
+		   $('.page_prevs').css("display", "none");
+	   }else{
+		   $('.page_prevs').css("display", "inline-block");
+	   }
+   });   
+      
+
+   //검색메소드
+   var searchingtxt = null;
+   $.fn.searchingM = function(selp){
+		if(selp == null || selp == 0){
+			selp = 1;
+		}	   
+	
+	   $.fn.getSearchCount(searchingtxt, selp);
  	   $.ajax({
 		   type: "GET",
 		   url : "book2/iotSearchList.do",
 		   dataType : "json",
 		   data : { M_id: "inhee@naver.com",
-			   searchStr: searchingtxt
+			   	    searchStr: searchingtxt,
+			   	    selp: selp
 		   },
 		   success : function(data){
 			   var content = "";
@@ -738,8 +882,19 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   error:function(request,status,error){
 	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	       }
-	   });	   
+	   });		
+   }
+   
+   //검색클릭이벤트
+   $("#searching").click(function(){
+	   searchingtxt = $.trim($('#serachingtxt').val());
+	   $.fn.searchingM();
    });
+   
+	//쪽번호 클릭이벤트
+	$(document).on('click', '.psNum', function(){
+		$.fn.searchingM($(this).text());
+	});   
    
    //tr클릭이벤트
    $(document).on('click', '#account_table_body tr', function(){

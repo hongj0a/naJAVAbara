@@ -196,12 +196,12 @@
 	text-align: center;
 }
 
-.pNum{
+.pNum, .psNum{
 	padding : 0 10px;
 	cursor : pointer;
 }
 
-.pNum:hover{
+.pNum:hover, .psNum:hover{
 	font-weight: bold;
 }
 

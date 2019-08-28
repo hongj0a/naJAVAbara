@@ -293,13 +293,43 @@ public class BookController {
         return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}	
 	
+	//검색결과 수 출력
+	@RequestMapping(value ="/book2/returnSlistCount.do", produces="application/json; charset=utf-8")
+    @ResponseBody	
+	public long returnSlistCount(String M_id, String searchStr, HttpServletRequest request) throws Exception{
+		log.info("### 리스트의 수를 가져올게욘 ####");
+
+		List<InoutTrsList> iotList = iotl_service.getListAscS(M_id);
+        ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
+		for(InoutTrsList iot : iotList) {
+			if(iot.getC_inout().equals("IO003")) {
+				Transfer ts = trs_service.searchInoutS(iot.getBk_seq(), searchStr);
+				if(ts!=null) {
+					HashMap<Object,Object> hm = new HashMap<Object,Object>();
+					hm.put("IOT_seq", ts.getT_seq());
+					hmlist.add(hm);					
+				}
+			}else{
+				Inout io = inout_service.searchInoutS(iot.getBk_seq(), searchStr);
+				if(io!=null) {
+					HashMap<Object,Object> hm = new HashMap<Object,Object>();
+					hm.put("IOT_seq", io.getI_seq());
+					hmlist.add(hm);					
+				}
+			}
+		}
+		
+		 int count = hmlist.size();
+		return count;
+	}	
+	
 	@RequestMapping(value="/book2/iotSearchList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity<Object> getSearchList(String M_id, String searchStr, HttpServletRequest request) throws Exception{
+	public ResponseEntity<Object> getSearchList(String M_id, String searchStr, String selp, HttpServletRequest request) throws Exception{
 		log.info("### 검색 결과를 가져올게욘 ####");
-		
-		List<InoutTrsList> iotList = iotl_service.getListAscS(M_id);
 
+		List<InoutTrsList> iotList = iotl_service.getListAscS(M_id);
+		
 		HttpHeaders responseHeaders = new HttpHeaders();
         ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
         
@@ -344,8 +374,37 @@ public class BookController {
 			}
 		}
 		
+
+        //페이징
+		int selpage = Integer.parseInt(selp);
+    	int startindex = 0;
+    	int lastindex = 0;
+    	int view = 15;
+    	
+    	if(iotList.size() < view) {
+        	startindex = 0;
+    		lastindex = hmlist.size();
+    	}else {
+            if(selpage == 1) {
+            	startindex = 0;
+            	lastindex = view;
+            }else{
+            	startindex = view * (selpage-1);
+            	lastindex = startindex + view;
+            	
+            	if(startindex >= hmlist.size()) {
+            		startindex = 0;
+            		lastindex = view;
+            	}
+            	
+            	if(lastindex >= hmlist.size()){
+            		lastindex = hmlist.size();
+            	}
+            }   		
+    	}			
+		
 		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
-        JSONArray json = new JSONArray(hmlist);        
+        JSONArray json = new JSONArray(hmlist.subList(startindex, lastindex));        
         return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}	
 	
