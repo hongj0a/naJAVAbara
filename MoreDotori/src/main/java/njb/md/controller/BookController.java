@@ -75,6 +75,24 @@ public class BookController {
 		return mv;
 	}
 	
+	
+	@GetMapping("/book2")
+	public ModelAndView myAccountMonthlyBook() {
+		log.info("#### 월가계부 ####");
+		
+		//가계부 작성 관련 옵션들
+		List<Code> codelistIO = code_service.getCodeListS("IO%");
+		List<Code> codelistIN = code_service.getCodeListS("IN%");
+		List<Code> codelistOT = code_service.getCodeListS("OT%");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("asset/accountBook_month");
+		mv.addObject("codelistIO", codelistIO);
+		mv.addObject("codelistIN", codelistIN);
+		mv.addObject("codelistOT", codelistOT);
+		return mv;
+	}	
+	
 	//@RequestBody : json형태로 받아서 객체로 바꿔준다
 	@RequestMapping(value ="/book/insertIO.do")
     @ResponseBody
@@ -419,12 +437,12 @@ public class BookController {
         HashMap<Object,Object> hm = new HashMap<Object, Object>();
         
         hm.put("allAsset", abs_service.selectAllAssetS(M_id));
-        hm.put("inDay", abs_service.selectInDayS(M_id, selectDate));
-        hm.put("outDay", abs_service.selectOutDayS(M_id, selectDate));
-        hm.put("avgInDays", abs_service.selectAvgInDaysS(M_id, selectMonth));
-        hm.put("avgOutDays", abs_service.selectAvgOutDaysS(M_id, selectMonth));
+        hm.put("inDay", abs_service.selectDayS(M_id, selectDate, "IO001"));
+        hm.put("outDay", abs_service.selectDayS(M_id, selectDate, "IO002"));
+        hm.put("avgInDays", abs_service.selectAvgDaysS(M_id, selectMonth, "IO001"));
+        hm.put("avgOutDays", abs_service.selectAvgDaysS(M_id, selectMonth, "IO002"));
         
-        long selMaxInday = abs_service.selectMaxInDayS(M_id, selectMonth);
+        long selMaxInday = abs_service.selectMaxDayS(M_id, selectMonth, "IO001");
         if(selMaxInday==0) {
         	hm.put("maxInDay", 0);
         }else {
@@ -434,7 +452,7 @@ public class BookController {
             hm.put("maxInDay", maxInDay);     	
         }
         
-        long selMaxOutday = abs_service.selectMaxOutDayS(M_id, selectMonth);
+        long selMaxOutday = abs_service.selectMaxDayS(M_id, selectMonth, "IO002");
         if(selMaxOutday==0) {
         	hm.put("maxOutDay", 0);
         }else {
@@ -444,8 +462,8 @@ public class BookController {
             hm.put("maxOutDay", maxOutDay);       	
         }
         
-        hm.put("inMonth", abs_service.selectInMonthS(M_id, selectMonth));
-        hm.put("outMonth", abs_service.selectOutMonthS(M_id, selectMonth));
+        hm.put("inMonth", abs_service.selectMonthS(M_id, selectMonth, "IO001"));
+        hm.put("outMonth", abs_service.selectMonthS(M_id, selectMonth, "IO002"));
 		
         return hm;
 	}
@@ -462,112 +480,16 @@ public class BookController {
         for(int i=1; i<=12; i++) {
         	if(i<10) {
         		String mon = "0"+i;
-        		inData.add(abs_service.selectInMonthS(M_id, yyyy+"/"+mon));
-        		outData.add(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon));
+        		inData.add(abs_service.selectMonthS(M_id, yyyy+"/"+mon, "IO001"));
+        		outData.add(abs_service.selectMonthS(M_id, yyyy+"/"+mon, "IO002"));
         	}else {
-        		inData.add(abs_service.selectInMonthS(M_id, yyyy+"/"+i));
-        		outData.add(abs_service.selectOutMonthS(M_id, yyyy+"/"+i));
+        		inData.add(abs_service.selectMonthS(M_id, yyyy+"/"+i, "IO001"));
+        		outData.add(abs_service.selectMonthS(M_id, yyyy+"/"+i, "IO002"));
         	}
         }
         
         hm.put("inData", inData);
         hm.put("outData", outData);        
-        
-        return hm;
-	}
-	
-	@GetMapping("/book2")
-	public ModelAndView myAccountMonthlyBook() {
-		log.info("#### 월가계부 ####");
-		
-		//가계부 작성 관련 옵션들
-		List<Code> codelistIO = code_service.getCodeListS("IO%");
-		List<Code> codelistIN = code_service.getCodeListS("IN%");
-		List<Code> codelistOT = code_service.getCodeListS("OT%");
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("asset/accountBook_month");
-		mv.addObject("codelistIO", codelistIO);
-		mv.addObject("codelistIN", codelistIN);
-		mv.addObject("codelistOT", codelistOT);
-		return mv;
-	}
-
-	@GetMapping("/asset_cond")
-	public ModelAndView myAccount_cond() {
-		log.info("#### 통계페이지 ####");
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("asset/asset_condition");
-		return mv;
-	}	
-	
-	@RequestMapping(value="/asset_cond/tab1chartData.do", produces="application/json; charset=utf-8")
-	@ResponseBody
-	public HashMap<String,List<String>> getTab1ChartData(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
-		log.info("### [ tab1 : 수입 및 지출 통계 ] 차트데이터를 가져올게욘 ####");
-        int yearint = Integer.parseInt(yyyy);
-        int monint = Integer.parseInt(mmmm);
-        int dayint = Integer.parseInt(dddd);
-		
-        HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
-        
-        //tab1-chart1 데이터
-        List<String> dataName1 = new ArrayList<String>();
-        List<String> inData1 = new ArrayList<String>();
-        List<String> outData1 = new ArrayList<String>();
-        
-        if(monint+1!=12) {
-            for(int i=monint+1; i<13; i++) {
-            	int prevYear = yearint-1;
-            	
-            	if(i<10) {
-            		String mon = "0"+i;
-            		dataName1.add(prevYear+"년 "+mon+"월");
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, prevYear+"/"+mon)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, prevYear+"/"+mon)));  
-            	}else {
-            		dataName1.add(prevYear+"년 "+i+"월");        		
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, prevYear+"/"+i)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, prevYear+"/"+i)));  
-            	}
-            }
-            
-            for(int j=1; j<=monint; j++) {
-            	if(j<10) {
-            		String mon = "0"+j;
-            		dataName1.add(mon+"월");
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+mon)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon)));  
-            	}else {        		
-            		dataName1.add(j+"월");
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+j)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+j)));  
-            	}           	
-            }
-        }else {
-            for(int i=1; i<=12; i++) {
-            	if(i<10) {
-            		String mon = "0"+i;
-            		dataName1.add(mon+"월");
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+mon)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+mon)));
-            	}else {
-            		dataName1.add(i+"월"); 
-            		inData1.add(Long.toString(abs_service.selectInMonthS(M_id, yyyy+"/"+i)));
-            		outData1.add(Long.toString(abs_service.selectOutMonthS(M_id, yyyy+"/"+i)));
-            	}
-            }        	
-        }
-
-        hm.put("dataName1", dataName1);
-        hm.put("inData1", inData1);
-        hm.put("outData1", outData1);        
-        
-        ///////////////////////////////////////////////////////////////////////////////
-        
-        
-        
         
         return hm;
 	}

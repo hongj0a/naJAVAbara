@@ -23,63 +23,33 @@ public class AbookSumServiceImpl implements AbookSumService {
 	}
 
 	@Override
-	public long selectInDayS(String M_id, String selectDate) {
+	public long selectDayS(String M_id, String selectDate, String inoutCode) {
 		log.info("### 일별 수입 전체 합계 가져오기 ###");
-		return mapper.selectInDay(M_id, selectDate);
+		return mapper.selectDay(M_id, selectDate, inoutCode);
 	}
 
 	@Override
-	public long selectOutDayS(String M_id, String selectDate) {
-		log.info("### 일별 지출 전체 합계 가져오기 ###");
-		return mapper.selectOutDay(M_id, selectDate);
-	}
-
-	@Override
-	public long selectAvgInDaysS(String M_id, String selectMonth) {
+	public long selectAvgDaysS(String M_id, String selectMonth, String inoutCode) {
 		log.info("### 일평균 수입 가져오기 ###");
-		return mapper.selectAvgInDays(M_id, selectMonth);
+		return mapper.selectAvgDays(M_id, selectMonth, inoutCode);
 	}
 
 	@Override
-	public long selectAvgOutDaysS(String M_id, String selectMonth) {
-		log.info("### 일평균 지출 가져오기 ###");
-		return mapper.selectAvgOutDays(M_id, selectMonth);
-	}
-
-	@Override
-	public long selectMaxInDayS(String M_id, String selectMonth) {
+	public long selectMaxDayS(String M_id, String selectMonth, String inoutCode) {
 		log.info("### 월 중 최대 수입이 큰 날 가져오기 ###");
-		Object rs = mapper.selectMaxInDay(M_id, selectMonth);
+		Object rs = mapper.selectMaxDay(M_id, selectMonth, inoutCode);
 		if(rs==null) {
 			return 0;
 		}else {
-			long result = Long.valueOf(String.valueOf(mapper.selectMaxInDay(M_id, selectMonth)));
+			long result = Long.valueOf(String.valueOf(mapper.selectMaxDay(M_id, selectMonth, inoutCode)));
 			return result;
 		}
 	}
 
 	@Override
-	public long selectMaxOutDayS(String M_id, String selectMonth) {
-		log.info("### 월 중 최대 지출이 큰 날 가져오기 ###");
-		Object rs = mapper.selectMaxOutDay(M_id, selectMonth);
-		if(rs==null) {
-			return 0;
-		}else {
-			long result = Long.valueOf(String.valueOf(mapper.selectMaxOutDay(M_id, selectMonth)));
-			return result;
-		}
-	}
-
-	@Override
-	public long selectInMonthS(String M_id, String selectMonth) {
+	public long selectMonthS(String M_id, String selectMonth, String inoutCode) {
 		log.info("### 해당 월의 전체 수입 가져오기 ###");
-		return mapper.selectInMonth(M_id, selectMonth);
-	}
-
-	@Override
-	public long selectOutMonthS(String M_id, String selectMonth) {
-		log.info("### 해당 월의 전체 지출 가져오기 ###");
-		return mapper.selectOutMonth(M_id, selectMonth);
+		return mapper.selectMonth(M_id, selectMonth, inoutCode);
 	}
 
 }

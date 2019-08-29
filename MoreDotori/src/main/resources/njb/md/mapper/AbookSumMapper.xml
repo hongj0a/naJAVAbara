@@ -10,27 +10,17 @@
 		from asset where M_id=#{M_id}
 	</select>
 
-	<select id="selectInDay" resultType="long">
+	<select id="selectDay" resultType="long">
 		select case when sum(io.I_money) is null then 0
 		else sum(io.I_money) end as sumInMoney
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
 		and ass.M_id=#{M_id}
-		and io.C_inout='IO001'
-	</select>	
-
-	<select id="selectOutDay" resultType="long">
-		select case when sum(io.I_money) is null then 0
-		else sum(io.I_money) end as sumOutMoney
-		from inout io
-		join asset ass on io.A_seq=ass.A_seq
-		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
-		and ass.M_id=#{M_id}
-		and io.C_inout='IO002'		
+		and io.C_inout=#{inoutCode}
 	</select>
 
-	<select id="selectAvgInDays" resultType="long">
+	<select id="selectAvgDays" resultType="long">
 		select case when round(avg(io.I_money),-2) is null then 0
 		else round(avg(io.I_money),-2) end as avgInMoney
 		from inout io
@@ -38,21 +28,10 @@
 		on io.A_seq=ass.A_seq 
 		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
 		and ass.M_id=#{M_id}
-		and io.C_inout='IO001'
+		and io.C_inout=#{inoutCode}
 	</select>
 	
-	<select id="selectAvgOutDays" resultType="long">
-		select case when round(avg(io.I_money),-2) is null then 0
-		else round(avg(io.I_money),-2) end as avgOutMoney
-		from inout io
-		join asset ass 
-		on io.A_seq=ass.A_seq 
-		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
-		and ass.M_id=#{M_id}
-		and io.C_inout='IO002'
-	</select>
-	
-	<select id="selectMaxInDay" resultType="Object">
+	<select id="selectMaxDay" resultType="Object">
 		select I_seq as maxInSeq
 		from (select io.I_seq, io.I_date, io.I_money
 		from inout io
@@ -60,25 +39,12 @@
 		on io.A_seq=ass.A_seq 
 		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
 		and ass.M_id=#{M_id}
-		and io.C_inout='IO001'
+		and io.C_inout=#{inoutCode}
 		order by io.I_money desc)
 		where rownum=1
-	</select>
-	
-	<select id="selectMaxOutDay" resultType="Object">
-		select I_seq as maxOutSeq
-		from (select io.I_seq, io.I_date, io.I_money
-		from inout io
-		join asset ass 
-		on io.A_seq=ass.A_seq 
-		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
-		and ass.M_id=#{M_id}
-		and io.C_inout='IO002'
-		order by io.I_money desc)
-		where rownum=1
-	</select>
-	
-	<select id="selectInMonth" resultType="long">
+	</select>	
+
+	<select id="selectMonth" resultType="long">
 		select case when sum(io.I_money) is null then 0
 		else sum(io.I_money) end as sumInMoney
 		from inout io
@@ -86,18 +52,25 @@
 		on io.A_seq=ass.A_seq 
 		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
 		and ass.M_id=#{M_id}
-		and io.C_inout='IO001'
+		and io.C_inout=#{inoutCode}
 	</select>
 	
-	<select id="selectOutMonth" resultType="long">
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->	
+	
+	<select id="returnIW" resultType="long">
+		select to_char(to_date(#{selectDay},'yyyymmdd'), 'IW') from dual
+	</select>
+	
+	<select id="selectIW" resultType="long">
 		select case when sum(io.I_money) is null then 0
-		else sum(io.I_money) end as sumOutMoney
+		else sum(io.I_money) end as sumInMoney
+		from (select io.I_seq as I_seq, to_char(io.i_date, 'IW') as week 
 		from inout io
-		join asset ass 
-		on io.A_seq=ass.A_seq 
-		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
-		and ass.M_id=#{M_id}
-		and io.C_inout='IO002'
+		join asset ass on io.A_seq=ass.A_seq
+		where ass.M_id=#{M_id}) iw
+		join inout io on io.I_seq=iw.I_seq
+		where iw.week=#{selectIW}
+		and io.c_inout=#{inoutCode};
 	</select>
 	
 	
