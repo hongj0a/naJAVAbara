@@ -70,8 +70,8 @@
 															<div class="col-sm-8">
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">아이디</label>
-																	<label class="col-sm-9 col-form-label"><sec:authentication property="principal.member.m_id" var="mid"/></label>
-																	<input type="hidden" id="mid" value="${mid}">
+																	<sec:authentication property="principal.member.m_id" var="mid"/>
+																	<label class="col-sm-9 col-form-label">${mid}</label>
 																</div>
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">이름</label> <label
@@ -164,21 +164,22 @@
 																<label class="col-form-label mr-2">일</label>
 															</div>
 														</div>
-														<sec:authorize access="hasRole('ROLE_EXPERT')">
+														<sec:authorize access="hasRole('ROLE_EXPERT')" var="isExpert">
+															<%-- <input type="hidden" id="isExpert" var="isExpert" value="${isExpert}"> --%>
 															<div id="expert-details">
 																<div class="row">
 																	<div class="form-group col-sm-4 mb-4">
 																		<label for="job" class="col-form-label">직업</label>
-																		<input type="text" class="form-control" id="inputJob" name="job" value="자산관리사">
+																		<input type="text" class="form-control" id="inputJob" name="job">
 																	</div>
 																	<div class="form-group col-sm-4">
 																		<label for="job" class="col-form-label">직급</label>
-																		<input type="text" class="form-control" id="inputPosition" name="position" value="사원">
+																		<input type="text" class="form-control" id="inputPosition" name="position">
 																	</div>
 																	<div class="form-group col-sm-4">
 																		<label for="job" class="col-form-label">경력</label>
 																		<div class="form-inline">
-																			<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career" value="3">
+																			<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career">
 																			<label for="job" class="col-form-label">년차</label>
 																		</div>
 																	</div>
@@ -187,7 +188,7 @@
 																	<label class="col-form-label col-sm-3">우편번호</label>
 																	<div class="col">
 																		<div class="input-group">
-																			<input type="text" class="form-control address" id="inputZipCode" name="zip-code" value="17949" readonly>
+																			<input type="text" class="form-control address" id="inputZipCode" name="zip-code" readonly>
 																			<div class="input-group-append">
 																				<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
 																			</div>
@@ -197,13 +198,13 @@
 																<div class="form-group row mb-1">
 																	<label class="col-sm-3 col-form-label"></label>
 																	<div class="col">
-																		<input type="text" class="form-control address" id="inputAddr" name="address" value="경기도 평택시 포승읍 호암길" readonly>
+																		<input type="text" class="form-control address" id="inputAddr" name="address" readonly>
 																	</div>
 																</div>
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label"></label>
 																	<div class="col">
-																		<input type="text" class="form-control" id="inputAddrDetail" name="addr-details" value="38-4">
+																		<input type="text" class="form-control" id="inputAddrDetail" name="addr-details">
 																	</div>
 																</div>
 																<div class="form-group">
@@ -266,8 +267,7 @@
 																	</div>
 																</div>
 																<div class="form-group mb-4">
-																	<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개">안녕하세요!
-	금융관련 방송 다수 출연했습니다.</textarea>
+																	<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개"></textarea>
 																</div>
 															</div>
 														</sec:authorize>
@@ -350,26 +350,34 @@
 	<!-- [ Main Content ] end -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
+		$(function () {
+		  var token = $("meta[name='_csrf']").attr("content");
+		  var header = $("meta[name='_csrf_header']").attr("content");
+		  $(document).ajaxSend(function(e, xhr, options) {
+		    xhr.setRequestHeader(header, token);
+		  });
+		});
+		
 		$(document).ready(function() {
-			$(function () {
-			  var token = $("meta[name='_csrf']").attr("content");
-			  var header = $("meta[name='_csrf_header']").attr("content");
-			  $(document).ajaxSend(function(e, xhr, options) {
-			    xhr.setRequestHeader(header, token);
-			  });
-			});
-			
-			$.ajax({
-				url: '/getExpert.do',
-				data: {
-					mid: $('#mid').val()
-				},
-				dataType: 'JSON',
-				type: 'POST',
-				success: function(data){
-					alert('hello!');
-				}
-			});
+			if('<c:out value="${isExpert}"/>'){
+				$.ajax({
+					url: '/getExpert.do',
+					data: {
+						mid: '<c:out value="${mid}"/>'
+					},
+					dataType: 'JSON',
+					type: 'POST',
+					success: function(data){
+						$('#inputJob').val(data.job);
+						$('#inputPosition').val(data.position);
+						$('#inputCareer').val(data.career);
+						$('#inputZipCode').val(data.zipcode);
+						$('#inputAddr').val(data.address);
+						$('#inputAddrDetail').val(data.detailaddr);
+						$('textarea[name="introduction"]').val(data.introduce);
+					}
+				});
+			}
 			$('#change-pwd-btn').on('click', function() {
 				$(this).parent().parent().hide();
 				$('.change-password').css('display','inline');

@@ -54,9 +54,81 @@ public class MemberServiceImpl implements MemberService {
 	
 	public Map<Object, Object> getExpertById(String id) {
 		Expert expert = mapper.getExpert(id);
-		log.info("expert: " + expert);
+//		log.info("expert: " + expert);
 		
-		return null;
+		Map<Object, Object> eMap = new HashMap<Object, Object>();
+		eMap.put("job", expert.getE_job());
+		eMap.put("position", expert.getE_position());
+		eMap.put("career", expert.getE_career());
+		
+		String temp = expert.getE_address();
+		String[] addrs = temp.split("-", 2);
+		eMap.put("zipcode", addrs[0]);
+		eMap.put("address", addrs[1]);
+		
+		eMap.put("detailaddr", expert.getE_detailaddr());
+		eMap.put("introduce", expert.getE_introduce());
+		
+		temp = expert.getE_license1();
+		String[] lis = temp.split("-", 2);
+		eMap.put("ltype1", lis[0]);
+		eMap.put("li1", lis[1]);
+		
+		temp = expert.getE_license2();
+		if(temp != null) {
+			lis = null;
+			lis = temp.split("-", 2);
+			eMap.put("ltype2", lis[0]);
+			eMap.put("li2", lis[1]);
+			
+			temp = expert.getE_license3();
+			if(temp != null) {
+				lis = null;
+				lis = temp.split("-", 2);
+				eMap.put("ltype3", lis[0]);
+				eMap.put("li3", lis[1]);
+			}
+		}
+		
+		temp = expert.getE_sns1();
+		String[] snss = null;
+		if(temp != null) {
+			snss = temp.split("-", 2);
+			eMap.put("stype1", snss[0]);
+			eMap.put("sn1", snss[1]);
+			
+			temp = expert.getE_sns2();
+			if(temp != null) {
+				snss = temp.split("-", 2);
+				eMap.put("stype2", snss[0]);
+				eMap.put("sn2", snss[1]);
+				
+				temp = expert.getE_sns3();
+				if(temp != null) {
+					snss = temp.split("-", 2);
+					eMap.put("stype3", snss[0]);
+					eMap.put("sn3", snss[1]);
+					
+					temp = expert.getE_sns4();
+					if(temp != null) {
+						snss = temp.split("-", 2);
+						eMap.put("stype4", snss[0]);
+						eMap.put("sn4", snss[1]);
+						
+						temp = expert.getE_sns5();
+						if(temp != null) {
+							snss = temp.split("-", 2);
+							eMap.put("stype5", snss[0]);
+							eMap.put("sn5", snss[1]);
+						}
+					}
+				}
+			}
+		}
+		
+//		log.info("eMap: " + eMap);
+		
+		return eMap;
 	}
 	
 	public int duplCheck(String type, String name) {

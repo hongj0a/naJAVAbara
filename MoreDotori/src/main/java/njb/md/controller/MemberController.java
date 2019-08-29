@@ -108,8 +108,7 @@ public class MemberController {
 	@PostMapping("/getExpert.do")
 	@ResponseBody
 	public Map<Object, Object> getExpert(String mid) {
-		mservice.getExpertById(mid);
-		return null;
+		return mservice.getExpertById(mid);
 	}
 	
 	@PostMapping("/checkPwd.do")

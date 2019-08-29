@@ -10,7 +10,7 @@ public class IndexController {
 	public String index() {
 		return "main/main";
 	}
-
+	
 	// 회원가입
 	@GetMapping("/signup")
 	public String signup() {
