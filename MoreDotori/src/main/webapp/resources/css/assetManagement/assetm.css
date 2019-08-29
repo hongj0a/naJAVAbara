@@ -29,9 +29,10 @@
 	margin-top: 20%;
 }
 table, td, th {  
-	border: 1px solid skyblue;
+	border: 1px solid #ddd;
 	width: 30px;
-	height: 60px;
+	height: 50px;
+	white-space: nowrap;
 }												
 table {
 	border-collapse: collapse;
@@ -60,4 +61,14 @@ th {
 }
 .idhidden{
 	display:none;
+}
+.widsize{
+	width: 5%;
+}
+.widsize2{
+	width: 20%;
+}
+h3{
+	font-family: 'Black Han Sans', sans-serif;
+	text-align:center;
 }

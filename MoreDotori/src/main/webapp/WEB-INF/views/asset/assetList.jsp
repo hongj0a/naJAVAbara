@@ -30,14 +30,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-12">
                                     <div class="page-header-title" style="weight:80%;">
-                                        <h5>자산목록 관리</h5>
-                                    </div>
-                                    <div class="find-list" style="weight:60%; float:left;">
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="#!">나의 자산</a></li>
-                                        <li class="breadcrumb-item"><a href="/adList">자산목록 관리</a></li>
-                                    </ul>
+                                        <h3>자산목록 관리</h5>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +41,7 @@
 					  			<form name="input" method="post" action="aList/write.do">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <div id="contentsize-plus1" class="modal-content">
+                                                    <div id="contentsize-plus1" class="modal-content cal-md-12">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLiveLabel">항목 추가</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -115,23 +108,24 @@
 												<table id="assetListmodaljs">
 												  <tr>
 												  	<th class="idhidden">아이디</th>
-												  	<th>분류</th>
-												    <th>별칭</th>
-												    <th>잔액</th>
-												    <th>메모</th>
-												    <th>수정</th>
-												    <th>삭제</th>
+												  	<th class="widsize">분류</th>
+												    <th class="widsize">별칭</th>
+												    <th class="widsize">잔액</th>
+												    <th class="widsize2">메모</th>
+												    <th class="widsize">수정</th>
+												    <th class="widsize">삭제</th>
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
-														<tr>
-														<td class="idhidden">${alist.a_seq}</td>
-														<td class="idhidden">${alist.m_id}</td>
-														<td>${alist.c_asset}</td>
-														<td>${alist.a_nickname}</td>
-														<td>${alist.a_money}</td>
-														<td>${alist.a_memo}</td>
-														<td class="updatetd"><a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
-														<td><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+														<tr class="hove">
+															<td class="idhidden">${alist.a_seq}</td>
+															<td class="idhidden">${alist.m_id}</td>
+															<td>${alist.c_asset}</td>
+															<td>${alist.a_nickname}</td>
+															<td>${alist.a_money}</td>
+															<td>${alist.a_memo}</td>
+															<td class="updatetd"><a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
+															<td ><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+														</tr>
 			                                            </c:forEach>
 			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
