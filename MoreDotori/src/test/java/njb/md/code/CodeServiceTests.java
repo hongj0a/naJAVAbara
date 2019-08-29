@@ -2,6 +2,7 @@ package njb.md.code;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -40,5 +41,27 @@ public class CodeServiceTests {
 		}
 	}
 
+	
+	@Test
+	public void testCodeList() {
+		List<Code> codelistOT = service.getCodeListS("OT%");
+
+		List<String> otList = new ArrayList<String>();
+		for(Code c : codelistOT) {
+			otList.add(c.getC_name());
+		}
+		
+		for(String d : otList) {
+			log.info("d: "+d);
+		}
+
+		List<String> ottList = new ArrayList<String>();
+		for(Code c : codelistOT) {
+			ottList.add(c.getC_name());
+		}
+		
+		log.info("ot: "+ otList.get(0));
+		
+	}
 }
 

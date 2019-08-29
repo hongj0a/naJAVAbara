@@ -62,7 +62,14 @@ public class AbookSumServiceImpl implements AbookSumService {
 	public long selectMonthDayofWeekS(String M_id, String selectMonth, String inoutCode, String selectDays) {
 		log.info("### 해당 월의 요일 합 가져오기 ###");
 		return mapper.selectMonthDayofWeek(M_id, selectMonth, inoutCode, selectDays);
-	}	
+	}
+	
+	@Override
+	public long selectMonthCodeSumS(String M_id, String selectMonth, String inoutCode, String ioCategori) {
+		log.info("### 해당 월의 카테고리별 합 가져오기 ###");
+		return mapper.selectMonthCodeSum(M_id, selectMonth, inoutCode, ioCategori);
+	}
+		
 	
 	/*
 	 * @Override public long returnIWS(long selectDay) {

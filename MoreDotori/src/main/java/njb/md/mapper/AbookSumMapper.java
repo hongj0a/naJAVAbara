@@ -24,6 +24,9 @@ public interface AbookSumMapper {
 	//요일별 메소드(+월별)
 	long selectMonthDayofWeek(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode, @Param("selectDays") String selectDays);
 	
+	//카테고리별 합계
+	long selectMonthCodeSum(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
+	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*

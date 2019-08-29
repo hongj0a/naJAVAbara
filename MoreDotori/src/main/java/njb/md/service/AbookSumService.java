@@ -8,6 +8,7 @@ public interface AbookSumService {
 	long selectMonthS(String M_id, String selectMonth, String inoutCode);
 	long selectYearS(String M_id, String selectYear, String inoutCode);
 	long selectMonthDayofWeekS(String M_id, String selectMonth, String inoutCode, String selectDays);
+	long selectMonthCodeSumS(String M_id, String selectMonth, String inoutCode, String ioCategori);
 
 	/*
 	 * long returnIWS(long selectDay); long selectIWS(String M_id, String selectIW,

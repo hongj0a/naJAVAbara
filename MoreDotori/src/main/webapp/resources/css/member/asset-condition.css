@@ -39,7 +39,11 @@
 }
 
 .tab2 {
-	width: 85%;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#tab2-chart1 > div:first-child, #tab2-chart2 > div:first-child, #tab2-chart3 > div:first-child, #tab2-chart4 > div:first-child{
 	margin: 0 auto;
 }
 

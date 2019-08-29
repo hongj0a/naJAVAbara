@@ -51,16 +51,16 @@
 															<li class="nav-item"><a class="nav-link active"
 																id="tab1-month" data-toggle="pill"
 																href="#pills1-month" role="tab" aria-controls="pills1-month"
-																aria-selected="true">월간</a></li>
+																aria-selected="true">월별</a></li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-week" data-toggle="pill"
 																href="#pills1-week" role="tab"
-																aria-controls="pills1-week" aria-selected="false">주간</a>
+																aria-controls="pills1-week" aria-selected="false">일별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-year" data-toggle="pill"
 																href="#pills1-year" role="tab"
-																aria-controls="pills1-year" aria-selected="false">연간</a>
+																aria-controls="pills1-year" aria-selected="false">연별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-day" data-toggle="pill"
@@ -71,17 +71,17 @@
 													<div class="tab-content" id="asset-tab1">
 														<div class="tab-pane fade show active" id="pills1-month"
 															role="tabpanel" aria-labelledby="tab1-month">
-															<div class="stats_sub"> 월간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div class="stats_sub"> 월별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart1" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-week"
 															role="tabpanel" aria-labelledby="tab1-week">
-															<div class="stats_sub"> 주간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div class="stats_sub"> 일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart2" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-year"
 															role="tabpanel" aria-labelledby="tab1-year">
-															<div class="stats_sub"> 연간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div class="stats_sub"> 연별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart3" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-day" role="tabpanel"
@@ -112,30 +112,33 @@
 															<li class="nav-item"><a class="nav-link active"
 																id="tab2-month" data-toggle="pill"
 																href="#pills2-month" role="tab" aria-controls="pills2-month"
-																aria-selected="true">월간</a></li>
+																aria-selected="true">월별</a></li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-week" data-toggle="pill"
 																href="#pills2-week" role="tab"
-																aria-controls="pills2-week" aria-selected="false">주간</a>
+																aria-controls="pills2-week" aria-selected="false">일별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-year" data-toggle="pill"
 																href="#pills2-year" role="tab"
-																aria-controls="pills2-year" aria-selected="false">연간</a>
+																aria-controls="pills2-year" aria-selected="false">연별</a>
 															</li>
 														</ul>
 													</div>
 													<div class="tab-content" id="asset-tab2">
 														<div class="tab-pane fade show active tab2" style="margin:0 auto;" id="pills2-month"
 															role="tabpanel" aria-labelledby="tab2-month">
+															<div class="stats_sub"> 월별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart1"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-week"
 															role="tabpanel" aria-labelledby="tab2-week">
+															<div class="stats_sub"> 일별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart2" class="tab2"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-year"
 															role="tabpanel" aria-labelledby="tab2-year">
+															<div class="stats_sub"> 연별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart3" class="tab2"></div>
 														</div>
 													</div>
@@ -299,6 +302,7 @@
 	<!-- [ Main Content ] end -->
 
 	<!-- chart -->
+	<script src="//code.highcharts.com/highcharts-more.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/chart-highchart/js/highcharts.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/core.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/charts.js"></script>

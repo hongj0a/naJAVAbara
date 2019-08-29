@@ -66,5 +66,6 @@ public class AbookSumServiceTests {
 			date = transFormat.format(io.getI_date()); log.info("===> 결과2 : " + date);		
 		}
 	}
+	
 }
 
