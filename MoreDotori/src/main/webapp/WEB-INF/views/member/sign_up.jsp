@@ -105,9 +105,11 @@
 							<div class="input-group" id="inputBirth">
 								<select class="form-control" name="birth" id="birth-year" required>
 									<option value="">년</option>
-								</select> <select class="form-control" name="birth" id="birth-month" required>
+								</select>
+								<select class="form-control" name="birth" id="birth-month" required>
 									<option value="">월</option>
-								</select> <select class="form-control" name="birth" id="birth-day" required>
+								</select>
+								<select class="form-control" name="birth" id="birth-day" required>
 									<option value="">일</option>
 								</select>
 							</div>
@@ -168,7 +170,7 @@
 										<option value="">SNS</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 (ex. https://www.facebook.com/000)">
+								<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 ">
 								<div class="input-group-append">
 									<button class="btn btn-primary addSNS" type="button">
 										<i class="fas fa-plus"></i>

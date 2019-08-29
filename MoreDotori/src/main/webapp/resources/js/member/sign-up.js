@@ -38,26 +38,37 @@ $(document).ready(function() {
   for (j = 1; j <= 6; j++) {
     $('select[name=license]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
   }
-
+  
+  //add sns select options
+  var arrSns = ['Facebook', 'Instagram', 'Twitter', 'Youtube', 'Blog'];
+  for (i = 1; i <= 5; i++) {
+	  $('select[name=sns]').append('<option value="SN00' + i + '">' + arrSns[i - 1] + '</option>');
+  }
+  
   // add sns form
   $('.addSNS').on('click', function() {
-	var cntSNS = $('select[name="snsUrl"]').length;
+	var cntSNS = $('select[name="sns"]').length;
 	if(cntSNS<5) {
 		$('.inputSNS').append(
-		  '<div class="input-group mb-1">' +
-  	        '<div class="input-group-prepend">' +
-	          '<select class="form-control" name="sns">' +
-	            '<option value="">SNS</option>' +
-	          '</select>' +
-	        '</div>' +
-	        '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
-	        '<div class="input-group-append">' +
-	          '<button class="btn btn-primary subSNS" type="button">' +
-	            '<i class="fas fa-minus"></i>' +
-	          '</button>' +
-	        '</div>' +
-	      '</div>'
-	    );
+			'<div class="input-group mb-1">'
+			+ '<div class="input-group-prepend">'
+				+ '<select class="form-control" name="sns">'
+					+ '<option value="">SNS</option>'
+					+ '<option value="SN001">Facebook</option>'
+					+ '<option value="SN002">Instagram</option>'
+					+ '<option value="SN003">Twitter</option>'
+					+ '<option value="SN004">Youtube</option>'
+					+ '<option value="SN005">Blog</option>'
+				+ '</select>'
+			+ '</div>'
+			+ '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소">'
+			+ '<div class="input-group-append">'
+				+ '<button class="btn btn-primary subSNS" type="button">'
+					+ '<i class="fas fa-minus"></i>'
+				+ '</button>'
+			+ '</div>'
+			+ '</div>'
+		);
 	}
   });
 

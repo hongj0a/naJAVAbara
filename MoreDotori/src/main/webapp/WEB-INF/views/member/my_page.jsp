@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,7 @@
 										<div class="tab-content" id="acc-tab-content">
 											<div class="tab-pane fade active show" id="edit" role="tabpanel" aria-labelledby="edit-tab">
 												<div class="row justify-content-center">
-													<form id="account-edit" class="col-sm-11" action="">
+													<form id="account-edit" class="col-sm-11" action="/update.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 														<div class="row">
 															<div class="col-sm-4">
 																<div class="text-center">
@@ -61,9 +62,8 @@
 																		</c:choose>
 																	</label>
 																	<div class="custom-file mb-4">
-																		<input type="file" class="custom-file-input"
-																			id="choose-image" accept="image/*"> <label
-																			class="custom-file-label" for="inputGroupFile01"></label>
+																		<input type="file" class="custom-file-input" name="chooseImg" id="choose-image" accept="image/*">
+																		<label class="custom-file-label" for="inputGroupFile01"></label>
 																	</div>
 																</div>
 															</div>
@@ -82,7 +82,7 @@
 																	<div class="col-sm-9">
 																		<div class="input-group">
 																			<input type="text" class="form-control"
-																				id="inputNick" name="nickname" value="<sec:authentication property="principal.member.m_nickname"/>">
+																				id="inputNick" name="m_nickname" value="<sec:authentication property="principal.member.m_nickname"/>">
 																			<div class="input-group-append">
 																				<button class="btn btn-primary" name="nick-dupl-check" type="button">중복확인</button>
 																			</div>
@@ -120,7 +120,7 @@
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">연락처</label>
 															<div class="col">
-																<input type="text" class="form-control" id="inputPhone" name="phone" value="<sec:authentication property="principal.member.m_phone"/>">
+																<input type="text" class="form-control" id="inputPhone" name="m_phone" value="<sec:authentication property="principal.member.m_phone"/>">
 															</div>
 														</div>
 														<div class="form-group row mb-4">
@@ -128,58 +128,45 @@
 															<div class="col">
 																<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
 																	<sec:authentication property="principal.member.m_gender" var="gender" />
-																	<c:choose>
-																		<c:when test="${gender eq 'M'}">
-																			<c:set var="mactive" value="active" />
-																			<c:set var="factive" value="" />
-																		</c:when>
-																		<c:when test="${gender eq 'F'}">
-																			<c:set var="factive" value="active" />
-																			<c:set var="mactive" value="" />
-																		</c:when>
-																	</c:choose>
-																	<label class="btn btn-primary ${mactive}">
-																		<input type="radio" name="gender" value="male">남
+																	<label class="btn btn-primary">
+																		<input type="radio" name="m_gender" value="M" required>남
 																	</label>
-																	<label class="btn btn-primary ${mactive}">
-																		<input type="radio" name="gender" value="female">여
+																	<label class="btn btn-primary">
+																		<input type="radio" name="m_gender" value="F">여
 																	</label>
 																</div>
 															</div>
 														</div>
 														<div class="form-group row mb-4">
+															<sec:authentication property="principal.member.m_birth" var="birth"/>
 															<label class="col-sm-3 col-form-label">생년월일</label>
 															<div class="col form-inline" id="inputBirth">
-																<select class="form-control col-sm-3 mr-1" id="inputBirth">
-																	<option value="1995">1995</option>
+																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-year" required>
 																</select>
 																<label class="col-form-label mr-2">년</label>
-																<select class="form-control col-sm-3 mr-1">
-																	<option value="5">5</option>
+																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-month" required>
 																</select>
 																<label class="col-form-label mr-2">월</label>
-																<select class="form-control col-sm-3 mr-1">
-																	<option value="25">25</option>
+																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-day" required>
 																</select>
 																<label class="col-form-label mr-2">일</label>
 															</div>
 														</div>
 														<sec:authorize access="hasRole('ROLE_EXPERT')" var="isExpert">
-															<%-- <input type="hidden" id="isExpert" var="isExpert" value="${isExpert}"> --%>
 															<div id="expert-details">
 																<div class="row">
 																	<div class="form-group col-sm-4 mb-4">
 																		<label for="job" class="col-form-label">직업</label>
-																		<input type="text" class="form-control" id="inputJob" name="job">
+																		<input type="text" class="form-control" id="inputJob" name="e_job" required>
 																	</div>
 																	<div class="form-group col-sm-4">
 																		<label for="job" class="col-form-label">직급</label>
-																		<input type="text" class="form-control" id="inputPosition" name="position">
+																		<input type="text" class="form-control" id="inputPosition" name="e_position" required>
 																	</div>
 																	<div class="form-group col-sm-4">
 																		<label for="job" class="col-form-label">경력</label>
 																		<div class="form-inline">
-																			<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career">
+																			<input type="text" class="form-control text-right col-sm-9 mr-1" id="inputCareer" name="career" required>
 																			<label for="job" class="col-form-label">년차</label>
 																		</div>
 																	</div>
@@ -188,7 +175,7 @@
 																	<label class="col-form-label col-sm-3">우편번호</label>
 																	<div class="col">
 																		<div class="input-group">
-																			<input type="text" class="form-control address" id="inputZipCode" name="zip-code" readonly>
+																			<input type="text" class="form-control address" id="inputZipCode" name="zipCode" readonly>
 																			<div class="input-group-append">
 																				<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
 																			</div>
@@ -204,70 +191,55 @@
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label"></label>
 																	<div class="col">
-																		<input type="text" class="form-control" id="inputAddrDetail" name="addr-details">
+																		<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" required>
 																	</div>
 																</div>
 																<div class="form-group">
 																	<div class="input-group mb-1">
 																		<label for="inputLicense1" class="sr-only">자격증1</label>
 																		<div class="input-group-prepend">
-																			<select class="form-control">
+																			<select name="license" id="ltype1" class="form-control">
 																				<option value="">자격증1</option>
 																			</select>
 																		</div>
-																		<input type="text" class="form-control" id="inputLicense1" name="license-num1" placeholder="자격증 번호">
+																		<input type="text" class="form-control" id="inputLicense1" name="licenseNum" placeholder="자격증 번호" required>
 																	</div>
 																	<div class="input-group mb-1">
 																		<label for="inputLicense2" class="sr-only">자격증2</label>
 																		<div class="input-group-prepend">
-																			<select class="form-control">
+																			<select name="license" id="ltype2" class="form-control">
 																				<option value="">자격증2</option>
 																			</select>
 																		</div>
-																		<input type="text" class="form-control" id="inputLicense2" name="license-num2" placeholder="자격증 번호">
+																		<input type="text" class="form-control" id="inputLicense2" name="licenseNum" placeholder="자격증 번호">
 																	</div>
 																	<div class="input-group mb-4">
 																		<label for="inputLicense3" class="sr-only">자격증3</label>
 																		<div class="input-group-prepend">
-																			<select class="form-control">
+																			<select name="license" id="ltype3" class="form-control">
 																				<option value="">자격증3</option>
 																			</select>
 																		</div>
-																		<input type="text" class="form-control" id="inputLicense3" name="license-num3" placeholder="자격증 번호">
+																		<input type="text" class="form-control" id="inputLicense3" name="licenseNum" placeholder="자격증 번호">
 																	</div>
 																</div>
 																<div class="form-group mb-4 inputSNS">
 																	<div class="input-group mb-1">
 																		<div class="input-group-prepend">
-																			<select class="form-control" name="sns-type1">
-																				<option value="facebook">Facebook</option>
-																				<option value="instagram">Instagram</option>
+																			<select class="form-control" id="stype1" name="sns">
+																				<option value="">SNS</option>
 																			</select>
 																		</div>
-																		<input type="text" class="form-control" name="sns1" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="https://www.facebook.com/InheeKimS2">
+																		<input type="text" class="form-control" id="sn1" name="snsUrl" placeholder="SNS주소">
 																		<div class="input-group-append">
 																			<button class="btn btn-primary addSNS" type="button">
 																				<i class="fas fa-plus"></i>
 																			</button>
 																		</div>
 																	</div>
-																	<div class="input-group mb-1">
-																		<div class="input-group-prepend">
-																			<select class="form-control" name="sns-type2">
-																				<option value="instagram">Instagram</option>
-																				<option value="facebook">Facebook</option>
-																			</select>
-																		</div>
-																		<input type="text" class="form-control" name="sns2" placeholder="SNS주소 (ex. https://www.facebook.com/000)" value="http://www.instagram.com/2nniyan">
-																		<div class="input-group-append">
-																			<button class="btn btn-primary subSNS" type="button">
-																				<i class="fas fa-minus"></i>
-																			</button>
-																		</div>
-																	</div>
 																</div>
 																<div class="form-group mb-4">
-																	<textarea class="form-control" rows="8" aria-label="With textarea" name="introduction" placeholder="자기소개"></textarea>
+																	<textarea class="form-control" rows="8" aria-label="With textarea" name="e_introduce" placeholder="자기소개" required></textarea>
 																</div>
 															</div>
 														</sec:authorize>
@@ -280,7 +252,6 @@
 											<div class="tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
 												<form id="withdrawal" action="/withdrawal.do" method="post">
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-													<input type="hidden" name="mid" value='<sec:authentication property="principal.member.m_id"/>'/>
 													<div class="input-group mb-4">
 														<label class="h5 p-3 m-0">유의사항을 확인 후 탈퇴를 진행해 주세요.</label>
 													</div>
@@ -358,26 +329,33 @@
 		  });
 		});
 		
-		$(document).ready(function() {
-			if('<c:out value="${isExpert}"/>'){
-				$.ajax({
-					url: '/getExpert.do',
-					data: {
-						mid: '<c:out value="${mid}"/>'
-					},
-					dataType: 'JSON',
-					type: 'POST',
-					success: function(data){
-						$('#inputJob').val(data.job);
-						$('#inputPosition').val(data.position);
-						$('#inputCareer').val(data.career);
-						$('#inputZipCode').val(data.zipcode);
-						$('#inputAddr').val(data.address);
-						$('#inputAddrDetail').val(data.detailaddr);
-						$('textarea[name="introduction"]').val(data.introduce);
-					}
-				});
+		function insertSform() {
+			var cntSNS = $('select[name="sns"]').length;
+			if(cntSNS<5) {
+				$('.inputSNS').append(
+					'<div class="input-group mb-1">'
+					+ '<div class="input-group-prepend">'
+						+ '<select class="form-control" name="sns">'
+							+ '<option value="">SNS</option>'
+							+ '<option value="SN001">Facebook</option>'
+							+ '<option value="SN002">Instagram</option>'
+							+ '<option value="SN003">Twitter</option>'
+							+ '<option value="SN004">Youtube</option>'
+							+ '<option value="SN005">Blog</option>'
+						+ '</select>'
+					+ '</div>'
+					+ '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소">'
+					+ '<div class="input-group-append">'
+						+ '<button class="btn btn-primary subSNS" type="button">'
+							+ '<i class="fas fa-minus"></i>'
+						+ '</button>'
+					+ '</div>'
+					+ '</div>'
+				);
 			}
+		}
+		
+		$(document).ready(function() {
 			$('#change-pwd-btn').on('click', function() {
 				$(this).parent().parent().hide();
 				$('.change-password').css('display','inline');
@@ -398,41 +376,110 @@
 			  var year = date.getFullYear();
 
 			  for(var i=year; i>=year-100; i--) {
-			    $('#birth-year').append('<option value="' + i + '">' + i + '년</option>');
+			    $('#birth-year').append('<option value="' + i + '">' + i + '</option>');
 			  }
 			  for(i=1; i<=12; i++) {
 				var j = i.toString();
 				if(i<10) { j = '0' + j; }
 				
-			    $('#birth-month').append('<option value="' + j + '">' + i + '월</option>');
+			    $('#birth-month').append('<option value="' + j + '">' + i + '</option>');
 			  }
 			  for(i=1; i<=31; i++) {
 				var j = i.toString();
 				if(i<10) { j = '0' + j; }
 			    
-				$('#birth-day').append('<option value="' + j + '">' + i + '일</option>');
+				$('#birth-day').append('<option value="' + j + '">' + i + '</option>');
+			  }
+
+			  // add license select options
+			  var arrLicense = ['AFPK', 'CFP', 'FP', 'IFP', 'CPM', 'ChFC'];
+			  for (j = 1; j <= 6; j++) {
+			    $('select[name="license"]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
+			  }
+			  
+			  //add sns select options
+			  var arrSns = ['Facebook', 'Instagram', 'Twitter', 'Youtube', 'Blog'];
+			  for (i = 1; i <= 5; i++) {
+				  $('select[name="sns"]').append('<option value="SN00' + i + '">' + arrSns[i - 1] + '</option>');
 			  }
 			
-			$('.addSNS').on('click', function() {
-				$('.inputSNS').append(
-					'<div class="input-group mb-1">'
-					+ '<div class="input-group-prepend">'
-						+ '<select class="form-control">'
-							+ '<option>SNS</option>'
-						+ '</select>'
-					+ '</div>'
-					+ '<input type="text" class="form-control" name="address" placeholder="SNS주소 (ex. https://www.facebook.com/000)">'
-					+ '<div class="input-group-append">'
-						+ '<button class="btn btn-primary subSNS" type="button">'
-							+ '<i class="fas fa-minus"></i>'
-						+ '</button>'
-					+ '</div>'
-					+ '</div>');
-				});
+			$('.addSNS').on('click', insertSform);
 				
 			$(document).on('click', '.subSNS', function() {
 				$(this).parents('div.input-group.mb-1').remove();
 			});
+			
+			$('input[value="<c:out value="${gender}"/>"]').parent().addClass('active');
+			$('input[name="m_gender"').val('<c:out value="${gender}"/>');
+			
+			$('#birth-year').val('<c:out value="${fn:substring(birth, 0, 4)}"/>');
+			$('#birth-month').val('<c:out value="${fn:substring(birth, 4, 6)}"/>');
+			$('#birth-day').val('<c:out value="${fn:substring(birth, 6, 8)}"/>');
+			
+			if('<c:out value="${isExpert}"/>'){
+				$.ajax({
+					url: '/getExpert.do',
+					data: {
+						mid: '<c:out value="${mid}"/>'
+					},
+					dataType: 'JSON',
+					type: 'POST',
+					success: function(data){
+						$('#inputJob').val(data.job);
+						$('#inputPosition').val(data.position);
+						$('#inputCareer').val(data.career);
+						$('#inputZipCode').val(data.zipcode);
+						$('#inputAddr').val(data.address);
+						$('#inputAddrDetail').val(data.detailaddr);
+						$('textarea[name="e_introduce"]').val(data.introduce);
+						$('#ltype1').val(data.ltype1);
+						$('#inputLicense1').val(data.li1);
+						
+						if(data.ltype2 != null) {
+							$('ltype2').val(data.ltype2);
+							$('#inputLicense2').val(data.li2);
+							
+							if(data.ltype3 != null) {
+								$('ltype3').val(data.ltype3);
+								$('#inputLicense3').val(data.li3);
+							}
+						}
+						
+						if(data.stype1 != null){
+							$('#stype1').val(data.stype1);
+							$('#sn1').val(data.sn1);
+							
+							if(data.stype2 != null){
+								insertSform();
+								$lastSns = $('.inputSNS div div select').last();
+								$lastSns.val(data.sn2);
+								$lastSns.parent().siblings('input').val(data.sn2);
+								
+								if(data.stype3 != null){
+									insertSform();
+									$lastSns = $('.inputSNS div div select').last();
+									$lastSns.val(data.sn3);
+									$lastSns.parent().siblings('input').val(data.sn3);
+									
+									if(data.stype4 != null){
+										insertSform();
+										$lastSns = $('.inputSNS div div select').last();
+										$lastSns.val(data.sn4);
+										$lastSns.parent().siblings('input').val(data.sn4);
+										
+										if(data.stype5 != null){
+											insertSform();
+											$lastSns = $('.inputSNS div div select').last();
+											$lastSns.val(data.sn5);
+											$lastSns.parent().siblings('input').val(data.sn5);
+										}
+									}
+								}
+							}
+						}
+					}
+				});
+			}
 		});
 
 		function checkPassword(){

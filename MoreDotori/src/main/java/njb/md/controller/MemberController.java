@@ -111,6 +111,13 @@ public class MemberController {
 		return mservice.getExpertById(mid);
 	}
 	
+	@PostMapping("/update.do")
+	public String updateInfo(Member member, Expert expert, Minfo minfo) {
+		
+		return null;
+	}
+	
+	
 	@PostMapping("/checkPwd.do")
 	@ResponseBody
 	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
