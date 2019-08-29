@@ -49,6 +49,10 @@ public class StatsController {
         int yearint = Integer.parseInt(yyyy);
         int monint = Integer.parseInt(mmmm);
         int dayint = Integer.parseInt(dddd);
+        
+        String monStr = mmmm;
+        if(monint<10) monStr = "0"+monint;
+        long datelong = Long.parseLong(yyyy+monStr+dddd);
 		
         HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
         
@@ -104,8 +108,65 @@ public class StatsController {
         hm.put("inData1", inData1);
         hm.put("outData1", outData1);        
         
+        
+        ///////////////////////////////////////////////////////////////////////////////
+
+        
+        //tab1-chart2 데이터
+        List<String> dataName2 = new ArrayList<String>();
+        List<String> inData2 = new ArrayList<String>();
+        List<String> outData2 = new ArrayList<String>();        
+        
+        
         ///////////////////////////////////////////////////////////////////////////////
         
+        
+        //tab1-chart3 데이터
+        List<String> dataName3 = new ArrayList<String>();
+        List<String> inData3 = new ArrayList<String>();
+        List<String> outData3 = new ArrayList<String>();         
+        
+        for(int i=yearint-9; i<=yearint; i++) {
+        	String iStr = String.valueOf(i);
+        	dataName3.add(iStr+"년");
+        	inData3.add(Long.toString(abs_service.selectYearS(M_id, iStr, "IO001")));
+        	outData3.add(Long.toString(abs_service.selectYearS(M_id, iStr, "IO002")));
+        }
+
+        hm.put("dataName3", dataName3);
+        hm.put("inData3", inData3);
+        hm.put("outData3", outData3);
+        
+        ///////////////////////////////////////////////////////////////////////////////
+        
+        //tab1-chart4 데이터
+        List<String> dataName4 = new ArrayList<String>();
+        List<String> inData4 = new ArrayList<String>();
+        List<String> outData4 = new ArrayList<String>();         
+        
+        dataName4.add("일요일");
+        dataName4.add("월요일");
+        dataName4.add("화요일");
+        dataName4.add("수요일");
+        dataName4.add("목요일");
+        dataName4.add("금요일");
+        dataName4.add("토요일");
+        
+        for(int i=1; i < 8; i++) {
+        	String iStr = String.valueOf(i);
+        	if(monint<10) {
+        		String zeroMonInt = "0"+monint;
+        		inData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+zeroMonInt, "IO001", iStr)));
+        		outData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+zeroMonInt, "IO002", iStr)));
+        	}else {
+        		inData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+mmmm, "IO001", iStr)));
+        		outData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+mmmm, "IO002", iStr)));
+        	}
+        }
+
+        hm.put("dataName4", dataName4);
+        hm.put("inData4", inData4);
+        hm.put("outData4", outData4);
         
         return hm;
 	}

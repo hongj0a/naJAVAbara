@@ -29,7 +29,7 @@
 								<div class="col-sm-12">
 									<h3 class="mb-5 text-center">홍길동 님의 자산현황 및 통계</h3>
 									<h6 class="mb-3 text-right">
-										오늘은 <span class="font-weight-bold"><span id="today_yy"></span>년 <span id="today_mm"></span>월 <span id="today_dd"></span>일</span> 입니다.
+										오늘은 <span class="font-weight-bold"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일 <span class="today_dy"></span>요일</span> 입니다.
 									</h6>
 									<div id="my-statistics" role="tablist"
 										aria-multiselectable="true">
@@ -71,18 +71,22 @@
 													<div class="tab-content" id="asset-tab1">
 														<div class="tab-pane fade show active" id="pills1-month"
 															role="tabpanel" aria-labelledby="tab1-month">
+															<div class="stats_sub"> 월간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart1" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-week"
 															role="tabpanel" aria-labelledby="tab1-week">
+															<div class="stats_sub"> 주간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart2" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-year"
 															role="tabpanel" aria-labelledby="tab1-year">
+															<div class="stats_sub"> 연간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart3" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-day" role="tabpanel"
 															aria-labelledby="pills1-day">
+															<div class="stats_sub"> <span class="today_mm"></span>월 요일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart4" class="lineAreaDashboard"></div>
 														</div>
 													</div>

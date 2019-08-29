@@ -79,3 +79,18 @@
 .card.inner-card .col-form-label .mdi-numeric-3-box {
 	color: #a389d4;
 }
+
+.stats_sub{
+	text-align: center;
+	font-size: 18px;
+}
+
+.money_out{
+	color: #F29D35;
+	font-weight: bold;
+}
+
+.money_in{
+	color: #5086F2;
+	font-weight: bold;
+}

@@ -55,8 +55,33 @@
 		and io.C_inout=#{inoutCode}
 	</select>
 	
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->	
+	<select id="selectYear" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY')=#{selectYear}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	</select>
 	
+	<select id="selectMonthDayofWeek" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and to_char(io.I_date, 'd')=#{selectDays}		
+	</select>
+	
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->	
+
+
+<!-- 	
 	<select id="returnIW" resultType="long">
 		select to_char(to_date(#{selectDay},'yyyymmdd'), 'IW') from dual
 	</select>
@@ -64,14 +89,19 @@
 	<select id="selectIW" resultType="long">
 		select case when sum(io.I_money) is null then 0
 		else sum(io.I_money) end as sumInMoney
-		from (select io.I_seq as I_seq, to_char(io.i_date, 'IW') as week 
+		from (select io.I_seq as I_seq, to_char(io.i_date, 'ww') as week 
 		from inout io
 		join asset ass on io.A_seq=ass.A_seq
 		where ass.M_id=#{M_id}) iw
 		join inout io on io.I_seq=iw.I_seq
 		where iw.week=#{selectIW}
 		and io.c_inout=#{inoutCode};
+		and to_char(io.I_date, 'YYYY')=#{selectYear};
 	</select>
+	 -->
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->	
+
 	
-	
+
 </mapper>
