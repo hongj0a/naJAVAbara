@@ -46,7 +46,7 @@ th, td {
 }
 th {
 	border: 1px solid white;
-	background-color: skyblue;
+	background-color: #7ba5fa;
 	color: white;
 	text-align: center;
 }
@@ -71,4 +71,17 @@ th {
 h3{
 	font-family: 'Black Han Sans', sans-serif;
 	text-align:center;
+}
+.btdesign{
+	margin-right: 5px;
+	margin-bottom: 5px;
+    padding: 8px;
+    font-size: 12px;
+    background-color: #5086f2;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius:2px;
 }

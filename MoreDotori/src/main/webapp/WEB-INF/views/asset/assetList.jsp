@@ -37,6 +37,17 @@
                         </div>
                     </div>
 		             </div>
+    				<!-- [ breadcrumb ] end -->
+    				
+                    <div class="main-body">
+                        <div class="page-wrapper">
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+                              <div id="cardsize1" class="card">
+                              	 <div class="card-block p-0">
+                             		 <div id="sizesize" class="text-center project-main">
+	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
+	                                   
 					  <div class="reading-list">
 					  			<form name="input" method="post" action="aList/write.do">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
@@ -89,20 +100,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           			 <a href="aList/write.do" data-toggle="modal" data-target="#exampleModalLive">+ 항목 추가</a>
+                                           			 <button type="button" class="btdesign btn-primary" onclick="aList/write.do" data-toggle="modal" data-target="#exampleModalLive"> 항목 추가</button>
                                         </form>
                                     </div>
-		 			</br></br>
-    				<!-- [ breadcrumb ] end -->
-    				
-                    <div class="main-body">
-                        <div class="page-wrapper">
-                            <!-- [ Main Content ] start -->
-                            <div class="row">
-                              <div id="cardsize1" class="card">
-                              	 <div class="card-block p-0">
-                             		 <div id="sizesize" class="text-center project-main">
-	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 										  <div>
 										  	<form name='update' method='post' action='aList/update.do'>
 												<table id="assetListmodaljs">
