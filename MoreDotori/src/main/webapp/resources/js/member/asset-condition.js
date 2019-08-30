@@ -264,6 +264,14 @@
 		});
   }
   
+  //문자형 숫자들 숫자형으로 변경해주는 함수
+  $.fn.returnNumber = function(array){
+	  var dArray = [];
+	  for(var i = 0; i < array.length; i++){
+		dArray[i] = array[i]*1;  
+	  }
+	  return dArray;
+  }
   
   //지출분류별통계
   $.fn.setTab2Chart1Data = function(codeOT, nameArr, ot001, ot002, ot003, ot004, ot005, ot006, ot007, ot008, ot009, ot010, ot011){
@@ -272,52 +280,52 @@
 				text: ''
 			},
 			xAxis: {
-				categories: [nameArr[0], nameArr[1], nameArr[2], nameArr[3], nameArr[4], nameArr[5], nameArr[6], nameArr[7], nameArr[8], nameArr[9], nameArr[10], nameArr[11]],
-			},
-			series: [{
+				categories: nameArr,
+			},colors: ['#F76D82', '#62DDBD', '#F299CE', '#FC8370', '#62DDBD', '#F0C8A5', '#FECD57', '#73B1F4', '#9ED36A', '#AC92EA', '#A9B1BC']
+			,series: [{
 				type: 'column',
 				name: codeOT[0],
-				data: [ot001[0], ot001[1], ot001[2], ot001[3], ot001[4], ot001[5], ot001[6], ot001[7], ot001[8], ot001[9], ot001[10], ot001[11]]
-			}, {
+				data: $.fn.returnNumber(ot001)
+			},{
 				type: 'column',
 				name: codeOT[1],
-				data: [ot002[0], ot002[1], ot002[2], ot002[3], ot002[4], ot002[5], ot002[6], ot002[7], ot002[8], ot002[9], ot002[10], ot002[11]]
-			}, {
+				data: $.fn.returnNumber(ot002)
+			},{
 				type: 'column',
 				name: codeOT[2],
-				data: [ot003[0], ot003[1], ot003[2], ot003[3], ot003[4], ot003[5], ot003[6], ot003[7], ot003[8], ot003[9], ot003[10], ot003[11]]
-			}, {
+				data: $.fn.returnNumber(ot003)
+			},{
 				type: 'column',
 				name: codeOT[3],
-				data: [ot004[0], ot004[1], ot004[2], ot004[3], ot004[4], ot004[5], ot004[6], ot004[7], ot004[8], ot004[9], ot004[10], ot004[11]]
-			}, {
+				data: $.fn.returnNumber(ot004)
+			},{
 				type: 'column',
 				name: codeOT[4],
-				data: [ot005[0], ot005[1], ot005[2], ot005[3], ot005[4], ot005[5], ot005[6], ot005[7], ot005[8], ot005[9], ot005[10], ot005[11]]
-			}, {
+				data: $.fn.returnNumber(ot005)
+			},{
 				type: 'column',
 				name: codeOT[5],
-				data: [3, 2, 1, 3, 4, 3, 2, 1, 3, 4, 11, 13]
-			}, {
+				data: $.fn.returnNumber(ot006)
+			},{
 				type: 'column',
 				name: codeOT[6],
-				data: [4, 3, 3, 9, 0, 4, 3, 3, 9, 0, 1, 0]
-			}, {
+				data: $.fn.returnNumber(ot007)
+			},{
 				type: 'column',
 				name: codeOT[7],
-				data: [4, 3, 3, 9, 0, 3, 2, 1, 3, 4, 0, 4]
-			}, {
+				data: $.fn.returnNumber(ot008)
+			},{
 				type: 'column',
 				name: codeOT[8],
-				data: [4, 3, 3, 9, 0, 1, 2, 4, 6, 8, 9, 11]
-			}, {
-				type: codeOT[9],
-				name: '경조사',
-				data: [3, 2, 1, 3, 4, 3, 2, 1, 3, 4, 11, 13]
-			}, {
+				data: $.fn.returnNumber(ot009)
+			},{
+				type: 'column',
+				name: codeOT[9],
+				data: $.fn.returnNumber(ot010)
+			},{
 				type: 'column',
 				name: codeOT[10],
-				data: [4, 3, 3, 9, 0, 3, 2, 1, 3, 4, 0, 4]
+				data: $.fn.returnNumber(ot011)
 			}]
 		});	  
   }  

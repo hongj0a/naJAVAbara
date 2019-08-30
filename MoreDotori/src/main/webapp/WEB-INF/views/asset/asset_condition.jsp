@@ -302,14 +302,16 @@
 	<!-- [ Main Content ] end -->
 
 	<!-- chart -->
-	<script src="//code.highcharts.com/highcharts-more.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/chart-highchart/js/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	
 	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/core.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/charts.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/amcharts.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/serial.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/pie.min.js"></script>
-
+	
 	<script src="${pageContext.request.contextPath}/js/member/asset-condition.js"></script>
 	<script>
 	   	//메뉴
