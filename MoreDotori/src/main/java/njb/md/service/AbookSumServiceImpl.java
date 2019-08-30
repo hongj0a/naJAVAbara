@@ -59,6 +59,30 @@ public class AbookSumServiceImpl implements AbookSumService {
 	}
 	
 	@Override
+	public Date returnSundayS(String selectDate) {
+		log.info("### 해당 일의 일요일 날짜 가져오기 ###");
+		return mapper.returnSunday(selectDate);
+	}
+	
+	@Override
+	public Date returnSatdayS(String selectDate) {
+		log.info("### 해당 일의 일요일 날짜 가져오기 ###");
+		return mapper.returnSatday(selectDate);
+	}
+
+	@Override
+	public Date returnPrevDayS(String selectDate) {
+		log.info("### 해당 일의 7일전 날짜 가져오기 ###");
+		return mapper.returnPrevDay(selectDate);
+	}	
+	
+	@Override
+	public long selectWeekS(String M_id, String selectDate, String inoutCode) {
+		log.info("### 해당 일의 주 전체 합 가져오기 ###");
+		return mapper.selectWeek(M_id, selectDate, inoutCode);
+	}	
+	
+	@Override
 	public long selectMonthDayofWeekS(String M_id, String selectMonth, String inoutCode, String selectDays) {
 		log.info("### 해당 월의 요일 합 가져오기 ###");
 		return mapper.selectMonthDayofWeek(M_id, selectMonth, inoutCode, selectDays);
@@ -70,15 +94,5 @@ public class AbookSumServiceImpl implements AbookSumService {
 		return mapper.selectMonthCodeSum(M_id, selectMonth, inoutCode, ioCategori);
 	}
 		
-	
-	/*
-	 * @Override public long returnIWS(long selectDay) {
-	 * log.info("### 해당 일의 주번호 리턴  ###"); return mapper.returnIW(selectDay); }
-	 * 
-	 * @Override public long selectIWS(String M_id, String selectIW, String
-	 * inoutCode, String selectYear) { log.info("### 해당 주의 합계 리턴  ###"); return
-	 * mapper.selectIW(M_id, selectIW, inoutCode, selectYear); }
-	 */	
-	
 	
 }

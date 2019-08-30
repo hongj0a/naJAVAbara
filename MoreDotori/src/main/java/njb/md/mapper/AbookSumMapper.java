@@ -1,5 +1,7 @@
 package njb.md.mapper;
 
+import java.sql.Date;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface AbookSumMapper {
@@ -20,6 +22,18 @@ public interface AbookSumMapper {
 	
 	//년별 메소드
 	long selectYear(@Param("M_id") String M_id,@Param("selectYear") String selectYear, @Param("inoutCode") String inoutCode);
+	
+	//해당 일의 일요일 가져오기
+	Date returnSunday(@Param("selectDate") String selectDate);
+	
+	//해당 일의 토요일 가져오기
+	Date returnSatday(@Param("selectDate") String selectDate);	
+
+	//해당 일의 7일전 날짜 가져오기
+	Date returnPrevDay(@Param("selectDate") String selectDate);	
+	
+	//주간 메소드
+	long selectWeek(@Param("M_id") String M_id,@Param("selectDate") String selectDate, @Param("inoutCode") String inoutCode);
 	
 	//요일별 메소드(+월별)
 	long selectMonthDayofWeek(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode, @Param("selectDays") String selectDays);

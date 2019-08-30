@@ -1,5 +1,7 @@
 package njb.md.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +63,8 @@ public class StatsController {
         String monStr = mmmm;
         if(monint<10) monStr = "0"+monint;
         long datelong = Long.parseLong(yyyy+monStr+dddd);
+        
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
 		
         HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
         
@@ -123,7 +127,29 @@ public class StatsController {
         //tab1-chart2 데이터
         List<String> dataName2 = new ArrayList<String>();
         List<String> inData2 = new ArrayList<String>();
-        List<String> outData2 = new ArrayList<String>();        
+        List<String> outData2 = new ArrayList<String>();
+        
+        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+mmmm+"/"+dddd);
+        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+mmmm+"/"+dddd);
+        String selDate = null;
+        String satDate = null;
+        
+        for(int i=0; i<5; i++) {
+        		selDate = transFormat.format(thisWeeksSunday);
+        		satDate = transFormat.format(thisWeeksSatday);
+        		
+        		dataName2.add(selDate+" ~ "+satDate);
+        		inData2.add(Long.toString(abs_service.selectWeekS(M_id, selDate, in)));
+        		outData2.add(Long.toString(abs_service.selectWeekS(M_id, selDate, out)));
+        		
+        		String prevDay = transFormat.format(abs_service.returnPrevDayS(selDate));
+        		thisWeeksSunday = abs_service.returnSundayS(prevDay);
+        		thisWeeksSatday = abs_service.returnSatdayS(prevDay);
+        }
+        
+        hm.put("dataName2", dataName2);
+        hm.put("inData2", inData2);
+        hm.put("outData2", outData2);
         
         
         ///////////////////////////////////////////////////////////////////////////////

@@ -55,7 +55,7 @@
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-week" data-toggle="pill"
 																href="#pills1-week" role="tab"
-																aria-controls="pills1-week" aria-selected="false">일별</a>
+																aria-controls="pills1-week" aria-selected="false">주별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-year" data-toggle="pill"
@@ -76,12 +76,12 @@
 														</div>
 														<div class="tab-pane fade" id="pills1-week"
 															role="tabpanel" aria-labelledby="tab1-week">
-															<div class="stats_sub"> 일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div class="stats_sub"> 주별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart2" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-year"
 															role="tabpanel" aria-labelledby="tab1-year">
-															<div class="stats_sub"> 연별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div class="stats_sub"> 10 년간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart3" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-day" role="tabpanel"

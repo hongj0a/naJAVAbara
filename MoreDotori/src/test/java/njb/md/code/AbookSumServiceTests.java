@@ -62,9 +62,23 @@ public class AbookSumServiceTests {
 			Inout io = ioservice.selectInoutSeqS(maxInDateSeq); 
 			log.info("===> 결과 : " + io.getI_date());
 			  
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd"); String
-			date = transFormat.format(io.getI_date()); log.info("===> 결과2 : " + date);		
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd"); 
+			String date = transFormat.format(io.getI_date()); 
+			log.info("===> 결과2 : " + date);		
 		}
+	}
+	
+	@Test
+	public void testSunday() {
+		log.info("################# WEEK ##################");
+		
+		Date Sunday = service.returnSundayS("2019/08/30");
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String selectDate = transFormat.format(Sunday);
+		
+		long rs = service.selectWeekS("inhee@naver.com", selectDate, "IO001");
+		log.info("결 과 : : : : : > " + rs);
 	}
 	
 }

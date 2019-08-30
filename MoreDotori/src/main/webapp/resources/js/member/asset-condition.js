@@ -95,6 +95,73 @@
 			},
 		});	   
    }
+
+   $.fn.setTab1Chart2Data = function(nameArr, inArr, outArr){
+		AmCharts.makeChart("tab1-chart2", {
+			"type": "serial",
+			"theme": "light",
+			"marginTop": 10,
+			"marginRight": 0,
+			"dataProvider": [{
+				"year": nameArr[4],
+				"value": inArr[4],
+				"value2": outArr[4],
+			},{
+				"year": nameArr[3],
+				"value": inArr[3],
+				"value2": outArr[3],
+			}, {
+				"year": nameArr[2],
+				"value": inArr[2],
+				"value2": outArr[2],
+			}, {
+				"year": "저번주",
+				"value": inArr[1],
+				"value2": outArr[1],
+			}, {
+				"year": "이번주",
+				"value": inArr[0],
+				"value2": outArr[0],
+			}],
+			"graphs": [{
+				"id": "g1",
+				"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+				"bullet": "round",
+				"lineColor": "#5086F2",
+				"lineThickness": 3,
+				"negativeLineColor": "#5086F2",
+				"valueField": "value"
+			}, {
+				"id": "g2",
+				"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+				"bullet": "round",
+				"lineColor": "#F29D35",
+				"lineThickness": 3,
+				"negativeLineColor": "#F29D35",
+				"valueField": "value2"
+			}],
+			"chartCursor": {
+				"cursorAlpha": 0,
+				"valueLineEnabled": true,
+				"valueLineBalloonEnabled": true,
+				"valueLineAlpha": 0.3,
+				"fullWidth": true
+			},
+			"categoryField": "year",
+			"categoryAxis": {
+				"minorGridAlpha": 0,
+				"minorGridEnabled": true,
+				"gridAlpha": 0,
+				"axisAlpha": 0,
+				"lineAlpha": 0
+			},
+			"legend": {
+				"useGraphSettings": true,
+				"position": "top"
+			},
+		}); 
+   }
+    
    
   $.fn.setTab1Chart3Data = function(nameArr, inArr, outArr){
 		AmCharts.makeChart("tab1-chart3", {
@@ -348,6 +415,11 @@
 			   var outData1 = data.outData1;
 			   $.fn.setTab1Chart1Data(nameArr1, inData1, outData1);
 			   
+			   var nameArr2 = data.dataName2;
+			   var inData2 = data.inData2;
+			   var outData2 = data.outData2;
+			   $.fn.setTab1Chart2Data(nameArr2, inData2, outData2);			   
+			   
 			   var nameArr3 = data.dataName3;
 			   var inData3 = data.inData3;
 			   var outData3 = data.outData3;
@@ -437,79 +509,6 @@ $(document).ready(function() {
 	});
 
 	/////////////////////// chart ///////////////////////
-	// line-chart for collapseOne - 수입 및 지출 통계
-	AmCharts.makeChart("tab1-chart2", {
-		"type": "serial",
-		"theme": "light",
-		"marginTop": 10,
-		"marginRight": 0,
-		"dataProvider": [{
-			"year": "Jan",
-			"value": 5,
-			"value2": 80,
-		}, {
-			"year": "Feb",
-			"value": 30,
-			"value2": 95,
-		}, {
-			"year": "Mar",
-			"value": 25,
-			"value2": 87,
-		}, {
-			"year": "Apr",
-			"value": 55,
-			"value2": 155,
-		}, {
-			"year": "May",
-			"value": 45,
-			"value2": 140,
-		}, {
-			"year": "Jun",
-			"value": 65,
-			"value2": 147,
-		}, {
-			"year": "오늘",
-			"value": 60,
-			"value2": 130,
-		}],
-		"graphs": [{
-			"id": "g1",
-			"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
-			"bullet": "round",
-			"lineColor": "#5086F2",
-			"lineThickness": 3,
-			"negativeLineColor": "#5086F2",
-			"valueField": "value"
-		}, {
-			"id": "g2",
-			"balloonText": "[[category]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
-			"bullet": "round",
-			"lineColor": "#F29D35",
-			"lineThickness": 3,
-			"negativeLineColor": "#F29D35",
-			"valueField": "value2"
-		}],
-		"chartCursor": {
-			"cursorAlpha": 0,
-			"valueLineEnabled": true,
-			"valueLineBalloonEnabled": true,
-			"valueLineAlpha": 0.3,
-			"fullWidth": true
-		},
-		"categoryField": "year",
-		"categoryAxis": {
-			"minorGridAlpha": 0,
-			"minorGridEnabled": true,
-			"gridAlpha": 0,
-			"axisAlpha": 0,
-			"lineAlpha": 0
-		},
-		"legend": {
-			"useGraphSettings": true,
-			"position": "top"
-		},
-	});
-
 	// combo-chart for collapseTwo - 지출 분류별 통계
 	Highcharts.chart('tab2-chart2', {
 		title: {
