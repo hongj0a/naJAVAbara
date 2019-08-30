@@ -1,9 +1,7 @@
    //tr클릭이벤트
-   $(document).on('click', '.updatetd a', function(){
-      var tr = $(this).parent().parent();
+   $(document).on('click', '.updatetd', function(){
+      var tr = $(this);
       var td = tr.children();
-      
-      var kind = td.eq(2).text();
       
          $('#a_seq').val(td.eq(0).text());
          $('#m_id').val(td.eq(1).text());

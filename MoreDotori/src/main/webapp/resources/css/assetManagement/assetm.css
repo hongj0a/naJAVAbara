@@ -50,7 +50,7 @@ th {
 	color: white;
 	text-align: center;
 }
-.hove:hover{background-color:#f5f5f5;}
+#hove:hover{background-color:#f5f5f5;}
 
 #cardsize1{
 	width: 100%;
@@ -83,5 +83,5 @@ h3{
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    border-radius:2px;
+    border-radius:4px;
 }

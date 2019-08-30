@@ -112,18 +112,16 @@
 												    <th class="widsize">별칭</th>
 												    <th class="widsize">잔액</th>
 												    <th class="widsize2">메모</th>
-												    <th class="widsize">수정</th>
 												    <th class="widsize">삭제</th>
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
-														<tr class="hove">
+														<tr class="updatetd" id="hove" onclick="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
 															<td class="idhidden">${alist.a_seq}</td>
 															<td class="idhidden">${alist.m_id}</td>
 															<td>${alist.c_asset}</td>
 															<td>${alist.a_nickname}</td>
 															<td>${alist.a_money}</td>
 															<td>${alist.a_memo}</td>
-															<td class="updatetd"><a href="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">수정</a></td>
 															<td ><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 														</tr>
 			                                            </c:forEach>
@@ -136,13 +134,8 @@
 			                                                        </div>
 			                                                        <div class="modal-body">
 			                                                        	<input name="a_seq" id="a_seq" type="hidden" class="form-control plus-imp">
-			                                                       <!--  </br>
-			                                                        <div class="col-12">
-			                                                         &nbsp;&nbsp;
-			                                                     	<span>ID  : </span>
-			                                                     		&nbsp;&nbsp; -->
+			                                                     
 			                                                        	<input name="m_id" id="m_id" type="hidden" value="inhee@naver.com" class="form-control plus-imp" readonly>
-			                                                        	
 			                                                        </br>
 			                                            			<div class="col-12">
 			                                            				<span>타입 :  </span>
