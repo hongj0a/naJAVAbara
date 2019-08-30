@@ -49,12 +49,79 @@ public class MemberController {
 	
 	@PostMapping("/join.do")
 	public String join(Member member, Expert expert, Minfo minfo) {
+		getForm(member, expert, minfo);
+		if(minfo.getChooseImg() != null)
+			member.setM_profile(fservice.upload(minfo.getChooseImg()));
+		
+		if(mservice.joinMember(member, expert)) {
+			log.info("회원가입 성공");
+		} else {
+			log.info("회원가입 실패");
+		}
+		
+		return "redirect:/";
+	}
+	
+	@PostMapping("/getExpert.do")
+	@ResponseBody
+	public Map<Object, Object> getExpert(String mid) {
+		return mservice.getExpertById(mid);
+	}
+	
+	@PostMapping("/update.do")
+	public String updateInfo(Member member, Expert expert, Minfo minfo, Principal principal) {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		
+		getForm(member, expert, minfo);
+		if(!minfo.getChooseImg().isEmpty())
+			member.setM_profile(fservice.upload(minfo.getChooseImg()));
+		else {
+			member.setM_profile(user.getMember().getM_profile());
+		}
+		if(mservice.updateMember(member, expert)) {
+			log.info("정보수정 성공");
+		} else {
+			log.info("정보수정 실패");
+		}
+		
+		return "redirect:/";
+	}
+	
+	
+	@PostMapping("/checkPwd.do")
+	@ResponseBody
+	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
+		
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+//		log.info("user: " + user);
+		if(pwencoder.matches(pwd, user.getMember().getM_password()))
+			result = 1;
+		else
+			result = 0;
+		
+		map.put("rst", result);
+		return map;
+	}
+	
+	@PostMapping("/withdrawal.do")
+	public String withdrawal(String mid) {
+		log.info("# mid: " + mid);
+		
+		if(mservice.withdrawal(mid) != 0)
+			log.info("탈퇴 성공");
+		else 
+			log.info("탈퇴 실패");
+		
+		return "redirect:/";
+	}
+	
+	public void getForm(Member member, Expert expert, Minfo minfo) {
 		String birth = "";
 		for(String add : minfo.getBirth()) birth += add;
 		member.setM_birth(birth);
-		
-		if(minfo.getChooseImg() != null)
-			member.setM_profile(fservice.upload(minfo.getChooseImg()));
 		
 		if(member.getC_member().equals("MB002")) {
 			ArrayList<String> license = new ArrayList<String>();
@@ -95,56 +162,5 @@ public class MemberController {
 				case 1: expert.setE_sns1(sns.get(0));
 			}
 		}
-		
-		log.info("# member: " + member);
-		log.info("# expert: " + expert);
-		log.info("# minfo: " + minfo);
-		
-		mservice.joinMember(member, expert);
-		
-		return "redirect:/";
-	}
-	
-	@PostMapping("/getExpert.do")
-	@ResponseBody
-	public Map<Object, Object> getExpert(String mid) {
-		return mservice.getExpertById(mid);
-	}
-	
-	@PostMapping("/update.do")
-	public String updateInfo(Member member, Expert expert, Minfo minfo) {
-		
-		return null;
-	}
-	
-	
-	@PostMapping("/checkPwd.do")
-	@ResponseBody
-	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
-		int result = -1;
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
-		
-		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
-//		log.info("user: " + user);
-		if(pwencoder.matches(pwd, user.getMember().getM_password()))
-			result = 1;
-		else
-			result = 0;
-		
-		map.put("rst", result);
-		return map;
-	}
-	
-	@PostMapping("/withdrawal.do")
-	public String withdrawal(String mid) {
-		log.info("# mid: " + mid);
-		
-		if(mservice.withdrawal(mid) != 0)
-			log.info("탈퇴 성공");
-		else 
-			log.info("탈퇴 실패");
-		
-		return "redirect:/";
 	}
 }

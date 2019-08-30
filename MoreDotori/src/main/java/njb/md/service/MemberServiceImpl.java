@@ -52,6 +52,35 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 	}
 	
+	public boolean updateMember(Member member, Expert expert) {
+//		log.info("member: " + member);
+//		log.info("expert: " + expert);
+		
+		int ue_result = -1;
+		int up_result = -1;
+		int um_result = mapper.updateMinfo(member);
+		if(member.getC_member().equals("MB002"))
+			ue_result = mapper.updateEinfo(expert);
+		
+		if(member.getM_password() != null) {
+			PasswordEncoder pwencoder = new BCryptPasswordEncoder();
+			String encoded = pwencoder.encode(member.getM_password());
+			member.setM_password(encoded);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("m_id", member.getM_id());
+			map.put("m_password", member.getM_password());
+			
+			up_result = mapper.updatePwd(map);
+		}
+
+		if(um_result!=0 && ue_result!=0 && up_result!=0)
+			return true;
+		else
+			return false;
+	}
+	
 	public Map<Object, Object> getExpertById(String id) {
 		Expert expert = mapper.getExpert(id);
 //		log.info("expert: " + expert);

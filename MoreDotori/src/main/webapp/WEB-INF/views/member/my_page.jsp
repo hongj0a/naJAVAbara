@@ -47,6 +47,7 @@
 											<div class="tab-pane fade active show" id="edit" role="tabpanel" aria-labelledby="edit-tab">
 												<div class="row justify-content-center">
 													<form id="account-edit" class="col-sm-11" action="/update.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+														<input type="hidden" name="c_member" value="<sec:authentication property="principal.member.c_member"/>">
 														<div class="row">
 															<div class="col-sm-4">
 																<div class="text-center">
@@ -71,11 +72,14 @@
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">아이디</label>
 																	<sec:authentication property="principal.member.m_id" var="mid"/>
+																	<input type="hidden" name="m_id" value="${mid}">
 																	<label class="col-sm-9 col-form-label">${mid}</label>
 																</div>
 																<div class="form-group row mb-4">
-																	<label class="col-sm-3 col-form-label">이름</label> <label
-																		class="col-sm-9 col-form-label"><sec:authentication property="principal.member.m_name"/></label>
+																	<label class="col-sm-3 col-form-label">이름</label>
+																	<sec:authentication property="principal.member.m_name" var="mname"/>
+																	<input type="hidden" name="m_name" value="${mname}">
+																	<label class="col-sm-9 col-form-label">${mname}</label>
 																</div>
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">닉네임</label>
@@ -125,16 +129,19 @@
 														</div>
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">성별&nbsp;&nbsp;</label>
-															<div class="col">
-																<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
-																	<sec:authentication property="principal.member.m_gender" var="gender" />
-																	<label class="btn btn-primary">
-																		<input type="radio" name="m_gender" value="M" required>남
-																	</label>
-																	<label class="btn btn-primary">
-																		<input type="radio" name="m_gender" value="F">여
-																	</label>
-																</div>
+															<div class="col col-form-label" id="inputGender">
+   																<div class="form-group d-inline">
+			                                                        <div class="radio radio-primary d-inline">
+			                                                            <input type="radio" name="m_gender" id="genderM" value="M" checked="">
+			                                                            <label for="genderM" class="cr">남</label>
+			                                                        </div>
+			                                                    </div>
+			                                                    <div class="form-group d-inline">
+			                                                        <div class="radio radio-primary d-inline">
+			                                                            <input type="radio" name="m_gender" id="genderF" value="F">
+			                                                            <label for="genderF" class="cr">여</label>
+			                                                        </div>
+			                                                    </div>
 															</div>
 														</div>
 														<div class="form-group row mb-4">
@@ -409,14 +416,14 @@
 				$(this).parents('div.input-group.mb-1').remove();
 			});
 			
-			$('input[value="<c:out value="${gender}"/>"]').parent().addClass('active');
-			$('input[name="m_gender"').val('<c:out value="${gender}"/>');
+			$('input[value="<c:out value="${gender}"/>"]').attr('checked', true);
+			$('input[value="<c:out value="${gender}"/>"]:checked').parent().addClass('active');
 			
 			$('#birth-year').val('<c:out value="${fn:substring(birth, 0, 4)}"/>');
 			$('#birth-month').val('<c:out value="${fn:substring(birth, 4, 6)}"/>');
 			$('#birth-day').val('<c:out value="${fn:substring(birth, 6, 8)}"/>');
 			
-			if('<c:out value="${isExpert}"/>'){
+			if(<c:out value="${isExpert}"/>){
 				$.ajax({
 					url: '/getExpert.do',
 					data: {

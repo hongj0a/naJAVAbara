@@ -34,14 +34,19 @@
 	  <result property="ma_auth" column="ma_auth"/>
 	</resultMap>
 	
+	<!-- login -->
 	<select id="read" resultMap="memberMap">
 	  select mem.m_id, m_name, m_nickname, m_password, m_phone, m_birth, m_gender, m_profile, m_jdate, m_ldate, c_member, c_mstate, m_month,
 	  m_count, m_accrue, m_cdate, m_reason, m_enabled, ma_auth from MEMBER mem left outer join MAUTH auth on mem.m_id = auth.m_id
-	  where mem.m_id = #{m_id}
+	  where mem.m_id=#{m_id}
 	</select>
+	<update id="updateLdate" parameterType="string">
+		update MEMBER set m_ldate=SYSDATE where m_id=#{m_id}
+	</update>
 
+	<!-- join -->
 	<insert id="insertMember" parameterType="njb.md.domain.Member">
-      insert into MEMBER(M_ID, M_NAME, M_NICKNAME, M_PASSWORD, M_PHONE, M_BIRTH, M_GENDER, M_PROFILE, C_MEMBER)
+      insert into MEMBER(m_id, m_name, m_nickname, m_password, m_phone, m_birth, m_gender, m_profile, c_member)
       values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile, jdbcType=VARCHAR}, #{c_member})
  	</insert>
  	<insert id="insertExpert" parameterType="njb.md.domain.Expert">
@@ -54,21 +59,37 @@
 	  insert into MAUTH values(#{m_id}, #{ma_auth})
 	</insert>
 	
+	<!-- join & mypage -->
 	<select id="duplIdCheck" parameterType="string" resultType="string">
-		select m_id from MEMBER where m_id = #{m_id}
+		select m_id from MEMBER where m_id=#{m_id}
 	</select>
 	<select id="duplNickCheck" parameterType="string" resultType="string">
-		select m_nickname from MEMBER where m_nickname = #{m_nickname}
+		select m_nickname from MEMBER where m_nickname=#{m_nickname}
 	</select>
 	
+	<!-- mypage - info -->
 	<select id="getExpert" parameterType="string" resultType="njb.md.domain.Expert">
-		select * from Expert where m_id = #{m_id}
+		select * from Expert where m_id=#{m_id}
 	</select>
-	
+	<update id="updatePwd" parameterType="map">
+		update MEMBER set m_password=#{m_password} where m_id=#{m_id}
+	</update>
+	<update id="updateMinfo" parameterType="njb.md.domain.Member">
+		update MEMBER set m_nickname=#{m_nickname}, m_phone=#{m_phone}, m_birth=#{m_birth}, m_gender=#{m_gender}, m_profile=#{m_profile}
+		where m_id=#{m_id}
+	</update>
+	<update id="updateEinfo" parameterType="njb.md.domain.Expert">
+		update EXPERT set e_job=#{e_job}, e_position=#{e_position}, e_career=#{e_career}, e_address=#{e_address}, e_detailaddr=#{e_detailaddr},
+		e_introduce=#{e_introduce}, e_license1=#{e_license1, jdbcType=VARCHAR}, e_license2=#{e_license2, jdbcType=VARCHAR},
+		e_license3=#{e_license3, jdbcType=VARCHAR}, e_sns1=#{e_sns1, jdbcType=VARCHAR}, e_sns2=#{e_sns2, jdbcType=VARCHAR},
+		e_sns3=#{e_sns3, jdbcType=VARCHAR}, e_sns4=#{e_sns4, jdbcType=VARCHAR}, e_sns5=#{e_sns5, jdbcType=VARCHAR}) where m_id=#{m_id}
+	</update>
+
+	<!-- mypage - withdrawal -->
 	<update id="updateState" parameterType="map">
-	  update MEMBER set C_MSTATE = #{mstate} where M_ID = #{mid}
+	  update MEMBER set c_mstate=#{m_state} where m_id=#{m_id}
 	</update>
 	<update id="setEnable" parameterType="map">
-	  update MEMBER set M_ENABLED = #{menabled} where M_ID = #{mid}
+	  update MEMBER set M_ENABLED=#{m_enabled} where m_id=#{m_id}
 	</update>
 </mapper>

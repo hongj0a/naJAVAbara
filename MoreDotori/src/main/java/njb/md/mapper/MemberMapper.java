@@ -8,6 +8,7 @@ import njb.md.domain.Member;
 
 public interface MemberMapper {
 	Member read(String id);
+	int updateLdate(String id);
 	
 	int insertMember(Member member);
 	int insertExpert(Expert expert);
@@ -17,6 +18,9 @@ public interface MemberMapper {
 	String duplNickCheck(String nick);
 	
 	Expert getExpert(String id);
+	int updatePwd(Map<String, Object> map);
+	int updateMinfo(Member member);
+	int updateEinfo(Expert expert);
 	
 	int updateState(Map<String, Object> map);
 	int setEnable(Map<String, Object> map);
