@@ -13,6 +13,10 @@
     <meta name="author" content="Codedthemes" />
 
 	<link rel="stylesheet" href="css/assetManagement/assetm.css">
+	<!-- footable css -->
+    <link rel="stylesheet" href="assets/plugins/footable/css/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="assets/plugins/footable/css/footable.standalone.min.css">
+    
 
 </head>
 
@@ -178,7 +182,28 @@
 			                                           </tr>
 													
 											</table>
-											</form>
+												</form>
+											     	<tfoot>
+								                 		<tr class="footable-paging"><td colspan="5">
+								                			<div class="footable-pagination-wrapper">
+												                 <ul class="pagination">
+												                 <li class="footable-page-nav disabled" data-page="first">
+												                 	<a class="footable-page-link" href="#">«</a></li>
+												                 <li class="footable-page-nav disabled" data-page="prev">
+												                 	<a class="footable-page-link" href="#">‹</a></li>
+												                 <li class="footable-page visible active" data-page="1">
+												                 	<a class="footable-page-link" href="#">1</a></li>
+												                 <li class="footable-page visible" data-page="2">
+												                 	<a class="footable-page-link" href="#">2</a></li>
+												                 <li class="footable-page-nav" data-page="next">
+												                 	<a class="footable-page-link" href="#">›</a></li>
+												                 <li class="footable-page-nav" data-page="last">
+												                 	<a class="footable-page-link" href="#">»</a></li>
+												                 </ul>
+												            <div class="divider">
+								                 		</div>
+								                 	</td></tr>
+								                 </tfoot>
                               		   </div>
                               		</div>
                               	</div>
@@ -202,8 +227,24 @@
 		$("#menu1_2").addClass('active');     
     </script>
 
-	<!-- assetUpdatemodal js -->
+	<!-- assetUpdatemodal Js -->
 /<script src="js/asset/assetUpdate.js"></script>
 
+	<!-- footable Js -->
+	<script src="assets/plugins/footable/js/footable.min.js"></script>
+	
+	    <script type="text/javascript">
+	        $(document).ready(function() {
+	            // [ Foo-table ]
+	            $('#demo-foo-filtering').footable({
+	                "paging": {
+	                    "enabled": true
+	                },
+	                "sorting": {
+	                    "enabled": true
+	                }
+	            });
+	        });
+	    </script>
 </body>
 </html>
