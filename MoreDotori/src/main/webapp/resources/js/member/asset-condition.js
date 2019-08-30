@@ -1,4 +1,22 @@
-   $.fn.setTab1Chart1Data = function(nameArr, inArr, outArr){
+   //숫자컴마메소드
+   $.fn.comma = function(num){
+	    var len, point, str; 
+	       
+	    num = num + ""; 
+	    point = num.length % 3 ;
+	    len = num.length; 
+	   
+	    str = num.substring(0, point); 
+	    while (point < len) { 
+	        if (str != "") str += ","; 
+	        str += num.substring(point, point + 3); 
+	        point += 3; 
+	    } 
+	    return str;
+   };
+
+	//tab1 chart1
+	$.fn.setTab1Chart1Data = function(nameArr, inArr, outArr){
 		AmCharts.makeChart("tab1-chart1", {
 			"type": "serial",
 			"theme": "light",
@@ -342,6 +360,7 @@
   
   //지출분류별통계
   $.fn.setTab2Chart1Data = function(codeOT, nameArr, ot001, ot002, ot003, ot004, ot005, ot006, ot007, ot008, ot009, ot010, ot011){
+	  nameArr[11] = "이번달";
 	  Highcharts.chart('tab2-chart1', {
 			title: {
 				text: ''
@@ -454,6 +473,7 @@
   }  
  
   $.fn.setTab2Chart3Data = function(codeOT, nameArr, ot001, ot002, ot003, ot004, ot005, ot006, ot007, ot008, ot009, ot010, ot011){
+	  nameArr[9] = "올해";
 	  Highcharts.chart('tab2-chart3', {
 			title: {
 				text: ''
@@ -508,6 +528,35 @@
 			}]
 		});	  
   }   
+  
+  //탭3 차트2
+  $.fn.setTab3Chart2Data = function(outData){
+	  $(".thisMonth_out").text($.fn.comma(outData)+" 원");
+	  
+		AmCharts.makeChart("chart-statistics2", {
+			"type": "pie",
+			"theme": "light",
+			"dataProvider": [{
+				"title": "남은 예산",
+				"value": 303033,
+				"color": "#1de9b6"
+			}, {
+				"title": "이번 달지출",
+				"value": outData,
+				"color": "#ecedef"
+			}],
+			"titleField": "title",
+			"valueField": "value",
+			"colorField": "color",
+			"labelRadius": 5,
+			"radius": "42%",
+			"innerRadius": "90%",
+			"labelText": "",
+			"balloon": {
+				"fixedPosition": true
+			},
+		});	  
+  }  
   
 	//데이터 가져오기
 	//tab1 : 수입 및 지출 통계 
@@ -617,6 +666,28 @@
 	   });       	   
    } 	
 
+	//tab3 : 나의 자산 현황
+   $.fn.getTab3ChartData = function(yyyy, mmmm, dddd){
+	   $.ajax({
+		   type: "GET",
+		   url : "asset_cond/tab3chartData.do",
+		   dataType : "json",
+		   data : { M_id: "inhee@naver.com",
+			   		yyyy: yyyy,
+			   		mmmm: mmmm,
+			   		dddd, dddd
+		   },
+		   success : function(data){
+			   
+			   var outData2 = data.outData2;
+			   $.fn.setTab3Chart2Data(outData2);
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+		   
+	   });  
+   } 	
 
 ////////////////////////////////////////////////////////////////
 
@@ -635,6 +706,7 @@ $(document).ready(function() {
 	
 	$.fn.getTab1ChartData(toyear, tomonth, todate);
 	$.fn.getTab2ChartData(toyear, tomonth, todate);
+	$.fn.getTab3ChartData(toyear, tomonth, todate);
 	
 	// card-collapse arrow
 	var arrow_dir = function() {
@@ -683,29 +755,7 @@ $(document).ready(function() {
 			"fixedPosition": true
 		},
 	});
-	AmCharts.makeChart("chart-statistics2", {
-		"type": "pie",
-		"theme": "light",
-		"dataProvider": [{
-			"title": "남은 예산",
-			"value": 56000,
-			"color": "#1de9b6"
-		}, {
-			"title": "지출",
-			"value": 244000,
-			"color": "#ecedef"
-		}],
-		"titleField": "title",
-		"valueField": "value",
-		"colorField": "color",
-		"labelRadius": 5,
-		"radius": "42%",
-		"innerRadius": "90%",
-		"labelText": "",
-		"balloon": {
-			"fixedPosition": true
-		},
-	});
+	
 	// pie-chart for collapseFour - 자산별 지출현황
 	$(function() {
 		var chart2 = am4core.create("tab4-chart", am4charts.PieChart);

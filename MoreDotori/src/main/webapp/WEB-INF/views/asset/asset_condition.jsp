@@ -160,8 +160,8 @@
 												data-parent="#my-statistics" aria-labelledby="ch3">
 												<div class="card-block tab2">
 													<div class="text-center">
-														<h4 class="mb-3">2019년 7월 15일</h4>
-														<h6 class="mb-5">홍길동 님, 하루에 3500원을 사용하시는 것을 권장 드려요.</h6>
+														<h4 class="mb-3"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일</h4>
+														<h6 class="mb-5">홍길동 님, 하루에 <span class="">@@@@</span>원을 사용하시는 것을 권장 드려요.</h6>
 													</div>
 													<div class="row">
 														<div class="col-sm-6">
@@ -188,8 +188,8 @@
 															<div id="chart-statistics2" class="chart-statistics"></div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
-																	class="feather icon-circle text-c-gray  mr-2"></i>지출</span> <span
-																	class="float-right">244,000 원</span>
+																	class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span> <span
+																	class="float-right thisMonth_out"></span>
 															</div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
@@ -253,7 +253,7 @@
 														<div class="col">
 															<div class="card inner-card">
 																<div class="card-header">
-																	<h5>지출 건수 Top3</h5>
+																	<h5>지출 분류별 건수 Top3</h5>
 																</div>
 																<div class="card-body">
 																	<div class="row">

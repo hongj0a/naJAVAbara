@@ -129,8 +129,8 @@ public class StatsController {
         List<String> inData2 = new ArrayList<String>();
         List<String> outData2 = new ArrayList<String>();
         
-        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+mmmm+"/"+dddd);
-        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+mmmm+"/"+dddd);
+        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+monStr+"/"+dddd);
+        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+monStr+"/"+dddd);
         String selDate = null;
         String satDate = null;
         
@@ -187,14 +187,8 @@ public class StatsController {
         
         for(int i=1; i < 8; i++) {
         	String iStr = String.valueOf(i);
-        	if(monint<10) {
-        		String zeroMonInt = "0"+monint;
-        		inData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+zeroMonInt, in, iStr)));
-        		outData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+zeroMonInt, out, iStr)));
-        	}else {
-        		inData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+mmmm, in, iStr)));
-        		outData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+mmmm, out, iStr)));
-        	}
+    		inData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+monStr, in, iStr)));
+    		outData4.add(Long.toString(abs_service.selectMonthDayofWeekS(M_id, yyyy+"/"+monStr, out, iStr)));
         }
 
         hm.put("dataName4", dataName4);
@@ -334,15 +328,11 @@ public class StatsController {
             }
         }else {
             for(int i=1; i<=12; i++) {
-            	if(i<10) {
-            		String mon = "0"+i;
-            		dataName1.add(mon+"월");
-            		
+            		dataName1.add(monStr+"월");
             		List<String> otList = new ArrayList<String>();
             		for(Code code : codelistOT) {
-            			otList.add(Long.toString(abs_service.selectMonthCodeSumS(M_id, yyyy+"/"+mon, out, code.getC_code())));
+            			otList.add(Long.toString(abs_service.selectMonthCodeSumS(M_id, yyyy+"/"+monStr, out, code.getC_code())));
             		}
-            		
             		ot001_1.add(otList.get(0));
             		ot002_1.add(otList.get(1));
             		ot003_1.add(otList.get(2));
@@ -354,27 +344,6 @@ public class StatsController {
             		ot009_1.add(otList.get(8)); 
             		ot010_1.add(otList.get(9)); 
             		ot011_1.add(otList.get(10));            		
-            		
-            	}else {
-            		dataName1.add(i+"월"); 
-            		
-            		List<String> otList = new ArrayList<String>();
-            		for(Code code : codelistOT) {
-            			otList.add(Long.toString(abs_service.selectMonthCodeSumS(M_id, yyyy+"/"+i, out, code.getC_code())));
-            		}
-            		
-            		ot001_1.add(otList.get(0));
-            		ot002_1.add(otList.get(1));
-            		ot003_1.add(otList.get(2));
-            		ot004_1.add(otList.get(3));
-            		ot005_1.add(otList.get(4));
-            		ot006_1.add(otList.get(5));
-            		ot007_1.add(otList.get(6));
-            		ot008_1.add(otList.get(7));
-            		ot009_1.add(otList.get(8)); 
-            		ot010_1.add(otList.get(9)); 
-            		ot011_1.add(otList.get(10));             		
-            	}
             }        	
         }
 
@@ -407,8 +376,8 @@ public class StatsController {
         List<String> ot010_2 = new ArrayList<String>();
         List<String> ot011_2 = new ArrayList<String>();
         
-        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+mmmm+"/"+dddd);
-        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+mmmm+"/"+dddd);
+        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+monStr+"/"+dddd);
+        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+monStr+"/"+dddd);
         String selDate = null;
         String satDate = null;
         
@@ -505,4 +474,35 @@ public class StatsController {
         
         return hm;
 	}	
+	
+	
+	@RequestMapping(value="/asset_cond/tab3chartData.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<String,List<String>> getTab3ChartData(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		//날짜데이타
+        int yearint = Integer.parseInt(yyyy);
+        int monint = Integer.parseInt(mmmm);
+        int dayint = Integer.parseInt(dddd);
+        
+        String monStr = mmmm;
+        if(monint<10) monStr = "0"+monint;
+        long datelong = Long.parseLong(yyyy+monStr+dddd);
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
+		//포장빠께쓰
+        HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
+
+        
+        
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        //tab3-chart2
+        List<String> outData2 = new ArrayList<String>();
+        outData2.add(Long.toString(abs_service.selectMonthS(M_id, yyyy+"/"+monStr, out)));
+        hm.put("outData2", outData2);
+		
+		return hm;
+	}
 }

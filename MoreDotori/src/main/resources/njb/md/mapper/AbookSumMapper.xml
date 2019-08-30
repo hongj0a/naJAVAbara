@@ -42,7 +42,7 @@
 		and io.C_inout=#{inoutCode}
 		order by io.I_money desc)
 		where rownum=1
-	</select>	
+	</select>
 
 	<select id="selectMonth" resultType="long">
 		select case when sum(io.I_money) is null then 0
