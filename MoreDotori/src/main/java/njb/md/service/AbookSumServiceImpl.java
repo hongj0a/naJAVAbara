@@ -93,6 +93,17 @@ public class AbookSumServiceImpl implements AbookSumService {
 		log.info("### 해당 월의 카테고리별 합 가져오기 ###");
 		return mapper.selectMonthCodeSum(M_id, selectMonth, inoutCode, ioCategori);
 	}
-		
+
+	@Override
+	public long selectWeekCodeSumS(String M_id, String selectDate, String inoutCode, String ioCategori) {
+		log.info("### 해당 주의 카테고리별 합 가져오기 ###");
+		return mapper.selectWeekCodeSum(M_id, selectDate, inoutCode, ioCategori);
+	}
+
+	@Override
+	public long selectYearCodeSumS(String M_id, String selectYear, String inoutCode, String ioCategori) {
+		log.info("### 해당 주의 카테고리별 합 가져오기 ###");
+		return mapper.selectYearCodeSum(M_id, selectYear, inoutCode, ioCategori);
+	}
 	
 }

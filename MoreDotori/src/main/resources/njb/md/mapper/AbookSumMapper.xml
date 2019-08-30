@@ -117,5 +117,30 @@
 		and io.C_inout=#{inoutCode}
 		and io.C_categori=#{ioCategori}
 	</select>	
-	
+
+	<select id="selectWeekCodeSum" resultType="long">
+	<![CDATA[
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass on io.A_seq=ass.A_seq
+		where io.I_date >= to_date(#{selectDate}, 'YYYY/MM/dd')
+		and io.I_date < to_date(#{selectDate}, 'YYYY/MM/dd')+7
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and io.C_categori=#{ioCategori}
+	 ]]>
+	</select>
+
+	<select id="selectYearCodeSum" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY')=#{selectYear}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and io.C_categori=#{ioCategori}
+	</select>
 </mapper>

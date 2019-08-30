@@ -116,7 +116,7 @@
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-week" data-toggle="pill"
 																href="#pills2-week" role="tab"
-																aria-controls="pills2-week" aria-selected="false">일별</a>
+																aria-controls="pills2-week" aria-selected="false">주별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-year" data-toggle="pill"
@@ -133,12 +133,12 @@
 														</div>
 														<div class="tab-pane fade" id="pills2-week"
 															role="tabpanel" aria-labelledby="tab2-week">
-															<div class="stats_sub"> 일별 <span class="money_out">지출</span> 분류별 통계  </div>
+															<div class="stats_sub"> 주별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart2" class="tab2"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-year"
 															role="tabpanel" aria-labelledby="tab2-year">
-															<div class="stats_sub"> 연별 <span class="money_out">지출</span> 분류별 통계  </div>
+															<div class="stats_sub"> 10 년간 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart3" class="tab2"></div>
 														</div>
 													</div>

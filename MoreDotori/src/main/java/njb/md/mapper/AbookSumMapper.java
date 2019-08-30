@@ -40,6 +40,10 @@ public interface AbookSumMapper {
 	
 	//카테고리별 합계
 	long selectMonthCodeSum(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
+	long selectWeekCodeSum(@Param("M_id") String M_id,@Param("selectDate") String selectDate, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
+	long selectYearCodeSum(@Param("M_id") String M_id,@Param("selectYear") String selectYear, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
+	
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	

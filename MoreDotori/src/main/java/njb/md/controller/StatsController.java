@@ -154,7 +154,6 @@ public class StatsController {
         
         ///////////////////////////////////////////////////////////////////////////////
         
-        
         //tab1-chart3 데이터
         List<String> dataName3 = new ArrayList<String>();
         List<String> inData3 = new ArrayList<String>();
@@ -218,6 +217,8 @@ public class StatsController {
         if(monint<10) monStr = "0"+monint;
         long datelong = Long.parseLong(yyyy+monStr+dddd);
 
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
 		//포장빠께쓰
         HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
         
@@ -227,7 +228,7 @@ public class StatsController {
 		for(Code c : codelistOT) codeOT.add(c.getC_name());
         hm.put("codeOT", codeOT);
 		
-        //tab1-chart1 데이터
+        //tab2-chart1 데이터
         List<String> dataName1 = new ArrayList<String>();
         List<String> ot001_1 = new ArrayList<String>();
         List<String> ot002_1 = new ArrayList<String>();
@@ -389,6 +390,118 @@ public class StatsController {
         hm.put("ot009_1", ot009_1);
         hm.put("ot010_1", ot010_1);
         hm.put("ot011_1", ot011_1);
+        
+        ////////////////////////////////////////////////////////////////////
+        
+        //tab2-chart2 데이터
+        List<String> dataName2 = new ArrayList<String>();
+        List<String> ot001_2 = new ArrayList<String>();
+        List<String> ot002_2 = new ArrayList<String>();
+        List<String> ot003_2 = new ArrayList<String>();
+        List<String> ot004_2 = new ArrayList<String>();
+        List<String> ot005_2 = new ArrayList<String>();
+        List<String> ot006_2 = new ArrayList<String>();
+        List<String> ot007_2 = new ArrayList<String>();
+        List<String> ot008_2 = new ArrayList<String>();
+        List<String> ot009_2 = new ArrayList<String>();
+        List<String> ot010_2 = new ArrayList<String>();
+        List<String> ot011_2 = new ArrayList<String>();
+        
+        Date thisWeeksSunday = abs_service.returnSundayS(yyyy+"/"+mmmm+"/"+dddd);
+        Date thisWeeksSatday = abs_service.returnSatdayS(yyyy+"/"+mmmm+"/"+dddd);
+        String selDate = null;
+        String satDate = null;
+        
+        for(int i=0; i<5; i++) {
+        		selDate = transFormat.format(thisWeeksSunday);
+        		satDate = transFormat.format(thisWeeksSatday);
+        		
+        		dataName2.add(selDate+" ~ "+satDate);
+        		List<String> otList = new ArrayList<String>();
+        		for(Code code : codelistOT) {
+        			otList.add(Long.toString(abs_service.selectWeekCodeSumS(M_id, selDate, out, code.getC_code())));
+        		}
+        		
+        		ot001_2.add(otList.get(0));
+        		ot002_2.add(otList.get(1));
+        		ot003_2.add(otList.get(2));
+        		ot004_2.add(otList.get(3));
+        		ot005_2.add(otList.get(4));
+        		ot006_2.add(otList.get(5));
+        		ot007_2.add(otList.get(6));
+        		ot008_2.add(otList.get(7));
+        		ot009_2.add(otList.get(8)); 
+        		ot010_2.add(otList.get(9)); 
+        		ot011_2.add(otList.get(10));   
+        		
+        		String prevDay = transFormat.format(abs_service.returnPrevDayS(selDate));
+        		thisWeeksSunday = abs_service.returnSundayS(prevDay);
+        		thisWeeksSatday = abs_service.returnSatdayS(prevDay);
+        }
+                
+        hm.put("dataName2", dataName2);
+        hm.put("ot001_2", ot001_2);
+        hm.put("ot002_2", ot002_2);
+        hm.put("ot003_2", ot003_2);
+        hm.put("ot004_2", ot004_2);
+        hm.put("ot005_2", ot005_2);
+        hm.put("ot006_2", ot006_2);
+        hm.put("ot007_2", ot007_2);
+        hm.put("ot008_2", ot008_2);
+        hm.put("ot009_2", ot009_2);
+        hm.put("ot010_2", ot010_2);
+        hm.put("ot011_2", ot011_2);       
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        
+        //tab2-chart3 데이터
+        List<String> dataName3 = new ArrayList<String>();
+        List<String> ot001_3 = new ArrayList<String>();
+        List<String> ot002_3 = new ArrayList<String>();
+        List<String> ot003_3 = new ArrayList<String>();
+        List<String> ot004_3 = new ArrayList<String>();
+        List<String> ot005_3 = new ArrayList<String>();
+        List<String> ot006_3 = new ArrayList<String>();
+        List<String> ot007_3 = new ArrayList<String>();
+        List<String> ot008_3 = new ArrayList<String>();
+        List<String> ot009_3 = new ArrayList<String>();
+        List<String> ot010_3 = new ArrayList<String>();
+        List<String> ot011_3 = new ArrayList<String>();
+        
+        for(int i=yearint-9; i<=yearint; i++) {
+        	String iStr = String.valueOf(i);
+        	dataName3.add(iStr+"년");
+        	
+    		List<String> otList = new ArrayList<String>();
+    		for(Code code : codelistOT) {
+    			otList.add(Long.toString(abs_service.selectYearCodeSumS(M_id, iStr, out, code.getC_code())));
+    		}
+        	
+    		ot001_3.add(otList.get(0));
+    		ot002_3.add(otList.get(1));
+    		ot003_3.add(otList.get(2));
+    		ot004_3.add(otList.get(3));
+    		ot005_3.add(otList.get(4));
+    		ot006_3.add(otList.get(5));
+    		ot007_3.add(otList.get(6));
+    		ot008_3.add(otList.get(7));
+    		ot009_3.add(otList.get(8)); 
+    		ot010_3.add(otList.get(9)); 
+    		ot011_3.add(otList.get(10)); 
+        }
+        
+        hm.put("dataName3", dataName3);
+        hm.put("ot001_3", ot001_3);
+        hm.put("ot002_3", ot002_3);
+        hm.put("ot003_3", ot003_3);
+        hm.put("ot004_3", ot004_3);
+        hm.put("ot005_3", ot005_3);
+        hm.put("ot006_3", ot006_3);
+        hm.put("ot007_3", ot007_3);
+        hm.put("ot008_3", ot008_3);
+        hm.put("ot009_3", ot009_3);
+        hm.put("ot010_3", ot010_3);
+        hm.put("ot011_3", ot011_3);          
         
         return hm;
 	}	

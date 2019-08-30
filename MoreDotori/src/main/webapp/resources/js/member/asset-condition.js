@@ -396,6 +396,118 @@
 			}]
 		});	  
   }  
+ 
+  $.fn.setTab2Chart2Data = function(codeOT, nameArr, ot001, ot002, ot003, ot004, ot005, ot006, ot007, ot008, ot009, ot010, ot011){
+	  Highcharts.chart('tab2-chart2', {
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: [nameArr[4], nameArr[3], nameArr[2], '저번주', '이번주'],
+			},colors: ['#F76D82', '#62DDBD', '#F299CE', '#FC8370', '#62DDBD', '#F0C8A5', '#FECD57', '#73B1F4', '#9ED36A', '#AC92EA', '#A9B1BC']
+			,series: [{
+				type: 'column',
+				name: codeOT[0],
+				data: $.fn.returnNumber(ot001.reverse())
+			},{
+				type: 'column',
+				name: codeOT[1],
+				data: $.fn.returnNumber(ot002.reverse())
+			},{
+				type: 'column',
+				name: codeOT[2],
+				data: $.fn.returnNumber(ot003.reverse())
+			},{
+				type: 'column',
+				name: codeOT[3],
+				data: $.fn.returnNumber(ot004.reverse())
+			},{
+				type: 'column',
+				name: codeOT[4],
+				data: $.fn.returnNumber(ot005.reverse())
+			},{
+				type: 'column',
+				name: codeOT[5],
+				data: $.fn.returnNumber(ot006.reverse())
+			},{
+				type: 'column',
+				name: codeOT[6],
+				data: $.fn.returnNumber(ot007.reverse())
+			},{
+				type: 'column',
+				name: codeOT[7],
+				data: $.fn.returnNumber(ot008.reverse())
+			},{
+				type: 'column',
+				name: codeOT[8],
+				data: $.fn.returnNumber(ot009.reverse())
+			},{
+				type: 'column',
+				name: codeOT[9],
+				data: $.fn.returnNumber(ot010.reverse())
+			},{
+				type: 'column',
+				name: codeOT[10],
+				data: $.fn.returnNumber(ot011.reverse())
+			}]
+		});	  
+  }  
+ 
+  $.fn.setTab2Chart3Data = function(codeOT, nameArr, ot001, ot002, ot003, ot004, ot005, ot006, ot007, ot008, ot009, ot010, ot011){
+	  Highcharts.chart('tab2-chart3', {
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: nameArr,
+			},colors: ['#F76D82', '#62DDBD', '#F299CE', '#FC8370', '#62DDBD', '#F0C8A5', '#FECD57', '#73B1F4', '#9ED36A', '#AC92EA', '#A9B1BC']
+			,series: [{
+				type: 'column',
+				name: codeOT[0],
+				data: $.fn.returnNumber(ot001)
+			},{
+				type: 'column',
+				name: codeOT[1],
+				data: $.fn.returnNumber(ot002)
+			},{
+				type: 'column',
+				name: codeOT[2],
+				data: $.fn.returnNumber(ot003)
+			},{
+				type: 'column',
+				name: codeOT[3],
+				data: $.fn.returnNumber(ot004)
+			},{
+				type: 'column',
+				name: codeOT[4],
+				data: $.fn.returnNumber(ot005)
+			},{
+				type: 'column',
+				name: codeOT[5],
+				data: $.fn.returnNumber(ot006)
+			},{
+				type: 'column',
+				name: codeOT[6],
+				data: $.fn.returnNumber(ot007)
+			},{
+				type: 'column',
+				name: codeOT[7],
+				data: $.fn.returnNumber(ot008)
+			},{
+				type: 'column',
+				name: codeOT[8],
+				data: $.fn.returnNumber(ot009)
+			},{
+				type: 'column',
+				name: codeOT[9],
+				data: $.fn.returnNumber(ot010)
+			},{
+				type: 'column',
+				name: codeOT[10],
+				data: $.fn.returnNumber(ot011)
+			}]
+		});	  
+  }   
   
 	//데이터 가져오기
 	//tab1 : 수입 및 지출 통계 
@@ -467,6 +579,36 @@
 			   
 			   $.fn.setTab2Chart1Data(codeOT, nameArr1, ot001_1, ot002_1, ot003_1, ot004_1, ot005_1, ot006_1, ot007_1, ot008_1, ot009_1, ot010_1, ot011_1);
 			   
+			   var nameArr2 = data.dataName2;
+			   var ot001_2 = data.ot001_2;
+			   var ot002_2 = data.ot002_2;
+			   var ot003_2 = data.ot003_2;
+			   var ot004_2 = data.ot004_2;
+			   var ot005_2 = data.ot005_2;
+			   var ot006_2 = data.ot006_2;
+			   var ot007_2 = data.ot007_2;
+			   var ot008_2 = data.ot008_2;
+			   var ot009_2 = data.ot009_2;
+			   var ot010_2 = data.ot010_2;
+			   var ot011_2 = data.ot011_2;
+			   
+			   $.fn.setTab2Chart2Data(codeOT, nameArr2, ot001_2, ot002_2, ot003_2, ot004_2, ot005_2, ot006_2, ot007_2, ot008_2, ot009_2, ot010_2, ot011_2);
+			   
+			   var nameArr3 = data.dataName3;
+			   var ot001_3 = data.ot001_3;
+			   var ot002_3 = data.ot002_3;
+			   var ot003_3 = data.ot003_3;
+			   var ot004_3 = data.ot004_3;
+			   var ot005_3 = data.ot005_3;
+			   var ot006_3 = data.ot006_3;
+			   var ot007_3 = data.ot007_3;
+			   var ot008_3 = data.ot008_3;
+			   var ot009_3 = data.ot009_3;
+			   var ot010_3 = data.ot010_3;
+			   var ot011_3 = data.ot011_3;
+			   
+			   $.fn.setTab2Chart3Data(codeOT, nameArr3, ot001_3, ot002_3, ot003_3, ot004_3, ot005_3, ot006_3, ot007_3, ot008_3, ot009_3, ot010_3, ot011_3);			   
+			   			   
 		   },
 		   error:function(request,status,error){
 	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -509,137 +651,6 @@ $(document).ready(function() {
 	});
 
 	/////////////////////// chart ///////////////////////
-	// combo-chart for collapseTwo - 지출 분류별 통계
-	Highcharts.chart('tab2-chart2', {
-		title: {
-			text: 'Combination chart'
-		},
-		xAxis: {
-			categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Kiwi'],
-		},
-		colors: ['#1de9b6', '#1dc4e9', '#A389D4'],
-		labels: {
-			items: [{
-				html: 'Total fruit consumption',
-				style: {
-					left: '50px',
-					top: '18px',
-					color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-				}
-			}]
-		},
-		series: [{
-			type: 'column',
-			name: 'Jane',
-			data: [3, 2, 1, 3, 4]
-		}, {
-			type: 'column',
-			name: 'John',
-			data: [2, 3, 5, 7, 6]
-		}, {
-			type: 'column',
-			name: 'Joe',
-			data: [4, 3, 3, 9, 0]
-		}, {
-			type: 'spline',
-			name: 'Average',
-			data: [3, 2.67, 3, 6.33, 3.33],
-			color: '#f44236',
-			lineColor: '#f44236',
-			marker: {
-				lineWidth: 2,
-				lineColor: '#f44236',
-				fillColor: '#fff'
-			}
-		}, {
-			type: 'pie',
-			name: 'Total consumption',
-			data: [{
-				name: 'Jane',
-				y: 13,
-				color: '#1de9b6'
-			}, {
-				name: 'John',
-				y: 23,
-				color: '#1dc4e9',
-			}, {
-				name: 'Joe',
-				y: 19,
-				color: '#A389D4',
-			}],
-			center: [100, 80],
-			size: 100,
-			showInLegend: false,
-			dataLabels: {
-				enabled: false
-			}
-		}]
-	});
-	Highcharts.chart('tab2-chart3', {
-		title: {
-			text: 'Combination chart'
-		},
-		xAxis: {
-			categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Kiwi'],
-		},
-		colors: ['#1de9b6', '#1dc4e9', '#A389D4'],
-		labels: {
-			items: [{
-				html: 'Total fruit consumption',
-				style: {
-					left: '50px',
-					top: '18px',
-					color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-				}
-			}]
-		},
-		series: [{
-			type: 'column',
-			name: 'Jane',
-			data: [3, 2, 1, 3, 4]
-		}, {
-			type: 'column',
-			name: 'John',
-			data: [2, 3, 5, 7, 6]
-		}, {
-			type: 'column',
-			name: 'Joe',
-			data: [4, 3, 3, 9, 0]
-		}, {
-			type: 'spline',
-			name: 'Average',
-			data: [3, 2.67, 3, 6.33, 3.33],
-			color: '#f44236',
-			lineColor: '#f44236',
-			marker: {
-				lineWidth: 2,
-				lineColor: '#f44236',
-				fillColor: '#fff'
-			}
-		}, {
-			type: 'pie',
-			name: 'Total consumption',
-			data: [{
-				name: 'Jane',
-				y: 13,
-				color: '#1de9b6'
-			}, {
-				name: 'John',
-				y: 23,
-				color: '#1dc4e9',
-			}, {
-				name: 'Joe',
-				y: 19,
-				color: '#A389D4',
-			}],
-			center: [100, 80],
-			size: 100,
-			showInLegend: false,
-			dataLabels: {
-				enabled: false
-			}
-		}]
-	});
 	// pie-chart for collapseThree - 자산 현황
 	AmCharts.makeChart("chart-statistics1", {
 		"type": "pie",
