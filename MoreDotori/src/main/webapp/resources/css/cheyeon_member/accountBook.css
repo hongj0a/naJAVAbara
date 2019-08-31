@@ -12,7 +12,7 @@
 	margin : 0px 0px 10px 0px;
 }
 
-#account_header div:nth-child(2){
+#account_header .txt_center{
 	font-size: 25px;
 }
 
@@ -47,7 +47,7 @@
 }
 
 #cal_col a{
-    font-size: 12px;
+    font-size: 11px;
     padding-left: 22px;
     padding-top: 11px;
     display: block;
@@ -85,6 +85,10 @@
 .insert_cont > div{
     /* border: 1px solid #e1e1e1; */
     /* min-height: 250px; */
+}
+
+.col-10 > #container{
+	margin-top: 25px;	
 }
 
 #container .highcharts-container{
@@ -222,6 +226,10 @@
   line-height: 37px;
 }
 
+#trans_form_btn{
+	margin-bottom: 20px;
+}
+
 .form_select_date_val{
 	border: 1px solid white;
 	color: gray;
@@ -290,9 +298,29 @@
 	margin-top: 10px !important;
 }
 
+.card.account_table_card{
+	position: relative !important;
+	max-height:80% !important;
+	overflow-y: scroll !important;	
+}
+
+.card.account_table_card::-webkit-scrollbar{width: 8px;}
+::-webkit-scrollbar-track {background-color:#fff;}
+::-webkit-scrollbar-thumb {background-color:#c0c0c0;border-radius: 10px;}
+::-webkit-scrollbar-thumb:hover {background: #f2ae30;}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+width:16px;height:16px;background:#fff;} 
+
 .account_table{
 	text-align: center;
+}
+
+.account_table thead{
 	font-size: 12.5px;
+}
+
+.account_table tbody{
+	font-size: 11.8px;
 }
 
 .account_table th, .account_table td{
@@ -300,11 +328,35 @@
 }
 
 .account_table th{
-	width: 21%;
+	width: 22%;
+}
+
+.account_table th:nth-child(5){
+	width: 16%;
 }
 
 .account_table th:first-child, .account_table th:last-child{
 	width: 8%;
+}
+
+#account_table_body tr{
+  opacity: .85;
+  transition: 0.3s;
+}
+
+#account_table_body .intr:hover{
+	opacity: 1;
+	background-color: #d1f2ff;
+}
+
+#account_table_body .outtr:hover{
+	opacity: 1;
+	background-color: #ffe9c0;
+}
+
+#account_table_body .trstr:hover{
+	opacity: 1;
+	background-color: #ebe0ff;
 }
 
 .form_money_out{
@@ -320,18 +372,15 @@
 	text-align: center;
 }
 
-.sum_menu div:nth-child(2), .sum_menu div:nth-child(4){
+.sum_menu div:nth-child(even){
 	margin-bottom: 30px;
 }
 
-.sum_menu div:first-child, .sum_menu div:nth-child(3), .sum_menu div:nth-child(5){
+.sum_menu div:last-child{
+	margin-bottom: 0px;
+}
+
+.sum_menu .sum_title{
 	font-size: 18px;
 }
 
-.sum_menu div:nth-child(4), .sum_menu div:nth-child(6){
-	color: #F29D35;	
-}
-
-.sum_menu div:nth-child(2){
-	color: #5086F2;
-}

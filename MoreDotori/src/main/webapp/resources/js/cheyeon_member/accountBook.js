@@ -7,7 +7,213 @@
                $('.title_select_date').removeClass(anim);
            }, 1000); 
        };
+       
+       //숫자컴마메소드
+       $.fn.comma = function(num){
+    	    var len, point, str; 
+    	       
+    	    num = num + ""; 
+    	    point = num.length % 3 ;
+    	    len = num.length; 
+    	   
+    	    str = num.substring(0, point); 
+    	    while (point < len) { 
+    	        if (str != "") str += ","; 
+    	        str += num.substring(point, point + 3); 
+    	        point += 3; 
+    	    } 
+    	     
+    	    return str;
+       };
 
+       //그래프
+       $.fn.chartUpdate = function(inArray, outArray){
+       Highcharts.chart('container', {
+    	    title: {
+    	        text: ''
+    	    },
+    	    subtitle: {
+    	        text: ''
+    	    },
+    	    xAxis: {
+    	        categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+    	    },
+    	    series: [{
+    	        name: '수입',
+    	        data: [inArray[0], inArray[1], inArray[2], inArray[3], inArray[4], inArray[5], inArray[6], inArray[7], inArray[8], inArray[9], inArray[10], inArray[11]]
+    	    }, {
+    	        name: '지출',
+    	        data: [outArray[0], outArray[1], outArray[2], outArray[3], outArray[4], outArray[5], outArray[6], outArray[7], outArray[8], outArray[9], outArray[10], outArray[11]]
+    	    }]
+    	});
+       }
+       
+       //차트에 출력할 값 가져오기 (월별)
+       $.fn.getChartData = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/chartData.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+			   },
+			   success : function(data){
+				  var inArray = data.inData;
+				  var outArray = data.outData;
+				  $.fn.chartUpdate(inArray, outArray);
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });       	   
+       }
+       
+       //가계부 사용 목록 가져오기 (일별)
+       $.fn.getInOutTrs = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/iotList.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+				   		mmmm: $(".form_select_month_val.out_form").val(),
+				   		dddd: $(".form_select_day_val.out_form").val()},
+			   success : function(data){
+				   var content = "";
+				   $('.account_table > tbody').empty();
+				   if(data.length > 0){
+					   for(i=0; i<data.length; i++){
+						   if(data[i].C_inout == "이체"){
+							   content += "<tr class='trstr'>";
+							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
+							   content += "<td colspan='2' class='account_tab_td3'><span class='account_tab_td3_sp1'>"+ data[i].IOT_assetgori + "</span> ===> <span class='account_tab_td3_sp2'>";
+							   content += data[i].IOT_asset +"</span></td>";
+							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
+							   content += "<td class='account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+							   content += "<td class='account_tab_td7'>";
+							   //content += "<span onclick=''>"+ "수정" +"</span>";
+							   //content += "<span>/</span>";
+							   content += "<span class='delete_trs_row'>"+ "삭제" +"</span>";
+							   content += "</td>";
+							   content += "</tr>";						   
+						   }else{
+							   if(data[i].C_inout == "수입"){
+								   content += "<tr class='intr'>";
+							   }else{
+								   content += "<tr class='outtr'>";
+							   }
+							   
+							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
+							   content += "<td class='account_tab_td2'>"+ data[i].C_inout +"</td>";
+							   content += "<td class='account_tab_td3'>"+ data[i].IOT_asset +"</td>";
+							   content += "<td class='account_tab_td4'>"+ data[i].IOT_assetgori +"</td>";
+							   content += "<td class='account_tab_td5'>"+ data[i].IOT_memo +"</td>";
+							   
+							   if(data[i].C_inout == "수입"){
+								   content += "<td class='form_money_in account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+							   }else{
+								   content += "<td class='form_money_out account_tab_td6'>"+ $.fn.comma(data[i].IOT_money) +"</td>";
+							   }
+							   
+							   content += "<td class='account_tab_td7'>";
+							   //content += "<span onclick=''>"+ "수정" +"</span>";
+							   //content += "<span>/</span>";
+							   content += "<span class='delete_io_row'>"+ "삭제" +"</span>";
+							   content += "</td>";
+							   content += "</tr>";
+						   }
+					   }
+					   $('.account_table > tbody:last').append(content);	
+				   }else{
+					   content += "<tr>";
+					   content += "<td colspan='6'> 해당 일에 [수입/지출/이체] 내역이 없습니다. </td>"
+					   content += "</tr>";
+					   $('.account_table > tbody:last').append(content);	
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });
+       }
+       
+       //가계부 합계 등등 가져오기
+       $.fn.getSum = function(){
+    	   $.ajax({
+    		   type: "GET",
+			   url : "book/sumList.do",
+			   dataType : "json",
+			   data : { M_id: "inhee@naver.com",
+				   		yyyy: $(".form_select_year_val.out_form").val(),
+				   		mmmm: $(".form_select_month_val.out_form").val(),
+				   		dddd: $(".form_select_day_val.out_form").val()},
+			   success : function(data){
+				   $('#selAllAsset').text($.fn.comma(data.allAsset)+' 원');
+				   $('#selInDay').text($.fn.comma(data.inDay)+' 원');
+				   $('#selOutDay').text($.fn.comma(data.outDay)+' 원');
+				   
+				   if($('#month_money').val()==0){
+					   $('#month_rest').text('예산을 설정해주세요');
+				   }else{
+					   $('#month_rest').text($.fn.comma(($('#month_money').val()-data.outMonth))+' 원');
+				   }
+				   
+				   if(data.avgOutDays==0){
+					   $('#selAvgOutDays').text('정보없음'); 
+				   }else{
+					   $('#selAvgOutDays').text($.fn.comma(data.avgOutDays)+' 원'); 
+				   }
+				   
+				   if(data.avgInDays==0){
+					   $('#selAvgInDays').text('정보없음'); 
+				   }else{
+					   $('#selAvgInDays').text($.fn.comma(data.avgInDays)+' 원');
+				   }
+				   
+				   if(data.maxOutDay==0){
+					   $('#selMaxOutDay').text('정보없음');
+				   }else{
+					   $('#selMaxOutDay').text(data.maxOutDay+' 일');
+				   }
+				   
+				   if(data.maxInDay==0){
+					   $('#selMaxInDay').text('정보없음');
+				   }else{
+					   $('#selMaxInDay').text(data.maxInDay+' 일');
+				   }
+				   
+				   $('#selectMonthIn').text($.fn.comma(data.inMonth)+' 원');
+				   $('#selectMonthOut').text($.fn.comma(data.outMonth)+' 원');
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });   	   
+       }
+
+       //시퀀스 체크 메소드
+       $.fn.checkSeq = function(){
+    	   if($(".io_seq.out_form").val()=='0'){
+    		   $(".wid_50.save_insert_out").text('저장하기');
+    		   $(".wid_50.clear_insert_out").text('내용지우기');
+    	   }else{
+    		   $(".wid_50.save_insert_out").text('수정하기');
+    		   $(".wid_50.clear_insert_out").text('수정 취소하기');
+    	   }
+
+    	   if($(".trs_seq.trs_form").val()=='0'){
+    		   $(".wid_50.save_insert_trs").text('저장하기');
+    		   $(".wid_50.clear_insert_trs").text('내용지우기');
+    	   }else{
+    		   $(".wid_50.save_insert_trs").text('수정하기');
+    		   $(".wid_50.clear_insert_trs").text('수정 취소하기');
+    	   }
+       }
+       
 		/*달력*/
 	   var calendar = jsCalendar.new("#my-calendar");
        
@@ -26,8 +232,12 @@
     		$(".form_select_year_val").val(tyyyy);
     		$(".form_select_month_val").val(tmm);
     		$(".form_select_day_val").val(tdd);
+  		  	$(".selectMonthIO").text(tmm);
     		$(".back_today").text('today : '+tday);
-
+    		
+    		$.fn.getInOutTrs();
+    		$.fn.getSum();
+    		$.fn.getChartData();
     		$.fn.animeTitle();
        };
        
@@ -54,8 +264,12 @@
 	  	  
 	  	  $(".form_select_year_val").val(preyyyy);
 	      $(".form_select_month_val").val(premmmm);
-		  $(".form_select_day_val").val(predddd);	  	  
+		  $(".form_select_day_val").val(predddd);
+		  $(".selectMonthIO").text(premmmm);
 		  
+		  $.fn.getInOutTrs();
+		  $.fn.getSum();
+		  $.fn.getChartData();
 		  $.fn.animeTitle();
        });
        
@@ -64,6 +278,9 @@
        //[1] 지출폼 내용 clear
        $.fn.clearInsertOut = function(){
     	   console.log('지출 폼 내용 삭제');
+    	   $('.io_seq.out_form').val('0');
+    	   $.fn.checkSeq();
+    	   
     	   $('.form_money .out_form').val('');
     	   $('.form_cont .out_form').val('');
     	   $(".form_select0 .out_form option:eq(0)").prop("selected", true);
@@ -74,14 +291,17 @@
        //[2] 이체폼 내용 clear
        $.fn.clearInsertTrs = function(){
     	   console.log('이체 폼 내용 삭제');
+    	   $('.trs_seq.trs_form').val('0');
+    	   $.fn.checkSeq();
+    	   
     	   $('.form_money .trs_form').val('');
     	   $('.form_cont .trs_form').val('');
     	   $(".form_select0 .trs_form option:eq(0)").prop("selected", true);
     	   $(".form_select1 .trs_form option:eq(0)").prop("selected", true);
     	   $(".form_select2 .trs_form option:eq(0)").prop("selected", true);
-       };       
-
-       //[1] 지출폼 내용 저장 및 html 추가
+       };
+       
+       //[1] 수입/지출폼 내용 저장 및 html 추가
        $.fn.saveInsertOut = function(){
     	   console.log('지출 폼 내용 저장');
     	   
@@ -95,31 +315,32 @@
     		   alert('액수를 입력해주세요');
     	   }else if($('.form_cont .out_form').val()==''){
     		   alert('내용을 입력해주세요');
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO001'&&$(".form_select2 .out_form option:selected").hasClass('out_opt')){
+    		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO002'&&$(".form_select2 .out_form option:selected").hasClass('in_opt')){
+    		   alert('대분류(수입/지출)에 맞지않은 분류입니다. 다시 선택해주세요.');
     	   }else{
     		   //db저장로직
-    		   alert('html만 추가된거임 DB추가로직짜야함');
-/*    		   
-    		   var tdStyle = '<td>';
-    		   if($(".form_categori").val()=='지출'){
-    			   tdStyle= '<td class="form_money_out">';
-    		   }else if($(".form_categori").val()=='수입'){
-    			   tdStyle= '<td class="form_money_in">';
-    		   }
-
-    		   //html 추가로직
-    		   var selDate = $(".form_select_date_val").val();
-    		   console.log(selDate);
-    		   $(".account_table tbody:last").append(
-	    			'<tr>'+
-    				'<td>'+ $(".form_categori").val() +'</td>'+
-    				'<td>'+ $(".form_select1 .out_form option:selected").val() +'</td>'+
-    				'<td>'+ $(".form_select2 .out_form option:selected").val() +'</td>'+
-    				'<td>'+ $('.form_cont .out_form').val() +'</td>'+
-    				tdStyle + $('.form_money .out_form').val() +'</td>'+
-    				'<td class="delete_row" onclick="$.fn.delRow(this)">'+ '삭제' +'</td>'+
-	    			'</tr>'    				   
-    		   );
-*/
+    		   //serialize는 form의 값들을 querystring 형태로 만들어주는 겁니다..
+    		   //즉 name1=123&name2=456 이런 형식의 문자열로 만들어주는거죠..
+    		   $.ajax({
+    			   type: "POST",
+    			   url : "book/insertIO.do",
+    			   data : $("#inoutInsertForm").serialize(),
+    			   success : function(data){
+    				   if( data == "success"){
+    					   $.fn.getInOutTrs();
+    					   $.fn.getSum();
+    					   $.fn.getChartData();
+    				   }else{
+    					   alert('입력실패');
+    				   }
+    			   },
+    			   error:function(request,status,error){
+    		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		       }
+    		   });
+    		   
     		   //입력내용 삭제
     		   $.fn.clearInsertOut();
     	   }
@@ -142,7 +363,23 @@
     		   alert('내용을 입력해주세요');
     	   }else{
     		   //db저장로직
-    		   alert('html만 추가된거임 DB추가로직짜야함');
+    		   $.ajax({
+    			   type: "POST",
+    			   url : "book/insertTrs.do",
+    			   data : $("#trsInsertForm").serialize(),
+    			   success : function(data){
+    				   if( data == "success"){
+    					   $.fn.getInOutTrs();
+    					   $.fn.getSum();
+    					   $.fn.getChartData();
+    				   }else{
+    					   alert('입력실패');
+    				   }
+    			   },
+    			   error:function(request,status,error){
+    		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    		       }
+    		   });
     		   //입력내용 삭제
     		   $.fn.clearInsertTrs();
     	   }
@@ -189,16 +426,39 @@
 		        if(!$.isNumeric(x)) {
 		            x = x.replace(/[^0-9]/g,"");
 		        }
-		        x = $.fn.addCommas(x);
+  				x = $.fn.addCommas(x);
 		        $(this).val(x);
 		    }
 		}).on("keyup", function() {
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
 		
+		//한자리 입력 시 앞에 0 붙이기
+		$.fn.leadingZeros = function(date, num){
+			 var zero = '';
+			 date = date.toString();
+			
+			 if (date.length < num) {
+			  for (i = 0; i < num - date.length; i++)
+			   zero += '0';
+			 }
+			 return zero + date;			
+		}
+
 	    //입력이벤트(날짜입력~숫자만)
 		$(".form_select_date_val").on("keyup", function() {
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
+		});
+		
+		//입력이벤트(두자리만)
+		$(".form_select_date_val2").on("keyup", function() {
+		    if($(this).val()>0 && $(this).val()<10){
+			    $(this).val($.fn.leadingZeros($(this).val(),2));
+		    }
+		    
+		    if($(this).val().length==3){
+		    	$(this).val($(this).val().substr(1,2));
+		    }
 		});
 
 	   /* Form 저장 및 내용 지우기 이벤트  */
@@ -220,6 +480,15 @@
        //2. 이체 클릭이벤트(저장하기클릭)
        $(".save_insert_trs").click(function(){
     	   $.fn.saveInsertTrs();
+       });
+       
+       //탭 클릭 이벤트
+       $(".insert_tab li a").click(function(){
+    	   if($(this).hasClass('active')){
+    	   }else{
+        	   $.fn.clearInsertTrs();
+        	   $.fn.clearInsertOut();    		   
+    	   }
        });
        
        //차트 클릭이벤트
@@ -256,6 +525,8 @@
     	 $(".badge_update").css("display", "inline-block");   
     	 
     	 mmoney = $("#month_money").val();
+    	 
+ 		 $.fn.getSum();
     	 alert('저장로직짜셈');
        });
        
@@ -317,6 +588,11 @@
    	  	  	 $(".form_select_year_val.trs_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.trs_form").val(premmmm);
    	  	  	 $(".form_select_day_val.trs_form").val(predddd);
+   	  	  	 $(".selectMonthIO").text(premmmm);
+
+     		 $.fn.getInOutTrs();
+		     $.fn.getSum();
+		     $.fn.getChartData();
     	 }    		  
        });
        
@@ -354,6 +630,11 @@
    	  	  	 $(".form_select_year_val.out_form").val(preyyyy);
    	  	  	 $(".form_select_month_val.out_form").val(premmmm);
    	  	  	 $(".form_select_day_val.out_form").val(predddd);
+   	  	  	 $(".selectMonthIO").text(premmmm);
+   	  	  	 
+   	  	  	 $.fn.getInOutTrs();
+			 $.fn.getSum();
+			 $.fn.getChartData();
     	 }    		  
        });       
        
@@ -389,17 +670,131 @@
     		   $(".form_select0 .out_form").focus();
     		   $(".form_select2 .out_form .in_opt").css("display", "none");
     		   $(".form_select2 .out_form .out_opt").css("display", "none");
-    		   
-    	   }else if($(".form_select0 .out_form option:selected").val()=='수입'){
+    	   
+    	   //IO001 : 수입, IO002 : 지출   
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO001'){
     		   $(".form_select2 .out_form .in_opt").css("display", "inline-block");
     		   $(".form_select2 .out_form .out_opt").css("display", "none");
     		   
-    	   }else if($(".form_select0 .out_form option:selected").val()=='지출'){
+    	   }else if($(".form_select0 .out_form option:selected").val()=='IO002'){
     		   $(".form_select2 .out_form .in_opt").css("display", "none");
     		   $(".form_select2 .out_form .out_opt").css("display", "inline-block");
     	   }
        });
-              
+       
+       
+       //삭제버튼 누르기
+       //span(삭제)가 dynamically created여서 이벤트 delegation으로 해야헌디
+       $(document).on('click', '.delete_io_row', function(){
+    	   $.fn.clearInsertTrs();
+    	   $.fn.clearInsertOut();
+    	   
+    	   var clickBtn = $(this);
+    	   var tr = clickBtn.parent().parent();
+    	   var td = tr.children();
+    	   var seq = td.eq(0).text();
+    	   
+		   $.ajax({
+			   type: "POST",
+			   url : "book/deleteIO.do",
+			   data : { seq : seq,
+				   _csrf: $('#csrf').val()
+			   },
+			   success : function(data){
+				   if( data == "success"){
+					   $.fn.getInOutTrs();
+					   $.fn.getSum();
+					   $.fn.getChartData();
+				   }else{
+					   alert('삭제실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });
+       });
+       
+       $(document).on('click', '.delete_trs_row', function(){
+    	   $.fn.clearInsertTrs();
+    	   $.fn.clearInsertOut();
+    	   
+    	   var clickBtn = $(this);
+    	   var tr = clickBtn.parent().parent();
+    	   var td = tr.children();
+    	   var seq = td.eq(0).text();
+    	   var data = "seq="+seq;
+    		   
+		   $.ajax({
+			   type: "POST",
+			   url : "book/deleteTrs.do",
+			   data : { seq : seq,
+				   		_csrf: $('#csrf').val()
+			   },
+			   success : function(data){
+				   if( data == "success"){
+					   $.fn.getInOutTrs();
+					   $.fn.getSum();
+					   $.fn.getChartData();
+				   }else{
+					   alert('삭제실패');
+				   }
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+		   });    	   
+       });       
+       
+       //tr 클릭이벤트 ==> input에 클릭한 내용 뜨게 하기
+       $(document).on('click', '#account_table_body tr .account_tab_td2, #account_table_body tr .account_tab_td3, #account_table_body tr .account_tab_td4, #account_table_body tr .account_tab_td5, #account_table_body tr .account_tab_td6', function(){
+    	   var tr = $(this).parent();
+    	   var td = tr.children();
+
+    	   var inout = td.eq(1).text();
+    	   //이체
+    	   if(inout=="이체"){
+    		   $('.trs_nav.nav-link').trigger("click");
+    		   
+    		   //input 가져오기
+        	   $('.trs_seq.trs_form').val(td.eq(0).text());
+        	   $.fn.checkSeq();
+        	   $('.form_money .trs_form').val(td.eq(4).text());
+        	   $('.form_cont .trs_form').val(td.eq(3).text());
+        	   
+        	   //자산합치면 수정필요
+        	   $('.form_select1 .trs_form').val(td.eq(2).children('.account_tab_td3_sp1').html()).prop("selected", true);
+        	   $('.form_select2 .trs_form').val(td.eq(2).children('.account_tab_td3_sp2').html()).prop("selected", true);
+    		   
+    	   //수입 및 지출
+    	   }else{
+    		   $('.inout_nav.nav-link').trigger("click");
+    		   
+    		   //input 가져오기
+        	   $('.io_seq.out_form').val(td.eq(0).text());
+        	   $.fn.checkSeq();
+        	   $('.form_money .out_form').val(td.eq(5).text());
+        	   $('.form_cont .out_form').val(td.eq(4).text());
+        	   
+        	   //select box 가져오기
+        	   //option갯수 가져오는 메소드 size()가 있는데 jquery버전이 높다면 length를 사용해야함
+        	   for(var i=0; i<$(".form_select0 .out_form option").length; i++){
+        		   if($(".form_select0 .out_form option:eq("+ i +")").text()==td.eq(1).text()){
+        			   $(".form_select0 .out_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }
+        	   
+        	   //자산vo합치면 option내용별로 수정필요 (예시 위의 for문)
+        	   $('.form_select1 .out_form').val(td.eq(2).text()).prop("selected", true);
+        	   
+        	   
+        	   for(var i=0; i<$(".form_select2 .out_form option").length; i++){
+        		   if($(".form_select2 .out_form option:eq("+ i +")").text()==td.eq(3).text()){
+        			   $(".form_select2 .out_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }
+    	   }
+       });
        
        //input엔터키 못먹게하기
        $('input[type="text"]').keydown(function() {
@@ -407,4 +802,3 @@
     	        event.preventDefault();
     	    }
     	});
-       

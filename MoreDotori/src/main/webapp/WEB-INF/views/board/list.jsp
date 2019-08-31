@@ -9,9 +9,9 @@
 	<meta charset="utf-8">
 	<!-- append css -->
 	<!-- footable css -->
-    <link rel="stylesheet" href="/css/board/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="/css/board/footable.standalone.min.css">
-	<link rel="stylesheet" href="/css/board/style_board.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.standalone.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/style_board.css">
 	
 </head>
 
@@ -67,6 +67,7 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 							<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="searchCate" value="${search_cate }">
 							<input type="hidden" name="page" value="0"/>
 							<input type="hidden" name="memId" value="0"/>
@@ -163,7 +164,7 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="/js/board/footable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
 
 <%-- <c:choose>
    <c:when test="${boardmgrvo.b_code eq 'B0000'}">

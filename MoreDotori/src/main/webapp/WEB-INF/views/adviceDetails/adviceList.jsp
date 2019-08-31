@@ -12,10 +12,10 @@
     <meta name="author" content="Codedthemes" />
 
 	<!--  stars css  -->
-    <link rel="stylesheet" href="plugins/ratting/css/bootstrap-stars.css">
-    <link rel="stylesheet" href="plugins/ratting/css/css-stars.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/bootstrap-stars.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/css-stars.css"> 
    
-	<link rel="stylesheet" href="css/adviceList/advice.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/adviceList/advice.css">
 
 </head>
 
@@ -256,8 +256,8 @@
     <!-- [ Main Content ] end -->
     
     <!-- Rating Js -->
-    <script src="plugins/ratting/js/jquery.barrating.min.js"></script>
-    <script src="js/pages/ac-rating.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/ratting/js/jquery.barrating.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/ac-rating.js"></script>
     <script>
 	    $("#menu2").addClass('active');
 	    $("#menu2").addClass('pcoded-trigger');

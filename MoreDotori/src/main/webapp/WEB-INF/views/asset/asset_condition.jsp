@@ -5,8 +5,8 @@
 <head>
 	<title>NAJAVABARA</title>
 	<meta charset="utf-8">
-  	<link rel="stylesheet" href="css/member/asset-condition.css">
-  	<link rel="stylesheet" href="fonts/material/css/materialdesignicons.min.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/asset-condition.css">
+  	<link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
 </head>
 
 <body class="layout-8">
@@ -29,7 +29,7 @@
 								<div class="col-sm-12">
 									<h3 class="mb-5 text-center">홍길동 님의 자산현황 및 통계</h3>
 									<h6 class="mb-3 text-right">
-										오늘은 <span class="font-weight-bold">2019년 7월 15일</span> 입니다.
+										오늘은 <span class="font-weight-bold"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일 <span class="today_dy"></span>요일</span> 입니다.
 									</h6>
 									<div id="my-statistics" role="tablist"
 										aria-multiselectable="true">
@@ -51,16 +51,16 @@
 															<li class="nav-item"><a class="nav-link active"
 																id="tab1-month" data-toggle="pill"
 																href="#pills1-month" role="tab" aria-controls="pills1-month"
-																aria-selected="true">월간</a></li>
+																aria-selected="true">월별</a></li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-week" data-toggle="pill"
 																href="#pills1-week" role="tab"
-																aria-controls="pills1-week" aria-selected="false">주간</a>
+																aria-controls="pills1-week" aria-selected="false">주별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-year" data-toggle="pill"
 																href="#pills1-year" role="tab"
-																aria-controls="pills1-year" aria-selected="false">연간</a>
+																aria-controls="pills1-year" aria-selected="false">연별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab1-day" data-toggle="pill"
@@ -71,18 +71,22 @@
 													<div class="tab-content" id="asset-tab1">
 														<div class="tab-pane fade show active" id="pills1-month"
 															role="tabpanel" aria-labelledby="tab1-month">
+															<div class="stats_sub"> 월별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart1" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-week"
 															role="tabpanel" aria-labelledby="tab1-week">
+															<div class="stats_sub"> 주별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart2" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-year"
 															role="tabpanel" aria-labelledby="tab1-year">
+															<div class="stats_sub"> 10 년간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart3" class="lineAreaDashboard"></div>
 														</div>
 														<div class="tab-pane fade" id="pills1-day" role="tabpanel"
 															aria-labelledby="pills1-day">
+															<div class="stats_sub"> <span class="today_mm"></span>월 요일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
 															<div id="tab1-chart4" class="lineAreaDashboard"></div>
 														</div>
 													</div>
@@ -108,30 +112,33 @@
 															<li class="nav-item"><a class="nav-link active"
 																id="tab2-month" data-toggle="pill"
 																href="#pills2-month" role="tab" aria-controls="pills2-month"
-																aria-selected="true">월간</a></li>
+																aria-selected="true">월별</a></li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-week" data-toggle="pill"
 																href="#pills2-week" role="tab"
-																aria-controls="pills2-week" aria-selected="false">주간</a>
+																aria-controls="pills2-week" aria-selected="false">주별</a>
 															</li>
 															<li class="nav-item"><a class="nav-link"
 																id="tab2-year" data-toggle="pill"
 																href="#pills2-year" role="tab"
-																aria-controls="pills2-year" aria-selected="false">연간</a>
+																aria-controls="pills2-year" aria-selected="false">연별</a>
 															</li>
 														</ul>
 													</div>
 													<div class="tab-content" id="asset-tab2">
 														<div class="tab-pane fade show active tab2" style="margin:0 auto;" id="pills2-month"
 															role="tabpanel" aria-labelledby="tab2-month">
+															<div class="stats_sub"> 월별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart1"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-week"
 															role="tabpanel" aria-labelledby="tab2-week">
+															<div class="stats_sub"> 주별 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart2" class="tab2"></div>
 														</div>
 														<div class="tab-pane fade" id="pills2-year"
 															role="tabpanel" aria-labelledby="tab2-year">
+															<div class="stats_sub"> 10 년간 <span class="money_out">지출</span> 분류별 통계  </div>
 															<div id="tab2-chart3" class="tab2"></div>
 														</div>
 													</div>
@@ -153,8 +160,8 @@
 												data-parent="#my-statistics" aria-labelledby="ch3">
 												<div class="card-block tab2">
 													<div class="text-center">
-														<h4 class="mb-3">2019년 7월 15일</h4>
-														<h6 class="mb-5">홍길동 님, 하루에 3500원을 사용하시는 것을 권장 드려요.</h6>
+														<h4 class="mb-3"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일</h4>
+														<h6 class="mb-5">홍길동 님, 하루에 <span class="">@@@@</span>원을 사용하시는 것을 권장 드려요.</h6>
 													</div>
 													<div class="row">
 														<div class="col-sm-6">
@@ -181,8 +188,8 @@
 															<div id="chart-statistics2" class="chart-statistics"></div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
-																	class="feather icon-circle text-c-gray  mr-2"></i>지출</span> <span
-																	class="float-right">244,000 원</span>
+																	class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span> <span
+																	class="float-right thisMonth_out"></span>
 															</div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
@@ -246,7 +253,7 @@
 														<div class="col">
 															<div class="card inner-card">
 																<div class="card-header">
-																	<h5>지출 건수 Top3</h5>
+																	<h5>지출 분류별 건수 Top3</h5>
 																</div>
 																<div class="card-body">
 																	<div class="row">
@@ -295,14 +302,17 @@
 	<!-- [ Main Content ] end -->
 
 	<!-- chart -->
-	<script src="plugins/chart-highchart/js/highcharts.js"></script>
-	<script src="plugins/chart-am4/js/core.js"></script>
-	<script src="plugins/chart-am4/js/charts.js"></script>
-	<script src="plugins/amchart/js/amcharts.js"></script>
-	<script src="plugins/amchart/js/serial.js"></script>
-	<script src="plugins/amchart/js/pie.min.js"></script>
-
-	<script src="js/member/asset-condition.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/chart-highchart/js/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/core.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/chart-am4/js/charts.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/amcharts.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/serial.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/amchart/js/pie.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/js/member/asset-condition.js"></script>
 	<script>
 	   	//메뉴
 		$("#menu1").addClass('active');

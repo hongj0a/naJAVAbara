@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.MemberMapper">
+	
+	<resultMap type="njb.md.domain.Member" id="memberMap">
+	  <id property="m_id" column="m_id"/>
+	  <result property="m_id" column="m_id"/>
+	  <result property="m_name" column="m_name"/>
+	  <result property="m_nickname" column="m_nickname"/>
+	  <result property="m_password" column="m_password"/>
+	  <result property="m_phone" column="m_phone"/>
+	  <result property="m_birth" column="m_birth"/>
+	  <result property="m_gender" column="m_gender"/>
+	  <result property="m_profile" column="m_profile"/>
+	  <result property="m_jdate" column="m_jdate"/>
+	  <result property="m_ldate" column="m_ldate"/>
+	  <result property="c_member" column="c_member"/>
+	  <result property="c_mstate" column="c_mstate"/>
+	  <result property="m_month" column="m_month"/>
+	  
+	  <result property="m_count" column="m_count"/>
+	  <result property="m_accrue" column="m_accrue"/>
+	  <result property="m_cdate" column="m_cdate"/>
+	  <result property="m_reason" column="m_reason"/>
+	  
+	  <result property="enabled" column="enabled"/>
+	  <collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap type="njb.md.domain.Mauth" id="authMap">
+	  <result property="m_id" column="m_id"/>
+	  <result property="ma_auth" column="ma_auth"/>
+	</resultMap>
+	
+	<!-- login -->
+	<select id="read" resultMap="memberMap">
+	  select mem.m_id, m_name, m_nickname, m_password, m_phone, m_birth, m_gender, m_profile, m_jdate, m_ldate, c_member, c_mstate, m_month,
+	  m_count, m_accrue, m_cdate, m_reason, m_enabled, ma_auth from MEMBER mem left outer join MAUTH auth on mem.m_id = auth.m_id
+	  where mem.m_id=#{m_id}
+	</select>
+	<update id="updateLdate" parameterType="string">
+		update MEMBER set m_ldate=SYSDATE where m_id=#{m_id}
+	</update>
+
+	<!-- join -->
+	<insert id="insertMember" parameterType="njb.md.domain.Member">
+      insert into MEMBER(m_id, m_name, m_nickname, m_password, m_phone, m_birth, m_gender, m_profile, c_member)
+      values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile, jdbcType=VARCHAR}, #{c_member})
+ 	</insert>
+ 	<insert id="insertExpert" parameterType="njb.md.domain.Expert">
+ 	  insert into EXPERT values(#{m_id}, #{e_job}, #{e_position}, #{e_career}, #{e_address}, #{e_detailaddr}, #{e_introduce},
+ 	  #{e_starpoint}, #{e_license1, jdbcType=VARCHAR}, #{e_license2, jdbcType=VARCHAR}, #{e_license3, jdbcType=VARCHAR},
+ 	  #{e_sns1, jdbcType=VARCHAR}, #{e_sns2, jdbcType=VARCHAR}, #{e_sns3, jdbcType=VARCHAR}, #{e_sns4, jdbcType=VARCHAR},
+ 	  #{e_sns5, jdbcType=VARCHAR})
+ 	</insert>
+	<insert id="authMember" parameterType="njb.md.domain.Mauth">
+	  insert into MAUTH values(#{m_id}, #{ma_auth})
+	</insert>
+	
+	<!-- join & mypage -->
+	<select id="duplIdCheck" parameterType="string" resultType="string">
+		select m_id from MEMBER where m_id=#{m_id}
+	</select>
+	<select id="duplNickCheck" parameterType="string" resultType="string">
+		select m_nickname from MEMBER where m_nickname=#{m_nickname}
+	</select>
+	
+	<!-- mypage - info -->
+	<select id="getExpert" parameterType="string" resultType="njb.md.domain.Expert">
+		select * from Expert where m_id=#{m_id}
+	</select>
+	<update id="updatePwd" parameterType="map">
+		update MEMBER set m_password=#{m_password} where m_id=#{m_id}
+	</update>
+	<update id="updateMinfo" parameterType="njb.md.domain.Member">
+		update MEMBER set m_nickname=#{m_nickname}, m_phone=#{m_phone}, m_birth=#{m_birth}, m_gender=#{m_gender}, m_profile=#{m_profile}
+		where m_id=#{m_id}
+	</update>
+	<update id="updateEinfo" parameterType="njb.md.domain.Expert">
+		update EXPERT set e_job=#{e_job}, e_position=#{e_position}, e_career=#{e_career}, e_address=#{e_address}, e_detailaddr=#{e_detailaddr},
+		e_introduce=#{e_introduce}, e_license1=#{e_license1, jdbcType=VARCHAR}, e_license2=#{e_license2, jdbcType=VARCHAR},
+		e_license3=#{e_license3, jdbcType=VARCHAR}, e_sns1=#{e_sns1, jdbcType=VARCHAR}, e_sns2=#{e_sns2, jdbcType=VARCHAR},
+		e_sns3=#{e_sns3, jdbcType=VARCHAR}, e_sns4=#{e_sns4, jdbcType=VARCHAR}, e_sns5=#{e_sns5, jdbcType=VARCHAR}) where m_id=#{m_id}
+	</update>
+
+	<!-- mypage - withdrawal -->
+	<update id="updateState" parameterType="map">
+	  update MEMBER set c_mstate=#{m_state} where m_id=#{m_id}
+	</update>
+	<update id="setEnable" parameterType="map">
+	  update MEMBER set M_ENABLED=#{m_enabled} where m_id=#{m_id}
+	</update>
+</mapper>

@@ -6,38 +6,38 @@
 <html>
 <head>
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
-	<meta charset="utf-8">
+   <meta charset="utf-8">
     <style>
         .ck-editor__editable {
             min-height: 300px;
             max-height: 500px;
         }
-    </style>	
+    </style>   
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
+   <jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <script type="text/javascript">
-    	//목록으로
-		function clickListBtn(){
-			var form = document.aform;
-			//if(!validation(form)) return;
-			form.action = "/board/${BoardMgrVO.b_code}/list";
-			form.submit();
-		}
-    	
-    	
-/*     	function check(){
-	      if(document.input.elements[1].value == ""){
-		     alert("제목을 입력 하셔야 합니다. ");
-			 return false;
-		  }document.input.submit();
-    	} */
-    	
-    	
-    	
-	 </script>
+       //목록으로
+      function clickListBtn(){
+         var form = document.aform;
+         //if(!validation(form)) return;
+         form.action = "/board/${BoardMgrVO.b_code}/list";
+         form.submit();
+      }
+       
+       
+/*        function check(){
+         if(document.input.elements[1].value == ""){
+           alert("제목을 입력 하셔야 합니다. ");
+          return false;
+        }document.input.submit();
+       } */
+       
+       
+       
+    </script>
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
@@ -50,10 +50,10 @@
 
                     <div class="main-body">
                         <div class="page-wrapper">
-							<form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
+                     <form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
                             <!-- [ Main Content ] start -->
                             <div class="row">
-                            	 <!-- [ board_write ] start -->
+                                <!-- [ board_write ] start -->
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header">
@@ -99,57 +99,57 @@
     <!-- [ Main Content ] end -->
     
     <!-- Ckeditor js -->
-    <script src="/js/ckeditor/ckeditor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
             // classic editor
            CKEDITOR.replace('b_content' , {height: 300,language:'ko' });
-			
+         
            function submit(){
-       		var form = document.aform;
-       		CKEDITOR.instances.contents.updateElement();
-       		alert(1111);
-       		console.log(form);
-   			//if(!validation(form)) return;
-   			form.action = "/board/${BoardMgrVO.b_code}/act";
-   			form.submit();
-       	}
+             var form = document.aform;
+             CKEDITOR.instances.contents.updateElement();
+             alert(1111);
+             console.log(form);
+            //if(!validation(form)) return;
+            form.action = "/board/${BoardMgrVO.b_code}/act";
+            form.submit();
+          }
         });
         
     </script>
 
-	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
+   <input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
     <script type="text/javascript">
     
-    	var bcode = $('#bcode').val();
-		
-    	switch(bcode) {
-	    	case 'BO000':
-	    		$('#menu6_1').addClass("active"); break;
-	    	case 'BO001':
-	    		$('#menu6_2').addClass("active"); break;
-	    	default:
-	    		$('#menu6_3').addClass("active"); break;
-    	}
-    	
-    	if($('[id^="menu6_"]').filter(".active").length != 0) {
-        	$("#menu6").addClass('active');
-    		$("#menu6").addClass('pcoded-trigger');
-    	} else{
-    		$("#menu7").addClass('active');
-    		$("#menu7").addClass('pcoded-trigger');
-    	}
+       var bcode = $('#bcode').val();
+      
+       switch(bcode) {
+          case 'BO000':
+             $('#menu6_1').addClass("active"); break;
+          case 'BO001':
+             $('#menu6_2').addClass("active"); break;
+          default:
+             $('#menu6_3').addClass("active"); break;
+       }
+       
+       if($('[id^="menu6_"]').filter(".active").length != 0) {
+           $("#menu6").addClass('active');
+          $("#menu6").addClass('pcoded-trigger');
+       } else{
+          $("#menu7").addClass('active');
+          $("#menu7").addClass('pcoded-trigger');
+       }
     </script>    
     
     <!-- 
     <style>
-    	.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
-		    color: inherit;
-		    font-size: 12px;
-		    font-weight: bold;
-		    padding: 0 12px;
-		}
+       .cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+          color: inherit;
+          font-size: 12px;
+          font-weight: bold;
+          padding: 0 12px;
+      }
     </style> -->
 </body>
 </html>

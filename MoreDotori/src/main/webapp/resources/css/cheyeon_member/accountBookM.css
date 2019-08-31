@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
 
 .txt_right{
 	text-align: right;
@@ -55,36 +56,45 @@
 
 .tablesCard table{
 	width:100%;
-	line-height: 30px;
 	text-align: center;
 	font-size: 13.5px;
+	table-layout: auto;
+}
+
+.tablesCard table th:first-child, .tablesCard table td:first-child{
+	width: 15.5%;
+}
+
+#account_table_body tr{
+  opacity: .85;
+  transition: 0.3s;
+}
+
+#account_table_body .intr:hover{
+	opacity: 1;
+	background-color: #d1f2ff;
+}
+
+#account_table_body .outtr:hover{
+	opacity: 1;
+	background-color: #ffe9c0;
+}
+
+#account_table_body .trstr:hover{
+	opacity: 1;
+	background-color: #ebe0ff;
 }
 
 .tablesCard table th, .tablesCard table td{
-	width: 14.2857142857%;
 	border: 1px solid #80808047;
 }
 
-.tablesCard table th:nth-child(2), .tablesCard table td:nth-child(2), .tablesCard table th:last-child, .tablesCard table td:last-child{
-	width: 10.2857142857%;
+.form_money_out{
+	color: #F29D35;
 }
 
-.tablesCard table th:first-child, .tablesCard table td:first-child, .tablesCard table th:nth-child(5), .tablesCard table td:nth-child(5){
-	width: 18.2857142857%;
-}
-
-.row_setting .btn{
-	padding: 0px;
-    color: gray;
-    background: transparent;
-    border: none;
-    margin: 0px;
-    font-size: 13.5px;	
-}
-
-.row_setting .btn:hover{
-    background: transparent;
-    color: #5086f2;
+.form_money_in{
+	color: #5086F2;
 }
 
 .inout_form, .insert_form{
@@ -112,7 +122,6 @@
 
 .inout_form td:last-child input, .insert_form td:last-child input{
 	border: none;
-	padding-left: 5px;
 	text-align: center;
 	color: #5d5a5a;
 }
@@ -152,9 +161,16 @@
 	display: none;
 }
 
-
-.modal-header, .modal-footer{
+.modal-header{
 	border: none !important;
+}
+
+.modal-footer{
+	display: inline-block !important;
+}
+
+.modal-footer .clear_insert_inout, .modal-footer .save_insert_inout, .modal-footer .clear_insert_trs, .modal-footer .save_insert_trs{
+	float : right;
 }
 
 .modal-dialog{
@@ -164,4 +180,31 @@
 
 #inoutModal, #transferModal{
     padding-top: 4%;
+}
+
+.noData_txt{
+	font-size: 25px;
+	padding-top: 30px;
+	font-family: 'Jua', sans-serif;
+}
+
+.noData_txt + img {
+	padding-bottom: 30px;
+}
+
+.pageNum{
+	text-align: center;
+}
+
+.pNum, .psNum{
+	padding : 0 10px;
+	cursor : pointer;
+}
+
+.pNum:hover, .psNum:hover{
+	font-weight: bold;
+}
+
+.act{
+	display: inline-block !important;
 }

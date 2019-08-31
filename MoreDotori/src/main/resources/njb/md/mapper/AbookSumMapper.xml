@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.AbookSumMapper">
+
+	<select id="selectAllAsset" resultType="long">
+		select case when sum(A_Money) is null then 0
+		else sum(A_Money) end as sumAssetMoney
+		from asset where M_id=#{M_id}
+	</select>
+
+	<select id="selectDay" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumInMoney
+		from inout io
+		join asset ass on io.A_seq=ass.A_seq
+		where to_char(io.I_date, 'YYYY/MM/DD')=#{selectDate}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	</select>
+
+	<select id="selectAvgDays" resultType="long">
+		select case when round(avg(io.I_money),-2) is null then 0
+		else round(avg(io.I_money),-2) end as avgInMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	</select>
+	
+	<select id="selectMaxDay" resultType="Object">
+		select I_seq as maxInSeq
+		from (select io.I_seq, io.I_date, io.I_money
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		order by io.I_money desc)
+		where rownum=1
+	</select>
+
+	<select id="selectMonth" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumInMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	</select>
+	
+	<select id="selectYear" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY')=#{selectYear}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	</select>
+	
+	<select id="returnSunday" resultType="java.sql.Date">
+		select to_date(#{selectDate}, 'YYYY/MM/dd')-(to_number(to_char(to_date(#{selectDate}, 'YYYY/MM/dd'),'d'))-1) 
+		from dual
+	</select>
+	
+	<select id="returnSatday" resultType="java.sql.Date">
+		select to_date(#{selectDate}, 'YYYY/MM/dd')-(to_number(to_char(to_date(#{selectDate}, 'YYYY/MM/dd'),'d'))-1)+6
+		from dual
+	</select>	
+	
+	<select id="returnPrevDay" resultType="java.sql.Date">
+		select to_date(#{selectDate}, 'YYYY/MM/dd')-7
+		from dual
+	</select>
+	
+	<select id="selectWeek" resultType="long">
+	<![CDATA[
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass on io.A_seq=ass.A_seq
+		where io.I_date >= to_date(#{selectDate}, 'YYYY/MM/dd')
+		and io.I_date < to_date(#{selectDate}, 'YYYY/MM/dd')+7
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+	 ]]>
+	</select>
+	
+	<select id="selectMonthDayofWeek" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and to_char(io.I_date, 'd')=#{selectDays}
+	</select>
+
+	<select id="selectMonthCodeSum" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and io.C_categori=#{ioCategori}
+	</select>	
+
+	<select id="selectWeekCodeSum" resultType="long">
+	<![CDATA[
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass on io.A_seq=ass.A_seq
+		where io.I_date >= to_date(#{selectDate}, 'YYYY/MM/dd')
+		and io.I_date < to_date(#{selectDate}, 'YYYY/MM/dd')+7
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and io.C_categori=#{ioCategori}
+	 ]]>
+	</select>
+
+	<select id="selectYearCodeSum" resultType="long">
+		select case when sum(io.I_money) is null then 0
+		else sum(io.I_money) end as sumMoney
+		from inout io
+		join asset ass 
+		on io.A_seq=ass.A_seq 
+		where to_char(io.I_date, 'YYYY')=#{selectYear}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and io.C_categori=#{ioCategori}
+	</select>
+</mapper>

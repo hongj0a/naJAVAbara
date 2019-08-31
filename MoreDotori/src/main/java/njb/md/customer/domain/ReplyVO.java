@@ -10,5 +10,5 @@ public class ReplyVO extends BoardVO {
 	private String c_bcategori;
 	private String m_id;
 	private String re_content;
-	private int b_reportnum;
+	private int re_reportnum;
 }

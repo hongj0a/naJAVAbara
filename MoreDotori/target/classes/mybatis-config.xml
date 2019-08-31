@@ -3,15 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+     <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
    <typeAliases>
    	   <typeAlias alias="boardMgr" type="njb.md.customer.domain.BoardMgrVO"/>
    	   <typeAlias alias="board" type="njb.md.customer.domain.BoardVO"/>
    	   <typeAlias alias="reply" type="njb.md.customer.domain.ReplyVO"/>
    </typeAliases>
    
-   <!--
-  
-    -->
    <mappers>
    	   <mapper resource="njb/md/mapper/BoardMapper_SQL.xml"/>
    	   <mapper resource="njb/md/mapper/ReplyMapper_SQL.xml"/>

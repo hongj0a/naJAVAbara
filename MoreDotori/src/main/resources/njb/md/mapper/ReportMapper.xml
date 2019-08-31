@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.ReportMapper">
+
+	<select id="getReportList" resultType="njb.md.domain.Report">
+		SELECT B.REG_ID             -- 회원아이디
+		      ,B.B_SUBJCET        -- 게시물
+		      ,B.B_REPORTNUM    -- 신고횟수
+		      ,R.RP_SEQ           -- 신고SEQ
+		      ,B.B_SEQ            -- 게시글SEQ
+		      ,ROWNUM
+		FROM BOARD B
+		INNER JOIN REPORT R ON B.B_SEQ = R.B_SEQ
+		WHERE 1=1
+	</select>
+	
+	
+		<select id="getReplyList" resultType="njb.md.domain.Reply">
+		SELECT RE.M_ID             -- 회원아이디
+		      ,RE.RE_CONTENT        -- 댓글내용
+		      ,RE.RE_REPORTNUM    -- 신고횟수
+		      ,R.RP_SEQ           -- 신고SEQ
+		      ,RE.RE_SEQ            -- 댓글SEQ
+		      ,ROWNUM
+		FROM REPLY RE
+		INNER JOIN REPORT R ON RE.RE_SEQ = R.RE_SEQ
+		WHERE 1=1
+	</select>
+	
+	
+	<select id="getReportDetailList" parameterType="String" resultType="njb.md.domain.ReportDetail">
+		SELECT RD.M_ID            -- 회원아이디
+		      ,RD.RD_CONTENT      -- 신고사유
+		      ,ROWNUM
+		      ,TO_CHAR(RD.RD_DATE, 'YYYY-MM-DD') AS RD_DATE         -- 신고일자
+		FROM BOARD B
+		INNER JOIN REPORT R ON B.B_SEQ = R.B_SEQ
+		INNER JOIN REPORTDETAIL RD ON R.RP_SEQ = RD.RP_SEQ
+		WHERE R.RP_SEQ = #{rpSeq}
+	</select>
+	
+	<select id="getReplyDetailList" parameterType="String" resultType="njb.md.domain.ReplyDetail">
+	    SELECT RD.M_ID            -- 회원아이디
+		      ,RD.RD_CONTENT      -- 신고사유
+		      ,ROWNUM
+		      ,TO_CHAR(RD.RD_DATE, 'YYYY-MM-DD') AS RD_DATE         -- 신고일자
+		FROM REPLY RE
+		INNER JOIN REPORT R ON RE.RE_SEQ = R.RE_SEQ
+		INNER JOIN REPORTDETAIL RD ON R.RP_SEQ = RD.RP_SEQ
+		WHERE R.RP_SEQ = #{rpSeq}
+	</select>
+	
+	<update id="stopUser" parameterType="String">
+		UPDATE MEMBER
+		SET C_MSTATE = 'MS002'
+		   ,M_REASON = #{arg0}
+		   ,M_CDATE = decode(#{arg1}, '0', '9999-12-31', SYSDATE + #{arg1})
+		WHERE M_ID = #{arg2}
+	</update>
+</mapper>
+
+
+<!-- decode(#{arg1}, '0', '9999-12-31', SYSDATE + #{arg1})
+
+decode(기준값, 결과값, true, false)
+
+if (기준값 == 결과값) {
+
+}
+
+if ('안녕' == '안녕') {
+   3
+}
+else {
+  4
+}
+
+// mysql로 변경하면 아래의 문법으로 수정
+case when 조건값
+ then true 
+ else false 
+ end as m_id -->

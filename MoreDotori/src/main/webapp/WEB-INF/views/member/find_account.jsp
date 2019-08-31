@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 
 <!-- vendor css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/member.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member.css">
 </head>
 
 <body>
@@ -120,8 +120,8 @@
 	</div>
 
 	<!-- Required Js -->
-	<script src="js/vendor-all.min.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/vendor-all.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>

@@ -35,6 +35,14 @@
 	    
 	</beans:bean>  
 	
+	<!-- 파일 업로드용 resolver -->
+   <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <beans:property name="defaultEncoding" value="UTF-8" />
+      <beans:property name="maxUploadSize" value="10485760" />
+      <beans:property name="maxUploadSizePerFile" value="2097152"/>
+      <beans:property name="maxInMemorySize" value="10485756"/>
+   </beans:bean>	
+	
 	<context:component-scan base-package="njb.md.customer.controller" />
 	<context:component-scan base-package="njb.md.admin.controller" />
 	<context:component-scan base-package="njb.md.manager.controller" />

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.InoutTrsListMapper">
+
+	<select id="getListAsc" resultType="njb.md.domain.InoutTrsList">
+		select * from book where M_id=#{M_id} order by Bk_date asc, Bk_seq asc
+	</select>
+
+	<select id="getListDesc" resultType="njb.md.domain.InoutTrsList">
+		select * from book where M_id=#{M_id} order by Bk_date desc, Bk_seq desc
+	</select>
+	
+	<select id="getListAscDay" resultType="njb.md.domain.InoutTrsList">
+		select * from book 
+		where M_id=#{M_id} 
+		and to_char(Bk_date, 'YYYY/MM/DD')=#{selectDate}
+		order by Bk_date asc, Bk_seq asc
+	</select>
+
+	<select id="getListDescDay" resultType="njb.md.domain.InoutTrsList">
+		select * from book 
+		where M_id=#{M_id} 
+		and to_char(Bk_date, 'YYYY/MM/DD')=#{selectDate}
+		order by Bk_date desc, Bk_seq desc
+	</select>
+	
+	<select id="getListAscMon" resultType="njb.md.domain.InoutTrsList">
+		select * from book 
+		where M_id=#{M_id} 
+		and to_char(Bk_date, 'YYYY/MM')=#{selectMonth}
+		order by Bk_date asc, Bk_seq asc
+	</select>	
+
+	<select id="getListDescMon" resultType="njb.md.domain.InoutTrsList">
+		select * from book 
+		where M_id=#{M_id} 
+		and to_char(Bk_date, 'YYYY/MM')=#{selectMonth}
+		order by Bk_date desc
+	</select>
+</mapper>

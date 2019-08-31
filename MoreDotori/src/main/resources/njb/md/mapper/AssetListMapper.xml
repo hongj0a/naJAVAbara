@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.AssetListMapper">
+	
+  <select id="list" resultType="njb.md.domain.AssetList">
+  	  select * from ASSET order by A_SEQ desc
+  </select>
+  <insert id="insert" parameterType="njb.md.domain.AssetList">
+      insert into ASSET values(ASSET_SEQ.nextval, #{m_id}, #{c_asset}, #{a_nickname}, #{a_money}, #{a_memo})
+  </insert>
+  <delete id="delete" parameterType="long">
+      delete from ASSET where a_seq=#{a_seq}
+  </delete>
+  <select id="cont" resultType="njb.md.domain.AssetList">
+  	 select * from ASSET where A_SEQ=#{a_seq}
+  </select>
+  <update id="update">
+  	update ASSET
+  	set m_id=#{m_id}, c_asset=#{c_asset}, a_nickname=#{a_nickname}, a_money=#{a_money}, a_memo=#{a_memo}
+  	where A_SEQ=#{a_seq}
+  </update>
+  
+</mapper>
