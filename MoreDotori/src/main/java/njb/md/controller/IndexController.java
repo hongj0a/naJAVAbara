@@ -1,10 +1,37 @@
 package njb.md.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.AllArgsConstructor;
+import njb.md.domain.Mem;
+import njb.md.domain.Reply;
+import njb.md.domain.Report;
+import njb.md.service.ReportService;
+import njb.md.service.MemService;
 
 @Controller
+@RequestMapping("/*")
 public class IndexController {
+	
+	@Autowired
+	private ReportService reportService;
+	@Autowired
+	private MemService memService;
+	
 	// 메인
 	@GetMapping("/")
 	public String index() {
@@ -97,15 +124,70 @@ public class IndexController {
 
 	// 관리자 - 회원 관리
 	@GetMapping("/mem")
-	public String mem() {
-		return "manager/mem";
+	@ResponseBody
+	public ModelAndView getList(){
+		List<Mem> list = memService.getList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("manager/mem");
+		mv.addObject("list", list);
+		//List<Mem> list = memService.getMemList();
+		//model.addAttribute("list", memService.getList());
+		//return getList(null);
+		return mv;
+	}
+	// 관리자 - 회원관리 -정지풀기
+	@RequestMapping(value="/normalUser", method=RequestMethod.POST)
+	@ResponseBody
+	public void normalUser(@RequestParam(value="idList[]") List<String> idList) {
+		memService.normalUser(idList);
+	}
+	
+	// 관리자 - 회원관리 - 정지
+	@RequestMapping(value="/stopUserMem", method=RequestMethod.POST)
+	@ResponseBody
+	public void stopUserMem(
+			@RequestParam(value="m_reason") String m_reason,
+			@RequestParam(value="m_cdate") String m_cdate,
+			@RequestParam(value="idList[]") List<String> idList
+			) {
+		for (String m_id : idList) {
+			reportService.stopUser(m_id, m_reason, m_cdate);
+		}
+	}
+	
+	
+	// 관리자 - 신고내역 게시글,뎃글
+	@GetMapping("/report")
+	@ResponseBody
+	public ModelAndView getReplyList(){
+		List<Report> reportList = reportService.getReportList();
+		List<Reply> list = reportService.getReplyList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("manager/report");
+		mv.addObject("reportList", reportList);
+		mv.addObject("list", list);
+		System.out.println("reportList------------------:"+reportList);
+		return mv;
 	}
 
-	// 관리자 - 신고
-	@GetMapping("/report")
-	public String report() {
-		return "manager/report";
+	// 관리자 - 신고내역 - 게시글 목록
+	@GetMapping("/getReportList")
+	@ResponseBody
+	public List<Report> getReportList() {
+		
+		List<Report> list = reportService.getReportList();
+		
+		return list;
 	}
+	
+	
+	// 관리자 - 신고내역 - 정지
+	@GetMapping("/stopUser")
+	@ResponseBody
+	public void stopUser(String m_id, String m_reason, String m_cdate) {
+		reportService.stopUser(m_id, m_reason, m_cdate);
+	}
+	
 
 	/* 공통  */
 	// 공지사항

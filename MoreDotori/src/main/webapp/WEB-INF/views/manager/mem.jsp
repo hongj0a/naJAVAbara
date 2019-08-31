@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>NAJAVABARA</title>
-	<meta charset="utf-8">
+   <meta charset="utf-8">
 <!-- footable css -->
     <link rel="stylesheet" href="plugins/footable/css/footable.bootstrap.min.css">
     <link rel="stylesheet" href="plugins/footable/css/footable.standalone.min.css">
@@ -15,7 +17,7 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header3.jsp"></jsp:include>
+   <jsp:include page="../main/header3.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
       <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -93,15 +95,14 @@
                                                         <th>
                                                           <div class="form-group nameCheckBox">
                                                             <div class="checkbox checkbox-primary checkbox-fill d-inline" >
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr" >
+                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-all">
+                                                              <label for="checkbox-p-fill-all" class="cr" >
                                                               </label>
                                                             </div>
                                                           </div>
                                                         </th>
 
                                                           <th>분류</th>
-                                                          <th>회원번호</th>
                                                           <th>아이디</th>
                                                           <th>닉네임</th>
                                                           <th>이름</th>
@@ -114,429 +115,31 @@
 
 
                                                 <tbody>
+                                                <c:forEach items="${list}" var="list" varStatus="status">
                                                     <tr>
                                                         <td class="footable-first-visible" style="display: table-cell;">
                                                           <div class="form-group nameCheckBox">
                                                             <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2" >
-                                                              <label for="checkbox-p-fill-2" class="cr">
+                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-${status.index}" >
+                                                              <label for="checkbox-p-fill-${status.index}" class="cr">
                                                               </label>
                                                             </div>
                                                           </div>
                                                         </td>
-
-                                                          <td >전문가</td>
-                                                          <td >MB002-1</td>
-                                                          <td >kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td ><span class="tag tag-danger"> 김채연</span>
+                                                          <td >${list.c_member }</td>
+                                                          <td >${list.m_id }</td>
+                                                          <td>${list.m_nickname }</td>
+                                                          <td ><span class="tag tag-danger"> ${list.m_name }</span>
                                                           </td>
-                                                          <td >2017.12.15</td>
-                                                          <td >2019.07.11</td>
-                                                          <td ><div class="text">0</div></td>
-                                                          <td >일반</td>
+                                                          <td >${list.m_idate }</td>
+                                                          <td >${list.m_ldate }</td>
+                                                          <td ><div class="text">${list.m_counts }</div></td>
+                                                          <td >${list.c_mstate }</td>
                                                     </tr>
-
-                                                    <tr>
-                                                      <td>
-                                                        <div class="form-group nameCheckBox">
-                                                          <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                            <input type="checkbox" name="checkbox-p-fill-1" id="checkbox-p-fill-1" checked>
-                                                            <label for="checkbox-p-fill-1" class="cr"></label>
-                                                          </div>
-                                                        </div>
-                                                      </td>
-
-                                                          <td>전문가</td>
-                                                          <td>MB002-2</td>
-                                                          <td>knr321@naver.com</td>
-                                                          <td>포덕</td>
-                                                          <td>김나리</td>
-                                                          <td><span class="tag tag-danger"> 2018.11.15</span>
-                                                          </td>
-                                                          <td>2019.05.15</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>chw123@naver.com</td>
-                                                          <td>순대곤듀</td>
-                                                          <td><span class="tag tag-danger">최혜원</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">3/1</div></td>
-                                                          <td>정지</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-2</td>
-                                                          <td>kih123@naver.com</td>
-                                                          <td>기미니언즈</td>
-                                                          <td><span class="tag tag-danger"> 김인희</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">3/15</div></td>
-                                                          <td>정지</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 윤모카</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 윤우재</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 모나미</td>
-                                                          <td><span class="tag tag-danger"> 김잉크</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 최홍식</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김토니</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checknameCheckBox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 노꽁지</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김미미</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김통통</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김나비</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger">홍비똥</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>전문가</td>
-                                                          <td>MB002-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 최순대</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>전문가</td>
-                                                          <td>MB002-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 최마라</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 홍꼬꼬아찌</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox" >
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김어피치</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                          <div class="form-group nameCheckBox">
-                                                            <div class="checkbox checkbox-primary checkbox-fill d-inline">
-                                                              <input type="checkbox" name="checkbox-fill-p-1" id="checkbox-p-fill-2">
-                                                              <label for="checkbox-p-fill-2" class="cr">
-                                                              </label>
-                                                            </div>
-                                                          </div>
-                                                        </td>
-                                                          <td>일반</td>
-                                                          <td>MB001-1</td>
-                                                          <td>kcy123@naver.com</td>
-                                                          <td> 왕밤뿡빵</td>
-                                                          <td><span class="tag tag-danger"> 김발렌티노</span>
-                                                          </td>
-                                                          <td>2017.12.15</td>
-                                                          <td>2019.07.11</td>
-                                                          <td><div class="text">0</div></td>
-                                                          <td>일반</td>
-                                                    </tr>
-
+                                                  </c:forEach>
                                                 </tbody>
                                             </table>
-                                            </div>
+                                           </div>
                                             
                                             
                                             
@@ -551,7 +154,7 @@
                                                             <p>정상적으로 처리가 완료되었습니다.</p>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="normalUser()">확인</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -567,25 +170,21 @@
                                                <div class="modal-dialog" role="document">
                                                  <div class="modal-content">
                                                    <div class="modal-header">
-                                                     <h5 class="modal-title" id="exampleModalLiveLabel"> 활동 정지 대상 멤버 &nbsp; <font color="red">2</font></h5>
+                                                     <h5 class="modal-title" id="exampleModalLiveLabel"> 활동 정지 대상 멤버 &nbsp; <font color="red" id="cnt">2</font></h5>
                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                        <span aria-hidden="true">x</span>
                                                      </button>
                                                    </div>
 
                                                        <div class="modal-body">
-                                                       	<div>
+                                                          <div>
 
-	                                                         <img class="img-fluid rounded-circle"  src="images/user/avatar-1.jpg"
-	                                                         alt="dashboard-user">&nbsp;김인희 
-	                                                         <br>
-	                                                         <img class="img-fluid rounded-circle"  src="images/user/avatar-2.jpg"
-	                                                         alt="dashboard-user">&nbsp;윤모카
-	                                                        
-	                                                         <br>
-	                                                         <br>
-	                                                         <br>
-	                                                         <br>
+                                                            <span id="userId"></span>
+                                                           
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
 
                                                        <hr width ="30%" color="lightGray" align="center" class="col-sm-11"/>
 
@@ -593,7 +192,7 @@
                                                            <div class="i-block" data-clipboard-text="feather icon-alert-circle" data-filter="icon-alert-circle"
                                                            data-toggle="tooltip"  data-original-title="icon-alert-circle">
                                                          <i class="feather icon-alert-circle"></i>
-                                                          		   스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.
+                                                                   스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.
                                                            </div>
                                                          </div>
 
@@ -627,7 +226,7 @@
 
                                                                    
                                                                    
-										                                <div class="form-group">
+                                                              <div class="form-group">
                                                         <div class="radio radio-primary d-inline">
                                                             <input type="radio" name="radio-p-1" id="radio-p-4" >
                                                             <label for="radio-p-4" class="cr">기타</label>
@@ -655,10 +254,10 @@
 
                                                  <label for="selectBox" class="fontSize">활동 정지 기간</label>
                                                      <select class="form-control" id="selectBox1">
-                                                       <option>1일</option>
-                                                       <option>3일</option>
-                                                       <option>7일</option>
-                                                       <option>영구정지</option>
+                                                       <option value="1">1일</option>
+                                                       <option value="3">3일</option>
+                                                       <option value="7">7일</option>
+                                                       <option value="0">영구정지</option>
                                                      </select>
 
                                                     <br>
@@ -670,8 +269,8 @@
 
                                                        <div class="modal-footer" >
 
-                                                           <button type="button" class="btn btn-primary mr-0">활동정지</button>
-                                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                           <button type="button" class="btn btn-primary mr-0" onclick="sendStop()">활동정지</button>
+                                                           <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel">취소</button>
 
                                                        </div>
 
@@ -684,10 +283,10 @@
                                            </div>
                                              
                                              
-				                                  <div>
+                                              <div>
                                             <div class="changeButton">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"  id="modal2">
-                                             		   변경</button>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"  id="modal2" onclick="change()">
+                                                      	변경</button>
                                             </div>
                                             
                                             
@@ -698,7 +297,7 @@
                                                 <option value="1">정지</option>
                                                 <option value="2">일반</option>
                                               </select>
-                                       	   </div>
+                                             </div>
                                         </div>
                                           
                                           
@@ -707,18 +306,18 @@
                                 <!-- [ foo-table ] end -->
                                   </div>
                             <!-- [ Main Content ] end -->
-		
-	                    		  </div>
-	               	       </div>
-			           	    </div>
-			           	  </div>
-			       	    </div>
-  	           </div>
-			   	   </div>
-			     </div>
-		  	 </div>
-		  </div>
-	   </div>
+      
+                               </div>
+                            </div>
+                           </div>
+                         </div>
+                       </div>
+                </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
     
@@ -732,17 +331,13 @@
     <!-- Required Js -->
     <script src="assets/js/vendor-all.min.js"></script>
     
-    <!-- sweet alert Js -->
-    <script src="assets/plugins/sweetalert/js/sweetalert.min.js"></script>
-    <script src="assets/js/pages/ac-alert.js"></script>
-
     <script type="text/javascript">
     
-	    $("#menu9").addClass('active');
-	    $("#menu9").addClass('pcoded-trigger');
-	    $('#modal-1').hide();
-	    
-	    
+       $("#menu9").addClass('active');
+       $("#menu9").addClass('pcoded-trigger');
+       $('#modal-1').hide();
+       
+       
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({
@@ -751,17 +346,183 @@
                 }
             });
             
-            $('#selectBox2').change(function(){
-            	if(this.value == '1'){
-            		$('#modal2').attr('data-target', '#exampleModalLive');
-            	} else if(this.value =='2'){
-            		$('#modal2').attr('data-target', '#exampleModalCenter');
-            	} else {
-            		$('#modal2').attr('data-target', '');
-            	}
-            })
             
+            
+            setTimeout(function(){
+            	$('#checkbox-p-fill-all').click(function(){
+                	if($(this).is(':checked')){
+                		console.log('123')
+                		$('input[name=checkbox-fill-p-1]').prop('checked', true);
+                	} else {
+                		console.log('456')
+                		$('input[name=checkbox-fill-p-1]').prop('checked', false);
+                	}
+                });
+            },1000)
         });
+        function setUser(id) {
+        	$('#userId').text('정말로 '+id+' 회원을 정지하시겠습니까?');
+        	userId = id;
+        }
+        
+        function normalUser(){
+        	$.ajax({
+    			url : "/normalUser",
+    			type : "GET",
+    			data : { m_id: userId},
+    			dataType: 'JSON',
+    			contentType : "application/json; charset=UTF-8",
+    			success: function(response){
+    			},error: function(response){
+    				if (response.status == 200) {
+    					$('#cancel').click();
+    				} else {
+    					alert('처리중 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+    				}
+    			}
+    		});
+        }
+        
+        function stopUser() {
+        	
+        	if ($('#radio-p-4').is(':checked')) {
+        		if ($.trim($('#colFormLabelSm').val()).length <= 0) {
+        			alert('기타를 선택하셨으면 사유를 입력해주셔야 합니다.');
+        		}
+        	}
+        	
+        	var reason = "";
+    		
+    		$('input[name=radio-p-1]').each(function(){
+    			if ($(this).is(':checked')) {
+    				reason = $(this).next().text();
+    				if (reason == "기타") {
+    					reason = $('#colFormLabelSm').val();
+    					return false;
+    				}
+    			}
+    		});
+    		
+    		var cdate = $('#selectBox1 option:selected').val();
+    		
+    		$.ajax({
+    			url : "/stopUser",
+    			type : "GET",
+    			data : { m_id: userId, m_reason: reasom, m_cdate: cdate},
+    			dataType: 'JSON',
+    			contentType : "application/json; charset=UTF-8",
+    			success: function(response){
+    			},error: function(response){
+    				if (response.status == 200) {
+    					alert('정지가 완료되었습니다.');
+    					$('#cancel').click();
+    				} else {
+    					alert('정지중 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+    				}
+    			}
+    		});
+        }
+        
+        var idList = [];
+        
+        function change() {
+        	
+        	var selectVal = $('#selectBox2 option:selected').val();
+        	
+        	$('input[name=checkbox-fill-p-1]').each(function(){
+        		if ($(this).is(':checked')) {
+        			var status = $(this).closest('tr').children().eq(8).text();
+        			var id = $(this).closest('tr').children().eq(2).text();
+        			if (status != 'MS003') {
+        				idList.push(id);
+        			}
+        		}
+        	});
+        	
+            if(selectVal == '1'){
+               $('#modal2').attr('data-target', '#exampleModalLive');
+               $('#cnt').text(idList.length);
+           	
+	           	var idText = "";
+	           	for (id of idList) {
+	           		idText += id + ", ";
+	           	}
+	           	
+	           	$('#userId').text(idText);
+            } else if(selectVal =='2'){
+               sendNomal(idList);
+            } else {
+               $('#modal2').attr('data-target', '');
+            }
+        }
+        
+        function sendNomal(idList) {
+        	
+        	var objParams = {
+                    "idList"      : idList
+                };
+        	//$('#modal2').attr('data-target', '#exampleModalCenter');
+        	$.ajax({
+    			url : "/normalUser",
+    			type : "POST",
+    			data : objParams,
+    			dataType: 'JSON',
+    			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+    			success: function(response){
+    			},error: function(response){
+    				alert("정상적으로 처리가 완료되었습니다.");
+    				location.reload();
+    			}
+    		});
+        }
+        
+        function sendStop() {
+        	
+        	if ($('#radio-p-4').is(':checked')) {
+        		if ($.trim($('#colFormLabelSm').val()).length <= 0) {
+        			alert('기타를 선택하셨으면 사유를 입력해주셔야 합니다.');
+        		}
+        	}
+        	
+        	var reason = "";
+    		
+    		$('input[name=radio-p-1]').each(function(){
+    			if ($(this).is(':checked')) {
+    				reason = $(this).next().text();
+    				if (reason == "기타") {
+    					reason = $('#colFormLabelSm').val();
+    					return false;
+    				}
+    			}
+    		});
+    		
+    		var cdate = $('#selectBox1 option:selected').val();
+    		
+    		var objParams = {
+                    "idList" : idList,
+                    "m_reason" : reason,
+                    "m_cdate" : cdate
+                };
+    		
+    		$.ajax({
+    			url : "/stopUserMem",
+    			type : "POST",
+    			data : objParams,
+    			dataType: 'JSON',
+    			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+    			success: function(response){
+    			},error: function(response){
+    				if (response.status == 200) {
+    					alert('정지가 완료되었습니다.');
+    					$('#cancel').click();
+    					location.reload();
+    				} else {
+    					alert('정지중 에러가 발생하였습니다. 잠시 후 다시 시도해 주세요.');
+    				}
+    			}
+    		});
+        }
+        
     </script>
 </body>
 
