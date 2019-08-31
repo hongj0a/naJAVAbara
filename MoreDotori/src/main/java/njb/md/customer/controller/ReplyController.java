@@ -39,7 +39,7 @@ public class ReplyController {
 	
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, HttpSession session, ReplyVO vo, Model mo) throws Exception {
-		vo.setReg_id("테스트입니다");
+		vo.setReg_id("inhee@naver.com");
 		String b_seq = request.getParameter("b_seq");
 		String re_content = request.getParameter("re_content");
 		vo.setB_seq(Integer.parseInt(b_seq));

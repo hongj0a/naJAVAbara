@@ -38,6 +38,7 @@ public class AssetListController {
 	
 		return mv;
 	}*/
+	
 	@RequestMapping("../aList")
 	public ModelAndView list() {
 		List<AssetList> list = service.listS();

@@ -6,7 +6,7 @@
 		SELECT
 			RE_SEQ,
 			B_SEQ,
-			C_BCATEGORI,
+			B_CODE,
 			M_ID,
 			RE_CONTENT,
 			RE_DATE,
@@ -23,7 +23,7 @@
 		SELECT
 			RE_SEQ,
 			B_SEQ,
-			C_BCATEGORI,
+			B_CODE,
 			M_ID,
 			RE_CONTENT,
 			RE_DATE,
@@ -40,7 +40,7 @@
 			INSERT INTO REPLY (
 				RE_SEQ,
 				B_SEQ,
-				C_BCATEGORI,
+				B_CODE,
 				M_ID,
 				RE_CONTENT,
 				RE_DATE,
