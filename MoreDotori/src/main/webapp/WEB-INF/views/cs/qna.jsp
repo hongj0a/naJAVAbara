@@ -164,11 +164,7 @@
     <script type="text/javascript">
 		$("#menu7").addClass('active');
 		$("#menu7").addClass('pcoded-trigger');
-		$("#menu7_2").addClass('active');     
-    
-		$("#menu11").addClass('active');
-		$("#menu11").addClass('pcoded-trigger');
-		$("#menu11_2").addClass('active');     
+		$("#menu7_2").addClass('active');
     
         $(document).ready(function() {
             // [ Foo-table ]

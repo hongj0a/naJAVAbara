@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NAJAVABARA::게시판</title>
+    <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
     <style>
         .ck-editor__editable {
@@ -16,6 +18,25 @@
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
+    <script type="text/javascript">
+    	//목록으로
+		function clickListBtn(){
+			var form = document.aform;
+			//if(!validation(form)) return;
+			form.action = "/board/${BoardMgrVO.b_code}/list";
+			form.submit();
+		}
+    	
+/*     	function check(){
+	      if(document.input.elements[1].value == ""){
+		     alert("제목을 입력 하셔야 합니다. ");
+			 return false;
+		  }document.input.submit();
+    	} */
+    	
+    	
+    	
+	 </script>
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
@@ -28,7 +49,7 @@
 
                     <div class="main-body">
                         <div class="page-wrapper">
-
+							<form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
                             <!-- [ Main Content ] start -->
                             <div class="row">
                             	 <!-- [ board_write ] start -->
@@ -42,7 +63,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="">제목</span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="제목" aria-label="" aria-describedby="">
+                                                <form:input path="b_subjcet"  placeholder="제목"/>
                                             </div>
                                             <!-- 에디터 1  -->
                                             <div class="mb-3">
@@ -58,13 +79,14 @@
                                                     <label class="custom-file-label" for="inputGroupFile01">파일찾기</label>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right">확인</button>
-                                            <a href="#" class="btn btn-secondary float-sm-right">목록으로</a>
+                                            <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right" onclick="check()">확인</button>
+                                            <a href="#" class="btn btn-secondary float-sm-right" onclick="clickListBtn();">목록으로</a>
                                         </div>
                                     </div>
                                 </div>                             
                                 <!-- [ board_write ] end -->
                             </div>
+                            </form:form>
                             <!-- [ Main Content ] end -->
                         </div>
                     </div>
@@ -76,7 +98,7 @@
     <!-- [ Main Content ] end -->
     
     <!-- Ckeditor js -->
-    <script src="js/ckeditor/ckeditor.js"></script>
+    <script src="/js/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -84,8 +106,31 @@
            CKEDITOR.replace('classic-editor' , {height: 300,language:'ko' });
 
         });
-
     </script>
+
+	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
+    <script type="text/javascript">
+    
+    	var bcode = $('#bcode').val();
+		
+    	switch(bcode) {
+	    	case 'BO000':
+	    		$('#menu6_1').addClass("active"); break;
+	    	case 'BO001':
+	    		$('#menu6_2').addClass("active"); break;
+	    	default:
+	    		$('#menu6_3').addClass("active"); break;
+    	}
+    	
+    	if($('[id^="menu6_"]').filter(".active").length != 0) {
+        	$("#menu6").addClass('active');
+    		$("#menu6").addClass('pcoded-trigger');
+    	} else{
+    		$("#menu7").addClass('active');
+    		$("#menu7").addClass('pcoded-trigger');
+    	}
+    </script>    
+    
     <!-- 
     <style>
     	.cke_dialog_footer_buttons a.cke_dialog_ui_button span {

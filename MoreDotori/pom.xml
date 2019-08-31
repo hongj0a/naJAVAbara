@@ -208,6 +208,12 @@
 			<artifactId>jackson-mapper-asl</artifactId> 
 			<version>1.9.11</version> 
 		</dependency>		
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib-ext-spring -->
+		<dependency>
+		    <groupId>net.sf.json-lib</groupId>
+		    <artifactId>json-lib-ext-spring</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
 
 		<!-- Append For ArrayJson (리스트 ajax로 출력) -->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
@@ -234,6 +240,13 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>   
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
 	</dependencies>
 	
 			

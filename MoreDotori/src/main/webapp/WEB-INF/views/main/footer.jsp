@@ -32,6 +32,7 @@
 	    </div>
 	    <div class="footer">
 	    	<div>
+	    		<img class="footerlogo" src="/images/icon.300.png" alt="moredotori's logo" />
 	    		MOREDOTORI
 	    	</div>
 	    	<div>

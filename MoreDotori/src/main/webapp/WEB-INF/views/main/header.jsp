@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" /> -->
+
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -12,7 +16,8 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon2.ico" type="image/x-icon" />
+    <link rel="icon" href="/images/favicon2.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -33,7 +38,9 @@
             <div class="navbar-brand header-logo" id="moredotori_menu_blue">
                 <a href="/" class="b-brand">
                     <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
+                    <!-- 왼쪽에서 나올 때 -->
+                      <!-- <i class="feather icon-trending-up"></i> -->
+                     <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%; -webkit-transform:none; transform:none;opacity: 1;"/>
                     </div>
                     <span class="b-title">MORE DOTORI</span>
                 </a>
@@ -69,16 +76,16 @@
                     <li id="menu6" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu6_1"><a href="/board_notice" class="">공지사항</a></li>
-                            <li id="menu6_2"><a href="/board_pr" class="">PR게시판</a></li>
-                            <li id="menu6_3"><a href="/board_free" class="">자유게시판</a></li>
+                            <li id="menu6_1"><a href="/board/BO000/list" class="">공지사항</a></li>
+                            <li id="menu6_2"><a href="/board/BO001/list" class="">PR게시판</a></li>
+                            <li id="menu6_3"><a href="/board/BO002/list" class="">자유게시판</a></li>
                         </ul>
                     </li>
                     <li id="menu7" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu7_1"><a href="/faq" class="">F A Q</a></li>
-                            <li id="menu7_2"><a href="/qna" class="">Q & A</a></li>
+                            <li id="menu7_1"><a href="/board/BO003/list" class="">F A Q</a></li>
+                            <li id="menu7_2"><a href="/board/BO004/list" class="">Q & A</a></li>
                         </ul>
                     </li>                                   
                 </ul>
@@ -93,13 +100,16 @@
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="/main" class="b-brand">
                    <div class="b-bg">
-                       <i class="feather icon-trending-up"></i>
+                   <!-- 모바일 헤더일 때 -->
+                      <!-- <i class="feather icon-trending-up"></i> -->
+                        <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%;"/>
                    </div>
                    <span class="b-title">MORE DOTORI</span>
                </a>
         </div>
         <a class="mobile-menu" id="mobile-header" href="#!">
             <i class="feather icon-more-horizontal"></i>
+            
         </a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">

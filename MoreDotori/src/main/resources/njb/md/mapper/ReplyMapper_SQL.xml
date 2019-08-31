@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.customer.mapper.ReplyMapper">
+
+	<select id="selectReplyList" resultType="reply">
+		SELECT
+			RE_SEQ,
+			B_SEQ,
+			C_BCATEGORI,
+			M_ID,
+			RE_CONTENT,
+			RE_DATE,
+			REG_ID,
+			TO_CHAR(TO_DATE(REG_DT , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') REG_DT, 
+			MOD_ID,
+			TO_CHAR(TO_DATE(MOD_DT , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') MOD_DT
+		FROM REPLY
+		WHERE B_SEQ = #{b_seq}
+		ORDER BY RE_SEQ ,REG_DT 
+	</select>
+	
+	<select id="selectReply" resultType="reply" parameterType="reply">
+		SELECT
+			RE_SEQ,
+			B_SEQ,
+			C_BCATEGORI,
+			M_ID,
+			RE_CONTENT,
+			RE_DATE,
+			REG_ID,
+			TO_CHAR(TO_DATE(REG_DT , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') REG_DT, 
+			MOD_ID,
+			TO_CHAR(TO_DATE(MOD_DT , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') MOD_DT
+		FROM REPLY
+		WHERE B_SEQ = #{b_seq}
+		AND RE_SEQ = #{re_seq}
+	</select>
+	
+	<insert id="insertReply">
+			INSERT INTO REPLY (
+				RE_SEQ,
+				B_SEQ,
+				C_BCATEGORI,
+				M_ID,
+				RE_CONTENT,
+				RE_DATE,
+				B_REPORTNUM,
+				REG_ID,
+				REG_DT,
+				MOD_ID,
+				MOD_DT
+			)
+			VALUES (
+				REPLY_SEQ.nextval, --게시판시퀀스
+				#{b_seq},
+				#{c_bcategori},
+				#{reg_id},
+				#{re_content},
+				SYSDATE,
+				0,
+				#{reg_id},
+				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
+				#{reg_id},
+				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
+			)
+	</insert>
+	
+	<update id="updateReply">
+		UPDATE REPLY SET
+			RE_CONTENT = #{re_content},
+			mod_id =#{mod_id},
+			mod_dt=TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
+		WHERE B_SEQ = #{b_seq}
+		AND RE_SEQ = #{re_seq}
+	</update>
+
+	<delete id="deleteReply">
+		DELETE FROM REPLY 
+		WHERE B_SEQ = #{b_seq}
+		AND RE_SEQ = #{re_seq}
+	</delete>
+	
+</mapper>

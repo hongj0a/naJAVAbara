@@ -12,7 +12,7 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon2.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
