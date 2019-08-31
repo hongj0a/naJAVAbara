@@ -247,6 +247,36 @@
 		    <version>3.9</version>
 		</dependency>
 		
+		<!-- 시큐리티 및  파일업로드 -->
+      <!-- spring security -->
+	      <dependency>
+	         <groupId>org.springframework.security</groupId>
+	         <artifactId>spring-security-core</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
+	      <dependency>
+	         <groupId>org.springframework.security</groupId>
+	         <artifactId>spring-security-web</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
+	      <dependency>
+	         <groupId>org.springframework.security</groupId>
+	         <artifactId>spring-security-config</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
+	      <dependency>
+	         <groupId>org.springframework.security</groupId>
+	         <artifactId>spring-security-taglibs</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
+	      
+	      <!-- file upload -->
+	      <dependency>
+	          <groupId>commons-fileupload</groupId>
+	          <artifactId>commons-fileupload</artifactId>
+	          <version>1.3.3</version>
+	      </dependency>
+      
 	</dependencies>
 	
 			

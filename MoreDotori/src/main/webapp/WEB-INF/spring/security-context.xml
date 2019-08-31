@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService" class="njb.md.security.CustomUserDetailsService"></bean>
+	<bean id="customAccessDenied" class="njb.md.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customLoginSuccess" class="njb.md.security.CustomLoginSuccessHandler"></bean>
+
+	<security:http>
+		<security:intercept-url pattern="/book" access="hasRole('ROLE_NORMAL')" />
+		<security:intercept-url pattern="/expert_cal" access="hasRole('ROLE_EXPERT')" />
+		<security:intercept-url pattern="/mem" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/board_free" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/mypage" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/**" access="permitAll" />
+
+		<security:form-login login-page="/signin"
+			authentication-success-handler-ref="customLoginSuccess" />
+		<security:logout logout-url="/logout"
+			logout-success-url="/"
+			delete-cookies="JSESSION_ID" />
+		
+		<security:access-denied-handler ref="customAccessDenied" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

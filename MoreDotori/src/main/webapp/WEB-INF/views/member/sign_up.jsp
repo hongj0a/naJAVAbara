@@ -1,180 +1,176 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>회원가입 - 모아도토리</title>
 <meta charset="utf-8">
 
+<meta name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- fontawesome icon -->
-<link rel="stylesheet"
-	href="fonts/fontawesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
 <!-- vendor css -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/member/member.css">
 </head>
 
 <body>
+	<c:choose>
+		<c:when test="${param.type eq 'expert'}">
+			<c:set var="title" value="전문가 회원 가입" />
+			<c:set var="imgRequired" value="required" />
+			<c:set var="dtStyle" value="display: block;" />
+			<c:set var="mCode" value="MB002" />
+		</c:when>
+		<c:otherwise>
+			<c:set var="title" value="일반 회원 가입" />
+			<c:set var="imgRequired" value="" />
+			<c:set var="dtStyle" value="display: none;" />
+			<c:set var="mCode" value="MB001" />
+		</c:otherwise>
+	</c:choose>
 	<div class="auth-wrapper">
 		<div class="card cw-560">
 			<div class="card-header">
-				<h5>일반 회원 가입</h5>
+				<h5><c:out value="${title}" /></h5>
 			</div>
 			<div class="card-block">
-				<form id="sign-up" name="sign-up" action="">
+				<form id="sign-up" name="sign-up" action="/join.do?${_csrf.parameterName}=${_csrf.token}"  method="post" enctype="multipart/form-data">
+					<input type="hidden" name="c_member" value="${mCode}">
 					<div class="row">
 						<div class="col-sm-4">
-							<div class="text-center">
+							<div class="text-center form-group">
 								<label for="choose-image">
-									<img class="img-fluid rounded-circle" id="profile-image"
-										src="images/user/avatar-3.jpg" alt="dashboard-user">
+									<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
-								<div class="custom-file mb-4">
-									<input type="file" class="custom-file-input" id="choose-image" accept="image/*">
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" name="chooseImg" id="choose-image" accept="image/*" ${imgRequired}>
 									<label class="custom-file-label" for="inputGroupFile01"></label>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-8">
-							<div class="input-group mb-4">
-								<label for="inputId" class="sr-only">아이디</label> <input
-									type="text" class="form-control" id="inputId" name="id"
-									placeholder="아이디(이메일 형식)">
+							<div class="input-group form-group mb-4">
+								<label for="inputId" class="sr-only">아이디</label>
+								<input type="email" class="form-control" id="inputId" name="m_id" placeholder="아이디(이메일 형식)" required>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="id-dupl-check"
-										type="button">중복확인</button>
+									<input type="button" class="btn btn-primary" name="id-dupl-check" onclick="duplCheckId()" value="중복확인">
 								</div>
 							</div>
-							<div class="input-group mb-4">
-								<label for="inputName" class="sr-only">이름</label> <input
-									type="text" class="form-control" id="inputName" name="name"
-									placeholder="이름">
+							<div class="input-group form-group mb-4">
+								<label for="inputName" class="sr-only">이름</label>
+								<input type="text" class="form-control" id="inputName" name="m_name" placeholder="이름" required>
 							</div>
-							<div class="input-group mb-4">
-								<label for="inputNick" class="sr-only">닉네임</label> <input
-									type="text" class="form-control" id="inputNick" name="nickname"
-									placeholder="닉네임">
+							<div class="input-group form-group mb-4">
+								<label for="inputNick" class="sr-only">닉네임</label>
+								<input type="text" class="form-control" id="inputNick" name="m_nickname" placeholder="닉네임" required>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="nick-dupl-check"
-										type="button">중복확인</button>
+									<input type="button" class="btn btn-primary" name="nick-dupl-check" onclick="duplCheckNick()" value="중복확인">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwd"
-								name="password" placeholder="비밀번호">
-
+							<input type="password" class="form-control" id="inputPwd" name="m_password" placeholder="비밀번호" required>
 						</div>
 					</div>
 					<div>
 						<div class="form-group mb-4">
-							<input type="password" class="form-control" id="inputPwdConfirm"
-								name="password-confirm" placeholder="비밀번호 확인">
+							<input type="password" class="form-control" id="inputPwdConfirm" name="password-confirm" placeholder="비밀번호 확인" required>
 						</div>
 					</div>
 					<div>
-						<div class="form-group mb-3">
-							<input type="text" class="form-control" id="inputPhone"
-								name="phone" placeholder="연락처 (01012345678)">
+						<div class="form-group mb-4">
+							<input type="text" class="form-control" id="inputPhone" name="m_phone" placeholder="연락처 (01012345678)" required>
 						</div>
 					</div>
 					<div class="row justify-content-center">
 						<div class="form-group col-sm-3 mb-4">
 							<label for="male">성별&nbsp;&nbsp;</label>
-							<div class="btn-group btn-group-toggle" data-toggle="buttons"
-								id="inputGender">
-								<label class="btn btn-primary"> <input type="radio"
-									name="gender" value="male">남
-								</label> <label class="btn btn-primary"> <input type="radio"
-									name="gender" value="female">여
-								</label>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
+								<label class="btn btn-primary">
+								<input type="radio" name="m_gender" value="M" required>남</label>
+								<label class="btn btn-primary">
+								<input type="radio" name="m_gender" value="F">여</label>
 							</div>
 						</div>
 						<div class="form-group col-sm-9">
 							<label for="inputBirth">생년월일</label>
 							<div class="input-group" id="inputBirth">
-								<select class="form-control" name="birth-year">
+								<select class="form-control" name="birth" id="birth-year" required>
 									<option value="">년</option>
-								</select> <select class="form-control" name="birth-year">
+								</select>
+								<select class="form-control" name="birth" id="birth-month" required>
 									<option value="">월</option>
-								</select> <select class="form-control" name="birth-day">
+								</select>
+								<select class="form-control" name="birth" id="birth-day" required>
 									<option value="">일</option>
 								</select>
 							</div>
 						</div>
 					</div>
-					<div id="expert-details">
-						<div class="input-group mb-4">
-							<input type="text" class="form-control col-sm-4" id="inputJob"
-								name="job" placeholder="직업"> <input type="text"
-								class="form-control col-sm-4" id="inputPosition" name="position"
-								placeholder="직급"> <input type="text"
-								class="form-control col-sm-4" id="inputCareer" name="career"
-								placeholder="경력(년차)">
+					<div id="expert-details" style="${dtStyle}">
+						<div class="form-group input-group mb-4">
+							<input type="text" class="form-control col-sm-4" id="inputJob" name="e_job" placeholder="직업" ${imgRequired}>
+							<input type="text" class="form-control col-sm-4" id="inputPosition" name="e_position" placeholder="직급" ${imgRequired}>
+							<input type="text" class="form-control col-sm-4" id="inputCareer" name="career" placeholder="경력(년차)" ${imgRequired}>
 						</div>
 						<div class="form-group">
 							<div class="input-group mb-1">
-								<label for="inputAddr" class="sr-only">우편번호</label> <input
-									type="text" class="form-control address" id="inputZipCode"
-									name="zip-code" placeholder="우편번호" readonly>
+								<label for="inputAddr" class="sr-only">우편번호</label>
+								<input type="text" class="form-control address" id="inputZipCode" name="zipCode" placeholder="우편번호" readonly>
 								<div class="input-group-append">
-									<button class="btn btn-primary" name="find-address"
-										type="button">주소찾기</button>
+									<input type="button" class="btn btn-primary" name="find-address" onclick="findPostcode()" value="주소찾기">
 								</div>
 							</div>
-							<div>
-								<div class="form-group mb-1">
-									<input type="text" class="form-control address" id="inputAddr"
-										name="address" placeholder="주소" readonly>
-								</div>
+							<div class="mb-1">
+								<input type="text" class="form-control address" id="inputAddr" name="address" placeholder="주소" readonly>
 							</div>
 							<div>
-								<div class="form-group mb-4">
-									<input type="text" class="form-control" id="inputAddrDetail"
-										name="addr-details" placeholder="상세주소">
-								</div>
+								<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" placeholder="상세주소" ${imgRequired}>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group mb-4">
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license1">
+									<select class="form-control" name="license">
 										<option value="">자격증1</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense1"
-									name="license-num1" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense1" name="licenseNum" placeholder="자격증 번호" ${imgRequired}>
 							</div>
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license2">
+									<select class="form-control" name="license">
 										<option value="">자격증2</option>
 									</select>
 								</div>
 								<input type="text" class="form-control" id="inputLicense2"
-									name="license-num2" placeholder="자격증 번호">
+									name="licenseNum" placeholder="자격증 번호">
 							</div>
-							<div class="input-group mb-4">
+							<div class="input-group">
 								<div class="input-group-prepend">
-									<select class="form-control" name="license3">
+									<select class="form-control" name="license">
 										<option value="">자격증3</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" id="inputLicense3"
-									name="license-num3" placeholder="자격증 번호">
+								<input type="text" class="form-control" id="inputLicense3" name="licenseNum" placeholder="자격증 번호">
 							</div>
 						</div>
 						<div class="form-group mb-4 inputSNS">
 							<div class="input-group mb-1">
 								<div class="input-group-prepend">
-									<select class="form-control" name="sns-type1">
+									<select class="form-control" name="sns">
 										<option value="">SNS</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" name="sns1"
-									placeholder="SNS주소 (ex. https://www.facebook.com/000)">
+								<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 ">
 								<div class="input-group-append">
 									<button class="btn btn-primary addSNS" type="button">
 										<i class="fas fa-plus"></i>
@@ -183,14 +179,11 @@
 							</div>
 						</div>
 						<div class="form-group mb-4">
-							<textarea class="form-control" rows="8"
-								aria-label="With textarea" name="introduction"
-								placeholder="자기소개"></textarea>
+							<textarea class="form-control" rows="8" aria-label="With textarea" name="e_introduce" placeholder="자기소개" ${imgRequired}></textarea>
 						</div>
 					</div>
 					<div class="form-group mb-4">
-						<textarea class="form-control account-clause" rows="8"
-							aria-label="With textarea" readonly>제 1 장 환영합니다!
+						<textarea class="form-control account-clause" rows="8" aria-label="With textarea" readonly>제 1 장 환영합니다!
 
 제 1 조 (목적)
 
@@ -343,7 +336,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<div class="checkbox checkbox-primary d-inline">
-							<input type="checkbox" id="inputAgreeClause" name="agree-clause">
+							<input type="checkbox" id="inputAgreeClause" name="agree-clause" required>
 							<label for="inputAgreeClause" class="cr">위 약관에 동의합니다.</label>
 						</div>
 					</div>
@@ -358,50 +351,13 @@
 	<!-- Required Js -->
 	<script src="js/vendor-all.min.js"></script>
 	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
-
-	<script>
-    $(document).ready(function() {
-      // choose profile-image
-      $("#choose-image").on('change',	function() {
-			if (this.files && this.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$('#profile-image').attr('src',e.target.result);
-				}
-				reader.readAsDataURL(this.files[0]);
-			}
-		});
-
-      // add sns form
-      $('.addSNS').on('click', function() {
-        $('.inputSNS').append(
-          '<div class="input-group mb-1">' +
-          '<div class="input-group-prepend">' +
-          '<select class="form-control" name="sns-type'+ 2 +'">' +
-          '<option value="">SNS</option>' +
-          '</select>' +
-          '</div>' +
-          '<input type="text" class="form-control" name="sns'+ 2 +'" placeholder="SNS주소 (ex. https://www.facebook.com/000)">' +
-          '<div class="input-group-append">' +
-          '<button class="btn btn-primary subSNS" type="button">' +
-          '<i class="fas fa-minus"></i>' +
-          '</button>' +
-          '</div>' +
-          '</div>'
-        );
-      });
-
-      $(document).on('click', '.subSNS', function() {
-        $(this).parents('div.input-group.mb-1').remove();
-      });
-
-      // view expert-detail
-      // $('#expert-details').removeAttr('hidden');
-
-    });
-  </script>
+	<script src="plugins/sweetalert/js/sweetalert.min.js"></script>
+	
+	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="plugins/jquery-validation/js/messages_ko.js"></script>
+	
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="js/member/sign-up.js"></script>
 </body>
 
 </html>
