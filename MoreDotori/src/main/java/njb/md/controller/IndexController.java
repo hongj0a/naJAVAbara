@@ -1,10 +1,23 @@
 package njb.md.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import njb.md.domain.AssetList;
+import njb.md.service.AssetListService;
+
+@Log4j
 @Controller
 public class IndexController {
+	@Setter(onMethod_ = @Autowired)
+	private AssetListService service;
+	
 	// 메인
 	@GetMapping("/")
 	public String index() {
@@ -63,12 +76,20 @@ public class IndexController {
 	
 	// 일반 회원 - 자산 목록
 	@GetMapping("/aList")
-	public String aList() {
-		return "asset/assetList";
+	public ModelAndView aList() {
+		List<AssetList> list = service.listS();
+		log.info("#list: " + list);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("asset/assetList");
+		mv.addObject("list", list);
+		
+		return mv;
 	}
 
 /*	
 	// 일반 회원 - 자산 현황 및 통계
+	
+	
 	@GetMapping("/asset_cond")
 	public String asset_cond() {
 		return "asset/asset_condition";
