@@ -4,9 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <typeAliases>
-	<!-- 
-   	   <typeAlias alias="BoardVO" type="che.ex04.domain.BoardVO"/>
-    -->
+   	   <typeAlias alias="boardMgr" type="njb.md.customer.domain.BoardMgrVO"/>
+   	   <typeAlias alias="board" type="njb.md.customer.domain.BoardVO"/>
+   	   <typeAlias alias="reply" type="njb.md.customer.domain.ReplyVO"/>
    </typeAliases>
    
    <!--
@@ -14,5 +14,6 @@
     -->
    <mappers>
    	   <mapper resource="njb/md/mapper/BoardMapper_SQL.xml"/>
+   	   <mapper resource="njb/md/mapper/ReplyMapper_SQL.xml"/>
    </mappers>
 </configuration>

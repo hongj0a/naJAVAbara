@@ -78,16 +78,16 @@
                     <li id="menu6" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu6_1"><a href="/board_notice" class="">공지사항</a></li>
-                            <li id="menu6_2"><a href="/board_pr" class="">PR게시판</a></li>
-                            <li id="menu6_3"><a href="/board_free" class="">자유게시판</a></li>
+                            <li id="menu6_1"><a href="/board/BO000/list" class="">공지사항</a></li>
+                            <li id="menu6_2"><a href="/board/BO001/list" class="">PR게시판</a></li>
+                            <li id="menu6_3"><a href="/board/BO002/list" class="">자유게시판</a></li>
                         </ul>
                     </li>
                     <li id="menu7" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
-                            <li id="menu7_1"><a href="/faq" class="">F A Q</a></li>
-                            <li id="menu7_2"><a href="/qna" class="">Q & A</a></li>
+                            <li id="menu7_1"><a href="/board/BO003/list" class="">F A Q</a></li>
+                            <li id="menu7_2"><a href="/board/BO004/list" class="">Q & A</a></li>
                         </ul>
                     </li>                                   
                 </ul>

@@ -8,9 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -80,14 +81,86 @@ public class BoardController {
 	// 게시판 내용(상세보기)
 	@RequestMapping("/{b_code}/content")
 	public String content (HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Model mo) throws Exception {
+		log.info(vo);
+		BoardMgrVO tt = new BoardMgrVO();
+		tt.setB_code(b_code); // boardMgr 데이터
+		vo.setB_code(b_code); // board 데이터
 		
+		tt = service.getBoardMgr(tt);//어떤게시판
+		if(!vo.getMode().equals("view")) service.modReadNum(vo);
+		BoardVO bo = new BoardVO();
+		bo = service.getBoard(vo);
+		mo.addAttribute("BoardMgrVO", tt);
+		mo.addAttribute("board", bo);
+		mo.addAttribute("paramBoard", vo);
 		
-		return "board/content";
+		if(b_code.equals("BO003")) {
+			return "cs/faq";
+		}else if (b_code.equals("BO004")) {
+			return "cs/qna";
+		}else {
+			return "board/content";
+		}
 	}
+	
+	// 좋아요 하트
+	@RequestMapping("/{b_code}/heart")
+	public String heart(HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Model mo) throws Exception {
+		log.info(vo);
+		log.info(b_seq);
+		vo.setB_code(b_code);
+		vo.setB_seq(Integer.parseInt(b_seq));
+		service.modHeartNum(vo);
+		vo = service.getBoard(vo);
 		
-	
+		mo.addAttribute("boardVO", vo);
+		return "jsonView";
+	}
 
+	// 글쓰기 페이지로
+	@RequestMapping("/{b_code}/write")
+	public String write(HttpServletRequest request, HttpSession session,@PathVariable String b_code,  @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+		log.info(vo);
+		BoardMgrVO tt = new BoardMgrVO();
+		tt.setB_code(b_code); // boardMgr 데이터
+		vo.setB_code(b_code); // board 데이터
+		tt = service.getBoardMgr(tt);//어떤게시판
+		BoardVO tempv = new BoardVO();
+		tempv = vo;
+		
+		vo = service.getBoard(vo);
+		if(vo == null) {
+			log.info("null");
+			vo = tempv;
+			vo.setB_content("");
+		}
+		log.info("dddddddddddddddddddddddddd:::::::::::::::::::::::::::::::::::::");
+		log.info(vo);
+		mo.addAttribute("BoardMgrVO", tt);
+		
+		if(b_code.equals("BO003")) {
+			return "cs/faq";
+		}else if (b_code.equals("BO004")) {
+			return "cs/qna";
+		}else {
+			return "board/board_write";
+		}
+	}
+	// 내용작성 후 리스트화면으로 가기?
+	@RequestMapping("/{b_code}/act")
+	public String act(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+		log.info(vo);
+		service.regBoard(vo);
+		mo.addAttribute("boardVO", vo);
+		return "board/list";
+	}
 
 	
-	
+	/*
+	 * @PostMapping("/{b_code}/write") public String writeContent(HttpServletRequest
+	 * request, HttpSession session,@PathVariable String b_code, BoardVO vo, Model
+	 * mo) throws Exception { vo.setB_code(b_code); service.regBoard(vo);
+	 * mo.addAttribute("boardVO", vo); return "redirect:board/list"; }
+	 */
+
 }

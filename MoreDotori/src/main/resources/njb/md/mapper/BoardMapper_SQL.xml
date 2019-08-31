@@ -5,7 +5,7 @@
 
 <!-- boardMgr -->
 
-	<select id="selectBoardMgrList2" resultType="njb.md.customer.domain.BoardMgrVO">
+	<select id="selectBoardMgrList2" resultType="boardMgr">
 		SELECT
 			B_code,
 			B_title,
@@ -18,7 +18,7 @@
 		FROM BOARD_MGR
 
 	</select>
-	<select id="selectBoardMgrList" resultType="njb.md.customer.domain.BoardMgrVO">
+	<select id="selectBoardMgrList" resultType="boardMgr">
 		SELECT
 			B_code,
 			B_title,
@@ -32,7 +32,7 @@
 
 	</select>
 	
-	<select id="selectBoardMgr" resultType="njb.md.customer.domain.BoardMgrVO" parameterType="njb.md.customer.domain.BoardMgrVO">
+	<select id="selectBoardMgr" resultType="boardMgr" parameterType="boardMgr">
 		SELECT
 			B_code,
 			B_title,
@@ -72,9 +72,9 @@
 				#{b_report_yn},
 				#{b_file_yn},
 				#{reg_id},
-				TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 				#{mod_id},
-				TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 			)
 	</insert>
 	
@@ -88,7 +88,7 @@
 			B_report_YN =#{b_report_yn},
 			B_file_YN =#{b_file_yn},
 			mod_id =#{mod_id},
-			mod_dt=TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+			mod_dt=TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 		WHERE B_CODE=#{b_code}
 	</update>
 
@@ -96,42 +96,46 @@
 		DELETE FROM BOARD_MGR WHERE B_code = #{b_code}
 	</delete>
 	
-	<resultMap id="boardtet" type="njb.md.customer.domain.BoardVO">
+	<resultMap id="boardtet" type="board">
 		<result property="b_content" column="B_content" jdbcType="CLOB" javaType="java.lang.String" />
 	</resultMap>
 
 <!-- board -->
 	<select id="selectBoardList" resultMap="boardtet">
-		SELECT
-			ROW_NUMBER() OVER(ORDER BY A.B_SEQ ) NUM,
-			A.B_seq,
-			A.B_code,
-			A.B_subjcet,
-			A.B_content,
-			<!-- clob형 데이터 select DBMS_LOB.SUBSTR(A.B_content, DBMS_LOB.GETLENGTH(A.B_content),1), -->
-			A.B_con_seq,
-			A.B_reply_seq,
-			A.B_cont_lv,
-			A.B_parent_seq,
-			A.B_readnum,
-			A.B_heartnum,
-			A.B_reportnum,
-			A.B_filekey,
-			A.B_del_YN,
-			A.reg_id,
-			TO_CHAR(TO_DATE(A.reg_dt , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') reg_dt, 
-			A.mod_id,
-			A.mod_dt,
-			A.fcategori
-		FROM BOARD A
-		WHERE A.B_code= #{b_code}
-		<if test="searchType == 'opt1' and searchWord != '' ">
+		SELECT * FROM(
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY B.B_SEQ ) NUM,
+				B.B_seq,
+				B.B_code,
+				B.B_subjcet,
+				B.B_content,
+				<!-- clob형 데이터 select DBMS_LOB.SUBSTR(B.B_content, DBMS_LOB.GETLENGTH(B.B_content),1), -->
+				B.B_con_seq,
+				B.B_reply_seq,
+				B.B_cont_lv,
+				B.B_parent_seq,
+				B.B_readnum,
+				B.B_heartnum,
+				B.B_reportnum,
+				B.B_filekey,
+				B.B_del_YN,
+				B.reg_id,
+				TO_CHAR(TO_DATE(B.reg_dt , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') reg_dt, 
+				B.mod_id,
+				B.mod_dt,
+				B.fcategori
+			FROM BOARD B
+			WHERE B.B_code= #{b_code}
+		) A
+		<!-- <if test="searchType == 'opt1' and searchWord != '' ">
 		   AND A.B_subjcet = #{searchWord}
-		</if>
+		</if> -->
+		where 1=1
+		<include refid="searchCondition"></include>
 		ORDER BY A.B_SEQ desc
 	</select>
 	
-	<select id="selectBoard" resultType="njb.md.customer.domain.BoardVO">
+	<select id="selectBoard" resultMap="boardtet">
 		SELECT
 			B_seq,
 			B_code,
@@ -147,13 +151,13 @@
 			B_filekey,
 			B_del_YN,
 			reg_id,
-			reg_dt,
+			TO_CHAR(TO_DATE(reg_dt , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') reg_dt, 
 			mod_id,
 			mod_dt,
 			fcategori
 		FROM BOARD
 		WHERE B_code= #{b_code}
-		AND B_con_seq = #{b_con_seq}	
+		AND B_seq = #{b_seq}	
 	</select>
 	
 	<insert id="insertBoard">
@@ -192,9 +196,9 @@
 		    #{b_filekey},
 		    #{b_del_yn},
 		    #{reg_id},
-		    TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 		    #{mod_id},
-		    TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 		    #{fcategori}
 		)
 	</insert>
@@ -204,38 +208,63 @@
 			B_subjcet = #{b_subjcet},
 			B_content= #{b_content},
 			mod_id = #{reg_id},
-			mod_dt= TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS'),
+			mod_dt= TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 			fcategori = #{fcategori}
 		WHERE B_code= #{b_code}
-		AND B_con_seq = #{b_con_seq}
+		AND B_seq = #{b_seq}	
 	</update>
 	
 	<update id="deleteBoard"><!-- 삭제유무를 Y로 바꿈 실제 delete 아님 -->
 		UPDATE BOARD SET
 			B_del_YN = 'Y',
 			mod_id = #{reg_id},
-			mod_dt= TO_CHAR(SYADATE, 'YYYYMMDDHH24MISS')
+			mod_dt= TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 		WHERE B_code= #{b_code}
-		AND B_con_seq = #{b_con_seq}
+		AND B_seq = #{b_seq}	
 	
 	</update>
 	
 	<!-- 조회수 -->
 	<update id="readNum">
 		UPDATE BOARD SET
-			B_readnum =#{b_readnum}+1
+			B_readnum = B_readnum+1
 		WHERE B_code= #{b_code}
-		AND B_con_seq = #{b_con_seq}
+		AND B_seq = #{b_seq}	
 	</update>
 	<!-- 추천수 -->
 	<update id="heartNum">
 		UPDATE BOARD SET
 			B_heartnum =B_heartnum+1
 		WHERE B_code= #{b_code}
-		AND B_con_seq = #{b_con_seq}
+		AND B_seq = #{b_seq}	
 	</update>
 	
 
+<!--  -->
+<sql id="searchCondition">
+		<!-- 제목 -->
+		<if test="searchType == 'opt1' and searchWord != '' ">
+			and B_subjcet like '%' ||  #{searchWord} || '%'
+		</if>
+		<!-- 글쓴이 -->
+		<if test="searchType == 'opt2'  and searchWord != ''">
+			and reg_id like '%' ||  #{searchWord} || '%'
+		</if>
+		<!-- 작성일 -->
+		<if test="searchType == 'opt3'  and searchWord != ''">
+			and (reg_dt like '%' ||  #{searchWord} || '%' or TO_CHAR(TO_DATE(reg_dt , 'YYYYMMDDHH24MISS'), 'YYYY-MM-DD') like '%' ||  #{searchWord} || '%' )
+		</if>
+		<!-- 글번호 -->
+			<if test="searchType == 'opt4'  and searchWord != ''">
+			and  NUM like ('%' ||  #{searchWord} || '%')
+		</if>
+		<if test="searchType == 'opt0'  and searchWord != ''">
+			and (B_subjcet like ('%' ||  #{searchWord} || '%')
+				or reg_id like ('%' ||  #{searchWord} || '%')
+				or reg_dt like ('%' ||  #{searchWord} || '%')
+				or NUM like ('%' ||  #{searchWord} || '%'))
+		</if>
+	</sql>
 
 	
 </mapper>

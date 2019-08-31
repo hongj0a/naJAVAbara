@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,72 @@
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
+     <script type="text/javascript">
+	 function clickListBtn(){
+ 		var form = document.aform;
+ 		//if(!validation(form)) return;
+ 		
+ 		form.action = "/board/${BoardMgrVO.b_code}/list";
+ 		form.submit();
+ 	}
+	 function clickWriteBtn(){
+ 		var form = document.aform;
+ 		//if(!validation(form)) return;
+ 		
+ 		form.action = "/board/${BoardMgrVO.b_code}/write";
+ 		form.submit();
+ 	}
+	 function go_heart(b_seq) {
+		 $.post("/board/${BoardMgrVO.b_code}/heart", { b_seq: b_seq },    
+			      function(data) {     alert("추천하였습니다.");
+					 $(".like_count").html(data.boardVO.b_heartnum);  },   "json" );  
+	 }
+	 function replywrite(){
+		 var b_seq = "${board.b_seq }";
+		 var recon = $("#replycontent").val();
+		 $.post("/reply/write", 
+				 { b_seq: b_seq,
+			 		re_content : recon},    
+			      function(data) {    
+			 			if(data.data == "sucsses"){
+			 				alert("등록성공하였습니다.");
+			 				$("#replycontent").val("");
+			 				getReplyList(b_seq);
+			 			}
+				  },  
+			"json" );  
+	 }
+	 function getReplyList(b_seq){
+		 $.post("/reply/list", { b_seq: b_seq },    
+		      function(data) {     
+			 	var relist = data.list;
+			 	var html;
+			 	if(relist.length > 0){
+			 		html ="";
+			 		$.each(relist, function(i, o){ 
+			 			html += "<li><div class=\"media userlist-box reply_info\" data-id=\"\" data-status=\"\" data-username=\"\">";
+				 		html += "<a class=\"media-left\" href=\"#!\"><img class=\"media-object img-radius\" src=\" "+"/images/user/avatar-1.jpg" +"\"  alt=\"image \"></a>";
+				 		html += "<div class=\"media-body\"><span class=\"chat-header float-left\">"+o.reg_id +"<small class=\"d-block text-c-green\"> " +o.reg_dt+ "</small></span>";
+				 		html += "<span class=\"like_warning float-right\"><span><a href=\"#\">추천 </a>";
+				 		html += "|<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\"> 신고</a>";
+					 	html += "</span></span></div></div><div class=\"reply_comment\">"+o.re_content+"</div></li>";
+			 		});
+			 		$(".reply_list_ul").html("").html(html);
+			 	}
+			  },  
+		"json" );  
+	 }
+	 function test(t){
+		
+	 }
+	 //신고
+/* 	 function report_completed(b_seq){
+
+	 } */
+	 $(document).ready(function() {
+		 getReplyList("${board.b_seq }");
+     });
+	 </script>
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
@@ -26,10 +93,13 @@
                     <div class="page-header">
                     </div>
                     <!-- [ breadcrumb ] end -->
-
+					
                     <div class="main-body">
                         <div class="page-wrapper">
-
+						<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
+							<input type="hidden" name="b_seq" value="0"/>
+							<input type="hidden" name="mode" value="view"/>
+						</form:form>
                             <!-- [ Main Content ] start -->
                             <div class="row">
                             <!-- [ board_content ] start -->
@@ -43,8 +113,8 @@
                                         <!-- 게시글 시작 -->
                                         <div class="card-block">
                                             <div>
-                                                <h5 class="board-subject">글제목이 오는자리~ 요즘 돈 쓸일이 많아서 걱정이에요</h5>
-                                                <a href="#" class="btn btn-primary btn-boredlist">목록</a>
+                                                <h5 class="board-subject">${board.b_subjcet }</h5>
+                                                <a href="#" class="btn btn-primary btn-boredlist" onclick="clickListBtn();">목록</a>
                                             </div>
                                             <!-- 게시글 내용 start -->
                                             <div class="bo_content_wrapper">
@@ -52,26 +122,20 @@
                                                 <div class="bo_info_wrapper row">
                                                     <div class="col-sm-7 bo_info">
                                                         <span class="col">글쓴이</span>
-                                                        <span class="col bo_content_info">여기가닉네임</span>
+                                                        <span class="col bo_content_info"> ${board.reg_id }</span>
                                                     </div>
                                                     <div class="col-md-3 bo_info">
                                                         <span class="col">작성일</span>
-                                                        <span class="col bo_content_info">2019.07.11</span>
+                                                        <span class="col bo_content_info"> ${board.reg_dt }</span>
                                                     </div>
                                                     <div class="col-md-2 bo_info">
                                                         <span class="col">조회수</span>
-                                                        <span class="col bo_content_info">000</span>
+                                                        <span class="col bo_content_info">${board.b_readnum }</span>
                                                     </div>
                                                 </div>
                                                 <!-- 작성 글 내용 -->
                                                 <div class="bo_content mb-3">
-                                                    <pre>여기에 내용이 나오게 해줘여
-입력한거
-그대로
-                                                    나오게
-                                                    해달라
-                                                    고
-                                                    </pre>
+                                                    ${board.b_content }
                                                 </div>
                                             </div>
                                             <!-- 게시글 내용 end -->
@@ -83,7 +147,7 @@
                                                         <span class=" fas fa-heart" href="#" data-type="like"></span>
                                                         <span class="like_count">0</span>
                                                     </div> -->
-                                                    <button type="button" class="btn btn2 btn-outline-danger" data-toggle="" data-target="" date-type="like"><span class="fas fa-heart"></span><span class="like_count">0</span></button>
+                                                    <button type="button" onclick="go_heart(${board.b_seq});" class="btn btn2 btn-outline-danger" data-toggle="" data-target="" date-type="like"><span class="fas fa-heart"></span><span class="like_count">${board.b_heartnum }</span></button>
                                                 </a>
                                                 <a class="warning  float-right">
                                                     <button type="button" class="btn btn2 btn-outline-danger mdi mdi-alarm-light" data-toggle="modal" data-target="#exampleModalCenter"> 신고</button>
@@ -98,45 +162,24 @@
                                                         <tr class="reply_write">
                                                             <td colspan="2" style="">
                                                                 <!--textarea cols="80" rows="20" name=""></textarea-->
-                                                                <textarea class="reply_textarea form-control" name=""></textarea>
+                                                                <textarea class="reply_textarea form-control" name="replycontent" id="replycontent"></textarea>
                                                             </td>
                                                             <td class="" style="">
-                                                                <button type="button" class="btn btn-outline-primary btn_rg">등록</button>
+                                                                <button type="button" class="btn btn-outline-primary btn_rg" onclick="replywrite();">등록</button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                                 <div class="reply_list">
                                                     <ul class="reply_list_ul">
-                                                        <li>
+                                                        
+                                                       <!--  <li>
                                                             <div class="media userlist-box reply_info" data-id="" data-status="" data-username="">
-                                                                <!-- 유저이미지 -->
+                                                                유저이미지
                                                                 <a class="media-left" href="#!">
-                                                                    <img class="media-object img-radius" src="images/user/avatar-1.jpg" alt="image ">
+                                                                    <img class="media-object img-radius" src="/images/user/avatar-1.jpg" alt="image ">
                                                                 </a>
-                                                                <!-- 유저정보 -->
-                                                                <div class="media-body">
-                                                                    <span class="chat-header float-left">닉네임***?<small class="d-block text-c-green">2019.07.14</small></span>
-                                                                    <span class="like_warning float-right">
-                                                                    <span>
-	                                                                    <a href="#">추천 </a>|
-	                                                                    <a data-toggle="modal" data-target="#exampleModalCenter" style="cursor:pointer;"> 신고</a>
-                                                                    </span>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="reply_comment">
-                                                                두개가 되어랏
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="media userlist-box reply_info" data-id="" data-status="" data-username="">
-                                                                <!-- 유저이미지 -->
-                                                                <a class="media-left" href="#!">
-                                                                    <img class="media-object img-radius" src="images/user/avatar-1.jpg" alt="image ">
-                                                                </a>
-                                                                <!-- 유저정보 -->
+                                                                유저정보
                                                                 <div class="media-body">
                                                                     <span class="chat-header float-left">닉네임***?<small class="d-block text-c-green">2019.07.14</small></span>
                                                                     <span class="like_warning float-right">
@@ -150,15 +193,15 @@
                                                             <div class="reply_comment">
                                                                 여기는 댓글 리스트입니다. 입력한 댓글 내용이 바로 여기에 뿌려지는 거시지요.
                                                             </div>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                 </div>
 
                                             </div>
                                             <!-- 댓글 end -->
                                             <!-- 하단 버튼 -->
-                                            <a href="#" datataget="" class="btn btn-primary btn-boredlist">목록</a>
-                                            <a href="#" class="btn btn-primary btn-boredwrite">글쓰기</a>
+                                            <a href="#" datataget="" class="btn btn-primary btn-boredlist" onclick="clickListBtn();">목록</a>
+                                            <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickWriteBtn();">글쓰기</a>
                                         </div>
                                     </div>
                                 </div>
@@ -259,7 +302,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                                    <button type="button" class="btn btn-primary">신고하기</button>
+                                                    <button type="button" class="btn btn-primary" onclick="report_completed">신고하기</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -281,7 +324,31 @@
         <!-- footable Js -->
     <script src="/js/board/footable.min.js"></script>
 
+
+	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
     <script type="text/javascript">
+    
+    	var bcode = $('#bcode').val();
+		
+    	switch(bcode) {
+	    	case 'BO000':
+	    		$('#menu6_1').addClass("active"); break;
+	    	case 'BO001':
+	    		$('#menu6_2').addClass("active"); break;
+	    	default:
+	    		$('#menu6_3').addClass("active"); break;
+    	}
+    	
+    	if($('[id^="menu6_"]').filter(".active").length != 0) {
+        	$("#menu6").addClass('active');
+    		$("#menu6").addClass('pcoded-trigger');
+    	} else{
+    		$("#menu7").addClass('active');
+    		$("#menu7").addClass('pcoded-trigger');
+    	}
+    	
+    	
+    	
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -18,12 +19,27 @@
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
      <script type="text/javascript">
-	 function clickSearchBtn(){
+	 function clickWriteBtn(){
  		var form = document.aform;
+ 		//if(!validation(form)) return;
+ 		
+ 		form.action = "/board/${BoardMgrVO.b_code}/write";
+ 		form.submit();
+ 	}
+	 function clickSearchBtn(){
+		 var form = document.aform;
  		//if(!validation(form)) return;
  		form.action = "/board/${BoardMgrVO.b_code}/list";
  		form.submit();
- 	}
+	}
+	 function go_view(seq){
+		console.log(seq);
+		var form = document.aform;
+		form.action = "/board/${BoardMgrVO.b_code}/content";
+		$("input[name='b_seq']").val(seq);
+		console.log(form);
+		form.submit();	
+	 }
 	 $(document).ready(function() {
        
          
@@ -50,13 +66,13 @@
 
                     <div class="main-body">
                         <div class="page-wrapper">
-							<form id="aform" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
+							<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
 							<input type="hidden" name="searchCate" value="${search_cate }">
 							<input type="hidden" name="page" value="0"/>
 							<input type="hidden" name="memId" value="0"/>
 							<input type="hidden" name="mode" value=""/>
 							<input type="hidden" name="seqNo" value="0"/>
-							<input type="hidden" name="boardNo" value="0"/>
+							<input type="hidden" name="b_seq" value="0"/>
                             <!-- [ Main Content ] start -->
                             <div class="row">
                             	 <!-- [ board_free ] start -->
@@ -97,7 +113,7 @@
 														 -->
 															<tr>
 																<td> ${listConts.num} </td>
-																<td><a href="content?seq=${listConts.b_seq}">${listConts.b_subjcet} </a></td>
+																<td><a href="#" onclick="go_view(${listConts.b_seq})">${listConts.b_subjcet} </a></td>
 		                                                        <td>${listConts.reg_id}</td>
 		                                                        <td>${listConts.reg_dt}</td>
 		                                                        <td>${listConts.b_readnum}</td>
@@ -112,7 +128,7 @@
                                                 <div class="float-left mb-3">
                                                     <div class="form-group form-primary mb-0">
                                                         <select name="searchType" id="searchcondition"  title="구분" class="form-control form-control-sm">
-                                                        	<option value="" <c:if test="${empty paramBoard.searchType}"> selected="selected" </c:if>>:: 선택 ::</option>
+                                                        	<option value="opt0" <c:if test="${empty paramBoard.searchType || paramBoard.searchType eq 'opt0'}"> selected="selected" </c:if>>:: 선택 ::</option>
                                                             <option value="opt1" <c:if test="${paramBoard.searchType eq 'opt1'}"> selected="selected" </c:if>>제목</option>
                                                             <option value="opt2" <c:if test="${paramBoard.searchType eq 'opt2'}"> selected="selected" </c:if>>글쓴이</option>
                                                             <option value="opt3" <c:if test="${paramBoard.searchType eq 'opt3'}"> selected="selected" </c:if>>작성일</option>
@@ -128,7 +144,7 @@
                                                     <button class="btn btn-primary btn-icon" type="button" id="btnSearch"><i class="fas fa-search"></i></button>
                                                 </div>
                                             </div>
-                                            <a href="/board_write" class="btn btn-primary float-sm-right">글쓰기</a>
+                                            <a href="#" class="btn btn-primary float-sm-right" onclick="clickWriteBtn();">글쓰기</a>
                                             </table>      
                                         </div>
                                     </div>
@@ -136,7 +152,7 @@
                                 <!-- [ board_free ] end -->
                             </div>
                             <!-- [ Main Content ] end -->
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>
@@ -149,11 +165,50 @@
         <!-- footable Js -->
     <script src="/js/board/footable.min.js"></script>
 
+<%-- <c:choose>
+   <c:when test="${boardmgrvo.b_code eq 'B0000'}">
+      $("#menu6_1).addClass("active");   
+   </c:when>
+   <c:when test="${boardmgrvo.b_code eq 'B0001'}">
+      $("#menu6_2).addClass("active");   
+   </c:when>
+   <c:when test="${boardmgrvo.b_code eq 'B0002'}">
+      $("#menu6_3).addClass("active");   
+   </c:when>
+   <c:when test="${boardmgrvo.b_code eq 'B0003'}">
+      $("#menu7_1).addClass("active");   
+   </c:when>
+   <c:otherwise>
+      $("#menu7_2).addClass("active");   
+   </c:otherwise>
+</c:choose> --%>
+
+
+	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
     <script type="text/javascript">
-		$("#menu6").addClass('active');
-		$("#menu6").addClass('pcoded-trigger');
-		$("#menu6_3").addClass('active');       
+    
+    	var bcode = $('#bcode').val();
 		
+    	switch(bcode) {
+	    	case 'BO000':
+	    		$('#menu6_1').addClass("active"); break;
+	    	case 'BO001':
+	    		$('#menu6_2').addClass("active"); break;
+	    	default:
+	    		$('#menu6_3').addClass("active"); break;
+    	}
+    	
+    	if($('[id^="menu6_"]').filter(".active").length != 0) {
+        	$("#menu6").addClass('active');
+    		$("#menu6").addClass('pcoded-trigger');
+    	} else{
+    		$("#menu7").addClass('active');
+    		$("#menu7").addClass('pcoded-trigger');
+    	}
+    	
+    	
+		/* $("#menu6_1").addClass('active');  */     
+	
         $(document).ready(function() {
             // [ Foo-table ]
             $('#demo-foo-filtering').footable({
@@ -166,12 +221,8 @@
                     "enabled": true
                 }*/
             });
-            
-           
         });
-        
-       
-    		
     </script>
+    
 </body>
 </html>
