@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -39,6 +40,7 @@
 			                   </div>
 			                   <div class="modal-body">
 				                  <form id="inoutInsertForm" class="inoutInsertForm" method="post">
+								    	<input type="hidden" id="csrf" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								    	<input type="hidden" name="io_seq" class="io_seq out_form" value="0"/>
 								    	<table class="inout_form">
 								    		<tr>
@@ -73,9 +75,10 @@
 								    			<td class="form_select1">
 							                        <select name="io_asset" class="inout_form">
 							                            <option value="">자산종류를 선택해주세요</option>
-							                            <option value="5">돼지저금통</option>
-							                            <option value="6">지갑</option>
-							                            <option value="7">국민카드</option>
+								                            <option value="1">돼지저금통</option>
+								                            <option value="2">지갑</option>
+								                            <option value="3">국민카드</option>
+								                            <option value="4">국민통장</option>
 							                        </select>												    				
 								    			</td>
 								    		</tr>
@@ -134,6 +137,7 @@
 			                   </div>
 			                   <div class="modal-body">
 				                  <form id="trsInsertForm" class="trsInsertForm" method="post">
+							    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							    	<input type="hidden" name="trs_seq" class="trs_seq trs_form" value="0"/>
 							    	<input type="hidden" name="trs_inout" class="trs_inout trs_form" value="IO003"/>
 							    	<table class="insert_form">
@@ -153,10 +157,10 @@
 							    			<td class="form_select1">
 						                        <select name="trs_out_asset" class="trs_form">
 						                            <option value="">출금 자산종류를 선택해주세요</option>
-						                            <option value="5">돼지저금통</option>
-						                            <option value="6">지갑</option>
-						                            <option value="7">국민카드</option>
-						                            <option value="8">국민통장</option>
+							                            <option value="1">돼지저금통</option>
+							                            <option value="2">지갑</option>
+							                            <option value="3">국민카드</option>
+							                            <option value="4">국민통장</option>
 						                        </select>												    				
 							    			</td>
 							    		</tr>
@@ -165,10 +169,10 @@
 							    			<td class="form_select2">
 						                        <select name="trs_in_asset" class="trs_form">
 						                            <option value="">입금 자산종류를 선택해주세요</option>
-						                            <option value="6">지갑</option>
-						                            <option value="7">국민카드</option>
-						                            <option value="5">돼지저금통</option>
-						                            <option value="8">국민통장</option>
+							                            <option value="1">돼지저금통</option>
+							                            <option value="2">지갑</option>
+							                            <option value="3">국민카드</option>
+							                            <option value="4">국민통장</option>
 						                        </select>												    				
 							    			</td>
 							    		</tr>

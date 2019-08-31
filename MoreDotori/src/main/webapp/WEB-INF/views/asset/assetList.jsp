@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,11 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
-	<link rel="stylesheet" href="css/assetManagement/assetm.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/assetManagement/assetm.css">
 	<!-- footable css -->
-    <link rel="stylesheet" href="assets/plugins/footable/css/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/plugins/footable/css/footable.standalone.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.standalone.min.css">
     
-
 </head>
 
 <body class="layout-8">
@@ -53,7 +53,7 @@
 	                                   <div class="col-xl-12 col-md-12" id="colxlmd">
 	                                   
 					  <div class="reading-list">
-					  			<form name="input" method="post" action="aList/write.do">
+					  			<form name="input" method="post" action="/normal/aList/write.do">
                                             <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div id="contentsize-plus1" class="modal-content cal-md-12">
@@ -64,7 +64,8 @@
                                                         <div class="modal-body">
                                                         <div class="col-12">
                                                       	   <!--  <input name="a_seq" class="form-control plus-imp"> -->
-                                                        	<input name="m_id" id="m_id" type="hidden" vlaue="inhee@naver.com" class="form-control plus-imp" placeholder='${alist.m_id}' value='${alist.m_id}' readonly>
+                                                      	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                        	<input name="m_id" id="m_id" type="hidden" value="<sec:authentication property="principal.member.m_id"/>" class="form-control plus-imp" readonly>
 			                                            </div>
                                                         </br>
                                             			<div class="col-12">
@@ -104,11 +105,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           			 <button type="button" class="btdesign btn-primary" onclick="aList/write.do" data-toggle="modal" data-target="#exampleModalLive"> 항목 추가</button>
+                                           			 <button type="button" class="btdesign btn-primary" onclick="/normal/aList/write.do" data-toggle="modal" data-target="#exampleModalLive"> 항목 추가</button>
                                         </form>
                                     </div>
 										  <div>
-										  	<form name='update' method='post' action='aList/update.do'>
+										  	<form name='update' method='post' action='/normal/aList/update.do'>
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 												<table id="assetListmodaljs">
 												  <tr>
 												  	<th class="idhidden">아이디</th>
@@ -119,16 +121,17 @@
 												    <th class="widsize">삭제</th>
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
-														<tr class="updatetd" id="hove" onclick="aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
+														<tr class="updatetd" id="hove" onclick="/normal/aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
 															<td class="idhidden">${alist.a_seq}</td>
 															<td class="idhidden">${alist.m_id}</td>
 															<td>${alist.c_asset}</td>
 															<td>${alist.a_nickname}</td>
 															<td>${alist.a_money}</td>
 															<td>${alist.a_memo}</td>
-															<td ><a href="aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+															<td ><a href="/normal/aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 														</tr>
 			                                            </c:forEach>
+			                                            
 			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
@@ -139,7 +142,7 @@
 			                                                        <div class="modal-body">
 			                                                        	<input name="a_seq" id="a_seq" type="hidden" class="form-control plus-imp">
 			                                                     
-			                                                        	<input name="m_id" id="m_id" type="hidden" value="inhee@naver.com" class="form-control plus-imp" readonly>
+			                                                        	<input name="m_id" id="m_id" type="hidden" value="<sec:authentication property="principal.member.m_id"/>" class="form-control plus-imp" readonly>
 			                                                        </br>
 			                                            			<div class="col-12">
 			                                            				<span>타입 :  </span>
@@ -228,10 +231,10 @@
     </script>
 
 	<!-- assetUpdatemodal Js -->
-/<script src="${pageContext.request.contextPath}/js/asset/assetUpdate.js"></script>
+	<script src="${pageContext.request.contextPath}/js/asset/assetUpdate.js"></script>
 
 	<!-- footable Js -->
-	<script src="${pageContext.request.contextPath}/assets/plugins/footable/js/footable.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
 	
 	    <script type="text/javascript">
 	        $(document).ready(function() {
