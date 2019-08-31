@@ -131,7 +131,7 @@
                                                           <td>${list.m_nickname }</td>
                                                           <td ><span class="tag tag-danger"> ${list.m_name }</span>
                                                           </td>
-                                                          <td >${list.m_idate }</td>
+                                                          <td >${list.m_jdate }</td>
                                                           <td >${list.m_ldate }</td>
                                                           <td ><div class="text">${list.m_counts }</div></td>
                                                           <td >${list.c_mstate }</td>

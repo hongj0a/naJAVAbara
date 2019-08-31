@@ -14,7 +14,7 @@ public class Mem {
 	private String m_id;
 	private String m_nickname;
 	private String m_name;
-	private String m_idate;
+	private String m_jdate;
 	private String m_ldate;
 	private String m_counts;
 	private String c_mstate;

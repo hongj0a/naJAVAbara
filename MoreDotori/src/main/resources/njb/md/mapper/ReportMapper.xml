@@ -5,8 +5,8 @@
 <mapper namespace="njb.md.mapper.ReportMapper">
 
 	<select id="getReportList" resultType="njb.md.domain.Report">
-		SELECT B.M_ID             -- 회원아이디
-		      ,B.B_SUBJECT        -- 게시물
+		SELECT B.REG_ID             -- 회원아이디
+		      ,B.B_SUBJCET        -- 게시물
 		      ,B.B_REPORTNUM    -- 신고횟수
 		      ,R.RP_SEQ           -- 신고SEQ
 		      ,B.B_SEQ            -- 게시글SEQ

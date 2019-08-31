@@ -10,7 +10,7 @@
 			  ,M_ID				-- 회원아이디
 			  ,M_NICKNAME		-- 회원닉네임
 			  ,M_NAME   		-- 회원이름
-			  ,TO_CHAR(M_IDATE, 'YYYY-MM-DD HH24:MI:SS')  AS M_IDATE   -- 가입일
+			  ,TO_CHAR(M_JDATE, 'YYYY-MM-DD HH24:MI:SS')  AS M_JDATE   -- 가입일
 			  ,TO_CHAR(M_LDATE, 'YYYY-MM-DD HH24:MI:SS')  AS M_LDATE   -- 최근접속일
 			  ,M_COUNT || '/' || M_ACCRUE AS M_COUNTS
 			  ,C_MSTATE			-- 회원상태

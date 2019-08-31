@@ -105,8 +105,8 @@
 											 <tr>
 											 
                                                 <td>${reportList.rownum }</td>
-                                                <td>${reportList.m_id }</td>
-                                                <td class="layout"><a href="" class="linkColor">${reportList.b_subject }</a></td>
+                                                <td>${reportList.reg_id }</td>
+                                                <td class="layout"><a href="" class="linkColor">${reportList.b_subjcet }</a></td>
                                                 <td>${reportList.b_reportnum }</td>
                                                 
                                                 <td>
@@ -132,7 +132,7 @@
           					                                            <c:forEach items="${reportList.reportDetail}" var="reportData" >
           					                                               <tr class="thickness">
 	          					                                              <td>${reportData.rownum } </td>
-	          					                                              <td>${reportData.m_id }</td>
+	          					                                              <td>${reportData.reg_id }</td>
 	          					                                              <td>${reportData.rd_content }</td>
 	          					                                              <td>${reportData.rd_date }</td>
           					                                               </tr>
