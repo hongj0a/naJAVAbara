@@ -99,7 +99,7 @@
     <!-- [ Main Content ] end -->
     
     <!-- Ckeditor js -->
-    <script src="/js/ckeditor/ckeditor.js"></script>
+    <script src="${pageContext.request.contextPath}/js/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

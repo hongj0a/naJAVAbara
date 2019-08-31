@@ -7,9 +7,9 @@
 	<meta charset="utf-8">
 	<!-- append css -->
 	<!-- footable css -->
-    <link rel="stylesheet" href="css/board/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="css/board/footable.standalone.min.css">
-	<link rel="stylesheet" href="css/board/style_board.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.standalone.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/style_board.css">
 </head>
 
 <body class="layout-8">
@@ -159,7 +159,7 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="js/board/footable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
 
     <script type="text/javascript">
 		$("#menu7").addClass('active');

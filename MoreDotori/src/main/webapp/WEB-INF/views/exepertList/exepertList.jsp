@@ -11,12 +11,12 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/css/select2.min.css">
     
     <!-- multi-select css -->
-    <link rel="stylesheet" href="plugins/multi-select/css/multi-select.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/multi-select/css/multi-select.css">
  
-	<link rel="stylesheet" href="css/exepertList/exepert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/exepertList/exepert.css">
 
 </head>
 
@@ -231,17 +231,17 @@
     <jsp:include page="../main/footer.jsp"></jsp:include>
 
     <!-- Todo Js -->
-    <script src="plugins/todo/js/todo.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/todo/js/todo.js"></script>
 
     <!-- select2 Js -->
-    <script src="plugins/select2/js/select2.full.min.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/select2/js/select2.full.min.js"></script>
 
     <!-- multi-select Js -->
-    <script src="plugins/multi-select/js/jquery.quicksearch.js"></script>
-    <script src="plugins/multi-select/js/jquery.multi-select.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/multi-select/js/jquery.quicksearch.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/multi-select/js/jquery.multi-select.js"></script>
 
     <!-- form-select-custom Js -->
-    <script src="js/pages/form-select-custom.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/form-select-custom.js"></script>
     <script>
 		$("#menu2").addClass('active');
 		$("#menu2").addClass('pcoded-trigger');

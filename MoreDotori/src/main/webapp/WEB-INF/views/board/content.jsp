@@ -9,9 +9,9 @@
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
 	<!-- append css -->
-	<link rel="stylesheet" href="/css/board/style_board_content.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/style_board_content.css">
 	<!-- material icon -->
-    <link rel="stylesheet" href="/fonts/material/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
 	
 </head>
 
@@ -322,7 +322,7 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="/js/board/footable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
 
 
 	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">
