@@ -18,8 +18,8 @@
     <meta name="author" content=""/>
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="/images/favicon2.ico" type="image/x-icon" />
-    <link rel="icon" href="/images/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
@@ -58,7 +58,7 @@
                     <div class="b-bg">
                     <!-- 왼쪽에서 나올 때 -->
                       <!-- <i class="feather icon-trending-up"></i> -->
-                     <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%; -webkit-transform:none; transform:none;opacity: 1;"/>
+                     <img src="${pageContext.request.contextPath}/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%; -webkit-transform:none; transform:none;opacity: 1;"/>
                     </div>
                     <span class="b-title">MORE DOTORI</span>
                 </a>
@@ -74,7 +74,7 @@
                               <label>EXPERT MENU</label>
                           </li>
                           <li id="menu4" data-username="widget Statistic Data Table User card Chart" class="nav-item">
-                              <a href="/expert_cal" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">상담 관리</span></a>
+                              <a href="/expert/expert_cal" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">상담 관리</span></a>
                           </li>
                       </c:when>
                       <c:when test="${isAdmin}">
@@ -83,20 +83,20 @@
                               <label>NAJAVABARA MENU</label>
                           </li>                    
                           <li id="menu9" data-username="widget Statistic Data Table User card Chart" class="nav-item">
-                              <a href="/mem" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">회원 관리</span></a>
+                              <a href="/admin/mem" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">회원 관리</span></a>
                           </li>
                           <li id="menu10" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">게시물 관리</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu10_1"><a href="/board_notice" class="">공지사항</a></li>
-                                  <li id="menu10_2"><a href="/report" class="">신고내역</a></li>
+                                  <li id="menu10_1"><a href="/admin/board_notice" class="">공지사항</a></li>
+                                  <li id="menu10_2"><a href="/admin/report" class="">신고내역</a></li>
                               </ul>
                           </li>
                            <li id="menu11" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu11_1"><a href="/faq" class="">F A Q</a></li>
-                                  <li id="menu11_2"><a href="/qna" class="">Q & A</a></li>
+                                  <li id="menu11_1"><a href="/admin/faq" class="">F A Q</a></li>
+                                  <li id="menu11_2"><a href="/admin/qna" class="">Q & A</a></li>
                               </ul>
                           </li>
                       </c:when>
@@ -108,16 +108,16 @@
                           <li id="menu1" data-username="dashboard Ecommerce CRM Analytics Crypto Project" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-book"></i></span><span class="pcoded-mtext">나의 자산</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu1_1"><a href="/book" class="">가계부 작성</a></li>
-                                  <li id="menu1_2"><a href="/aList" class="">자산목록관리</a></li>
-                                  <li id="menu1_3"><a href="/asset_cond" class="">현황 및 통계 </a></li>
+                                  <li id="menu1_1"><a href="/normal/book" class="">가계부 작성</a></li>
+                                  <li id="menu1_2"><a href="/normal/aList" class="">자산목록관리</a></li>
+                                  <li id="menu1_3"><a href="/normal/asset_cond" class="">현황 및 통계 </a></li>
                               </ul>
                           </li>
                           <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-check-square"></i></span><span class="pcoded-mtext">재무진단</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu2_1"><a href="/eList" class="">전문가찾기</a></li>
-                                  <li id="menu2_2"><a href="/adList" class="">상담내역</a></li>
+                                  <li id="menu2_1"><a href="/normal/eList" class="">전문가찾기</a></li>
+                                  <li id="menu2_2"><a href="/normal/adList" class="">상담내역</a></li>
                               </ul>
                           </li>
                       </c:when>
@@ -157,7 +157,7 @@
                    <div class="b-bg">
                    <!-- 모바일 헤더일 때 -->
                       <!-- <i class="feather icon-trending-up"></i> -->
-                        <img src="/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%;"/>
+                        <img src="${pageContext.request.contextPath}/images/slider/icon.png" alt="Moredotori's_logo" style="width:100%;"/>
                    </div>
                    <span class="b-title">MORE DOTORI</span>
                </a>
@@ -184,10 +184,10 @@
                               <sec:authentication property="principal.member.m_profile" var="profile"/>
                               <c:choose>
                                  <c:when test="${empty profile}">
-                                    <img src="images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
+                                    <img src="${pageContext.request.contextPath}/images/user/avatar-1.jpg" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
                                  </c:when>
                                  <c:otherwise>
-                                    <img src="images/profile-images/${profile}" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
+                                    <img src="${pageContext.request.contextPath}/images/profile-images/${profile}" class="img-radius width_40px magin_right_10" alt="User-Profile-Image">
                                  </c:otherwise>
                               </c:choose>
 
@@ -202,10 +202,10 @@
                                         <div class="media-body profile">
                                         <c:choose>
                                           <c:when test="${empty profile}">
-                                                 <img class="img-radius" id="profile_img" src="images/user/avatar-1.jpg" alt="Generic placeholder image">
+                                                 <img class="img-radius" id="profile_img" src="${pageContext.request.contextPath}/images/user/avatar-1.jpg" alt="Generic placeholder image">
                                           </c:when>
                                           <c:otherwise>
-                                                 <img class="img-radius" id="profile_img" src="images/profile-images/${profile}" alt="Generic placeholder image">
+                                                 <img class="img-radius" id="profile_img" src="${pageContext.request.contextPath}/images/profile-images/${profile}" alt="Generic placeholder image">
                                           </c:otherwise>
                                        </c:choose>
                                             <p><strong><sec:authentication property="principal.member.m_name"/></strong>님 </p> 
@@ -225,8 +225,6 @@
                         </div>
                     </div>
                 </li>
-            </sec:authorize>
-            
                 <li>
                     <div class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><div id="noti_bell_count"><p>+99</p></div></a>
@@ -280,7 +278,8 @@
                         </div>
                     </div>
                 </li>
-                
+	            </sec:authorize>
+
                 <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>
             </ul>
         </div>

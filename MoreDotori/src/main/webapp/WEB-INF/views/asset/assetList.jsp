@@ -220,7 +220,7 @@
     <!-- [ Main Content ] end -->
 
     <!-- Todo Js -->
-    <script src="plugins/todo/js/todo.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/todo/js/todo.js"></script>
     <script>
 		$("#menu1").addClass('active');
 		$("#menu1").addClass('pcoded-trigger');
@@ -228,10 +228,10 @@
     </script>
 
 	<!-- assetUpdatemodal Js -->
-/<script src="js/asset/assetUpdate.js"></script>
+/<script src="${pageContext.request.contextPath}/js/asset/assetUpdate.js"></script>
 
 	<!-- footable Js -->
-	<script src="assets/plugins/footable/js/footable.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/plugins/footable/js/footable.min.js"></script>
 	
 	    <script type="text/javascript">
 	        $(document).ready(function() {

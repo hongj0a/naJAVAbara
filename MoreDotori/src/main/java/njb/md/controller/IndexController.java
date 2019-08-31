@@ -72,18 +72,6 @@ public class IndexController {
 		return "main/notification";
 	}
 
-	// 일반 회원 - 자산 목록
-	@GetMapping("/aList")
-	public ModelAndView aList() {
-		List<AssetList> list = service.listS();
-		log.info("#list: " + list);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("asset/assetList");
-		mv.addObject("list", list);
-		
-		return mv;
-	}
-	
 	// 일반 회원 - 전문가 찾기
 	@GetMapping("/eList")
 	public String eList() {

@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/aList")
+@RequestMapping("/normal")
 @AllArgsConstructor
 public class AssetListController {
 	
@@ -39,7 +39,7 @@ public class AssetListController {
 		return mv;
 	}*/
 	
-	@RequestMapping("../aList")
+	@RequestMapping("/aList")
 	public ModelAndView list() {
 		List<AssetList> list = service.listS();
 		log.info("#list: " + list);
@@ -50,6 +50,7 @@ public class AssetListController {
 	
 		return mv;
 	}
+	
 	@GetMapping("/write.do")
 	public String write() {
 		return "asset/assetList";
