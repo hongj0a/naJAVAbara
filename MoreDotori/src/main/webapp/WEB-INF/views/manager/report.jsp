@@ -8,18 +8,18 @@
     <title>NAJAVABARA</title>
    <meta charset="utf-8">
   <!-- 내가추가함  -->
-  <link rel="stylesheet" href="css/report.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/report.css">
 
   <!-- data tables css-->
-  <link rel="stylesheet" href="plugins/data-tables/css/datatables.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/data-tables/css/datatables.min.css">
   <!-- footable css -->
 
-  <link rel="stylesheet" href="plugins/footable/css/footable.bootstrap.min.css">
-  <link rel="stylesheet" href="plugins/footable/css/footable.standalone.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.standalone.min.css">
 </head>
 
 <body class="layout-8">
-   <jsp:include page="../main/header3.jsp"></jsp:include>
+   <jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -303,7 +303,7 @@
 <script src="./asset/js/pages/tbl-datatable-custom.js"></script> -->
 
 <!-- footable Js -->
-<script src="plugins/footable/js/footable.min.js"></script>
+<script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
 
 <script type="text/javascript">
 

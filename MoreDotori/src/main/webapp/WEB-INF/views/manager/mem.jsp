@@ -8,16 +8,16 @@
     <title>NAJAVABARA</title>
    <meta charset="utf-8">
 <!-- footable css -->
-    <link rel="stylesheet" href="plugins/footable/css/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/footable/css/footable.standalone.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.standalone.min.css">
 
 <!-- management/my Css -->
-    <link rel="stylesheet" href="css/management.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/management.css">
     
 </head>
 
 <body class="layout-8">
-   <jsp:include page="../main/header3.jsp"></jsp:include>
+   <jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
       <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -322,14 +322,14 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="plugins/footable/js/footable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
     
     <!-- modal-window-effects Js -->
-    <script src="assets/plugins/modal-window-effects/js/classie.js"></script>
-    <script src="assets/plugins/modal-window-effects/js/modalEffects.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/plugins/modal-window-effects/js/classie.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/plugins/modal-window-effects/js/modalEffects.js"></script>
     
     <!-- Required Js -->
-    <script src="assets/js/vendor-all.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/vendor-all.min.js"></script>
     
     <script type="text/javascript">
     

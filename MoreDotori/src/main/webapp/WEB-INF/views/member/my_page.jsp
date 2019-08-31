@@ -12,7 +12,7 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
-<link rel="stylesheet" href="css/member/member.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">
 </head>
 
 <body class="layout-8">
@@ -55,10 +55,10 @@
 																		<sec:authentication property="principal.member.m_profile" var="profile" />
 																		<c:choose>
 																			<c:when test="${empty profile}">
-																				<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
+																				<img class="img-fluid rounded-circle" id="profile-image" src="${pageContext.request.contextPath}/images/user/avatar-3.jpg" alt="dashboard-user">
 																			</c:when>
 																			<c:otherwise>
-																				<img class="img-fluid rounded-circle" id="profile-image" src="images/profile-images/${profile}" alt="dashboard-user">
+																				<img class="img-fluid rounded-circle" id="profile-image" src="${pageContext.request.contextPath}/images/profile-images/${profile}" alt="dashboard-user">
 																			</c:otherwise>
 																		</c:choose>
 																	</label>

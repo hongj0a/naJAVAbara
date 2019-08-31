@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 
 <!-- vendor css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/member/member.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">
 
 </head>
 
@@ -35,8 +35,8 @@
 	</div>
 
 	<!-- Required Js -->
-	<script src="js/vendor-all.min.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/vendor-all.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script>
 	function btn_click(btn){
 		location.href='/signup?type=' + $(btn).attr('id');

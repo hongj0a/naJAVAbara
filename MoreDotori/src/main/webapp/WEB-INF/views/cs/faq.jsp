@@ -8,7 +8,7 @@
     <title>NAJAVABARA::고객센터</title>
 	<meta charset="utf-8">
 	<!-- append css -->
-	<link rel="stylesheet" href="/css/cs/faq.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cs/faq.css">
 </head>
 
 <body class="layout-8">
@@ -246,7 +246,7 @@
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
         <!-- footable Js -->
-    <script src="/js/board/footable.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
 
     <script type="text/javascript">
 		$("#menu7").addClass('active');

@@ -13,10 +13,10 @@
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
 <!-- fontawesome icon -->
-<link rel="stylesheet" href="fonts/fontawesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/fontawesome/css/fontawesome-all.min.css">
 <!-- vendor css -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/member/member.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
 						<div class="col-sm-4">
 							<div class="text-center form-group">
 								<label for="choose-image">
-									<img class="img-fluid rounded-circle" id="profile-image" src="images/user/avatar-3.jpg" alt="dashboard-user">
+									<img class="img-fluid rounded-circle" id="profile-image" src="${pageContext.request.contextPath}/images/user/avatar-3.jpg" alt="dashboard-user">
 								</label>
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" name="chooseImg" id="choose-image" accept="image/*" ${imgRequired}>
@@ -349,15 +349,15 @@
 	</div>
 
 	<!-- Required Js -->
-	<script src="js/vendor-all.min.js"></script>
-	<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="plugins/sweetalert/js/sweetalert.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/vendor-all.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/sweetalert/js/sweetalert.min.js"></script>
 	
-	<script src="plugins/jquery-validation/js/jquery.validate.min.js"></script>
-	<script src="plugins/jquery-validation/js/messages_ko.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/jquery-validation/js/messages_ko.js"></script>
 	
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script src="js/member/sign-up.js"></script>
+	<script src="${pageContext.request.contextPath}/js/member/sign-up.js"></script>
 </body>
 
 </html>

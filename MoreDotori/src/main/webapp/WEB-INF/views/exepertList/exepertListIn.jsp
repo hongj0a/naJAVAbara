@@ -12,34 +12,34 @@
     <meta name="author" content="Codedthemes" />
  
     <!-- Smart Wizard css -->
-    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard.min.css">
-    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
-    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
-    <link rel="stylesheet" href="plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/smart-wizard/css/smart_wizard.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
 	
 	<!--  stars css  -->
-    <link rel="stylesheet" href="plugins/ratting/css/bootstrap-stars.css">
-    <link rel="stylesheet" href="plugins/ratting/css/css-stars.css"> 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/bootstrap-stars.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/css-stars.css"> 
     
     <!-- select2 css -->
-    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/select2/css/select2.min.css">
     
     <!-- multi-select css -->
-    <link rel="stylesheet" href="plugins/multi-select/css/multi-select.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/multi-select/css/multi-select.css">
 	
 	<!-- owl-carousel css -->
-    <link rel="stylesheet" href="plugins/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="plugins/owl-carousel/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/owl-carousel/css/owl.theme.default.min.css">
 
     <!-- material datetimepicker css -->
-    <link rel="stylesheet" href="plugins/material-datetimepicker/css/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/material-datetimepicker/css/bootstrap-material-datetimepicker.css">
     <!-- Bootstrap datetimepicker css -->
-    <link rel="stylesheet" href="plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
-    <link rel="stylesheet" href="fonts/material/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
     <!-- minicolors css -->
-    <link rel="stylesheet" href="plugins/mini-color/css/jquery.minicolors.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/mini-color/css/jquery.minicolors.css">
 	
-	<link rel="stylesheet" href="css/exepertList/exepert.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/exepertList/exepert.css">
 	
 </head>
 
@@ -278,29 +278,29 @@
     <!-- [ Main Content ] end -->
 
     <!-- Todo Js -->
-    <script src="plugins/todo/js/todo.js"></script>  
+    <script src="${pageContext.request.contextPath}/plugins/todo/js/todo.js"></script>  
 
     <!-- Rating Js -->
-    <script src="plugins/ratting/js/jquery.barrating.min.js"></script>
-    <script src="js/pages/ac-rating.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/ratting/js/jquery.barrating.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/ac-rating.js"></script>
     
     <!-- Smart Wizard Js -->
-    <script src="plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
-    <script src="js/pages/wizard-custom.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/wizard-custom.js"></script>
 
     <!-- owl-carousel Js -->
-    <script src="plugins/owl-carousel/js/owl.carousel.min.js"></script>
-    <script src="js/pages/ac-slider.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/ac-slider.js"></script>
 
     <!-- material datetimepicker Js -->
     <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-    <script src="plugins/material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <!-- minicolors Js --> 
-    <script src="plugins/mini-color/js/jquery.minicolors.min.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/mini-color/js/jquery.minicolors.min.js"></script>
 
     <!-- form-picker-custom Js -->
-    <script src="js/pages/form-picker-custom.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/form-picker-custom.js"></script>
 
     <script>
 		$("#menu2").addClass('active');
