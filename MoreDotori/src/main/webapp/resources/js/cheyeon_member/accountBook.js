@@ -693,12 +693,13 @@
     	   var tr = clickBtn.parent().parent();
     	   var td = tr.children();
     	   var seq = td.eq(0).text();
-    	   var data = "seq="+seq;
-    		   
+    	   
 		   $.ajax({
 			   type: "POST",
 			   url : "book/deleteIO.do",
-			   data : data,
+			   data : { seq : seq,
+				   _csrf: $('#csrf').val()
+			   },
 			   success : function(data){
 				   if( data == "success"){
 					   $.fn.getInOutTrs();
@@ -727,7 +728,9 @@
 		   $.ajax({
 			   type: "POST",
 			   url : "book/deleteTrs.do",
-			   data : data,
+			   data : { seq : seq,
+				   		_csrf: $('#csrf').val()
+			   },
 			   success : function(data){
 				   if( data == "success"){
 					   $.fn.getInOutTrs();

@@ -51,29 +51,29 @@ public class AssetListController {
 		return mv;
 	}
 	
-	@GetMapping("/write.do")
+	@GetMapping("/aList/write.do")
 	public String write() {
 		return "asset/assetList";
 	}
 	
-	@PostMapping("/write.do")
+	@PostMapping("/aList/write.do")
 	public String write(AssetList list) {
 		log.info("##write list"+ list);
 		service.insertS(list);
-		return "redirect:../aList";
+		return "redirect:/normal/aList";
 	}
-	@GetMapping("/del.do")
+	@GetMapping("/aList/del.do")
 	public String delete(@RequestParam long a_seq) {
 		log.info("#### assewses : "+a_seq);
 		service.deleteS(a_seq);
-		return "redirect:../aList";
+		return "redirect:/normal/aList";
 	}
-	@GetMapping("/cont.do")
+	@GetMapping("/aList/cont.do")
 	public void get(@RequestParam("a_seq") long a_seq, Model model) {
 		log.info("/cont.do");
 		model.addAttribute("list", service.contS(a_seq));
 	}
-	@GetMapping("/update.do")
+	@GetMapping("/aList/update.do")
 	//@RequestMapping(value = "/update.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView update(@RequestParam("a_seq") long a_seq, Model model) {
 		log.info("/update.do");
@@ -86,12 +86,12 @@ public class AssetListController {
 		
 		return mv;
 	}
-	@PostMapping("/update.do")  
+	@PostMapping("/aList/update.do")  
 	//@RequestMapping(value = "/update.do", method = RequestMethod.POST)
 	public String update(AssetList list) {
 		log.info("### update list : " + list);
 		service.updateS(list);
-		return "redirect:../aList";
+		return "redirect:/normal/aList";
 	}
 
 }

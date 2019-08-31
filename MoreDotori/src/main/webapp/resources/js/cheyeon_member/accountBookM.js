@@ -612,12 +612,13 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   var yyyy = $.trim($(".form_select_year_val.inout_form").val());
 	   var mmmm = $.trim($(".form_select_month_val.inout_form").val());
 	   
-	   var data = "seq="+seq;
-	   
 	   $.ajax({
 		   type: "POST",
 		   url : "book/deleteIO.do",
-		   data : data,
+		   data : {
+			   seq: seq,
+		   		_csrf: $('#csrf').val()
+		   },
 		   success : function(data){
 			   if( data == "success"){
 					$("#select-month").text(yyyy + "년 " + mmmm + "월");
@@ -647,18 +648,21 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    $(".del_insert_trs").click(function(){
 	   $(".badge_cancle_date").trigger("click");
 	   var seq = $(".trs_seq.trs_form").val();
-	   var data = "seq="+seq;
 	   var yyyy = $.trim($(".form_select_year_val.trs_form").val());
 	   var mmmm = $.trim($(".form_select_month_val.trs_form").val());
 	   
 	   $.ajax({
 		   type: "POST",
 		   url : "book/deleteTrs.do",
-		   data : data,
+		   data : {
+			   seq: seq,
+		   		_csrf: $('#csrf').val()
+		   },
 		   success : function(data){
 			   if( data == "success"){
 					$("#select-month").text(yyyy + "년 " + mmmm + "월");
-					$.fn.getInOutTrs(yyyy,mmmm);				   
+					$.fn.getInOutTrs(yyyy,mmmm);
+					
 				   $(".close").trigger("click");
 			   }else{
 				   alert('삭제실패');
