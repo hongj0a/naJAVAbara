@@ -126,6 +126,7 @@
 				B.fcategori
 			FROM BOARD B
 			WHERE B.B_code= #{b_code}
+			AND B_del_YN = 'N' 
 		) A
 		<!-- <if test="searchType == 'opt1' and searchWord != '' ">
 		   AND A.B_subjcet = #{searchWord}
@@ -160,7 +161,7 @@
 		AND B_seq = #{b_seq}	
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard"  >
 		INSERT INTO BOARD (
 			B_seq,
 			B_code,
@@ -185,28 +186,28 @@
 		  	BOARD_SEQ.nextval,
 		    #{b_code},
 		    #{b_subjcet},
-		    #{b_content},
+		    #{b_content:CLOB},
 		    BOARD_SEQ.CURRVAL,
 		    #{b_reply_seq},
 		    #{b_cont_lv},
 		    #{b_parent_seq},
-		    #{b_readNum},
-		    #{b_heartnum},
-		    #{b_reportnum},
+		    0,
+		    0,
+		    0,
 		    #{b_filekey},
-		    #{b_del_yn},
+		    'N',
 		    #{reg_id},
 		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
-		    #{mod_id},
+		    #{reg_id},
 		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 		    #{fcategori}
 		)
 	</insert>
 	
-	<update id="updateBoard">
+	<update id="updateBoard" >
 		UPDATE BOARD SET
 			B_subjcet = #{b_subjcet},
-			B_content= #{b_content},
+			B_content= #{b_content:CLOB},
 			mod_id = #{reg_id},
 			mod_dt= TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 			fcategori = #{fcategori}
@@ -214,7 +215,7 @@
 		AND B_seq = #{b_seq}	
 	</update>
 	
-	<update id="deleteBoard"><!-- 삭제유무를 Y로 바꿈 실제 delete 아님 -->
+	<update id="deleteBoard" ><!-- 삭제유무를 Y로 바꿈 실제 delete 아님 -->
 		UPDATE BOARD SET
 			B_del_YN = 'Y',
 			mod_id = #{reg_id},

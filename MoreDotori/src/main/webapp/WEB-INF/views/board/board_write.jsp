@@ -27,6 +27,7 @@
 			form.submit();
 		}
     	
+    	
 /*     	function check(){
 	      if(document.input.elements[1].value == ""){
 		     alert("제목을 입력 하셔야 합니다. ");
@@ -63,11 +64,11 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="">제목</span>
                                                 </div>
-                                                <form:input path="b_subjcet"  placeholder="제목"/>
+                                                <input id="b_subjcet" name="b_subjcet" type="text" class="form-control" placeholder="제목" aria-label="" aria-describedby="" />
                                             </div>
                                             <!-- 에디터 1  -->
                                             <div class="mb-3">
-                                                <textarea name="content" id="classic-editor">
+                                                <textarea name="b_content" id="b_content">
                                                 </textarea>
                                             </div>
                                             <div class="input-group mb-3">
@@ -79,7 +80,7 @@
                                                     <label class="custom-file-label" for="inputGroupFile01">파일찾기</label>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right" onclick="check()">확인</button>
+                                            <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right" onclick="submit();">확인</button>
                                             <a href="#" class="btn btn-secondary float-sm-right" onclick="clickListBtn();">목록으로</a>
                                         </div>
                                     </div>
@@ -103,9 +104,19 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // classic editor
-           CKEDITOR.replace('classic-editor' , {height: 300,language:'ko' });
-
+           CKEDITOR.replace('b_content' , {height: 300,language:'ko' });
+			
+           function submit(){
+       		var form = document.aform;
+       		CKEDITOR.instances.contents.updateElement();
+       		alert(1111);
+       		console.log(form);
+   			//if(!validation(form)) return;
+   			form.action = "/board/${BoardMgrVO.b_code}/act";
+   			form.submit();
+       	}
         });
+        
     </script>
 
 	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">

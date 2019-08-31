@@ -69,8 +69,8 @@ public class BoardServiceImpl implements BoardService {
 	// insert
 	@Override
 	public void regBoard(BoardVO vo) throws Exception{
-		log.info("#getBoardList...:" + vo);
-		boardMapper.selectBoardList(vo);
+		log.info("#regBoard...:" + vo);
+		boardMapper.insertBoard(vo);
 	}
 	//update
 	@Override

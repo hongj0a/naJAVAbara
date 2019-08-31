@@ -149,10 +149,14 @@ public class BoardController {
 	// 내용작성 후 리스트화면으로 가기?
 	@RequestMapping("/{b_code}/act")
 	public String act(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+		log.info("act::::::::::::::::::::");
 		log.info(vo);
+		vo.setReg_id("테스트입니다");
+		vo.setFcategori(b_code);
+		vo.setB_filekey("asdfasdfsadfas");
 		service.regBoard(vo);
 		mo.addAttribute("boardVO", vo);
-		return "board/list";
+		return "redirect:/board/{b_code}/list";
 	}
 
 	
