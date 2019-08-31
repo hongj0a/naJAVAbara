@@ -5,18 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
 import njb.md.domain.AssetList;
 import njb.md.service.AssetListService;
+
+import lombok.AllArgsConstructor;
+import njb.md.domain.Mem;
+import njb.md.domain.Reply;
+import njb.md.domain.Report;
+import njb.md.service.ReportService;
+import njb.md.service.MemService;
 
 @Log4j
 @Controller
 public class IndexController {
 	@Setter(onMethod_ = @Autowired)
 	private AssetListService service;
+	
+	@Autowired
+	private ReportService reportService;
+	
+	@Autowired
+	private MemService memService;
 	
 	// 메인
 	@GetMapping("/")
@@ -60,20 +78,6 @@ public class IndexController {
 		return "main/notification";
 	}
 
-/*
-	// 일반 회원 - 가계부 작성
-	@GetMapping("/book")
-	public String book() {
-		return "asset/accountBook";
-	}
-	
-	// 일반 회원 - 가계부 (월간내역)
-	@GetMapping("/book2")
-	public String book2() {
-		return "asset/accountBook_month";
-	}
-*/
-	
 	// 일반 회원 - 자산 목록
 	@GetMapping("/aList")
 	public ModelAndView aList() {
@@ -85,16 +89,6 @@ public class IndexController {
 		
 		return mv;
 	}
-
-/*	
-	// 일반 회원 - 자산 현황 및 통계
-	
-	
-	@GetMapping("/asset_cond")
-	public String asset_cond() {
-		return "asset/asset_condition";
-	}
-*/
 	
 	// 일반 회원 - 전문가 찾기
 	@GetMapping("/eList")
@@ -113,24 +107,73 @@ public class IndexController {
 	public String adList() {
 		return "adviceDetails/adviceList";
 	}
+	
+	
+	   // 관리자 - 회원 관리
+	 @GetMapping("/mem")
+	 @ResponseBody
+	 public ModelAndView getList(){
+	      List<Mem> list = memService.getList();
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("manager/mem");
+	      mv.addObject("list", list);
+	      //List<Mem> list = memService.getMemList();
+	      //model.addAttribute("list", memService.getList());
+	      //return getList(null);
+	      return mv;
+	   }
+	 
+	   // 관리자 - 회원관리 -정지풀기
+	 @RequestMapping(value="/normalUser", method=RequestMethod.POST)
+	 @ResponseBody
+	   public void normalUser(@RequestParam(value="idList[]") List<String> idList) {
+	      memService.normalUser(idList);
+	 }
+	   
+	   // 관리자 - 회원관리 - 정지
+	   @RequestMapping(value="/stopUserMem", method=RequestMethod.POST)
+	   @ResponseBody
+	   public void stopUserMem(
+	         @RequestParam(value="m_reason") String m_reason,
+	         @RequestParam(value="m_cdate") String m_cdate,
+	         @RequestParam(value="idList[]") List<String> idList
+	         ) {
+	      for (String m_id : idList) {
+	         reportService.stopUser(m_id, m_reason, m_cdate);
+	      }
+	   }
+	   
+	   // 관리자 - 신고내역 게시글,뎃글
+	   @GetMapping("/report")
+	   @ResponseBody
+	   public ModelAndView getReplyList(){
+	      List<Report> reportList = reportService.getReportList();
+	      List<Reply> list = reportService.getReplyList();
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("manager/report");
+	      mv.addObject("reportList", reportList);
+	      mv.addObject("list", list);
+	      System.out.println("reportList------------------:"+reportList);
+	      return mv;
+	   }
 
-	// 전문가 - 예약리스트
-	@GetMapping("/expert_cal")
-	public String expert() {
-		return "expert/expert_cal";
-	}
-
-	// 관리자 - 회원 관리
-	@GetMapping("/mem")
-	public String mem() {
-		return "manager/mem";
-	}
-
-	// 관리자 - 신고
-	@GetMapping("/report")
-	public String report() {
-		return "manager/report";
-	}
+	   // 관리자 - 신고내역 - 게시글 목록
+	   @GetMapping("/getReportList")
+	   @ResponseBody
+	   public List<Report> getReportList() {
+	      
+	      List<Report> list = reportService.getReportList();
+	      
+	      return list;
+	   }
+	   
+	   
+	   // 관리자 - 신고내역 - 정지
+	   @GetMapping("/stopUser")
+	   @ResponseBody
+	   public void stopUser(String m_id, String m_reason, String m_cdate) {
+	      reportService.stopUser(m_id, m_reason, m_cdate);
+	   }
 
 	/* 공통  */
 	// 공지사항
@@ -180,5 +223,5 @@ public class IndexController {
 	public String qna_write() {
 		return "cs/qna_write";
 	}
-
+	
 }

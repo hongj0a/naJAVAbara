@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.mapper.ReplyMapper">
+
+	<select id="getReplyList" resultType="njb.md.domain.Reply">
+		SELECT RE.M_ID             -- 회원아이디
+		      ,RE.RE_CONTENT        -- 댓글내용
+		      ,RE.RE_REPORTNUM    -- 신고횟수
+		      ,R.RP_SEQ           -- 신고SEQ
+		      ,RE.RE_SEQ            -- 댓글SEQ
+		      ,ROWNUM
+		FROM REPLY RE
+		INNER JOIN REPORT R ON RE.RE_SEQ = R.RE_SEQ
+		WHERE 1=1
+	</select>
+	
+	<select id="getReplyDetailList" parameterType="String" resultType="njb.md.domain.ReplyDetail">
+	    SELECT RD.M_ID            -- 회원아이디
+		      ,RD.RD_CONTENT      -- 신고사유
+		      ,ROWNUM
+		      ,TO_CHAR(RD.RD_DATE, 'YYYY-MM-DD') AS RD_DATE         -- 신고일자
+		FROM REPLY RE
+		INNER JOIN REPORT R ON RE.RE_SEQ = R.RE_SEQ
+		INNER JOIN REPORTDETAIL RD ON R.RP_SEQ = RD.RP_SEQ
+		WHERE R.RP_SEQ = #{rpSeq}
+	</select>
+	
+	<update id="stopUser" parameterType="String">
+		UPDATE MEMBER
+		SET C_MSTATE = 'MS002'
+		   ,M_REASON = #{arg0}
+		   ,M_CDATE = decode(#{arg1}, '0', '9999-12-31', SYSDATE + #{arg1})
+		WHERE M_ID = #{arg2}
+	</update>
+</mapper>
