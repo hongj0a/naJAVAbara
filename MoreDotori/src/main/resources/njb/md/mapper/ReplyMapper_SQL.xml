@@ -44,7 +44,7 @@
 				M_ID,
 				RE_CONTENT,
 				RE_DATE,
-				B_REPORTNUM,
+				RE_REPORTNUM,
 				REG_ID,
 				REG_DT,
 				MOD_ID,
