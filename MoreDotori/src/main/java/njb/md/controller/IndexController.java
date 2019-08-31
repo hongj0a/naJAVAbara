@@ -92,7 +92,7 @@ public class IndexController {
 	
 	
 	   // 관리자 - 회원 관리
-	 @GetMapping("/mem")
+	 @GetMapping("/admin/mem")
 	 @ResponseBody
 	 public ModelAndView getList(){
 	      List<Mem> list = memService.getList();
@@ -106,14 +106,14 @@ public class IndexController {
 	   }
 	 
 	   // 관리자 - 회원관리 -정지풀기
-	 @RequestMapping(value="/normalUser", method=RequestMethod.POST)
+	 @RequestMapping(value="/admin/normalUser", method=RequestMethod.POST)
 	 @ResponseBody
 	   public void normalUser(@RequestParam(value="idList[]") List<String> idList) {
 	      memService.normalUser(idList);
 	 }
 	   
 	   // 관리자 - 회원관리 - 정지
-	   @RequestMapping(value="/stopUserMem", method=RequestMethod.POST)
+	   @RequestMapping(value="/admin/stopUserMem", method=RequestMethod.POST)
 	   @ResponseBody
 	   public void stopUserMem(
 	         @RequestParam(value="m_reason") String m_reason,
@@ -126,7 +126,7 @@ public class IndexController {
 	   }
 	   
 	   // 관리자 - 신고내역 게시글,뎃글
-	   @GetMapping("/report")
+	   @GetMapping("/admin/report")
 	   @ResponseBody
 	   public ModelAndView getReplyList(){
 	      List<Report> reportList = reportService.getReportList();
@@ -140,7 +140,7 @@ public class IndexController {
 	   }
 
 	   // 관리자 - 신고내역 - 게시글 목록
-	   @GetMapping("/getReportList")
+	   @GetMapping("/admin/getReportList")
 	   @ResponseBody
 	   public List<Report> getReportList() {
 	      
@@ -151,7 +151,7 @@ public class IndexController {
 	   
 	   
 	   // 관리자 - 신고내역 - 정지
-	   @GetMapping("/stopUser")
+	   @GetMapping("/admin/stopUser")
 	   @ResponseBody
 	   public void stopUser(String m_id, String m_reason, String m_cdate) {
 	      reportService.stopUser(m_id, m_reason, m_cdate);

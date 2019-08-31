@@ -88,15 +88,15 @@
                           <li id="menu10" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clipboard"></i></span><span class="pcoded-mtext">게시물 관리</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu10_1"><a href="/admin/board_notice" class="">공지사항</a></li>
+                                  <li id="menu10_1"><a href="/board/BO000/list" class="">공지사항</a></li>
                                   <li id="menu10_2"><a href="/admin/report" class="">신고내역</a></li>
                               </ul>
                           </li>
                            <li id="menu11" data-username="widget Statistic Data Table User card Chart" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                               <ul class="pcoded-submenu">
-                                  <li id="menu11_1"><a href="/admin/faq" class="">F A Q</a></li>
-                                  <li id="menu11_2"><a href="/admin/qna" class="">Q & A</a></li>
+                                  <li id="menu11_1"><a href="/board/BO003/list" class="">F A Q</a></li>
+                                  <li id="menu11_2"><a href="/board/BO004/list" class="">Q & A</a></li>
                               </ul>
                           </li>
                       </c:when>
@@ -150,7 +150,7 @@
     <!-- [ navigation menu ] end -->
 
     <!-- [ Header ] start -->
-    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed moredotori_header_blue" id="moredotori_header_blue">
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-lightblue headerpos-fixed moredotori_header_blue" id="moredotori_header_${mainColor}">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="/" class="b-brand">

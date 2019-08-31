@@ -6,6 +6,11 @@
 <html>
 <head>
     <title>NAJAVABARA</title>
+    
+    <meta name="_csrf" content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+    
    <meta charset="utf-8">
   <!-- 내가추가함  -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/report.css">
@@ -306,6 +311,14 @@
 <script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
 
 <script type="text/javascript">
+$(function () {
+	  var token = $("meta[name='_csrf']").attr("content");
+	  var header = $("meta[name='_csrf_header']").attr("content");
+	  $(document).ajaxSend(function(e, xhr, options) {
+	    xhr.setRequestHeader(header, token);
+	  });
+	});
+	
 
 var userId = "";
 
@@ -366,7 +379,7 @@ var userId = "";
 		var cdate = $('#selectBox1 option:selected').val();
 		
 		$.ajax({
-			url : "/stopUser",
+			url : "/admin/stopUser",
 			type : "GET",
 			data : { m_id: userId, m_reason: reason, m_cdate: cdate },
 			dataType: 'JSON',

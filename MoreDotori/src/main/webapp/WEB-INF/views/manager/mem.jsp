@@ -6,6 +6,11 @@
 <html>
 <head>
     <title>NAJAVABARA</title>
+
+	<meta name="_csrf" content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" content="${_csrf.headerName}"/>
+    
    <meta charset="utf-8">
 <!-- footable css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.bootstrap.min.css">
@@ -332,7 +337,14 @@
     <script src="${pageContext.request.contextPath}/assets/js/vendor-all.min.js"></script>
     
     <script type="text/javascript">
-    
+    	$(function () {
+		  var token = $("meta[name='_csrf']").attr("content");
+		  var header = $("meta[name='_csrf_header']").attr("content");
+		  $(document).ajaxSend(function(e, xhr, options) {
+		    xhr.setRequestHeader(header, token);
+		  });
+		});
+		
        $("#menu9").addClass('active');
        $("#menu9").addClass('pcoded-trigger');
        $('#modal-1').hide();
@@ -367,7 +379,7 @@
         
         function normalUser(){
         	$.ajax({
-    			url : "/normalUser",
+    			url : "/admin/normalUser",
     			type : "GET",
     			data : { m_id: userId},
     			dataType: 'JSON',
@@ -406,7 +418,7 @@
     		var cdate = $('#selectBox1 option:selected').val();
     		
     		$.ajax({
-    			url : "/stopUser",
+    			url : "/admin/stopUser",
     			type : "GET",
     			data : { m_id: userId, m_reason: reasom, m_cdate: cdate},
     			dataType: 'JSON',
@@ -463,7 +475,7 @@
                 };
         	//$('#modal2').attr('data-target', '#exampleModalCenter');
         	$.ajax({
-    			url : "/normalUser",
+    			url : "/admin/normalUser",
     			type : "POST",
     			data : objParams,
     			dataType: 'JSON',
@@ -505,7 +517,7 @@
                 };
     		
     		$.ajax({
-    			url : "/stopUserMem",
+    			url : "/admin/stopUserMem",
     			type : "POST",
     			data : objParams,
     			dataType: 'JSON',

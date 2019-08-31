@@ -97,6 +97,7 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 						<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="b_seq" value="0"/>
 							<input type="hidden" name="mode" value="view"/>
 						</form:form>
