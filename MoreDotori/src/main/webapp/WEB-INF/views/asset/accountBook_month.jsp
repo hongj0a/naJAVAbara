@@ -15,7 +15,11 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
+	<jsp:include page="../main/header.jsp"></jsp:include>	
+	
+	<!-- 로그인아이디 -->
+	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">
+    
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -73,12 +77,8 @@
 								    		<tr class="inout_form_select">
 								    			<td class="form_title">자산</td>
 								    			<td class="form_select1">
-							                        <select name="io_asset" class="inout_form">
+							                        <select name="io_asset" class="inout_form assetList">
 							                            <option value="">자산종류를 선택해주세요</option>
-								                            <option value="1">돼지저금통</option>
-								                            <option value="2">지갑</option>
-								                            <option value="3">국민카드</option>
-								                            <option value="4">국민통장</option>
 							                        </select>												    				
 								    			</td>
 								    		</tr>
@@ -155,19 +155,15 @@
 							    		<tr class="insert_form_select">
 							    			<td class="form_title">출금</td>
 							    			<td class="form_select1">
-						                        <select name="trs_out_asset" class="trs_form">
+						                        <select name="trs_out_asset" class="trs_form assetList">
 						                            <option value="">출금 자산종류를 선택해주세요</option>
-							                            <option value="1">돼지저금통</option>
-							                            <option value="2">지갑</option>
-							                            <option value="3">국민카드</option>
-							                            <option value="4">국민통장</option>
 						                        </select>												    				
 							    			</td>
 							    		</tr>
 							    		<tr class="insert_form_select">
 							    			<td class="form_title">입금</td>
 							    			<td class="form_select2">
-						                        <select name="trs_in_asset" class="trs_form">
+						                        <select name="trs_in_asset" class="trs_form assetList">
 						                            <option value="">입금 자산종류를 선택해주세요</option>
 							                            <option value="1">돼지저금통</option>
 							                            <option value="2">지갑</option>

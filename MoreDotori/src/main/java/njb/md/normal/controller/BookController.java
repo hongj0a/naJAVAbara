@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
+import njb.md.normal.domain.Asset;
 import njb.md.normal.domain.Inout;
 import njb.md.normal.domain.InoutForm;
 import njb.md.normal.domain.InoutTrsList;
 import njb.md.normal.domain.Transfer;
 import njb.md.normal.domain.TrsForm;
 import njb.md.normal.service.AbookSumService;
+import njb.md.normal.service.AssetService;
 import njb.md.service.CodeService;
 import njb.md.normal.service.InoutService;
 import njb.md.normal.service.InoutTrsListService;
@@ -57,6 +59,9 @@ public class BookController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private AbookSumService abs_service;
+	
+	@Setter(onMethod_ = @Autowired)
+	private AssetService ass_service;
 	
 	@RequestMapping("/book")
 	public ModelAndView myAccountBook() {
@@ -91,6 +96,28 @@ public class BookController {
 		mv.addObject("codelistIN", codelistIN);
 		mv.addObject("codelistOT", codelistOT);
 		return mv;
+	}
+	
+	@RequestMapping(value="/book/assetList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<Object> getAssetList(String M_id, HttpServletRequest request) throws Exception{
+		log.info("### 자산리스트를 가져올게욘 ####");
+		//계정정보 및 날짜로 가계부 수입 및 지출, 이체 정보 가져오기
+		
+		List<Asset> assetList = ass_service.selectAssetListS(M_id);
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap<String,Object>> hmlist = new ArrayList<HashMap<String,Object>>();
+        
+        for(Asset as : assetList) {
+        	HashMap<String,Object> hm = new HashMap<String, Object>();
+        	hm.put("A_seq", as.getA_seq());
+        	hm.put("A_nickname", as.getA_nickname());
+        	hmlist.add(hm);
+        }
+		
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 	}	
 	
 	//@RequestBody : json형태로 받아서 객체로 바꿔준다
@@ -189,8 +216,8 @@ public class BookController {
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();
 				hm.put("IOT_seq", ts.getT_seq());
 				hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
-				hm.put("IOT_asset", ts.getA_seq_in());
-				hm.put("IOT_assetgori", ts.getA_seq_out());
+				hm.put("IOT_asset", ass_service.selectAssetS(ts.getA_seq_in()).getA_nickname());
+				hm.put("IOT_assetgori", ass_service.selectAssetS(ts.getA_seq_out()).getA_nickname());
 				hm.put("IOT_date", ts.getT_date());
 				hm.put("IOT_money", ts.getT_money());
 				hm.put("IOT_memo", ts.getT_memo());
@@ -202,7 +229,7 @@ public class BookController {
 				HashMap<Object,Object> hm = new HashMap<Object,Object>();
 				hm.put("IOT_seq", io.getI_seq());
 				hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
-				hm.put("IOT_asset", io.getA_seq());
+				hm.put("IOT_asset", ass_service.selectAssetS(io.getA_seq()).getA_nickname());
 				hm.put("IOT_assetgori", code_service.selectCodeS(io.getC_categori()).getC_name());
 				hm.put("IOT_date", io.getI_date());
 				hm.put("IOT_money", io.getI_money());
@@ -282,8 +309,8 @@ public class BookController {
 				hm.put("IOT_seq", ts.getT_seq());
 				hm.put("IOT_date", getDay);
 				hm.put("C_inout", code_service.selectCodeS(ts.getC_inout()).getC_name());
-				hm.put("IOT_asset", ts.getA_seq_in());
-				hm.put("IOT_assetgori", ts.getA_seq_out());
+				hm.put("IOT_asset", ass_service.selectAssetS(ts.getA_seq_in()).getA_nickname());
+				hm.put("IOT_assetgori", ass_service.selectAssetS(ts.getA_seq_out()).getA_nickname());
 				hm.put("IOT_money", ts.getT_money());
 				hm.put("IOT_memo", ts.getT_memo());
 				hmlist.add(hm);
@@ -298,7 +325,7 @@ public class BookController {
 				hm.put("IOT_seq", io.getI_seq());
 				hm.put("IOT_date", getDay2);
 				hm.put("C_inout", code_service.selectCodeS(io.getC_inout()).getC_name());
-				hm.put("IOT_asset", io.getA_seq());
+				hm.put("IOT_asset", ass_service.selectAssetS(io.getA_seq()).getA_nickname());
 				hm.put("IOT_assetgori", code_service.selectCodeS(io.getC_categori()).getC_name());
 				hm.put("IOT_money", io.getI_money());
 				hm.put("IOT_memo", io.getI_memo());

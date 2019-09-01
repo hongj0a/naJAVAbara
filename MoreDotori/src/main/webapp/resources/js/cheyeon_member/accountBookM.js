@@ -1,3 +1,5 @@
+var loginId = null;
+
 /**
  * monthPicker 0.1
  * http://stove99.tistory.com
@@ -74,18 +76,50 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	    return str;
    };
    
+   //자산 리스트 가져오기
+   $.fn.getAssetList = function(){
+	   $.ajax({
+		   type: "GET",
+		   url : "book/assetList.do",
+		   dataType : "json",
+		   data : { M_id: loginId },
+		   success : function(data){
+			if(data.length > 0){
+    			for(var i=0; i<data.length; i++){
+    				var option = "<option value='"+ data[i].A_seq +"'>"
+    				option += data[i].A_nickname;
+    				option += "</option>";
+    				
+    				$('.assetList').append(option);
+    			}
+			}else{
+				var option = "<option value=''>"
+				option += "등록하신 자산정보가 없습니다."
+				option += "</option>";
+				$('.assetList').append(option);
+			}
+	   },
+	   error:function(request,status,error){
+          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       }
+	   });
+   }   
+   
 	//리스트 수 가져오기
    var pageBlock = 1;
+   var datasu = 0;
    $.fn.getInOutTrsCount = function(year, month){
  	   $.ajax({
 		   type: "GET",
 		   url : "book2/returnListCount.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
-			   		yyyy: year,
+		   data : { M_id: loginId,
+			   		yyyy: year, 
 			   		mmmm: month
 		   },
 		   success : function(data){
+			   datasu = data;
+			   
 			   var view = 15;						//한 페이지당 보일 row 수
 			   var pageBlockSu = 5;					//쪽블럭에 나올 쪽수
 			   var pageSu = Math.ceil(data/view);	//전체 쪽수
@@ -119,39 +153,41 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    
    //쪽번호 블록나누기
    $.fn.paging = function(selp){
-	   var pNumList = $('.pageNum').children();
-	   var spanCount = $('.pNum').length;
-	   var realClass = null;
-	   
-	   //해당페이지에 색보이게하기
-	   for(var j=0; j<=spanCount; j++){
-		   if((pNumList.eq(j).text())==selp){
-			   pNumList.eq(j).css("color", "#F29D35");
-			   var selpClass = pNumList.eq(j).attr("class");
-			   var selpClassArr = selpClass.split(' ');
-			   realClass = selpClassArr[1];
-		   }
-	   }
-	   
-	   for(var j=0; j<=spanCount; j++){
-		   //해당페이지의 페이지블록만 보이게하기
-		   if(pNumList.eq(j).hasClass(realClass)){
-			   pNumList.eq(j).addClass("act");
+	   if(datasu!=0){
+		   var pNumList = $('.pageNum').children();
+		   var spanCount = $('.pNum').length;
+		   var realClass = null;
+		   
+		   //해당페이지에 색보이게하기
+		   for(var j=0; j<=spanCount; j++){
+			   if((pNumList.eq(j).text())==selp){
+				   pNumList.eq(j).css("color", "#F29D35");
+				   var selpClass = pNumList.eq(j).attr("class");
+				   var selpClassArr = selpClass.split(' ');
+				   realClass = selpClassArr[1];
+			   }
 		   }
 		   
-		   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
-		   var pBlockName = realClass.split('pBlock');
-		   var pBlockNum = pBlockName[1];
-		   pBlockNum *= 1;
-		   if(pBlockNum>=pageBlock){
-			   $('.page_next').css("display", "none");
-		   }else{
-			   $('.page_next').css("display", "inline-block");
-		   } 
-		   if(pBlockNum<=1){
-			   $('.page_prev').css("display", "none");
-		   }else{
-			   $('.page_prev').css("display", "inline-block");
+		   for(var j=0; j<=spanCount; j++){
+			   //해당페이지의 페이지블록만 보이게하기
+			   if(pNumList.eq(j).hasClass(realClass)){
+				   pNumList.eq(j).addClass("act");
+			   }
+			   
+			   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
+			   var pBlockName = realClass.split('pBlock');
+			   var pBlockNum = pBlockName[1];
+			   pBlockNum *= 1;
+			   if(pBlockNum>=pageBlock){
+				   $('.page_next').css("display", "none");
+			   }else{
+				   $('.page_next').css("display", "inline-block");
+			   } 
+			   if(pBlockNum<=1){
+				   $('.page_prev').css("display", "none");
+			   }else{
+				   $('.page_prev').css("display", "inline-block");
+			   }		   
 		   }		   
 	   }
    }
@@ -226,7 +262,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   type: "GET",
 		   url : "book2/iotMList.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   		yyyy: year,
 			   		mmmm: month,
 			   		selp: selp
@@ -309,7 +345,12 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	});
 		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+	//메소드첫실행***********************************************************************************************
+
+    //로그인아이디 가져오기
+    loginId=$("#loginId").val();
+    
+    
 	$("#select-month").monthPicker();
 	
     var ttday = new Date();
@@ -321,6 +362,10 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    	//제목
     $("#select-month").text(ttday.getFullYear()+'년 '+ ttmonth + '월');
     $.fn.getInOutTrs(ttday.getFullYear(),ttmonth);
+    
+    //자산목록 가져오기
+    $.fn.getAssetList();
+    
     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -591,7 +636,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    	 $(".badge_save_date").css("display", "none");
 	 $(".badge_cancle_date").css("display", "none");      	
   	
-	 $(".badge_update_date").css("display", "inline-block");  		 
+	 $(".badge_update_date").css("display", "inline-block");
    });
    
    /* Form 저장 및 내용 지우기 이벤트  */
@@ -607,7 +652,9 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    
    //1. 수입지출 클릭이벤트 (삭제하기클릭)
    $(".del_insert_inout").click(function(){
-	   $(".badge_cancle_date").trigger("click");
+		$(".badge_update_date").trigger("click");
+		$(".badge_cancle_date").trigger("click");
+		
 	   var seq = $(".io_seq.out_form").val();
 	   var yyyy = $.trim($(".form_select_year_val.inout_form").val());
 	   var mmmm = $.trim($(".form_select_month_val.inout_form").val());
@@ -646,7 +693,8 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    
    //2. 이체 클릭이벤트 (삭제하기클릭)
    $(".del_insert_trs").click(function(){
-	   $(".badge_cancle_date").trigger("click");
+		$(".badge_update_date").trigger("click");
+	    $(".badge_cancle_date").trigger("click");
 	   var seq = $(".trs_seq.trs_form").val();
 	   var yyyy = $.trim($(".form_select_year_val.trs_form").val());
 	   var mmmm = $.trim($(".form_select_month_val.trs_form").val());
@@ -674,17 +722,20 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   }); 	   
    });
 
-	//리스트 수 가져오기
+	//검색 리스트 수 가져오기
    var spageBlock = 1;
+   var sdatasu = 0;
    $.fn.getSearchCount = function(searchingtxt, selp){
  	   $.ajax({
 		   type: "GET",
 		   url : "book2/returnSlistCount.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   		searchStr: searchingtxt
 		   },
 		   success : function(data){
+			   sdatasu = data;
+			   
 			   var view = 15;						//한 페이지당 보일 row 수
 			   var pageBlockSu = 5;					//쪽블럭에 나올 쪽수
 			   var pageSu = Math.ceil(data/view);	//전체 쪽수
@@ -716,41 +767,43 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 	   });	   
    }   
    
-   //쪽번호 블록나누기
+   //검색결과쪽번호 블록나누기
    $.fn.spaging = function(selp){
-	   var pNumList = $('.pageNum').children();
-	   var spanCount = $('.psNum').length;
-	   var realClass = null;
-	   
-	   //해당페이지에 색보이게하기
-	   for(var j=0; j<=spanCount; j++){
-		   if(pNumList.eq(j).text()==selp){
-			   pNumList.eq(j).css("color", "#F29D35");
-			   var selpClass = pNumList.eq(j).attr("class");
-			   var selpClassArr = selpClass.split(' ');
-			   realClass = selpClassArr[1];
-		   }
-	   }
-	   
-	   for(var j=0; j<=spanCount; j++){
-		   //해당페이지의 페이지블록만 보이게하기
-		   if(pNumList.eq(j).hasClass(realClass)){
-			   pNumList.eq(j).addClass("act");
+	   if(sdatasu!=0){
+		   var pNumList = $('.pageNum').children();
+		   var spanCount = $('.psNum').length;
+		   var realClass = null;
+		   
+		   //해당페이지에 색보이게하기
+		   for(var j=0; j<=spanCount; j++){
+			   if(pNumList.eq(j).text()==selp){
+				   pNumList.eq(j).css("color", "#F29D35");
+				   var selpClass = pNumList.eq(j).attr("class");
+				   var selpClassArr = selpClass.split(' ');
+				   realClass = selpClassArr[1];
+			   }
 		   }
 		   
-		   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
-		   var pBlockName = realClass.split('psBlock');
-		   var pBlockNum = pBlockName[1];
-		   pBlockNum *= 1;
-		   if(pBlockNum>=spageBlock){
-			   $('.page_nexts').css("display", "none");
-		   }else{
-			   $('.page_nexts').css("display", "inline-block");
-		   } 
-		   if(pBlockNum<=1){
-			   $('.page_prevs').css("display", "none");
-		   }else{
-			   $('.page_prevs').css("display", "inline-block");
+		   for(var j=0; j<=spanCount; j++){
+			   //해당페이지의 페이지블록만 보이게하기
+			   if(pNumList.eq(j).hasClass(realClass)){
+				   pNumList.eq(j).addClass("act");
+			   }
+			   
+			   //현블록이 첫블록이면 prev화살표가 보이지 않게하기
+			   var pBlockName = realClass.split('psBlock');
+			   var pBlockNum = pBlockName[1];
+			   pBlockNum *= 1;
+			   if(pBlockNum>=spageBlock){
+				   $('.page_nexts').css("display", "none");
+			   }else{
+				   $('.page_nexts').css("display", "inline-block");
+			   } 
+			   if(pBlockNum<=1){
+				   $('.page_prevs').css("display", "none");
+			   }else{
+				   $('.page_prevs').css("display", "inline-block");
+			   }		   
 		   }		   
 	   }
    }
@@ -824,7 +877,7 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   type: "GET",
 		   url : "book2/iotSearchList.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   	    searchStr: searchingtxt,
 			   	    selp: selp
 		   },
@@ -919,8 +972,19 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
 		   $('.form_cont .trs_form').val(td.eq(4).text());
 		   $('.form_money .trs_form').val(td.eq(5).text());
 		   
-    	   $('.form_select1 .trs_form').val(td.eq(3).children('.account_tab_td3_sp1').html()).prop("selected", true);
-    	   $('.form_select2 .trs_form').val(td.eq(3).children('.account_tab_td3_sp2').html()).prop("selected", true);
+    	   for(var i=0; i<$(".form_select1 .trs_form option").length; i++){
+    		   if($(".form_select1 .trs_form option:eq("+ i +")").text()==td.eq(3).children('.account_tab_td3_sp1').html()){
+    			   $(".form_select1 .trs_form option:eq("+ i +")").prop("selected", true);
+    		   }
+    	   }        	   
+    	   
+    	   for(var i=0; i<$(".form_select2 .trs_form option").length; i++){
+    		   if($(".form_select2 .trs_form option:eq("+ i +")").text()==td.eq(3).children('.account_tab_td3_sp2').html()){
+    			   $(".form_select2 .trs_form option:eq("+ i +")").prop("selected", true);
+    		   }
+    	   }    
+	   
+	   
 	   }else{
 		   $('.io_seq.out_form').val(td.eq(0).text());
 		   
@@ -938,10 +1002,12 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
     			   $(".form_select0 .inout_form option:eq("+ i +")").prop("selected", true);
     		   }
     	   }
-    	   
-    	   //자산vo합치면 option내용별로 수정필요 (예시 위의 for문)
-    	   $('.form_select1 .inout_form').val(td.eq(3).text()).prop("selected", true);
-    	   
+ 
+    	   for(var i=0; i<$(".form_select1 .inout_form option").length; i++){
+    		   if($(".form_select1 .inout_form option:eq("+ i +")").text()==td.eq(3).text()){
+    			   $(".form_select1 .inout_form option:eq("+ i +")").prop("selected", true);
+    		   }
+    	   }    	   
     	   
     	   for(var i=0; i<$(".form_select2 .inout_form option").length; i++){
     		   if($(".form_select2 .inout_form option:eq("+ i +")").text()==td.eq(4).text()){

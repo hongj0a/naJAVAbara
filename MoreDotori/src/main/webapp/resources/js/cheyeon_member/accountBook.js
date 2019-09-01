@@ -1,3 +1,5 @@
+var loginId = null;
+
 		/*제목 애니메이션 효과*/      
        $.fn.animeTitle = function(){
            var anim = $('.title_select_date').attr('data-animate');
@@ -54,7 +56,7 @@
     		   type: "GET",
 			   url : "book/chartData.do",
 			   dataType : "json",
-			   data : { M_id: "inhee@naver.com",
+			   data : { M_id: loginId,
 				   		yyyy: $(".form_select_year_val.out_form").val(),
 			   },
 			   success : function(data){
@@ -69,13 +71,42 @@
     	   });       	   
        }
        
+       //자산 리스트 가져오기
+       $.fn.getAssetList = function(){
+    	   $.ajax({
+    		   type: "GET",
+    		   url : "book/assetList.do",
+    		   dataType : "json",
+    		   data : { M_id: loginId },
+    		   success : function(data){
+    			if(data.length > 0){
+	    			for(var i=0; i<data.length; i++){
+	    				var option = "<option value='"+ data[i].A_seq +"'>"
+	    				option += data[i].A_nickname;
+	    				option += "</option>";
+	    				
+	    				$('.assetList').append(option);
+	    			}
+    			}else{
+    				var option = "<option value=''>"
+    				option += "등록하신 자산정보가 없습니다."
+    				option += "</option>";
+    				$('.assetList').append(option);
+    			}
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+    	   });
+       }
+       
        //가계부 사용 목록 가져오기 (일별)
        $.fn.getInOutTrs = function(){
     	   $.ajax({
     		   type: "GET",
 			   url : "book/iotList.do",
 			   dataType : "json",
-			   data : { M_id: "inhee@naver.com",
+			   data : { M_id: loginId,
 				   		yyyy: $(".form_select_year_val.out_form").val(),
 				   		mmmm: $(".form_select_month_val.out_form").val(),
 				   		dddd: $(".form_select_day_val.out_form").val()},
@@ -83,7 +114,7 @@
 				   var content = "";
 				   $('.account_table > tbody').empty();
 				   if(data.length > 0){
-					   for(i=0; i<data.length; i++){
+					   for(var i=0; i<data.length; i++){
 						   if(data[i].C_inout == "이체"){
 							   content += "<tr class='trstr'>";
 							   content += "<td style='display:none' class='account_tab_td1'>"+ data[i].IOT_seq + "</td>";
@@ -146,7 +177,7 @@
     		   type: "GET",
 			   url : "book/sumList.do",
 			   dataType : "json",
-			   data : { M_id: "inhee@naver.com",
+			   data : { M_id: loginId,
 				   		yyyy: $(".form_select_year_val.out_form").val(),
 				   		mmmm: $(".form_select_month_val.out_form").val(),
 				   		dddd: $(".form_select_day_val.out_form").val()},
@@ -242,9 +273,11 @@
        };
        
        
-       //메소드실행
+       //메소드 첫 실행 *******************************************************************
+       loginId=$("#loginId").val();
        $.fn.settingToday();
-
+       $.fn.getAssetList();
+       
        
        //클릭이벤트(달력클릭)
   	   var preyyyy = $(".form_select_year_val").val();
@@ -762,10 +795,18 @@
         	   $('.form_money .trs_form').val(td.eq(4).text());
         	   $('.form_cont .trs_form').val(td.eq(3).text());
         	   
-        	   //자산합치면 수정필요
-        	   $('.form_select1 .trs_form').val(td.eq(2).children('.account_tab_td3_sp1').html()).prop("selected", true);
-        	   $('.form_select2 .trs_form').val(td.eq(2).children('.account_tab_td3_sp2').html()).prop("selected", true);
-    		   
+        	   for(var i=0; i<$(".form_select1 .trs_form option").length; i++){
+        		   if($(".form_select1 .trs_form option:eq("+ i +")").text()==td.eq(2).children('.account_tab_td3_sp1').html()){
+        			   $(".form_select1 .trs_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }        	   
+        	   
+        	   for(var i=0; i<$(".form_select2 .trs_form option").length; i++){
+        		   if($(".form_select2 .trs_form option:eq("+ i +")").text()==td.eq(2).children('.account_tab_td3_sp2').html()){
+        			   $(".form_select2 .trs_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }        	   
+        	   
     	   //수입 및 지출
     	   }else{
     		   $('.inout_nav.nav-link').trigger("click");
@@ -784,9 +825,11 @@
         		   }
         	   }
         	   
-        	   //자산vo합치면 option내용별로 수정필요 (예시 위의 for문)
-        	   $('.form_select1 .out_form').val(td.eq(2).text()).prop("selected", true);
-        	   
+        	   for(var i=0; i<$(".form_select1 .out_form option").length; i++){
+        		   if($(".form_select1 .out_form option:eq("+ i +")").text()==td.eq(2).text()){
+        			   $(".form_select1 .out_form option:eq("+ i +")").prop("selected", true);
+        		   }
+        	   }        	   
         	   
         	   for(var i=0; i<$(".form_select2 .out_form option").length; i++){
         		   if($(".form_select2 .out_form option:eq("+ i +")").text()==td.eq(3).text()){
