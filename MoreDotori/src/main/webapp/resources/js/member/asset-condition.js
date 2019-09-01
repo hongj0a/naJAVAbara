@@ -1,19 +1,18 @@
-   //숫자컴마메소드
-   $.fn.comma = function(num){
-	    var len, point, str; 
-	       
-	    num = num + ""; 
-	    point = num.length % 3 ;
-	    len = num.length; 
-	   
-	    str = num.substring(0, point); 
-	    while (point < len) { 
-	        if (str != "") str += ","; 
-	        str += num.substring(point, point + 3); 
-	        point += 3; 
-	    } 
-	    return str;
-   };
+var loginId = null;
+
+	//숫자컴마메소드
+	$.fn.comma = function(str){
+		    str = String(str);
+		    var minus = str.substring(0, 1);
+		 
+		    str = str.replace(/[^\d]+/g, '');
+		    str = str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	
+		     //음수일 경우
+		    if(minus == "-") str = "-"+str;
+		 
+		    return str;
+	};
 
 	//tab1 chart1
 	$.fn.setTab1Chart1Data = function(nameArr, inArr, outArr){
@@ -565,7 +564,7 @@
 		   type: "GET",
 		   url : "asset_cond/tab1chartData.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   		yyyy: yyyy,
 			   		mmmm: mmmm,
 			   		dddd, dddd
@@ -605,7 +604,7 @@
 		   type: "GET",
 		   url : "asset_cond/tab2chartData.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   		yyyy: yyyy,
 			   		mmmm: mmmm,
 			   		dddd, dddd
@@ -672,7 +671,7 @@
 		   type: "GET",
 		   url : "asset_cond/tab3chartData.do",
 		   dataType : "json",
-		   data : { M_id: "inhee@naver.com",
+		   data : { M_id: loginId,
 			   		yyyy: yyyy,
 			   		mmmm: mmmm,
 			   		dddd, dddd
@@ -690,8 +689,11 @@
    } 	
 
 ////////////////////////////////////////////////////////////////
-
+//메소드 첫실행 ******************************************************************************************
+   
 $(document).ready(function() {
+	loginId=$("#loginId").val();
+	
 	var today = new Date();
 	var toyear = today.getFullYear();
 	var tomonth = today.getMonth()+1;

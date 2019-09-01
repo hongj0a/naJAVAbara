@@ -11,20 +11,16 @@ var loginId = null;
        };
        
        //숫자컴마메소드
-       $.fn.comma = function(num){
-    	    var len, point, str; 
-    	       
-    	    num = num + ""; 
-    	    point = num.length % 3 ;
-    	    len = num.length; 
-    	   
-    	    str = num.substring(0, point); 
-    	    while (point < len) { 
-    	        if (str != "") str += ","; 
-    	        str += num.substring(point, point + 3); 
-    	        point += 3; 
-    	    } 
-    	     
+       $.fn.comma = function(str){
+    	    str = String(str);
+    	    var minus = str.substring(0, 1);
+    	 
+    	    str = str.replace(/[^\d]+/g, '');
+    	    str = str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+
+    	     //음수일 경우
+    	    if(minus == "-") str = "-"+str;
+    	 
     	    return str;
        };
 
