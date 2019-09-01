@@ -11,4 +11,5 @@ public interface MemberService {
 	int duplCheck(String type, String name);
 	Map<Object, Object> getExpertById(String id);
 	int withdrawal(String mid);
+	String findId(String name, String phone, String birth);
 }

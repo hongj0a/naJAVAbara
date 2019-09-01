@@ -179,18 +179,28 @@ public class MemberServiceImpl implements MemberService {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("mid", mid);
-		map.put("mstate", "MS003");
+		map.put("m_id", mid);
+		map.put("m_state", "MS003");
 		
 		result *= mapper.updateState(map);
 
-		map.remove("mstate");
-		map.put("menabled", "0");
+		map.remove("m_state");
+		map.put("m_enabled", "0");
 		
 		result *= mapper.setEnable(map);
 		
 //		log.info("# map: " + map);
 		
 		return result;
+	}
+	
+	public String findId(String name, String phone, String birth) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("m_name", name);
+		map.put("m_phone", phone);
+		map.put("m_birth", birth);
+		
+		return mapper.findId(map);
 	}
 }

@@ -276,7 +276,18 @@
 	          <artifactId>commons-fileupload</artifactId>
 	          <version>1.3.3</version>
 	      </dependency>
-      
+      	  
+      	  <!-- find account - mail -->
+	  	   <dependency>
+		  	  <groupId>org.springframework</groupId>
+			  <artifactId>spring-context-support</artifactId>
+			  <version>${org.springframework-version}</version>
+		   </dependency>
+		   <dependency>
+			  <groupId>com.sun.mail</groupId>
+			  <artifactId>javax.mail</artifactId>
+			  <version>1.6.1</version>
+		   </dependency>
 	</dependencies>
 	
 			

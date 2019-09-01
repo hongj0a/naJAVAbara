@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
@@ -130,9 +129,10 @@
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">성별&nbsp;&nbsp;</label>
 															<div class="col col-form-label" id="inputGender">
+																<input type="hidden" id="gender" value="<sec:authentication property="principal.member.m_gender"/>">
    																<div class="form-group d-inline">
 			                                                        <div class="radio radio-primary d-inline">
-			                                                            <input type="radio" name="m_gender" id="genderM" value="M" checked="">
+			                                                            <input type="radio" name="m_gender" id="genderM" value="M">
 			                                                            <label for="genderM" class="cr">남</label>
 			                                                        </div>
 			                                                    </div>
@@ -146,6 +146,7 @@
 														</div>
 														<div class="form-group row mb-4">
 															<sec:authentication property="principal.member.m_birth" var="birth"/>
+															<input type="hidden" id="birth" value="<sec:authentication property="principal.member.m_birth"/>">
 															<label class="col-sm-3 col-form-label">생년월일</label>
 															<div class="col form-inline" id="inputBirth">
 																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-year" required>
@@ -160,6 +161,7 @@
 															</div>
 														</div>
 														<sec:authorize access="hasRole('ROLE_EXPERT')" var="isExpert">
+															<input type="hidden" id="isExpert" value="${isExpert}">
 															<div id="expert-details">
 																<div class="row">
 																	<div class="form-group col-sm-4 mb-4">
@@ -184,7 +186,7 @@
 																		<div class="input-group">
 																			<input type="text" class="form-control address" id="inputZipCode" name="zipCode" readonly>
 																			<div class="input-group-append">
-																				<button class="btn btn-primary" name="find-address" type="button">주소찾기</button>
+																				<input type="button" class="btn btn-primary" name="find-address" onclick="findPostcode()" value="주소찾기">
 																			</div>
 																		</div>
 																	</div>
@@ -198,7 +200,7 @@
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label"></label>
 																	<div class="col">
-																		<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" required>
+																		<input type="text" class="form-control" id="inputAddrDetail" name="e_detailaddr" placeholder="상세주소" required>
 																	</div>
 																</div>
 																<div class="form-group">
@@ -237,7 +239,7 @@
 																				<option value="">SNS</option>
 																			</select>
 																		</div>
-																		<input type="text" class="form-control" id="sn1" name="snsUrl" placeholder="SNS주소">
+																		<input type="url" class="form-control" id="sn1" name="snsUrl" placeholder="SNS주소">
 																		<div class="input-group-append">
 																			<button class="btn btn-primary addSNS" type="button">
 																				<i class="fas fa-plus"></i>
@@ -327,197 +329,8 @@
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 	<!-- [ Main Content ] end -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script>
-		$(function () {
-		  var token = $("meta[name='_csrf']").attr("content");
-		  var header = $("meta[name='_csrf_header']").attr("content");
-		  $(document).ajaxSend(function(e, xhr, options) {
-		    xhr.setRequestHeader(header, token);
-		  });
-		});
-		
-		function insertSform() {
-			var cntSNS = $('select[name="sns"]').length;
-			if(cntSNS<5) {
-				$('.inputSNS').append(
-					'<div class="input-group mb-1">'
-					+ '<div class="input-group-prepend">'
-						+ '<select class="form-control" name="sns">'
-							+ '<option value="">SNS</option>'
-							+ '<option value="SN001">Facebook</option>'
-							+ '<option value="SN002">Instagram</option>'
-							+ '<option value="SN003">Twitter</option>'
-							+ '<option value="SN004">Youtube</option>'
-							+ '<option value="SN005">Blog</option>'
-						+ '</select>'
-					+ '</div>'
-					+ '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소">'
-					+ '<div class="input-group-append">'
-						+ '<button class="btn btn-primary subSNS" type="button">'
-							+ '<i class="fas fa-minus"></i>'
-						+ '</button>'
-					+ '</div>'
-					+ '</div>'
-				);
-			}
-		}
-		
-		$(document).ready(function() {
-			$('#change-pwd-btn').on('click', function() {
-				$(this).parent().parent().hide();
-				$('.change-password').css('display','inline');
-			});
-			
-			$("#choose-image").on('change',	function() {
-				if (this.files && this.files[0]) {
-					var reader = new FileReader();
-					reader.onload = function(e) {
-						$('#profile-image').attr('src',e.target.result);
-					}
-					reader.readAsDataURL(this.files[0]);
-				}
-			});
-			
-			// add birthday select options
-			  var date = new Date();
-			  var year = date.getFullYear();
-
-			  for(var i=year; i>=year-100; i--) {
-			    $('#birth-year').append('<option value="' + i + '">' + i + '</option>');
-			  }
-			  for(i=1; i<=12; i++) {
-				var j = i.toString();
-				if(i<10) { j = '0' + j; }
-				
-			    $('#birth-month').append('<option value="' + j + '">' + i + '</option>');
-			  }
-			  for(i=1; i<=31; i++) {
-				var j = i.toString();
-				if(i<10) { j = '0' + j; }
-			    
-				$('#birth-day').append('<option value="' + j + '">' + i + '</option>');
-			  }
-
-			  // add license select options
-			  var arrLicense = ['AFPK', 'CFP', 'FP', 'IFP', 'CPM', 'ChFC'];
-			  for (j = 1; j <= 6; j++) {
-			    $('select[name="license"]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
-			  }
-			  
-			  //add sns select options
-			  var arrSns = ['Facebook', 'Instagram', 'Twitter', 'Youtube', 'Blog'];
-			  for (i = 1; i <= 5; i++) {
-				  $('select[name="sns"]').append('<option value="SN00' + i + '">' + arrSns[i - 1] + '</option>');
-			  }
-			
-			$('.addSNS').on('click', insertSform);
-				
-			$(document).on('click', '.subSNS', function() {
-				$(this).parents('div.input-group.mb-1').remove();
-			});
-			
-			$('input[value="<c:out value="${gender}"/>"]').attr('checked', true);
-			$('input[value="<c:out value="${gender}"/>"]:checked').parent().addClass('active');
-			
-			$('#birth-year').val('<c:out value="${fn:substring(birth, 0, 4)}"/>');
-			$('#birth-month').val('<c:out value="${fn:substring(birth, 4, 6)}"/>');
-			$('#birth-day').val('<c:out value="${fn:substring(birth, 6, 8)}"/>');
-			
-			if(<c:out value="${isExpert}"/>){
-				$.ajax({
-					url: '/getExpert.do',
-					data: {
-						mid: '<c:out value="${mid}"/>'
-					},
-					dataType: 'JSON',
-					type: 'POST',
-					success: function(data){
-						$('#inputJob').val(data.job);
-						$('#inputPosition').val(data.position);
-						$('#inputCareer').val(data.career);
-						$('#inputZipCode').val(data.zipcode);
-						$('#inputAddr').val(data.address);
-						$('#inputAddrDetail').val(data.detailaddr);
-						$('textarea[name="e_introduce"]').val(data.introduce);
-						$('#ltype1').val(data.ltype1);
-						$('#inputLicense1').val(data.li1);
-						
-						if(data.ltype2 != null) {
-							$('ltype2').val(data.ltype2);
-							$('#inputLicense2').val(data.li2);
-							
-							if(data.ltype3 != null) {
-								$('ltype3').val(data.ltype3);
-								$('#inputLicense3').val(data.li3);
-							}
-						}
-						
-						if(data.stype1 != null){
-							$('#stype1').val(data.stype1);
-							$('#sn1').val(data.sn1);
-							
-							if(data.stype2 != null){
-								insertSform();
-								$lastSns = $('.inputSNS div div select').last();
-								$lastSns.val(data.sn2);
-								$lastSns.parent().siblings('input').val(data.sn2);
-								
-								if(data.stype3 != null){
-									insertSform();
-									$lastSns = $('.inputSNS div div select').last();
-									$lastSns.val(data.sn3);
-									$lastSns.parent().siblings('input').val(data.sn3);
-									
-									if(data.stype4 != null){
-										insertSform();
-										$lastSns = $('.inputSNS div div select').last();
-										$lastSns.val(data.sn4);
-										$lastSns.parent().siblings('input').val(data.sn4);
-										
-										if(data.stype5 != null){
-											insertSform();
-											$lastSns = $('.inputSNS div div select').last();
-											$lastSns.val(data.sn5);
-											$lastSns.parent().siblings('input').val(data.sn5);
-										}
-									}
-								}
-							}
-						}
-					}
-				});
-			}
-		});
-
-		function checkPassword(){
-			$.ajax({
-				url: '/checkPwd.do',
-				data: {
-					pwd: $('#pwd-confirm').val()
-				},
-				type: 'POST',
-				dataType: 'JSON',
-				success: function(data) {
-					switch (data.rst) {
-						case 1:
-							alert('?!?!??!?!??');
-							$('#withdrawal').submit();
-							break;
-						case 0:
-							$mbody = $('.modal-body');
-							if ($mbody.find('.error.pwd-check-error').length) {
-						      break;
-						    }
-							$mbody.append('<div class="error pwd-check-error">비밀번호를 확인해주세요.</div>');
-							break;
-						default:
-							console.log('error??');
-					}
-				}
-			});
-			
-		}
-	</script>
+	
+	<script src="${pageContext.request.contextPath}/js/member/my-page.js"></script>
 </body>
 
 </html>

@@ -91,16 +91,24 @@
 						</div>
 					</div>
 					<div class="row justify-content-center">
-						<div class="form-group col-sm-3 mb-4">
+						<div class="form-group col-sm-4 mb-4">
 							<label for="male">성별&nbsp;&nbsp;</label>
-							<div class="btn-group btn-group-toggle" data-toggle="buttons" id="inputGender">
-								<label class="btn btn-primary">
-								<input type="radio" name="m_gender" value="M" required>남</label>
-								<label class="btn btn-primary">
-								<input type="radio" name="m_gender" value="F">여</label>
+							<div class="col col-form-label" id="inputGender">
+   								<div class="form-group d-inline">
+		                            <div class="radio radio-primary d-inline">
+			                            <input type="radio" name="m_gender" id="genderM" value="M">
+			                            <label for="genderM" class="cr">남</label>
+			                        </div>
+		                        </div>
+			                    <div class="form-group d-inline">
+			 	                   <div class="radio radio-primary d-inline">
+			    	                   <input type="radio" name="m_gender" id="genderF" value="F">
+			                           <label for="genderF" class="cr">여</label>
+			                       </div>
+			                    </div>
 							</div>
 						</div>
-						<div class="form-group col-sm-9">
+						<div class="form-group col-sm-8">
 							<label for="inputBirth">생년월일</label>
 							<div class="input-group" id="inputBirth">
 								<select class="form-control" name="birth" id="birth-year" required>
@@ -170,7 +178,7 @@
 										<option value="">SNS</option>
 									</select>
 								</div>
-								<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소 ">
+								<input type="url" class="form-control" name="snsUrl" placeholder="SNS주소 ">
 								<div class="input-group-append">
 									<button class="btn btn-primary addSNS" type="button">
 										<i class="fas fa-plus"></i>

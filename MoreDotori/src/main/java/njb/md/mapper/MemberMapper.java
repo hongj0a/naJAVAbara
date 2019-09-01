@@ -24,4 +24,7 @@ public interface MemberMapper {
 	
 	int updateState(Map<String, Object> map);
 	int setEnable(Map<String, Object> map);
+	
+	String findId(Map<String, Object> map);
+	String existMem(Map<String, Object> map);
 }

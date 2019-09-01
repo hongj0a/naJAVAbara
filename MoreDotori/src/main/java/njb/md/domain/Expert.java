@@ -4,22 +4,22 @@ import lombok.Data;
 
 @Data
 public class Expert {
-	String m_id;
-	String e_job;
-	String e_position;
-	int e_career;
-	String e_address;
-	String e_detailaddr;
-	String e_introduce;
-	int e_starpoint;
+	private String m_id;
+	private String e_job;
+	private String e_position;
+	private int e_career;
+	private String e_address;
+	private String e_detailaddr;
+	private String e_introduce;
+	private int e_starpoint;
 	
-	String e_license1;
-	String e_license2;
-	String e_license3;
+	private String e_license1;
+	private String e_license2;
+	private String e_license3;
 	
-	String e_sns1;
-	String e_sns2;
-	String e_sns3;
-	String e_sns4;
-	String e_sns5;
+	private String e_sns1;
+	private String e_sns2;
+	private String e_sns3;
+	private String e_sns4;
+	private String e_sns5;
 }

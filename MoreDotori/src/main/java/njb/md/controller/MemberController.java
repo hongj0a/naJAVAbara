@@ -21,6 +21,7 @@ import njb.md.domain.Member;
 import njb.md.domain.Minfo;
 import njb.md.security.domain.CustomUser;
 import njb.md.service.FileService;
+import njb.md.service.MailService;
 import njb.md.service.MemberService;
 
 @Log4j
@@ -30,6 +31,8 @@ public class MemberController {
 	private MemberService mservice;
 	@Autowired
 	private FileService fservice;
+	@Autowired
+	private MailService mailservice;
 	
 	@PostMapping("/dupl.do")
 	@ResponseBody
@@ -116,6 +119,41 @@ public class MemberController {
 			log.info("탈퇴 실패");
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/findId.do")
+	@ResponseBody
+	public Map<Object, Object> findid(String name, String phone, String birth) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		String id = mservice.findId(name, phone, birth);
+		if(id != null) {
+			map.put("id", id);
+			result = 1;
+		} else {
+			result = 0;
+		}
+		map.put("rst", result);
+		
+		return map;
+	}
+	
+	@PostMapping("/findPwd.do")
+	@ResponseBody
+	public Map<Object, Object> findPwd(String name, String id) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		if(mailservice.sendMail(name, id)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		map.put("rst", result);
+		
+		return map;
 	}
 	
 	public void getForm(Member member, Expert expert, Minfo minfo) {

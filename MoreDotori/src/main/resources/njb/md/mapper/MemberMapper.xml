@@ -92,4 +92,12 @@
 	<update id="setEnable" parameterType="map">
 	  update MEMBER set M_ENABLED=#{m_enabled} where m_id=#{m_id}
 	</update>
+	
+	<!-- findaccount - findid -->
+	<select id="findId" parameterType="map" resultType="string">
+	  select m_id from MEMBER where m_name=#{m_name} and m_birth=#{m_birth} and m_phone=#{m_phone}
+	</select>
+	<select id="existMem" parameterType="map" resultType="string">
+	  select m_id from MEMBER where m_name=#{m_name} and m_id=#{m_id}
+	</select>
 </mapper>
