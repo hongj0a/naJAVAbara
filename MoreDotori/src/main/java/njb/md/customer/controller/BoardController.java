@@ -1,17 +1,18 @@
 package njb.md.customer.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.extern.log4j.Log4j;
 import njb.md.customer.domain.BoardMgrVO;
 import njb.md.customer.domain.BoardVO;
 import njb.md.customer.service.BoardService;
+import njb.md.security.domain.CustomUser;
 
 @Controller
 @Log4j
@@ -38,11 +40,13 @@ public class BoardController {
 	
 	// 게시판 리스트
 	@RequestMapping("/{b_code}/list")
-	public String list(HttpServletRequest request, HttpSession session,@PathVariable String b_code, BoardVO vo, Model mo) throws Exception {
+	public String list(HttpServletRequest request, HttpSession session,@PathVariable String b_code, BoardVO vo,Principal principal, Model mo) throws Exception {
 		//@PathVariable: url 경로에 변수를 넣어준다, null 공백값의 parameter 쓰지말것
 		String searchType = request.getParameter("searchType");
 		String searchWord = request.getParameter("searchWord");
-		
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		log.info(searchWord);
 		log.info(searchType);
 		
@@ -64,7 +68,7 @@ public class BoardController {
 		mo.addAttribute("BoardMgrVO", tt);
 		mo.addAttribute("boardList", list);
 		mo.addAttribute("paramBoard", vo);
-
+		mo.addAttribute("tuser", user.getMember());
 		if(b_code.equals("BO003")) {
 			return "cs/faq";
 		}else if (b_code.equals("BO004")) {
@@ -76,12 +80,14 @@ public class BoardController {
 	
 	// 게시판 내용(상세보기)
 	@RequestMapping("/{b_code}/content")
-	public String content (HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Model mo) throws Exception {
+	public String content (HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo,Principal principal, Model mo) throws Exception {
 		log.info(vo);
 		BoardMgrVO tt = new BoardMgrVO();
 		tt.setB_code(b_code); // boardMgr 데이터
 		vo.setB_code(b_code); // board 데이터
-		
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		tt = service.getBoardMgr(tt);//어떤게시판
 		if(!vo.getMode().equals("view")) service.modReadNum(vo);
 		BoardVO bo = new BoardVO();
@@ -89,7 +95,7 @@ public class BoardController {
 		mo.addAttribute("BoardMgrVO", tt);
 		mo.addAttribute("board", bo);
 		mo.addAttribute("paramBoard", vo);
-		
+		mo.addAttribute("tuser", user.getMember());
 		if(b_code.equals("BO003")) {
 			return "cs/faq";
 		}else if (b_code.equals("BO004")) {
@@ -101,11 +107,16 @@ public class BoardController {
 	
 	// 좋아요 하트
 	@RequestMapping("/{b_code}/heart")
-	public String heart(HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Model mo) throws Exception {
+	public String heart(HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Principal principal, Model mo) throws Exception {
 		log.info(vo);
 		log.info(b_seq);
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		vo.setB_code(b_code);
+		vo.setReg_id(user.getMember().getM_nickname());
 		vo.setB_seq(Integer.parseInt(b_seq));
+		mo.addAttribute("tuser", user.getMember());
 		service.modHeartNum(vo);
 		vo = service.getBoard(vo);
 		
@@ -115,7 +126,7 @@ public class BoardController {
 
 	// 글쓰기 페이지로
 	@RequestMapping("/{b_code}/write")
-	public String write(HttpServletRequest request, HttpSession session,@PathVariable String b_code,  @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+	public String write(HttpServletRequest request, HttpSession session,@PathVariable String b_code,  @ModelAttribute("boardVO") BoardVO vo, Principal principal, Model mo) throws Exception {
 		log.info(vo);
 		BoardMgrVO tt = new BoardMgrVO();
 		tt.setB_code(b_code); // boardMgr 데이터
@@ -123,7 +134,7 @@ public class BoardController {
 		tt = service.getBoardMgr(tt);//어떤게시판
 		BoardVO tempv = new BoardVO();
 		tempv = vo;
-		
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
 		vo = service.getBoard(vo);
 		if(vo == null) {
 			log.info("null");
@@ -134,9 +145,10 @@ public class BoardController {
 		log.info(vo);
 		mo.addAttribute("BoardMgrVO", tt);
 		mo.addAttribute("boardVO", vo);
+		mo.addAttribute("tuser", user.getMember());
 		
 		if(b_code.equals("BO003")) {
-			return "cs/faq";
+			return "cs/faqwrite";
 		}else if (b_code.equals("BO004")) {
 			return "cs/qna";
 		}else {
@@ -145,14 +157,23 @@ public class BoardController {
 	}
 	// 내용작성 후 리스트화면으로 가기?
 	@RequestMapping("/{b_code}/act")
-	public String act(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+	public String act(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Principal principal, Model mo) throws Exception {
 		log.info("act::::::::::::::::::::");
 		log.info(vo);
-		vo.setReg_id("테스트입니다");
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		mo.addAttribute("tuser", user.getMember());
+		if(!b_code.equals("BO003")) {
+			vo.setFcategori(b_code);
+		}
+		vo.setB_filekey("asdfasdfsadfas");
+		vo.setReg_id(user.getMember().getM_nickname());
+		vo.setB_code(b_code);
 		vo.setFcategori(b_code);
 		vo.setB_filekey("asdfasdfsadfas");
 		
-		if(vo.getMode().equals("mod")) {
+		if(vo.getB_seq() > 0) {
 			service.modBoard(vo);
 		} else {
 			service.regBoard(vo);
@@ -164,10 +185,14 @@ public class BoardController {
 
 	// 내용작성 후 리스트화면으로 가기?
 		@RequestMapping("/{b_code}/delete")
-		public String delete(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Model mo) throws Exception {
+		public String delete(HttpServletRequest request, HttpSession session,@PathVariable String b_code, @ModelAttribute("boardVO") BoardVO vo, Principal principal, Model mo) throws Exception {
 			log.info("delete::::::::::::::::::::");
 			log.info(vo);
-			vo.setReg_id("테스트입니다");
+			CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+			log.info("user: " + user.getMember().getM_nickname());
+			log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+			mo.addAttribute("tuser", user.getMember());
+			vo.setReg_id(user.getMember().getM_nickname());
 			vo.setFcategori(b_code);
 			vo.setB_filekey("asdfasdfsadfas");
 			service.removeBoard(vo);

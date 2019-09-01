@@ -54,6 +54,7 @@
 							<form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="mode" id="mode"  value="${boardVO.mode }"/>
+							<input type="hidden" name="b_seq" id="b_seq"  value="${boardVO.b_seq }"/>
                             <!-- [ Main Content ] start -->
                             <div class="row">
                             	 <!-- [ board_write ] start -->

@@ -84,7 +84,7 @@
 			 			html += "<li><div class=\"media userlist-box reply_info\" data-id=\"\" data-status=\"\" data-username=\"\">";
 				 		html += "<a class=\"media-left\" href=\"#!\"><img class=\"media-object img-radius\" src=\" "+"/images/user/avatar-1.jpg" +"\"  alt=\"image \"></a>";
 				 		html += "<div class=\"media-body\"><span class=\"chat-header float-left\">"+o.reg_id +"<small class=\"d-block text-c-green\"> " +o.reg_dt+ "</small></span>";
-				 		html += "<span class=\"like_warning float-right\"><span><a href=\"#\">추천 </a>";
+				 		html += "<span class=\"like_warning float-right\"><!--<span><a href=\"#\">추천 </a>-->";
 				 		html += "|<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\" onclick=\"test(this, "+o.re_seq+");\"> 신고</a>";
 					 	html += "</span></span></div></div><div class=\"reply_comment\">"+o.re_content+"</div></li>";
 			 		});
@@ -260,8 +260,10 @@
                                             
                                             <!-- 하단 버튼 -->
                                             <a href="#" datataget="" class="btn btn-primary btn-boredlist" onclick="clickListBtn();">목록</a>
+                                            <c:if test="${tuser.c_member eq 'MB000' || tuser.m_nickname eq board.reg_id}">
                                             <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickWriteBtn();">수정</a>
                                             <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickDelete();">삭제</a>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

@@ -144,7 +144,23 @@
                                                     <button class="btn btn-primary btn-icon" type="button" id="btnSearch"><i class="fas fa-search"></i></button>
                                                 </div>
                                             </div>
-                                            <a href="#" class="btn btn-primary float-sm-right" onclick="clickWriteBtn();">글쓰기</a>
+                                            <c:choose>
+                                            	<c:when test="${BoardMgrVO.b_code eq 'BO000' && tuser.c_member eq 'MB000'}">
+                                            		<a href="#" class="btn btn-primary float-sm-right" onclick="clickWriteBtn();">글쓰기</a>
+                                            	</c:when>
+                                            	<c:when test="${BoardMgrVO.b_code eq 'BO001' && tuser.c_member ne 'MB001' }">
+                                            		<a href="#" class="btn btn-primary float-sm-right" onclick="clickWriteBtn();">글쓰기</a>
+                                            	</c:when>
+                                            	<c:when test="${BoardMgrVO.b_code eq 'BO002' }">
+                                            		<a href="#" class="btn btn-primary float-sm-right" onclick="clickWriteBtn();">글쓰기</a>
+                                            	</c:when>
+                                            	<c:otherwise>
+                                            	
+                                            	</c:otherwise>
+                                            </c:choose>
+                                            
+                                            
+                                            
                                             </table>      
                                         </div>
                                     </div>

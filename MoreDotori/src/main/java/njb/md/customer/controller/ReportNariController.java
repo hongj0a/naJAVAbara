@@ -1,9 +1,12 @@
 package njb.md.customer.controller;
 
+import java.security.Principal;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import njb.md.customer.domain.ReplyVO;
 import njb.md.customer.domain.ReportVO;
 import njb.md.customer.service.ReportService;
+import njb.md.security.domain.CustomUser;
 
 @Controller
 @Log4j
@@ -25,7 +28,7 @@ public class ReportNariController {
 	private ReportService service;
 	
 	@RequestMapping("/write")
-	public String write(HttpServletRequest request, HttpSession session, ReportVO vo, Model mo) throws Exception {
+	public String write(HttpServletRequest request, HttpSession session, ReportVO vo,Principal principal, Model mo) throws Exception {
 		log.info(session);
 		String b_seq = request.getParameter("b_seq");
 		String b_code	= request.getParameter("b_code");
@@ -33,12 +36,16 @@ public class ReportNariController {
 		String rd_content = request.getParameter("rd_content");
 		
 		ReportVO revo = new ReportVO();
-		revo.setB_seq(b_seq.equals("") ? "0": b_seq);
+		revo.setB_seq(b_seq.equals("") ? "": b_seq);
 		revo.setB_code(b_code);
 		revo.setC_sort(b_seq.equals("") ? "RP002" : "RP001");
-		revo.setRe_seq(re_seq.equals("") ? "0": re_seq);
+		revo.setRe_seq(re_seq.equals("") ? "": re_seq);
 		revo.setRd_content(rd_content);
-		revo.setM_id("세션아이디");
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		revo.setM_id(user.getMember().getM_nickname());
 		int test = service.getMreportCnt(revo);
 		if(test <= 0) {
 			service.regReport(revo);
