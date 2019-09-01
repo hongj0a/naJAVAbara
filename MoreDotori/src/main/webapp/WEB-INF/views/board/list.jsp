@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,9 @@
 	<meta charset="utf-8">
 	<!-- append css -->
 	<!-- footable css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.standalone.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/style_board.css">
+    <link rel="stylesheet" href="/css/board/footable.bootstrap.min.css">
+    <link rel="stylesheet" href="/css/board/footable.standalone.min.css">
+	<link rel="stylesheet" href="/css/board/style_board.css">
 	
 </head>
 
@@ -33,11 +34,9 @@
  		form.submit();
 	}
 	 function go_view(seq){
-		console.log(seq);
 		var form = document.aform;
 		form.action = "/board/${BoardMgrVO.b_code}/content";
 		$("input[name='b_seq']").val(seq);
-		console.log(form);
 		form.submit();	
 	 }
 	 $(document).ready(function() {
@@ -67,8 +66,8 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 							<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="searchCate" value="${search_cate }">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="page" value="0"/>
 							<input type="hidden" name="memId" value="0"/>
 							<input type="hidden" name="mode" value=""/>
@@ -114,7 +113,7 @@
 														 -->
 															<tr>
 																<td> ${listConts.num} </td>
-																<td><a href="#" onclick="go_view(${listConts.b_seq})">${listConts.b_subjcet} </a></td>
+																<td><a href="#" onclick="go_view(${listConts.b_seq})">${listConts.b_subjcet} <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }"> (${listConts.recnt})</c:if> </a></td>
 		                                                        <td>${listConts.reg_id}</td>
 		                                                        <td>${listConts.reg_dt}</td>
 		                                                        <td>${listConts.b_readnum}</td>
@@ -164,7 +163,7 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
+    <script src="/js/board/footable.min.js"></script>
 
 <%-- <c:choose>
    <c:when test="${boardmgrvo.b_code eq 'B0000'}">

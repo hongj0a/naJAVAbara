@@ -17,6 +17,7 @@ public class BoardVO extends CommonVO{
 	private int b_readnum;
 	private int b_heartnum;
 	private int b_reportnum;
+	private int recnt;
 	private String b_filekey;
 	private String b_del_yn;
 	private String fcategori;

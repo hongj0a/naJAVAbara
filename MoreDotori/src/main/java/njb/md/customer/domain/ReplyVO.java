@@ -7,8 +7,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ReplyVO extends BoardVO {
 	private String re_seq;
-	private String c_bcategori;
+	private String b_code;
 	private String m_id;
 	private String re_content;
-	private int re_reportnum;
+	private int b_reportnum;
 }

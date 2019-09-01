@@ -24,7 +24,7 @@
 		function clickListBtn(){
 			var form = document.aform;
 			//if(!validation(form)) return;
-			form.action = "/board/${BoardMgrVO.b_code}/list";
+			form.action = "/admin/board/${BoardMgrVO.b_code}/list";
 			form.submit();
 		}
     	
@@ -51,7 +51,7 @@
 
                     <div class="main-body">
                         <div class="page-wrapper">
-							<form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
+							<form:form id="aform" modelAttribute="boardVo" name="aform" method="post" action="/admin/board/${BoardMgrVO.b_code}/act"  onsubmit="javascript:return false;">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="mode" id="mode"  value="${boardVO.mode }"/>
                             <!-- [ Main Content ] start -->
@@ -69,19 +69,24 @@
                                                 </div>
                                                 <input id="b_subjcet" name="b_subjcet" type="text" class="form-control" placeholder="제목" aria-label="" aria-describedby="" value="${boardVO.b_subjcet }"/>
                                             </div>
+                                             <div class="input-group mb-3">
+                                             	<div class="input-group-prepend">
+                                                    <span class="input-group-text" id="">분류</span>
+                                                </div>
+                                                <select name="fcategori" id="fcategori" class="form-control">
+                                                	<option value="">::선택해주세요::</option>
+													<option value="계정" <c:if test="${boardVO.fcategori eq '계정' }" >selected </c:if> >계정</option>
+													<option value="예약" <c:if test="${boardVO.fcategori eq '예약' }" >selected </c:if>>예약</option>
+													<option value="가계부" <c:if test="${boardVO.fcategori eq '가계부' }" >selected </c:if>>가계부</option>
+													<option value="기타" <c:if test="${boardVO.fcategori eq '기타' }" >selected </c:if>>기타</option>
+												</select>
+
+
+                                             </div>
                                             <!-- 에디터 1  -->
                                             <div class="mb-3">
-                                                <textarea name="b_content" id="b_content">${boardVO.b_content }
+                                                <textarea name="b_content" id="b_content" rows="5" style="width:100%;">${boardVO.b_content }
                                                 </textarea>
-                                            </div>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">파일첨부</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                    <label class="custom-file-label" for="inputGroupFile01">파일찾기</label>
-                                                </div>
                                             </div>
                                             <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right" onclick="submit();">확인</button>
                                             <a href="#" class="btn btn-secondary float-sm-right" onclick="clickListBtn();">목록으로</a>
@@ -107,15 +112,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // classic editor
-           CKEDITOR.replace('b_content' , {height: 300,language:'ko' });
 			
            function submit(){
        		var form = document.aform;
-       		CKEDITOR.instances.contents.updateElement();
-       		alert(1111);
-       		console.log(form);
    			//if(!validation(form)) return;
-   			form.action = "/board/${BoardMgrVO.b_code}/act";
+   			form.action = "/admin/board/${BoardMgrVO.b_code}/act";
    			form.submit();
        	}
         });

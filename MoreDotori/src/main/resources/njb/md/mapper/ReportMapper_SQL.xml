@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.customer.mapper.ReportCustMapper">
+	<select id="selectMreportCnt" resultType="int">
+		SELECT 
+			COUNT(*) cnt 
+		FROM REPORT  
+		WHERE C_SORT = #{c_sort}
+		AND B_CODE = #{b_code} 
+		AND (RE_SEQ = #{re_seq} OR b_seq = #{b_seq})
+	</select>
+	
+	<select id="selectMreport" resultType="reportVO">
+		SELECT 
+			RP_SEQ,
+			C_SORT,
+			B_CODE,
+			RE_SEQ,
+			B_SEQ
+		FROM REPORT  
+		WHERE C_SORT = #{c_sort}
+		AND B_CODE = #{b_code} 
+		AND (RE_SEQ = #{re_seq} OR b_seq = #{b_seq})
+	</select>
+	
+	<insert id="insertReport" >
+		INSERT INTO REPORT (
+			RP_SEQ,
+			C_SORT,
+			B_CODE,
+			RE_SEQ,
+			B_SEQ
+		) VALUES (
+			REPORT_SEQ.nextval,
+			#{c_sort},
+			#{b_code},
+			#{re_seq},
+			#{b_seq}
+		)
+	</insert>
+	
+	<insert id="insertReportDetail">
+		INSERT INTO REPORTDETAIL
+		(
+			RD_SEQ,
+			C_SORT,
+			RP_SEQ,
+			M_ID,
+			RD_DATE,
+			RD_CONTENT
+		) VALUES (
+			REPORTDETAIL_SEQ.nextval,
+			#{c_sort},
+		  	#{rp_seq},
+		  	#{m_id},
+		  	SYSDATE,
+		  	#{rd_content}
+		)
+	</insert>
+</mapper>

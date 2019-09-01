@@ -53,7 +53,7 @@
 			VALUES (
 				REPLY_SEQ.nextval, --게시판시퀀스
 				#{b_seq},
-				#{c_bcategori},
+				#{b_code},
 				#{reg_id},
 				#{re_content},
 				SYSDATE,

@@ -11,10 +11,12 @@
    	   <typeAlias alias="boardMgr" type="njb.md.customer.domain.BoardMgrVO"/>
    	   <typeAlias alias="board" type="njb.md.customer.domain.BoardVO"/>
    	   <typeAlias alias="reply" type="njb.md.customer.domain.ReplyVO"/>
+   	   <typeAlias alias="reportVO" type="njb.md.customer.domain.ReportVO"/>
    </typeAliases>
    
    <mappers>
    	   <mapper resource="njb/md/mapper/BoardMapper_SQL.xml"/>
    	   <mapper resource="njb/md/mapper/ReplyMapper_SQL.xml"/>
+   	    <mapper resource="njb/md/mapper/ReportMapper_SQL.xml"/>
    </mappers>
 </configuration>
