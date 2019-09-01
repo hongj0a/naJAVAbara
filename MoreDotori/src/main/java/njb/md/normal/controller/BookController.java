@@ -1,4 +1,4 @@
-package njb.md.controller;
+package njb.md.normal.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -22,16 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
-import njb.md.domain.Inout;
-import njb.md.domain.InoutForm;
-import njb.md.domain.InoutTrsList;
-import njb.md.domain.Transfer;
-import njb.md.domain.TrsForm;
-import njb.md.service.AbookSumService;
+import njb.md.normal.domain.Inout;
+import njb.md.normal.domain.InoutForm;
+import njb.md.normal.domain.InoutTrsList;
+import njb.md.normal.domain.Transfer;
+import njb.md.normal.domain.TrsForm;
+import njb.md.normal.service.AbookSumService;
 import njb.md.service.CodeService;
-import njb.md.service.InoutService;
-import njb.md.service.InoutTrsListService;
-import njb.md.service.TransferService;
+import njb.md.normal.service.InoutService;
+import njb.md.normal.service.InoutTrsListService;
+import njb.md.normal.service.TransferService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package njb.md.service;
+package njb.md.normal.service;
 
-import njb.md.domain.Transfer;
+import njb.md.normal.domain.Transfer;
 
 public interface TransferService {
 	Transfer selectTransSeqS(long T_seq);

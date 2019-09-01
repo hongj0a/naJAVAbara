@@ -1,10 +1,10 @@
-package njb.md.mapper;
+package njb.md.normal.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import njb.md.domain.InoutTrsList;
+import njb.md.normal.domain.InoutTrsList;
 
 public interface InoutTrsListMapper {
 	List<InoutTrsList> getListAsc(@Param("M_id") String M_id);

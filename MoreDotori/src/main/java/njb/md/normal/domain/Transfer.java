@@ -1,4 +1,4 @@
-package njb.md.domain;
+package njb.md.normal.domain;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package njb.md.controller;
+package njb.md.normal.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
-import njb.md.service.AbookSumService;
+import njb.md.normal.service.AbookSumService;
 import njb.md.service.CodeService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

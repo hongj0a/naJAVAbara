@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="njb.md.mapper.TransferMapper">
+<mapper namespace="njb.md.normal.mapper.TransferMapper">
 
-	<select id="selectTransSeq" resultType="njb.md.domain.Transfer">
+	<select id="selectTransSeq" resultType="njb.md.normal.domain.Transfer">
 		select * from Transfer where T_seq=#{T_seq}
 	</select>
 
-	<insert id="insertTrans" parameterType="njb.md.domain.Transfer">
+	<insert id="insertTrans" parameterType="njb.md.normal.domain.Transfer">
 		<!-- insert into Transfer values(Transfer_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo}) -->
 		insert into Transfer values(INOUT_SEQ.NEXTVAL, #{C_inout}, #{A_seq_in}, #{A_seq_out}, #{T_date}, #{T_money}, #{T_memo})
 	</insert>
@@ -17,7 +17,7 @@
 		delete from Transfer where T_seq=#{T_seq}
 	</delete>
 	
-	<update id="updateTrans" parameterType="njb.md.domain.Transfer">
+	<update id="updateTrans" parameterType="njb.md.normal.domain.Transfer">
 		update Transfer
 		set C_inout=#{C_inout}, A_seq_in=#{A_seq_in}, A_seq_out=#{A_seq_out}, T_date=#{T_date}, T_money=#{T_money}, T_memo=#{T_memo}
 		where T_seq=#{T_seq}
@@ -35,7 +35,7 @@
 		where A_seq=#{A_seq}
 	</update>
 	
-	<select id="searchInout" parameterType="map" resultType="njb.md.domain.Transfer">
+	<select id="searchInout" parameterType="map" resultType="njb.md.normal.domain.Transfer">
 		select * 
 		from Transfer
 		where T_seq=#{T_seq}

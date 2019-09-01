@@ -1,10 +1,10 @@
-package njb.md.mapper;
+package njb.md.normal.mapper;
 
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import njb.md.domain.Transfer;
+import njb.md.normal.domain.Transfer;
 
 public interface TransferMapper {
 	Transfer selectTransSeq(long T_seq);

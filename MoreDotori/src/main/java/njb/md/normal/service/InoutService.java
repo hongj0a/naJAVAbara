@@ -1,6 +1,6 @@
-package njb.md.service;
+package njb.md.normal.service;
 
-import njb.md.domain.Inout;
+import njb.md.normal.domain.Inout;
 
 public interface InoutService {
 	Inout selectInoutSeqS(long I_seq);

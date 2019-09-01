@@ -1,4 +1,4 @@
-package njb.md.service;
+package njb.md.normal.service;
 
 import java.sql.Date;
 

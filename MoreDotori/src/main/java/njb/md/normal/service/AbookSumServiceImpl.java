@@ -1,4 +1,4 @@
-package njb.md.service;
+package njb.md.normal.service;
 
 import java.sql.Date;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import njb.md.mapper.AbookSumMapper;
+import njb.md.normal.mapper.AbookSumMapper;
 
 @Log4j
 @Service

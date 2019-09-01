@@ -1,4 +1,4 @@
-package njb.md.mapper;
+package njb.md.normal.mapper;
 
 import java.sql.Date;
 

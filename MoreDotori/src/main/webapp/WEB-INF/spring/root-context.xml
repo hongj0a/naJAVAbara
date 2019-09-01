@@ -43,12 +43,15 @@
 	
 	<mybatis-spring:scan base-package="njb.md.mapper" />
     <mybatis-spring:scan base-package="njb.md.customer.mapper" />
+    <mybatis-spring:scan base-package="njb.md.normal.mapper" />
     
     <context:annotation-config></context:annotation-config>
 	<context:component-scan
 		base-package="njb.md.service"></context:component-scan>
 	<context:component-scan
 		base-package="njb.md.customer.service"></context:component-scan>
+			<context:component-scan
+		base-package="njb.md.normal.service"></context:component-scan>
 	<!-- 
 	<context:component-scan
 		base-package="njb.md.aop"></context:component-scan>

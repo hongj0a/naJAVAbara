@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="njb.md.mapper.InoutMapper">
+<mapper namespace="njb.md.normal.mapper.InoutMapper">
 
-	<select id="selectInoutSeq" resultType="njb.md.domain.Inout">
+	<select id="selectInoutSeq" resultType="njb.md.normal.domain.Inout">
 		select * from INOUT where I_seq=#{I_seq}
 	</select>
 
-	<insert id="insertInout" parameterType="njb.md.domain.Inout">
+	<insert id="insertInout" parameterType="njb.md.normal.domain.Inout">
 		insert into INOUT values(INOUT_SEQ.NEXTVAL, #{C_inout}, #{A_seq}, #{C_categori}, #{I_date}, #{I_money}, #{I_memo})
 	</insert>
 	
@@ -16,25 +16,25 @@
 		delete from INOUT where I_seq=#{I_seq}
 	</delete>
 	
-	<update id="updateInout" parameterType="njb.md.domain.Inout">
+	<update id="updateInout" parameterType="njb.md.normal.domain.Inout">
 		update INOUT
 		set C_inout=#{C_inout}, A_seq=#{A_seq}, C_categori=#{C_categori}, I_date=#{I_date}, I_money=#{I_money}, I_memo=#{I_memo}
 		where I_seq=#{I_seq}
 	</update>
 	
-	<update id="updateAssetPlus" parameterType="njb.md.domain.Inout">
+	<update id="updateAssetPlus" parameterType="njb.md.normal.domain.Inout">
 		update Asset
 		set A_money=A_money+#{I_money}
 		where A_seq=#{A_seq}
 	</update>
 
-	<update id="updateAssetMinus" parameterType="njb.md.domain.Inout">
+	<update id="updateAssetMinus" parameterType="njb.md.normal.domain.Inout">
 		update Asset
 		set A_money=A_money-#{I_money}
 		where A_seq=#{A_seq}
 	</update>
 	
-	<select id="searchInout" parameterType="map" resultType="njb.md.domain.Inout">
+	<select id="searchInout" parameterType="map" resultType="njb.md.normal.domain.Inout">
 		select * 
 		from INOUT
 		where I_seq=#{I_seq}

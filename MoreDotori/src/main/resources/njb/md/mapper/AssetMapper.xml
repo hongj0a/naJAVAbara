@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="njb.md.normal.mapper.AssetMapper">
+
+  <select id="selectAssetList" resultType="njb.md.normal.domain.Asset">
+	select * from asset where M_id=#{M_id}
+  </select>
+
+  <select id="selectAsset" resultType="njb.md.normal.domain.Asset">
+	select * from asset where A_seq=#{A_seq}
+  </select>
+  
+</mapper>

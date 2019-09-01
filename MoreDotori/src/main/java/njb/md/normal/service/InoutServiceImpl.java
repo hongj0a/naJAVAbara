@@ -1,4 +1,4 @@
-package njb.md.service;
+package njb.md.normal.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import njb.md.domain.Inout;
-import njb.md.mapper.InoutMapper;
+import njb.md.normal.domain.Inout;
+import njb.md.normal.mapper.InoutMapper;
 
 @Log4j
 @Service

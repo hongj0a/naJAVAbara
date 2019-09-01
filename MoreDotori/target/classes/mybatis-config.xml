@@ -16,5 +16,11 @@
    <mappers>
    	   <mapper resource="njb/md/mapper/BoardMapper_SQL.xml"/>
    	   <mapper resource="njb/md/mapper/ReplyMapper_SQL.xml"/>
+   	   
+   	   <mapper resource="njb/md/mapper/AbookSumMapper.xml"/>
+   	   <mapper resource="njb/md/mapper/AssetMapper.xml"/>
+   	   <mapper resource="njb/md/mapper/InoutMapper.xml"/>
+   	   <mapper resource="njb/md/mapper/InoutTrsListMapper.xml"/>
+   	   <mapper resource="njb/md/mapper/TransferMapper.xml"/>
    </mappers>
 </configuration>

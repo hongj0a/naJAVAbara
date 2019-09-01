@@ -1,8 +1,8 @@
-package njb.md.service;
+package njb.md.normal.service;
 
 import java.util.List;
 
-import njb.md.domain.InoutTrsList;
+import njb.md.normal.domain.InoutTrsList;
 
 public interface InoutTrsListService {
 	List<InoutTrsList> getListAscS(String M_id);

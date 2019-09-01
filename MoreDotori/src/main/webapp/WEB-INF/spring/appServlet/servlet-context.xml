@@ -46,5 +46,6 @@
 	<context:component-scan base-package="njb.md.customer.controller" />
 	<context:component-scan base-package="njb.md.admin.controller" />
 	<context:component-scan base-package="njb.md.manager.controller" />
+	<context:component-scan base-package="njb.md.normal.controller" />
 	<context:component-scan base-package="njb.md.controller" />
 </beans:beans>

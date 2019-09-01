@@ -1,10 +1,10 @@
-package njb.md.mapper;
+package njb.md.normal.mapper;
 
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import njb.md.domain.Inout;
+import njb.md.normal.domain.Inout;
 
 public interface InoutMapper {
 	Inout selectInoutSeq(long I_seq);

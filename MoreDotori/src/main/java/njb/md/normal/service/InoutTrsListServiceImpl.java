@@ -1,4 +1,4 @@
-package njb.md.service;
+package njb.md.normal.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import njb.md.domain.InoutTrsList;
-import njb.md.mapper.InoutTrsListMapper;
+import njb.md.normal.domain.InoutTrsList;
+import njb.md.normal.mapper.InoutTrsListMapper;
 
 @Log4j
 @Service
