@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -26,6 +27,7 @@ public class TransferServiceImpl implements TransferService {
 		return trs;
 	}
 
+	@Transactional
 	@Override
 	public void insertTransS(Transfer ts) {
 		log.info("#### 이체 내역 입력하기 : " + ts );
@@ -36,6 +38,7 @@ public class TransferServiceImpl implements TransferService {
 		mapper.updateAssetPlus(ts.getA_seq_in(), ts.getT_money());
 	}
 
+	@Transactional
 	@Override
 	public void deleteTransS(long T_seq) {
 		log.info("#### 이체 내역 삭제하기 : " + T_seq);
@@ -47,6 +50,7 @@ public class TransferServiceImpl implements TransferService {
 		mapper.deleteTrans(T_seq);
 	}
 
+	@Transactional
 	@Override
 	public void updateTransS(Transfer ts) {
 		log.info("#### 이체 내역 수정하기 : " + ts);

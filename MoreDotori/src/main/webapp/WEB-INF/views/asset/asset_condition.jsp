@@ -33,7 +33,7 @@
 							<!-- [ Main Content ] start -->
 							<div class="row">
 								<div class="col-sm-12">
-									<h3 class="mb-5 text-center">홍길동 님의 자산현황 및 통계</h3>
+									<h3 class="mb-5 text-center"><sec:authentication property="principal.member.m_name"/> 님의 자산현황 및 통계</h3>
 									<h6 class="mb-3 text-right">
 										오늘은 <span class="font-weight-bold"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일 <span class="today_dy"></span>요일</span> 입니다.
 									</h6>
@@ -167,7 +167,7 @@
 												<div class="card-block tab2">
 													<div class="text-center">
 														<h4 class="mb-3"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일</h4>
-														<h6 class="mb-5">홍길동 님, 하루에 <span class="">@@@@</span>원을 사용하시는 것을 권장 드려요.</h6>
+														<h6 class="mb-5"><sec:authentication property="principal.member.m_name"/> 님, 하루에 <span class="">@@@@</span>원을 사용하시는 것을 권장 드려요.</h6>
 													</div>
 													<div class="row">
 														<div class="col-sm-6">

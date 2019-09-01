@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -39,6 +40,7 @@ public class InoutServiceImpl implements InoutService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public void deleteInoutS(long I_seq) {
 		log.info("#### 수입및지출 내역 삭제하기 : " + I_seq);
@@ -53,6 +55,7 @@ public class InoutServiceImpl implements InoutService {
 		mapper.deleteInout(I_seq);
 	}
 
+	@Transactional
 	@Override
 	public void updateInoutS(Inout io) {
 		log.info("#### 수입및지출 내역 수정하기 : " + io);

@@ -52,6 +52,7 @@
 
 .tablesCard{
 	box-shadow: none !important;
+	margin-bottom: 11px !important;
 }
 
 .tablesCard table{
@@ -190,6 +191,11 @@
 
 .noData_txt + img {
 	padding-bottom: 30px;
+}
+
+.dataCount{
+	text-align: right;
+	font-size: 11px;
 }
 
 .pageNum{

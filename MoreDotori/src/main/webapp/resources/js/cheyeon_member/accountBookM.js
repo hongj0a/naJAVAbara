@@ -149,7 +149,11 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    
    //쪽번호 블록나누기
    $.fn.paging = function(selp){
+	   $('.dataCount').text("");
+	   
 	   if(datasu!=0){
+		   $('.dataCount').text("총 "+ datasu +"개의 내역이 검색되었습니다.");
+		   
 		   var pNumList = $('.pageNum').children();
 		   var spanCount = $('.pNum').length;
 		   var realClass = null;
@@ -765,7 +769,11 @@ Number.prototype.zf = function(len) { return this.toString().zf(len); };
    
    //검색결과쪽번호 블록나누기
    $.fn.spaging = function(selp){
+	   $('.dataCount').text("");
+	   
 	   if(sdatasu!=0){
+		   $('.dataCount').text("총 "+ sdatasu +"개의 내역이 검색되었습니다.");
+		   
 		   var pNumList = $('.pageNum').children();
 		   var spanCount = $('.psNum').length;
 		   var realClass = null;

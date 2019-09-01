@@ -248,6 +248,7 @@
 						    				</tbody>					    				                         				
                             			</table>
                             		</div>
+                            		<div class="dataCount"></div>
                             		<div class="pageNum">
                             		</div>
                             	</div>
