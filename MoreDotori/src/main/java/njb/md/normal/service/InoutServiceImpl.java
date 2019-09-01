@@ -27,6 +27,7 @@ public class InoutServiceImpl implements InoutService {
 		return inout;
 	}
 
+	@Transactional
 	@Override
 	public void insertInoutS(Inout io) {
 		log.info("#### 수입및지출 내역 입력하기 : " + io );
