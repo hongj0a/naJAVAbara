@@ -1,4 +1,13 @@
+
+//전역변수
 var loginId = null;
+
+var today = new Date();
+var toyear = today.getFullYear();
+var tomonth = today.getMonth()+1;
+var todate = today.getDate();
+var todays = today.getDay();
+var week = new Array('일', '월', '화', '수', '목', '금', '토');
 
 	//숫자컴마메소드
 	$.fn.comma = function(str){
@@ -529,15 +538,83 @@ var loginId = null;
   }   
   
   //탭3 차트2
-  $.fn.setTab3Chart2Data = function(outData){
-	  $(".thisMonth_out").text($.fn.comma(outData)+" 원");
+  $.fn.setTab3Chart1Data = function(assetName, assetData){
+	  $('#chart-statistics1 + div').empty();
+	  var contents="";
 	  
+	  var color = ["#97ACD9", "#2D65C2", "#15B4E0", "#6ED8E0", "#BCD9DD",
+		  			"#96D3D9", "#119DB2", "#26748E", "#65778A", "#AAAFBD",
+		  			"#7DB3A3", "#6A7563", "#CCA06F", "#F5C89C", "#7BBFC8"];
+/*	  
+ 	  for(var j=0; j<assetData.length; j++){
+		  color[j]="#"+Math.round(Math.random()*0xffffff).toString(16);
+	  }
+*/
+
+	  var asset = [];
+	  for(var i=0; i<assetData.length; i++){
+		  asset[i]={"title": assetName[i],
+				  "value": assetData[i],
+				  "color": color[i]
+		  };
+		  
+		  contents += "<div class='pt-2 pb-2'>";
+		  contents += "<span class='mr-3'>";
+		  contents += "<i class='feather icon-circle mr-2'";
+		  contents += "style='color:"+ color[i] +";'";
+		  contents += "></i>";
+		  contents += assetName[i];
+		  contents += "</span>";
+		  contents += "<span class='float-right'>";
+		  contents += $.fn.comma(assetData[i]);
+		  contents += " 원 </span>";
+		  contents += "</div>";
+	  }
+	    $('#chart-statistics1 + div').append(contents);
+	  
+		AmCharts.makeChart("chart-statistics1", {
+			"type": "pie",
+			"theme": "light",
+			"dataProvider": asset,
+			"titleField": "title",
+			"valueField": "value",
+			"colorField": "color",
+			"labelRadius": 5,
+			"radius": "42%",
+			"innerRadius": "90%",
+			"labelText": "",
+			"balloon": {
+				"fixedPosition": true
+			},
+		});	  
+  }    
+  
+  //탭3 차트2
+  $.fn.setTab3Chart2Data = function(outData){
+	  //한달예산정보 가져오기
+	  var loginMonth = $('#loginMonth').val();
+	  loginMonth = loginMonth*1;
+
+	  //하루에 얼마 지출하세요 정보 출력
+	  var lastDay = ((new Date( toyear, tomonth, 0) ).getDate())*1;
+	  var restMonth = loginMonth/lastDay;
+	  $(".thisMonth_td").text($.fn.comma(restMonth)+" 원");
+	  
+	  //텍스트 정보 출력
+	  $(".thisMonth_out").text($.fn.comma(outData)+" 원");
+	  $(".thisMonth_month").text($.fn.comma(loginMonth-outData)+" 원");
+	  if(restMonth==0){
+		  $(".thisMonthTitle + div").text("한달 예산을 다 사용하셨어요 T_T");
+	  }else{
+		  $(".thisMonthTitle + div").text("");
+	  }
+
 		AmCharts.makeChart("chart-statistics2", {
 			"type": "pie",
 			"theme": "light",
 			"dataProvider": [{
 				"title": "남은 예산",
-				"value": 303033,
+				"value": loginMonth-outData,
 				"color": "#1de9b6"
 			}, {
 				"title": "이번 달지출",
@@ -677,6 +754,9 @@ var loginId = null;
 			   		dddd, dddd
 		   },
 		   success : function(data){
+			   var assetName1 = data.assetName1;
+			   var assetData1 = data.assetData1;
+			   $.fn.setTab3Chart1Data(assetName1, assetData1);
 			   
 			   var outData2 = data.outData2;
 			   $.fn.setTab3Chart2Data(outData2);
@@ -693,13 +773,6 @@ var loginId = null;
    
 $(document).ready(function() {
 	loginId=$("#loginId").val();
-	
-	var today = new Date();
-	var toyear = today.getFullYear();
-	var tomonth = today.getMonth()+1;
-	var todate = today.getDate();
-	var todays = today.getDay();
-	var week = new Array('일', '월', '화', '수', '목', '금', '토');
 	
 	$('.today_yy').text(toyear);
 	$('.today_mm').text(tomonth);
@@ -725,39 +798,6 @@ $(document).ready(function() {
 	});
 
 	/////////////////////// chart ///////////////////////
-	// pie-chart for collapseThree - 자산 현황
-	AmCharts.makeChart("chart-statistics1", {
-		"type": "pie",
-		"theme": "light",
-		"dataProvider": [{
-			"title": "page Views",
-			"value": 24.7,
-			"color": "#1de9b6"
-		}, {
-			"title": "page Clicks",
-			"value": 36.3,
-			"color": "#a389d4"
-		}, {
-			"title": "page Likes",
-			"value": 23.5,
-			"color": "#04a9f5"
-		}, {
-			"title": "page",
-			"value": 15.5,
-			"color": "#ecedef"
-		}],
-		"titleField": "title",
-		"valueField": "value",
-		"colorField": "color",
-		"labelRadius": 5,
-		"radius": "42%",
-		"innerRadius": "90%",
-		"labelText": "",
-		"balloon": {
-			"fixedPosition": true
-		},
-	});
-	
 	// pie-chart for collapseFour - 자산별 지출현황
 	$(function() {
 		var chart2 = am4core.create("tab4-chart", am4charts.PieChart);

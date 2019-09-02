@@ -16,7 +16,8 @@
 	<!-- [ Main Content ] start -->
 
 	<!-- 로그인아이디 -->
-	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">	
+	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">
+	<input id="loginMonth" type="hidden" value="<sec:authentication property="principal.member.m_month"/>">
 	
 	<div class="pcoded-main-container">
 		<div class="pcoded-wrapper">
@@ -167,26 +168,19 @@
 												<div class="card-block tab2">
 													<div class="text-center">
 														<h4 class="mb-3"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일</h4>
-														<h6 class="mb-5"><sec:authentication property="principal.member.m_name"/> 님, 하루에 <span class="">@@@@</span>원을 사용하시는 것을 권장 드려요.</h6>
+														<div class="thisMonthTitle"><sec:authentication property="principal.member.m_name"/> 님, 하루에 <span class="thisMonth_td"></span>을 사용하시는 것을 권장 드려요.</div>
+														<div></div>
 													</div>
 													<div class="row">
 														<div class="col-sm-6">
 															<h5 class="mb-3 text-center">자산</h5>
 															<div id="chart-statistics1" class="chart-statistics"></div>
-															<div class="pt-2 pb-2">
-																<span class="mr-3"><i
-																	class="feather icon-circle text-c-green  mr-2"></i>page
-																	Views</span> <span class="float-right">15.5 %</span>
-															</div>
-															<div class="pt-2 pb-2">
-																<span class="mr-3"><i
-																	class="feather icon-circle text-c-blue  mr-2"></i>page
-																	Clicks</span> <span class="float-right">23.5 %</span>
-															</div>
-															<div class="pt-2">
-																<span class="mr-3"><i
-																	class="feather icon-circle text-c-purple  mr-2"></i>page
-																	Likes</span> <span class="float-right">36.3 %</span>
+															<div>
+																<div class="pt-2 pb-2">
+																	<span class="mr-3"><i
+																		class="feather icon-circle mr-2"></i>page
+																		Views</span> <span class="float-right">15.5 %</span>
+																</div>
 															</div>
 														</div>
 														<div class="col-sm-6">
@@ -194,13 +188,15 @@
 															<div id="chart-statistics2" class="chart-statistics"></div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
-																	class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span> <span
-																	class="float-right thisMonth_out"></span>
+																	class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span>
+																	<span class="float-right thisMonth_out"></span>
 															</div>
 															<div class="pt-2 pb-2">
 																<span class="mr-3"><i
-																	class="feather icon-circle text-c-green  mr-2"></i>남은
-																	예산</span> <span class="float-right">56,000 원</span>
+																	class="feather icon-circle text-c-green  mr-2"></i>남은 예산</span>
+																	<span class="float-right thisMonth_month">
+																			
+																	</span>
 															</div>
 														</div>
 													</div>

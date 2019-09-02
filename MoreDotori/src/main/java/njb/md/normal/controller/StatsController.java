@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
+import njb.md.normal.domain.Asset;
 import njb.md.normal.service.AbookSumService;
+import njb.md.normal.service.AssetService;
 import njb.md.service.CodeService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -42,6 +44,9 @@ public class StatsController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private AbookSumService abs_service;
+
+	@Setter(onMethod_ = @Autowired)
+	private AssetService ass_service;
 
 	@GetMapping("/asset_cond")
 	public ModelAndView myAccount_cond() {
@@ -492,9 +497,19 @@ public class StatsController {
 		
 		//포장빠께쓰
         HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
-
         
+        //자산정보 가져옴
+        List<Asset> assetList = ass_service.selectAssetListS(M_id);
+        //자산정보 저장함
+    	List<String> assetName1 = new ArrayList<String>();
+    	List<String> assetData1 = new ArrayList<String>();
+        for(Asset a : assetList) {
+        	assetName1.add(a.getA_nickname());
+        	assetData1.add(a.getA_money()+"");
+        }
         
+        hm.put("assetName1", assetName1);
+        hm.put("assetData1", assetData1);
         
         /////////////////////////////////////////////////////////////////////////////////////////////////
         

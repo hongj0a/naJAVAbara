@@ -98,3 +98,9 @@
 	color: #5086F2;
 	font-weight: bold;
 }
+
+.thisMonthTitle{
+	font-size: 17px;
+	color: black;
+	margin-bottom: 3px;
+}
