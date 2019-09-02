@@ -63,10 +63,6 @@ public class MemberServiceImpl implements MemberService {
 			ue_result = mapper.updateEinfo(expert);
 		
 		if(member.getM_password() != null) {
-			PasswordEncoder pwencoder = new BCryptPasswordEncoder();
-			String encoded = pwencoder.encode(member.getM_password());
-			member.setM_password(encoded);
-			
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			map.put("m_id", member.getM_id());
@@ -202,5 +198,14 @@ public class MemberServiceImpl implements MemberService {
 		map.put("m_birth", birth);
 		
 		return mapper.findId(map);
+	}
+
+	public boolean setMonth(String mid, long month) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_id", mid);
+		map.put("m_month", month);
+		
+		if(mapper.updateMonth(map) != 0) return true;
+		else return false;
 	}
 }

@@ -27,4 +27,6 @@ public interface MemberMapper {
 	
 	String findId(Map<String, Object> map);
 	String existMem(Map<String, Object> map);
+	
+	int updateMonth(Map<String, Object> map);
 }

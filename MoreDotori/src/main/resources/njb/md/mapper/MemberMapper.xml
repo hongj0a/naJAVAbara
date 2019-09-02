@@ -100,4 +100,9 @@
 	<select id="existMem" parameterType="map" resultType="string">
 	  select m_id from MEMBER where m_name=#{m_name} and m_id=#{m_id}
 	</select>
+	
+	<!-- book - setMonth -->
+	<update id="updateMonth" parameterType="map">
+	  update MEMBER set m_month=#{m_month} where m_id=#{m_id}
+	</update>
 </mapper>

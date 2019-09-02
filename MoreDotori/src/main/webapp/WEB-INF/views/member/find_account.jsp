@@ -20,7 +20,10 @@
 		<div class="card cw-740">
 			<div class="card-body text-center">
 				<div class="col-sm-12">
-					<a href="/"><h3 class="mb-4">Logo Here</h3></a>
+					<a href="/">
+						<img width="100px" src="${pageContext.request.contextPath}/images/slider/icon.png">
+						<h4 class="mb-4">MORE DOTORI</h4>
+					</a>
 					<!-- <h5>계정 찾기</h5> -->
 					<ul class="nav nav-tabs mem-tab" id="myTab" role="tablist">
 						<li class="nav-item">
@@ -128,6 +131,11 @@
 								<div class="col-sm-12">
 									<input type="submit" class="btn btn-primary" name="find-pwd-btn" value="확인">
 								</div>
+								<div class="wrap-loading display-none">
+								    <div class="spinner-border" role="status">
+                                 	   <span class="sr-only">Loading...</span>
+                                    </div>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -210,7 +218,7 @@
 	      $parent.removeClass('mb-2');
 		},
 	    submitHandler: function(form) {
-	    	var phone = $('select[name="phone1"]').val() + $('input[name="phone2"]').val() + $('input[name="phone2"]').val();
+	    	var phone = $('select[name="phone1"]').val() + $('input[name="phone2"]').val() + $('input[name="phone3"]').val();
 			var birth = $('#birth-year').val() + $('#birth-month').val() + $('#birth-day').val();
 			
 			$.ajax({
@@ -272,13 +280,19 @@
   			  },
   	 	      dataType: 'JSON',
   		      type: form.method,
+  		      beforeSend:function(){
+				  $('.wrap-loading').removeClass('display-none');
+   		      },
+   		      complete:function(){
+   		    	  $('.wrap-loading').addClass('display-none');
+			  },
   		      success: function(data) {
   		    	  switch(data.rst) {
 	  		    	  case -1:
-			    		  swal('0ㅁ0');
+			    		  swal('0ㅁ0?');
 			    		  break;
 			    	  case 0:
-			    		  swal('메일 전송 실패 ㅜ_ㅜ');
+			    		  swal('입력하신 정보에 일치하는 회원이 존재하지 않습니다.');
 			    		  break;
 			    	  case 1:
 			    		  swal('회원님의 메일로 임시 비밀번호 발송이 완료되었습니다.');

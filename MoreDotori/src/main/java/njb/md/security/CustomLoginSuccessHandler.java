@@ -8,14 +8,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import lombok.extern.log4j.Log4j;
+import njb.md.mapper.MemberMapper;
+import njb.md.security.domain.CustomUser;
 
 @Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
-
+	@Autowired
+	private MemberMapper mapper;
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
@@ -27,6 +33,9 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			roleNames.add(authority.getAuthority());
 		});
 
+		CustomUser user = (CustomUser) auth.getPrincipal();
+		mapper.updateLdate(user.getMember().getM_id());
+		
 		if (roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/admin/mem");
 			return;

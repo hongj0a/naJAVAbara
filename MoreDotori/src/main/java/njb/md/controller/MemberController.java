@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +39,8 @@ public class MemberController {
 	private FileService fservice;
 	@Autowired
 	private MailService mailservice;
+	
+	private PasswordEncoder pwencoder = new BCryptPasswordEncoder();
 	
 	@PostMapping("/dupl.do")
 	@ResponseBody
@@ -72,31 +80,48 @@ public class MemberController {
 	}
 	
 	@PostMapping("/update.do")
-	public String updateInfo(Member member, Expert expert, Minfo minfo, Principal principal) {
+	public String updateInfo(Member member, Expert expert, Minfo minfo, String newPwd, Principal principal) {
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		Member oMember = user.getMember();
 		
 		getForm(member, expert, minfo);
-		if(!minfo.getChooseImg().isEmpty())
+		if(!minfo.getChooseImg().isEmpty()) {
 			member.setM_profile(fservice.upload(minfo.getChooseImg()));
-		else {
+			oMember.setM_profile(member.getM_profile());
+		} else {
 			member.setM_profile(user.getMember().getM_profile());
+		}
+		
+		if(!newPwd.isEmpty()) {
+			member.setM_password(pwencoder.encode(newPwd));
+			oMember.setM_password(member.getM_password());
 		}
 		if(mservice.updateMember(member, expert)) {
 			log.info("정보수정 성공");
+			
+			oMember.setM_nickname(member.getM_nickname());
+			oMember.setM_phone(member.getM_phone());
+			oMember.setM_gender(member.getM_gender());
+			oMember.setM_birth(member.getM_birth());
+			
+			CustomUser changedUser= new CustomUser(oMember);
+			Authentication authentication = new UsernamePasswordAuthenticationToken(changedUser, changedUser.getPassword(), changedUser.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			log.info("oMember: " + oMember);
 		} else {
 			log.info("정보수정 실패");
 		}
 		
-		return "redirect:/";
+		return "redirect:/mypage";
 	}
 	
 	
 	@PostMapping("/checkPwd.do")
 	@ResponseBody
-	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
+	public Map<String, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
 		int result = -1;
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
 //		log.info("user: " + user);
@@ -104,19 +129,24 @@ public class MemberController {
 			result = 1;
 		else
 			result = 0;
-		
+//		log.info("result: " + result);
 		map.put("rst", result);
 		return map;
 	}
 	
 	@PostMapping("/withdrawal.do")
-	public String withdrawal(String mid) {
+	public String withdrawal(HttpServletRequest request, HttpServletResponse response, String mid) {
 		log.info("# mid: " + mid);
 		
 		if(mservice.withdrawal(mid) != 0)
 			log.info("탈퇴 성공");
 		else 
 			log.info("탈퇴 실패");
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
 		
 		return "redirect:/";
 	}
@@ -153,6 +183,23 @@ public class MemberController {
 		
 		map.put("rst", result);
 		
+		return map;
+	}
+	
+	@PostMapping("/normal/setMonth.do")
+	@ResponseBody
+	public Map<Object, Object> setMonth(String id, long month){
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		if(mservice.setMonth(id, month)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		map.put("rst", result);
+
 		return map;
 	}
 	

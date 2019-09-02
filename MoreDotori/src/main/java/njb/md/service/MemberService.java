@@ -12,4 +12,5 @@ public interface MemberService {
 	Map<Object, Object> getExpertById(String id);
 	int withdrawal(String mid);
 	String findId(String name, String phone, String birth);
+	boolean setMonth(String mid, long month);
 }

@@ -35,9 +35,16 @@
 		</c:otherwise>
 	</c:choose>
 	<div class="auth-wrapper">
-		<div class="card cw-560">
-			<div class="card-header">
-				<h5><c:out value="${title}" /></h5>
+		<div class="card sign-up cw-560">
+			<div class="row">
+				<div class="card-header col-sm-10">
+					<h5><c:out value="${title}" /></h5>
+				</div>
+				<div class="card-header col" style="padding: 10px;">
+					<a class="text-center" href="/">
+						<img width="50px" src="${pageContext.request.contextPath}/images/slider/icon.png">
+					</a>
+				</div>
 			</div>
 			<div class="card-block">
 				<form id="sign-up" name="sign-up" action="/join.do?${_csrf.parameterName}=${_csrf.token}"  method="post" enctype="multipart/form-data">

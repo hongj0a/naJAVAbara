@@ -96,7 +96,7 @@
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                               <ul class="pcoded-submenu">
                                   <li id="menu11_1"><a href="/board/BO003/list" class="">F A Q</a></li>
-                                  <li id="menu11_2"><a href="/board/BO004/list" class="">Q & A</a></li>
+                                 <!--  <li id="menu11_2"><a href="/board/BO004/list" class="">Q & A</a></li> -->
                               </ul>
                           </li>
                       </c:when>
@@ -113,13 +113,13 @@
                                   <li id="menu1_3"><a href="/normal/asset_cond" class="">현황 및 통계 </a></li>
                               </ul>
                           </li>
-                          <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
+                          <!-- <li id="menu2" data-username="Vertical Horizontal Box Layout RTL fixed static collapse menu color icon dark" class="nav-item pcoded-hasmenu">
                               <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-check-square"></i></span><span class="pcoded-mtext">재무진단</span></a>
                               <ul class="pcoded-submenu">
                                   <li id="menu2_1"><a href="/normal/eList" class="">전문가찾기</a></li>
                                   <li id="menu2_2"><a href="/normal/adList" class="">상담내역</a></li>
                               </ul>
-                          </li>
+                          </li> -->
                       </c:when>
               </c:choose>
 
@@ -132,7 +132,7 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">자유게시판</span></a>
                         <ul class="pcoded-submenu">
                             <li id="menu6_1"><a href="/board/BO000/list" class="">공지사항</a></li>
-                            <li id="menu6_2"><a href="/board/BO001/list" class="">PR게시판</a></li>
+                            <!-- <li id="menu6_2"><a href="/board/BO001/list" class="">PR게시판</a></li> -->
                             <li id="menu6_3"><a href="/board/BO002/list" class="">자유게시판</a></li>
                         </ul>
                     </li>
@@ -140,7 +140,7 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">고객센터</span></a>
                         <ul class="pcoded-submenu">
                             <li id="menu7_1"><a href="/board/BO003/list" class="">F A Q</a></li>
-                            <li id="menu7_2"><a href="/board/BO004/list" class="">Q & A</a></li>
+                            <!-- <li id="menu7_2"><a href="/board/BO004/list" class="">Q & A</a></li> -->
                         </ul>
                     </li>                                   
                 </ul>

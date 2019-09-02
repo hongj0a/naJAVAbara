@@ -24,27 +24,21 @@
 			</div>
 			<div class="card">
 				<div class="card-body text-center">
-					<a href="/"><h2 class="mb-5">Logo Here</h2></a>
+					<a href="/">
+						<img width="100px" src="${pageContext.request.contextPath}/images/slider/icon.png">
+						<h3 class="mb-4">MORE DOTORI</h3>
+					</a>
 					<form action="/login" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="hidden" id="errorCode" value="<%=request.getParameter("eCode")%>">
 						<div class="input-group mb-3">
-							<input type="text" name="username" class="form-control"
-								placeholder="아이디">
+							<input type="text" name="username" class="form-control" placeholder="아이디">
 						</div>
 						<div class="input-group mb-4">
-							<input type="password" name="password" class="form-control"
-								placeholder="비밀번호">
+							<input type="password" name="password" class="form-control" placeholder="비밀번호">
 						</div>
-						<!--
-                    <div class="form-group text-left">
-                        <div class="checkbox checkbox-fill d-inline">
-                            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
-                            <label for="checkbox-fill-a1" class="cr"> Save credentials</label>
-                        </div>
-                    </div>
-                    -->
 						<button type="submit" class="btn btn-primary shadow-2 mb-3 form-control" id="signin">로그인</button>
-						<button class="btn btn-primary shadow-2 mb-4 form-control">Google로 로그인</button>
+						<!-- <button class="btn btn-primary shadow-2 mb-4 form-control">Google로 로그인</button> -->
 					</form>
 					<div>
 						<div class="mb-2 text-muted float-sm-left">
@@ -67,9 +61,19 @@
 
 	<script>
       $(document).ready(function() {
-          $('#signin').on('click', function() {
-              swal('로그인 정보가 일치하지 않습니다.');
-          });
+    	  var $error = $('#errorCode').val();
+   		  switch($error) {
+	   		  case 'ER001':
+	   		  case 'ER002': 
+	   			  swal('아이디 또는 비밀번호가 일치하지 않습니다.');
+	   			  break;
+	   		  case 'ER003': 
+	   			  swal('계정이 비활성화되었습니다. 관리자에게 문의해주세요.');
+	   			  break;
+	   		  case 'ER004': 
+	   			  swal('비밀번호 유효기간이 만료 되었습니다. 관리자에게 문의해주세요.');
+	   			  break;
+    	  }
       });
     </script>
 

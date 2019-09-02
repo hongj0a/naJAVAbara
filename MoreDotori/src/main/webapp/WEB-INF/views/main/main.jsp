@@ -12,6 +12,7 @@
 <body class="layout-8">
 	<%-- <jsp:include page="../main/header.jsp"></jsp:include> --%>
     <!-- [ Main Content ] start -->
+    <input type="hidden" id="errorCode" value="<%=request.getParameter("eCode")%>">
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content" id="main_content_nopadding">
@@ -99,9 +100,17 @@
         </div>
     </div>
     <!-- footer -->
-	<jsp:include page="../main/footer.jsp"></jsp:include>  
+	<jsp:include page="../main/footer.jsp"></jsp:include>
+	<!-- alert -->
+	<script src="${pageContext.request.contextPath}/plugins/sweetalert/js/sweetalert.min.js"></script>
     <script>
     	$("#header_menu").addClass("navbar-collapsed");
+    	
+    	var $error = $('#errorCode').val();
+ 		switch($error) {
+	   		case 'ER000':
+	   			swal('해당 페이지에 권한이 없습니다.'); break;
+  	  	}
     </script>    
 </body>
 </html>

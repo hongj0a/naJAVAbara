@@ -84,10 +84,9 @@
 																	<label class="col-sm-3 col-form-label">닉네임</label>
 																	<div class="col-sm-9">
 																		<div class="input-group">
-																			<input type="text" class="form-control"
-																				id="inputNick" name="m_nickname" value="<sec:authentication property="principal.member.m_nickname"/>">
+																			<input type="text" class="form-control" id="inputNick" name="m_nickname" value="<sec:authentication property="principal.member.m_nickname"/>" required>
 																			<div class="input-group-append">
-																				<button class="btn btn-primary" name="nick-dupl-check" type="button">중복확인</button>
+																				<input type="button" class="btn btn-primary" name="nick-dupl-check" onclick="duplCheckNick()" value="중복확인">
 																			</div>
 																		</div>
 																	</div>
@@ -104,26 +103,26 @@
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">기존 비밀번호</label>
 																<div class="col">
-																	<input type="password" class="form-control" id="inputPwd" name="password">
+																	<input type="password" class="form-control" id="inputPwd" name="originPwd" required>
 																</div>
 															</div>
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">새 비밀번호</label>
 																<div class="col">
-																	<input type="password" class="form-control" id="inputNewPwd" name="new-password">
+																	<input type="password" class="form-control" id="inputNewPwd" name="newPwd" required>
 																</div>
 															</div>
 															<div class="form-group row mb-4">
 																<label class="col-sm-3 col-form-label">새 비밀번호 확인</label>
 																<div class="col">
-																	<input type="password" class="form-control" id="inputPwdConfirm" name="new-password-confirm">
+																	<input type="password" class="form-control" id="inputPwdConfirm" name="newPwdConfirm" required>
 																</div>
 															</div>
 														</div>
 														<div class="form-group row mb-4">
 															<label class="col-sm-3 col-form-label">연락처</label>
 															<div class="col">
-																<input type="text" class="form-control" id="inputPhone" name="m_phone" value="<sec:authentication property="principal.member.m_phone"/>">
+																<input type="text" class="form-control" id="inputPhone" name="m_phone" value="<sec:authentication property="principal.member.m_phone"/>" required>
 															</div>
 														</div>
 														<div class="form-group row mb-4">
@@ -132,7 +131,7 @@
 																<input type="hidden" id="gender" value="<sec:authentication property="principal.member.m_gender"/>">
    																<div class="form-group d-inline">
 			                                                        <div class="radio radio-primary d-inline">
-			                                                            <input type="radio" name="m_gender" id="genderM" value="M">
+			                                                            <input type="radio" name="m_gender" id="genderM" value="M" required>
 			                                                            <label for="genderM" class="cr">남</label>
 			                                                        </div>
 			                                                    </div>
@@ -259,8 +258,9 @@
 												</div>
 											</div>
 											<div class="tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
-												<form id="withdrawal" action="/withdrawal.do" method="post">
+												<form id="withdrawal-form" action="/withdrawal.do" method="post">
 													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+													<input type="hidden" name="mid" value="${mid}">
 													<div class="input-group mb-4">
 														<label class="h5 p-3 m-0">유의사항을 확인 후 탈퇴를 진행해 주세요.</label>
 													</div>
@@ -299,18 +299,18 @@
 																	</p>
 																	<div class="row justify-content-center">
 																		<div class="col-sm-7 mb-3">
-																			<input type="password" class="form-control" id="pwd-confirm">
+																			<input type="password" class="form-control" id="pwd-confirm" required>
 																		</div>
 																	</div>
 																</div>
 																<div class="modal-footer justify-content-center">
-																	<button type="submit" onclick="checkPassword()" class="btn btn-primary">탈퇴하기</button>
+																	<button type="button" onclick="checkPassword()" class="btn btn-primary">탈퇴하기</button>
 																</div>
 															</div>
 														</div>
 													</div>
 													<div class="form-group row justify-content-center">
-														<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</button>
+														<button type="button" class="btn btn-primary" id="withdrawal-btn" data-toggle="modal" data-target="#withdrawalModal">회원탈퇴</button>
 													</div>
 												</form>
 											</div>
@@ -328,6 +328,12 @@
 	</div>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
 	<!-- [ Main Content ] end -->
+	
+	<script src="${pageContext.request.contextPath}/plugins/sweetalert/js/sweetalert.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath}/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/jquery-validation/js/messages_ko.js"></script>
+	
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
 	<script src="${pageContext.request.contextPath}/js/member/my-page.js"></script>

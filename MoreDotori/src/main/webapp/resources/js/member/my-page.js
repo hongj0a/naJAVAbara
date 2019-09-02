@@ -23,7 +23,7 @@ function insertSform() {
       '<option value="SN005">Blog</option>' +
       '</select>' +
       '</div>' +
-      '<input type="url" class="form-control" name="snsUrl" placeholder="SNS주소">' +
+      '<input type="url" class="form-control" name="snsUrl" placeholder="SNS주소" required>' +
       '<div class="input-group-append">' +
       '<button class="btn btn-primary subSNS" type="button">' +
       '<i class="fas fa-minus"></i>' +
@@ -161,19 +161,26 @@ $(document).ready(function() {
     });
   }
   
-  $('#sign-up').validate({
+  $('#withdrawal-btn').on('click', function(){
+	  if(! $('#withdrawalModal').hasClass('show')) {
+		  $('#pwd-confirm').val('');
+		  $('.error.pwd-check-error').remove();
+	  }
+  });
+  
+  $('#account-edit').validate({
 	    focusInvalid: true,
 	    rules: {
 	      'm_nickname': {
 	        minlength: 2,
 	        maxlength: 16
 	      },
-	      'm_password': {
-	        minlength: 8,
-	        maxlength: 16
-	      },
-	      'password-confirm': {
-	        equalTo: 'input[name="m_password"]'
+	      'newPwd': {
+		    minlength: 8,
+		    maxlength: 16
+		  },
+	      'newPwdConfirm': {
+	        equalTo: 'input[name="newPwd"]'
 	      },
 	      'm_phone': {
 	        digits: true,
@@ -212,7 +219,6 @@ $(document).ready(function() {
 	      var $el = $(element);
 	      var $parent = $el.parents('.form-group');
 
-	      if ($el.attr('id') == 'inputId') isValidId = false;
 	      if ($el.attr('id') == 'inputNick') isValidNick = false;
 
 	      $el.addClass('is-invalid');
@@ -224,48 +230,50 @@ $(document).ready(function() {
 	      var $el = $(element);
 	      var $parent = $el.parents('.form-group');
 
-	      if ($el.attr('id') == 'inputId') isValidId = true;
 	      if ($el.attr('id') == 'inputNick') isValidNick = true;
 
 	      $el.parents('.form-group').find('.is-invalid').removeClass('is-invalid');
 
 	      $parent.removeClass('mb-2');
 	      $parent.addClass('mb-4');
-	    },
-	    messages: {
-
 	    }
 	  });
 });
 
 function duplCheckNick() {
-	  if (isValidNick) {
-	    $.ajax({
-	      url: 'dupl.do',
-	      data: {
-	        type: 'nickname',
-	        name: $('#inputNick').val()
-	      },
-	      type: 'POST',
-	      dataType: 'JSON',
-	      success: function(data) {
-	        switch (data.rst) {
-	          case 1:
-	            swal('존재하는 닉네임입니다.');
-	            break;
-	          case 0:
-	            swal('사용 가능한 닉네임입니다.');
-	            break;
-	          default:
-	            swal('error');
-	        }
-	      }
-	    });
-	  } else {
-	    swal('닉네임을 확인해주세요.');
-	    $('#inputNick').focus();
-	  }
-	}
+  if (isValidNick) {
+    $.ajax({
+      url: 'dupl.do',
+      data: {
+        type: 'nickname',
+        name: $('#inputNick').val()
+      },
+      type: 'POST',
+      dataType: 'JSON',
+      success: function(data) {
+        switch (data.rst) {
+          case 1:
+            swal('존재하는 닉네임입니다.');
+            break;
+          case 0:
+            swal('사용 가능한 닉네임입니다.');
+            break;
+          default:
+            swal('error');
+        }
+      }
+    });
+  } else {
+    swal('닉네임을 확인해주세요.');
+    $('#inputNick').focus();
+  }
+}
+
+$('#pwd-confirm').keydown(function() {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+});
 
 function checkPassword() {
   $.ajax({
@@ -278,15 +286,14 @@ function checkPassword() {
     success: function(data) {
       switch (data.rst) {
         case 1:
-          alert('?!?!??!?!??');
-          $('#withdrawal').submit();
+          $('#withdrawal-form').submit();
           break;
         case 0:
           $mbody = $('.modal-body');
           if ($mbody.find('.error.pwd-check-error').length) {
             break;
           }
-          $mbody.append('<div class="error pwd-check-error">비밀번호를 확인해주세요.</div>');
+          $mbody.append('<div class="error text-c-red text-center pwd-check-error">비밀번호를 확인해주세요.</div>');
           break;
         default:
           console.log('error??');
