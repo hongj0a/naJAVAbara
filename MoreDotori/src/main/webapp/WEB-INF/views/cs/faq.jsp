@@ -47,8 +47,7 @@
                         <div class="page-wrapper">
 							<form id="tabform" name="tabform" method="post" target="" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
 							<input type="hidden" name="searchCate" value="${search_cate }">
-							<input type="hidden" name="b_seq" id="b_seq" value="">
-							
+							<input type="hidden" name="b_seq" id="b_seq" value="0">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							
                             <!-- [ Main Content ] start -->

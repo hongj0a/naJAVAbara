@@ -84,8 +84,8 @@
 			 			html += "<li><div class=\"media userlist-box reply_info\" data-id=\"\" data-status=\"\" data-username=\"\">";
 				 		html += "<a class=\"media-left\" href=\"#!\"><img class=\"media-object img-radius\" src=\" "+"/images/user/avatar-1.jpg" +"\"  alt=\"image \"></a>";
 				 		html += "<div class=\"media-body\"><span class=\"chat-header float-left\">"+o.reg_id +"<small class=\"d-block text-c-green\"> " +o.reg_dt+ "</small></span>";
-				 		html += "<span class=\"like_warning float-right\"><!--<span><a href=\"#\">추천 </a>-->";
-				 		html += "|<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\" onclick=\"test(this, "+o.re_seq+");\"> 신고</a>";
+				 		html += "<span class=\"like_warning float-right\"><!--<span><a href=\"#\">추천| </a>-->";
+				 		html += "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\" onclick=\"test(this, "+o.re_seq+");\"> 신고</a>";
 					 	html += "</span></span></div></div><div class=\"reply_comment\">"+o.re_content+"</div></li>";
 			 		});
 			 		$(".reply_list_ul").html("").html(html);

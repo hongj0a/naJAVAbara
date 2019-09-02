@@ -75,7 +75,7 @@
                                                 <textarea name="b_content" id="b_content">${boardVO.b_content }
                                                 </textarea>
                                             </div>
-                                            <div class="input-group mb-3">
+                                            <!-- <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">파일첨부</span>
                                                 </div>
@@ -83,7 +83,7 @@
                                                     <input type="file" class="custom-file-input" id="inputGroupFile01">
                                                     <label class="custom-file-label" for="inputGroupFile01">파일찾기</label>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <button type="submit" class="input-group-append btn-send btn btn-primary float-sm-right" onclick="submit();">확인</button>
                                             <a href="#" class="btn btn-secondary float-sm-right" onclick="clickListBtn();">목록으로</a>
                                         </div>

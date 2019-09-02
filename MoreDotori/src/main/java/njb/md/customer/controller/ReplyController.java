@@ -57,4 +57,40 @@ public class ReplyController {
 		mo.addAttribute("data","sucsses");
 		return "jsonView";
 	}
+	
+	@RequestMapping("/modify")
+	public String modify(HttpServletRequest request, HttpSession session, ReplyVO vo, Principal principal, Model mo) throws Exception {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		vo.setReg_id(user.getMember().getM_nickname());
+		String b_seq = request.getParameter("b_seq");
+		String re_content = request.getParameter("re_content");
+		String b_code	= request.getParameter("b_code");
+		vo.setB_seq(Integer.parseInt(b_seq));
+		vo.setB_code(b_code);
+		vo.setRe_content(re_content);
+		service.modReply(vo);
+		mo.addAttribute("data","sucsses");
+		return "jsonView";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, HttpSession session, ReplyVO vo, Principal principal, Model mo) throws Exception {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		vo.setReg_id(user.getMember().getM_nickname());
+		String b_seq = request.getParameter("b_seq");
+		String re_content = request.getParameter("re_content");
+		String b_code	= request.getParameter("b_code");
+		vo.setB_seq(Integer.parseInt(b_seq));
+		vo.setB_code(b_code);
+		vo.setRe_content(re_content);
+		service.removeReply(vo);
+		mo.addAttribute("data","sucsses");
+		return "jsonView";
+	}
 }
