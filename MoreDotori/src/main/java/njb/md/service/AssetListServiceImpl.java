@@ -19,10 +19,7 @@ public class AssetListServiceImpl implements AssetListService {
 	public List<AssetList> listS(String m_id) {
 		List<AssetList> list = mapper.list(m_id);
 		log.info("#AssetListServiceImpl listS() list : " + list);
-		
-		if(list.size() == 0) {
-			System.out.println("자산 내역이 없습니다.");
-		}
+
 		return list;
 	}
 	@Override
