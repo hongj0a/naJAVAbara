@@ -48,9 +48,16 @@
  		}
  	}
 	 function go_heart(b_seq) {
-		 $.post("/board/${BoardMgrVO.b_code}/heart", { b_seq: b_seq,"${_csrf.parameterName}" : "${_csrf.token}" },    
-			      function(data) {     alert("추천하였습니다.");
-					 $(".like_count").html(data.boardVO.b_heartnum);  },   "json" );  
+		 $.post("/board/${BoardMgrVO.b_code}/heart", 
+				 { b_seq: b_seq,"${_csrf.parameterName}" : "${_csrf.token}" },    
+			     function(data) { 
+					 console.log(data);
+					 if(data.data == "sucsses"){
+			 			alert("추천하였습니다.");
+				 		$(".like_count").html(data.likecnt);  
+					 }
+				 	},
+				 "json" );  
 	 }
 	  <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }">
 	 function replywrite(){

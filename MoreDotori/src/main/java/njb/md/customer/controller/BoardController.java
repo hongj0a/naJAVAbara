@@ -104,26 +104,25 @@ public class BoardController {
 			return "board/content";
 		}
 	}
-	
 	// 좋아요 하트
 	@RequestMapping("/{b_code}/heart")
-	public String heart(HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq, BoardVO vo, Principal principal, Model mo) throws Exception {
-		log.info(vo);
-		log.info(b_seq);
+	public String heart(HttpServletRequest request, HttpSession session,@PathVariable String b_code, String b_seq,  Principal principal, Model mo) throws Exception {
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
 		log.info("user: " + user.getMember().getM_nickname());
-		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		BoardVO vo = new BoardVO(); 
+		log.info(b_seq);
 		vo.setB_code(b_code);
 		vo.setReg_id(user.getMember().getM_nickname());
 		vo.setB_seq(Integer.parseInt(b_seq));
-		mo.addAttribute("tuser", user.getMember());
 		service.modHeartNum(vo);
 		vo = service.getBoard(vo);
-		
-		mo.addAttribute("boardVO", vo);
+		log.info(vo);
+		String heartnum = ""+vo.getB_heartnum();
+		log.info(heartnum);
+		mo.addAttribute("likecnt", heartnum);
+		mo.addAttribute("data","sucsses");
 		return "jsonView";
 	}
-
 	// 글쓰기 페이지로
 	@RequestMapping("/{b_code}/write")
 	public String write(HttpServletRequest request, HttpSession session,@PathVariable String b_code,  @ModelAttribute("boardVO") BoardVO vo, Principal principal, Model mo) throws Exception {

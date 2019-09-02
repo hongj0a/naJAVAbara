@@ -10,11 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import njb.md.customer.domain.BoardVO;
 import njb.md.customer.domain.ReplyVO;
 import njb.md.customer.service.ReplyService;
 import njb.md.security.domain.CustomUser;
@@ -93,4 +95,6 @@ public class ReplyController {
 		mo.addAttribute("data","sucsses");
 		return "jsonView";
 	}
+	
+	
 }
