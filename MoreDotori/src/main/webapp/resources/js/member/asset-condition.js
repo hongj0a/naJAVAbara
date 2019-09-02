@@ -1,6 +1,7 @@
-
 //전역변수
 var loginId = null;
+var loginName = null;
+var loginMonth = null;
 
 var today = new Date();
 var toyear = today.getFullYear();
@@ -280,40 +281,20 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
   }
   
   $.fn.setTab1Chart4Data = function(nameArr, inArr, outArr){
+	  var list = [];
+	  for(var l =0; l<nameArr.length; l++){
+		  list[l] = { "year": nameArr[l],
+				  	"value": inArr[l],
+				  	"value2": outArr[l]
+		  };
+	  }
+	  
 		AmCharts.makeChart("tab1-chart4", {
 			"type": "serial",
 			"theme": "light",
 			"marginTop": 10,
 			"marginRight": 0,
-			"dataProvider": [{
-				"year": nameArr[0],
-				"value": inArr[0],
-				"value2": outArr[0],
-			}, {
-				"year": nameArr[1],
-				"value": inArr[1],
-				"value2": outArr[1],
-			}, {
-				"year": nameArr[2],
-				"value": inArr[2],
-				"value2": outArr[2],
-			}, {
-				"year": nameArr[3],
-				"value": inArr[3],
-				"value2": outArr[3],
-			}, {
-				"year": nameArr[4],
-				"value": inArr[4],
-				"value2": outArr[4],
-			}, {
-				"year": nameArr[5],
-				"value": inArr[5],
-				"value2": outArr[5],
-			}, {
-				"year": nameArr[6],
-				"value": inArr[6],
-				"value2": outArr[6],
-			}],
+			"dataProvider": list,
 			"valueAxes": [{
 				"axisAlpha": 0,
 				"position": "left"
@@ -544,31 +525,42 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
 	  
 	  var color = ["#97ACD9", "#2D65C2", "#15B4E0", "#6ED8E0", "#BCD9DD",
 		  			"#96D3D9", "#119DB2", "#26748E", "#65778A", "#AAAFBD",
-		  			"#7DB3A3", "#6A7563", "#CCA06F", "#F5C89C", "#7BBFC8"];
+		  			"#7DB3A3", "#6A7563", "#CCA06F", "#F5C89C", "#7BBFC8",
+		  			"#3b8686", "#a8dba8", "#cff09e", "#79bd9a", "#fd999a"];
 /*	  
  	  for(var j=0; j<assetData.length; j++){
 		  color[j]="#"+Math.round(Math.random()*0xffffff).toString(16);
 	  }
 */
 
-	  var asset = [];
-	  for(var i=0; i<assetData.length; i++){
-		  asset[i]={"title": assetName[i],
-				  "value": assetData[i],
-				  "color": color[i]
-		  };
+	  if(assetData.length==0){
+		  $('#chart-statistics1').hide();
+		  $('#chart-statistics2').hide();
 		  
-		  contents += "<div class='pt-2 pb-2'>";
-		  contents += "<span class='mr-3'>";
-		  contents += "<i class='feather icon-circle mr-2'";
-		  contents += "style='color:"+ color[i] +";'";
-		  contents += "></i>";
-		  contents += assetName[i];
-		  contents += "</span>";
-		  contents += "<span class='float-right'>";
-		  contents += $.fn.comma(assetData[i]);
-		  contents += " 원 </span>";
+		  contents += "<div style='text-align:center;'>";
+		  contents += "입력된 자산데이터가 없습니다 <br> 자산을 등록해주세요"
 		  contents += "</div>";
+		  
+	  }else{
+		  var asset = [];
+		  for(var i=0; i<assetData.length; i++){
+			  asset[i]={"title": assetName[i],
+					  "value": assetData[i],
+					  "color": color[i]
+			  };
+			  
+			  contents += "<div class='pt-2 pb-2'>";
+			  contents += "<span class='mr-3'>";
+			  contents += "<i class='feather icon-circle mr-2'";
+			  contents += "style='color:"+ color[i] +";'";
+			  contents += "></i>";
+			  contents += assetName[i];
+			  contents += "</span>";
+			  contents += "<span class='float-right'>";
+			  contents += $.fn.comma(assetData[i]);
+			  contents += " 원 </span>";
+			  contents += "</div>";
+		  }		  
 	  }
 	    $('#chart-statistics1 + div').append(contents);
 	  
@@ -591,22 +583,26 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
   
   //탭3 차트2
   $.fn.setTab3Chart2Data = function(outData){
-	  //한달예산정보 가져오기
-	  var loginMonth = $('#loginMonth').val();
-	  loginMonth = loginMonth*1;
-
 	  //하루에 얼마 지출하세요 정보 출력
 	  var lastDay = ((new Date( toyear, tomonth, 0) ).getDate())*1;
 	  var restMonth = loginMonth/lastDay;
-	  $(".thisMonth_td").text($.fn.comma(restMonth)+" 원");
 	  
 	  //텍스트 정보 출력
 	  $(".thisMonth_out").text($.fn.comma(outData)+" 원");
 	  $(".thisMonth_month").text($.fn.comma(loginMonth-outData)+" 원");
-	  if(restMonth==0){
-		  $(".thisMonthTitle + div").text("한달 예산을 다 사용하셨어요 T_T");
+	  $(".thisMonthTitle").empty();
+	  
+	  if(loginMonth!=0){
+		  $(".thisMonthTitle").append(loginName+"님, 하루에 "+$.fn.comma(restMonth)+" 원을 사용하시는 것을 권장 드려요.");
+		  
+		  if(restMonth==0){
+			  $(".thisMonthTitle + div").text("한달 예산을 다 사용하셨어요 T_T");
+		  }else{
+			  $(".thisMonthTitle + div").text("");
+		  }		  
 	  }else{
-		  $(".thisMonthTitle + div").text("");
+		  $("#chart-statistics2 + div").empty();
+		  $("#chart-statistics2 + div").append("<div style='text-align:center;'>입력된 예산데이터가 없습니다 <br> 예산을 등록해주세요</div>");
 	  }
 
 		AmCharts.makeChart("chart-statistics2", {
@@ -632,6 +628,77 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
 				"fixedPosition": true
 			},
 		});	  
+  }  
+  
+  
+  //탭4
+  $.fn.setTab4ChartData = function(assetName, assetData){
+	  	var dataList = []
+	  	for(var j=0; j<assetName.length; j++){
+	  		dataList[j] = { value : assetData[j],
+	  						name : assetName[j]
+	  		};
+	  	}
+	  
+        var myChart = echarts.init($("#chart-pie-basic"));
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                text: '',
+                subtext: '',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data: assetName
+            },
+            color: ['#f4c22b', '#A389D4', '#3ebfea', '#04a9f5', '#1de9b6'],
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {
+                        show: true
+                    },
+                    dataView: {
+                        show: true,
+                        readOnly: false
+                    },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore: {
+                        show: true
+                    },
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            calculable: true,
+            series: [{
+                name: 'Webpage',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: dataList
+            }]
+        };
+        myChart.setOption(option, true);
   }  
   
 	//데이터 가져오기
@@ -768,11 +835,41 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
 	   });  
    } 	
 
+	//tab3 : 나의 자산 현황
+   $.fn.getTab4ChartData = function(yyyy, mmmm, dddd){
+	   $.ajax({
+		   type: "GET",
+		   url : "asset_cond/tab4chartData.do",
+		   dataType : "json",
+		   data : { M_id: loginId,
+			   		yyyy: yyyy,
+			   		mmmm: mmmm,
+			   		dddd, dddd
+		   },
+		   success : function(data){
+			   var assetName1 = data.assetName1;
+			   var assetData1 = data.assetData1;
+			   
+			   $.fn.setTab4ChartData(assetName1, assetData1);
+			   
+			   
+			   
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+		   
+	   });  
+   } 	   
+   
 ////////////////////////////////////////////////////////////////
 //메소드 첫실행 ******************************************************************************************
    
 $(document).ready(function() {
 	loginId=$("#loginId").val();
+	loginName=$("#loginName").val();
+	loginMonth = $('#loginMonth').val();
+	loginMonth = loginMonth*1;
 	
 	$('.today_yy').text(toyear);
 	$('.today_mm').text(tomonth);
@@ -782,6 +879,7 @@ $(document).ready(function() {
 	$.fn.getTab1ChartData(toyear, tomonth, todate);
 	$.fn.getTab2ChartData(toyear, tomonth, todate);
 	$.fn.getTab3ChartData(toyear, tomonth, todate);
+	$.fn.getTab4ChartData(toyear, tomonth, todate);
 	
 	// card-collapse arrow
 	var arrow_dir = function() {
@@ -797,35 +895,4 @@ $(document).ready(function() {
 		$('.card.my-statistics > .card-header > a').each(arrow_dir);
 	});
 
-	/////////////////////// chart ///////////////////////
-	// pie-chart for collapseFour - 자산별 지출현황
-	$(function() {
-		var chart2 = am4core.create("tab4-chart", am4charts.PieChart);
-		chart2.data = [{
-			"country": "Lithuania",
-			"litres": 201.9
-		}, {
-			"country": "Germany",
-			"litres": 165.8
-		}, {
-			"country": "Australia",
-			"litres": 139.9
-		}, {
-			"country": "Austria",
-			"litres": 128.3
-		}, {
-			"country": "UK",
-			"litres": 99
-		}, {
-			"country": "Belgium",
-			"litres": 60
-		}];
-		var pieSeries = chart2.series.push(new am4charts.PieSeries());
-		pieSeries.dataFields.value = "litres";
-		pieSeries.dataFields.category = "country";
-		pieSeries.slices.template.stroke = am4core.color("#fff");
-		pieSeries.slices.template.strokeWidth = 2;
-		pieSeries.slices.template.strokeOpacity = 1;
-		chart2.legend = new am4charts.Legend();
-	});
 });

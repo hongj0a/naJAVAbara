@@ -43,15 +43,7 @@ public interface AbookSumMapper {
 	long selectWeekCodeSum(@Param("M_id") String M_id,@Param("selectDate") String selectDate, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
 	long selectYearCodeSum(@Param("M_id") String M_id,@Param("selectYear") String selectYear, @Param("inoutCode") String inoutCode, @Param("ioCategori") String ioCategori);
 	
+	//자산별 합계
+	long selectAssetSum(@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode, @Param("A_seq") long A_seq);
 	
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/*
-	 * //selectDay의 주번호 반환 long returnIW(@Param("selectDay") long selectDay); //해당
-	 * 주의 총 합계 반환 long selectIW(@Param("M_id") String M_id, @Param("selectIW")
-	 * String selectIW, @Param("inoutCode") String inoutCode, @Param("selectYear")
-	 * String selectYear);
-	 * 
-	 */
 }

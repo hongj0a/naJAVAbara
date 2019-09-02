@@ -500,9 +500,11 @@ public class StatsController {
         
         //자산정보 가져옴
         List<Asset> assetList = ass_service.selectAssetListS(M_id);
+        
         //자산정보 저장함
     	List<String> assetName1 = new ArrayList<String>();
     	List<String> assetData1 = new ArrayList<String>();
+    	
         for(Asset a : assetList) {
         	assetName1.add(a.getA_nickname());
         	assetData1.add(a.getA_money()+"");
@@ -520,4 +522,43 @@ public class StatsController {
 		
 		return hm;
 	}
+	
+	@RequestMapping(value="/asset_cond/tab4chartData.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public HashMap<String,List<String>> getTab4ChartData(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		//날짜데이타
+        int yearint = Integer.parseInt(yyyy);
+        int monint = Integer.parseInt(mmmm);
+        int dayint = Integer.parseInt(dddd);
+        
+        String monStr = mmmm;
+        if(monint<10) monStr = "0"+monint;
+        long datelong = Long.parseLong(yyyy+monStr+dddd);
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+		
+		//포장빠께쓰
+        HashMap<String,List<String>> hm = new HashMap<String,List<String>>();
+        
+        //자산정보 가져옴
+        List<Asset> assetList = ass_service.selectAssetListS(M_id);
+        
+        //자산정보 저장함
+    	List<String> assetName1 = new ArrayList<String>();
+    	List<String> assetSum1 = new ArrayList<String>();
+    	
+        for(Asset a : assetList) {
+        	assetName1.add(a.getA_nickname());
+        	assetSum1.add((abs_service.selectAssetSumS(yyyy+"/"+monStr, out, a.getA_seq()))+"");
+        }
+        
+        hm.put("assetName1", assetName1);
+        hm.put("assetData1", assetSum1);
+        
+        ///////////////////////////////////////////////////////////////////////
+        
+        
+        
+		return hm;
+	}	
 }

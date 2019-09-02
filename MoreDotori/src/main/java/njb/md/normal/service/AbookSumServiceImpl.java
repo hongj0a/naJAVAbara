@@ -105,5 +105,10 @@ public class AbookSumServiceImpl implements AbookSumService {
 		log.info("### 해당 주의 카테고리별 합 가져오기 ###");
 		return mapper.selectYearCodeSum(M_id, selectYear, inoutCode, ioCategori);
 	}
-	
+
+	@Override
+	public long selectAssetSumS(String selectMonth, String inoutCode, long A_seq) {
+		log.info("### 해당 월의 자산별 합 가져오기 ###");
+		return mapper.selectAssetSum(selectMonth, inoutCode, A_seq);
+	}	
 }

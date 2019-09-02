@@ -17,6 +17,7 @@
 
 	<!-- 로그인아이디 -->
 	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">
+	<input id="loginName" type="hidden" value="<sec:authentication property="principal.member.m_name"/>">
 	<input id="loginMonth" type="hidden" value="<sec:authentication property="principal.member.m_month"/>">
 	
 	<div class="pcoded-main-container">
@@ -168,35 +169,31 @@
 												<div class="card-block tab2">
 													<div class="text-center">
 														<h4 class="mb-3"><span class="today_yy"></span>년 <span class="today_mm"></span>월 <span class="today_dd"></span>일</h4>
-														<div class="thisMonthTitle"><sec:authentication property="principal.member.m_name"/> 님, 하루에 <span class="thisMonth_td"></span>을 사용하시는 것을 권장 드려요.</div>
+														<div class="thisMonthTitle"></div>
 														<div></div>
 													</div>
 													<div class="row">
 														<div class="col-sm-6">
-															<h5 class="mb-3 text-center">자산</h5>
+															<h5 class="mb-3 text-center asstt">자산</h5>
 															<div id="chart-statistics1" class="chart-statistics"></div>
-															<div>
-																<div class="pt-2 pb-2">
-																	<span class="mr-3"><i
-																		class="feather icon-circle mr-2"></i>page
-																		Views</span> <span class="float-right">15.5 %</span>
-																</div>
-															</div>
+															<div></div>
 														</div>
 														<div class="col-sm-6">
-															<h5 class="mb-3 text-center">예산</h5>
+															<h5 class="mb-3 text-center asstt">예산</h5>
 															<div id="chart-statistics2" class="chart-statistics"></div>
-															<div class="pt-2 pb-2">
-																<span class="mr-3"><i
-																	class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span>
-																	<span class="float-right thisMonth_out"></span>
-															</div>
-															<div class="pt-2 pb-2">
-																<span class="mr-3"><i
-																	class="feather icon-circle text-c-green  mr-2"></i>남은 예산</span>
-																	<span class="float-right thisMonth_month">
-																			
-																	</span>
+															<div>
+																<div class="pt-2 pb-2">
+																	<span class="mr-3">
+																	<i class="feather icon-circle text-c-gray  mr-2"></i>이번 달 지출</span>
+																		<span class="float-right thisMonth_out"></span>
+																</div>
+																<div class="pt-2 pb-2">
+																	<span class="mr-3">
+																	<i class="feather icon-circle text-c-green  mr-2"></i>남은 예산</span>
+																		<span class="float-right thisMonth_month">
+																				
+																		</span>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -217,7 +214,7 @@
 											<div id="collapseFour" class="collapse" role="tabpanel"
 												data-parent="#my-statistics" aria-labelledby="ch4">
 												<div class="card-block tab2">
-													<div id="tab4-chart"></div>
+													<div id="chart-pie-basic"></div>
 													<div class="row">
 														<div class="col-sm-6">
 															<div class="card inner-card">
@@ -313,6 +310,11 @@
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/amcharts.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/serial.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/pie.min.js"></script>
+	
+	<script src="http://echarts.baidu.com/echarts2/doc/example/timelineOption.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/chart-echarts/js/echarts-en.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pages/chart-echart-custom.js"></script>
+	
 	
 	<script src="${pageContext.request.contextPath}/js/member/asset-condition.js"></script>
 	<script>

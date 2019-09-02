@@ -19,4 +19,6 @@ public interface AbookSumService {
 	long selectMonthCodeSumS(String M_id, String selectMonth, String inoutCode, String ioCategori);
 	long selectWeekCodeSumS(String M_id, String selectDate, String inoutCode, String ioCategori);
 	long selectYearCodeSumS(String M_id, String selectYear, String inoutCode, String ioCategori);
+
+	long selectAssetSumS(String selectMonth, String inoutCode, long A_seq);
 }
