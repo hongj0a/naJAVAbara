@@ -71,9 +71,9 @@
                                                     		&nbsp;
                                                     		<select name="c_asset" class="js-example-basic-single form-control plus-imp">
                                                             	<option value="AS001">현금</option>
-                                                            	<option value="AS002">통장</option>
-                                                            	<option value="AS003">신용카드</option>
-                                                            	<option value="AS004">체크카드</option>
+                                                            	<option value="AS002">신용카드</option>
+                                                            	<option value="AS003">체크카드</option>
+                                                            	<option value="AS004">통장</option>
                                                         	</select> 
                                                      	</div>
                                                      	</br>
@@ -153,9 +153,9 @@
 			                                                    		&nbsp;
 			                                                    		<select name="c_asset" id="c_asset" class="js-example-basic-single form-control plus-imp">
 			                                                            	<option value="AS001">현금</option>
-			                                                            	<option value="AS002">통장</option>
-			                                                            	<option value="AS003">신용카드</option>
-			                                                            	<option value="AS004">체크카드</option>
+			                                                            	<option value="AS002">신용카드</option>
+			                                                            	<option value="AS003">체크카드</option>
+			                                                            	<option value="AS004">통장</option>
 			                                                        	</select> 
 			                                                     		</div>
 			                                                     	</br>
