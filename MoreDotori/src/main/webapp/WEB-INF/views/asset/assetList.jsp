@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,7 @@
                                                             	<option value="AS003">신용카드</option>
                                                             	<option value="AS004">체크카드</option>
                                                         	</select> 
-                                                     		</div>
+                                                     	</div>
                                                      	</br>
                                                         <div class="col-12">
                                                      		<span>별칭 :  </span>
@@ -121,6 +122,12 @@
 												    <th class="widsize">삭제</th>
 												  </tr>
 												  	<c:forEach items="${list}" var="alist">
+												  		<c:set var="list" value="alist"/>
+														<c:choose>
+														<c:when test="${list eq alist}">
+															<td>자산 내역이 없습니다</td>
+														</c:when>
+														<c:otherwise>
 														<tr class="updatetd" id="hove" onclick="/normal/aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
 															<td class="idhidden">${alist.a_seq}</td>
 															<td class="idhidden">${alist.m_id}</td>
@@ -130,8 +137,9 @@
 															<td>${alist.a_memo}</td>
 															<td ><a href="/normal/aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
 														</tr>
-			                                            </c:forEach>
-			                                            
+														</c:otherwise>
+														</c:choose>
+			                                        </c:forEach>
 			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
@@ -237,6 +245,10 @@
 	<script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
 	
 	    <script type="text/javascript">
+		    $("#menu6").addClass('active');
+			$("#menu6").addClass('pcoded-trigger');
+			$("#menu6_3").addClass('active');
+			
 	        $(document).ready(function() {
 	            // [ Foo-table ]
 	            $('#demo-foo-filtering').footable({

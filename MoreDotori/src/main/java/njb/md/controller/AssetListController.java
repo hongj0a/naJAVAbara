@@ -40,8 +40,8 @@ public class AssetListController {
 	}*/
 	
 	@RequestMapping("/aList")
-	public ModelAndView list() {
-		List<AssetList> list = service.listS();
+	public ModelAndView list(@RequestParam("m_id") String m_id) {
+		List<AssetList> list = service.listS(m_id);
 		log.info("#list: " + list);
 		log.info("#m_id: " + list.get(0).getM_id());
 		ModelAndView mv = new ModelAndView();
