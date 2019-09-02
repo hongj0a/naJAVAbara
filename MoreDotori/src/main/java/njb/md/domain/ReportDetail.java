@@ -12,4 +12,6 @@ public class ReportDetail {
 	private String rd_content;
 	private String rd_date;
 	private String rownum;
+	private String reg_id;
+	private String b_subjcet;
 }
