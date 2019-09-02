@@ -104,7 +104,19 @@
 }
 
 .thisMonthTitle{
-	font-size: 17px;
-	color: black;
+	font-size: 16px;
+	color: gray;
 	margin-bottom: 3px;
+}
+
+#chart-highchart-pie1 > div {
+	width : 100% !important;
+}
+
+.highcharts-root:last-child{
+	width: 100% !important;
+}
+
+.last_sub{
+	text-align:center;
 }

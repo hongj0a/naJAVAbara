@@ -1,12 +1,14 @@
 package njb.md.normal.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import njb.md.normal.domain.Inout;
 import njb.md.normal.mapper.AbookSumMapper;
 
 @Log4j
@@ -110,5 +112,12 @@ public class AbookSumServiceImpl implements AbookSumService {
 	public long selectAssetSumS(String selectMonth, String inoutCode, long A_seq) {
 		log.info("### 해당 월의 자산별 합 가져오기 ###");
 		return mapper.selectAssetSum(selectMonth, inoutCode, A_seq);
-	}	
+	}
+
+	@Override
+	public List<Inout> orderbyInoutS(String M_id, String selectMonth, String inoutCode) {
+		log.info("### 해당 월의 지출 탑3 가져오기 ###");
+		List<Inout> list = mapper.orderbyInout(M_id, selectMonth, inoutCode);
+		return list;
+	}
 }

@@ -504,14 +504,17 @@ public class StatsController {
         //자산정보 저장함
     	List<String> assetName1 = new ArrayList<String>();
     	List<String> assetData1 = new ArrayList<String>();
+    	List<String> assetCode1 = new ArrayList<String>();
     	
         for(Asset a : assetList) {
         	assetName1.add(a.getA_nickname());
         	assetData1.add(a.getA_money()+"");
+        	assetCode1.add(code_service.selectCodeS(a.getC_asset()).getC_name());
         }
         
         hm.put("assetName1", assetName1);
         hm.put("assetData1", assetData1);
+        hm.put("assetCode1", assetCode1);
         
         /////////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -556,7 +559,6 @@ public class StatsController {
         hm.put("assetData1", assetSum1);
         
         ///////////////////////////////////////////////////////////////////////
-        
         
         
 		return hm;

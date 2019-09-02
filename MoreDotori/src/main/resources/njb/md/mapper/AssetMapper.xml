@@ -5,7 +5,7 @@
 <mapper namespace="njb.md.normal.mapper.AssetMapper">
 
   <select id="selectAssetList" resultType="njb.md.normal.domain.Asset">
-	select * from asset where M_id=#{M_id}
+	select * from asset where M_id=#{M_id} order by C_ASSET
   </select>
 
   <select id="selectAsset" resultType="njb.md.normal.domain.Asset">

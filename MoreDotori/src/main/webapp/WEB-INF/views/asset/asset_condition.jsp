@@ -214,7 +214,9 @@
 											<div id="collapseFour" class="collapse" role="tabpanel"
 												data-parent="#my-statistics" aria-labelledby="ch4">
 												<div class="card-block tab2">
-													<div id="chart-pie-basic"></div>
+													<div class="stats_sub"><span class="today_mm"></span>월 자산별 <span class="money_out">지출</span> 통계  </div>
+													<div class="last_sub"></div>
+													<div id="chart-highchart-pie1" style="width: 100%; height: 350px;"></div>
 													<div class="row">
 														<div class="col-sm-6">
 															<div class="card inner-card">
@@ -310,11 +312,6 @@
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/amcharts.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/serial.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/amchart/js/pie.min.js"></script>
-	
-	<script src="http://echarts.baidu.com/echarts2/doc/example/timelineOption.js"></script>
-    <script src="${pageContext.request.contextPath}/plugins/chart-echarts/js/echarts-en.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/pages/chart-echart-custom.js"></script>
-	
 	
 	<script src="${pageContext.request.contextPath}/js/member/asset-condition.js"></script>
 	<script>

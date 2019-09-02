@@ -154,4 +154,18 @@
 		and io.A_seq=#{A_seq}
 		and io.C_inout=#{inoutCode}
 	</select>
+	
+	<select id="orderbyInout" resultType="njb.md.normal.domain.Inout">
+	<![CDATA[
+		select * from inout io
+		join asset ass
+		on io.A_seq=ass.A_seq
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and rownum <= 3
+		order by io.I_money desc
+	]]>
+	</select>
+	
 </mapper>

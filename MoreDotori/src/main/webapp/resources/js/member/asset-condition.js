@@ -10,7 +10,12 @@ var todate = today.getDate();
 var todays = today.getDay();
 var week = new Array('일', '월', '화', '수', '목', '금', '토');
 
-	//숫자컴마메소드
+var color = ["#F76D82", "#3b8686", "#cff09e", "#FC8370", "#62DDBD",
+		"#F0C8A5", "#FECD57", "#73B1F4", "#9ED36A", "#AC92EA",
+		"#A9B1BC", "#6A7563", "#CCA06F", "#F5C89C", "#7BBFC8",
+		"#a8dba8", "#62DDBD", "#F299CE", "#79bd9a", "#fd999a"];
+ 
+	//숫자컴마메소드 
 	$.fn.comma = function(str){
 		    str = String(str);
 		    var minus = str.substring(0, 1);
@@ -519,14 +524,10 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
   }   
   
   //탭3 차트2
-  $.fn.setTab3Chart1Data = function(assetName, assetData){
+  $.fn.setTab3Chart1Data = function(assetName, assetData, assetCode){
 	  $('#chart-statistics1 + div').empty();
 	  var contents="";
-	  
-	  var color = ["#97ACD9", "#2D65C2", "#15B4E0", "#6ED8E0", "#BCD9DD",
-		  			"#96D3D9", "#119DB2", "#26748E", "#65778A", "#AAAFBD",
-		  			"#7DB3A3", "#6A7563", "#CCA06F", "#F5C89C", "#7BBFC8",
-		  			"#3b8686", "#a8dba8", "#cff09e", "#79bd9a", "#fd999a"];
+
 /*	  
  	  for(var j=0; j<assetData.length; j++){
 		  color[j]="#"+Math.round(Math.random()*0xffffff).toString(16);
@@ -585,15 +586,16 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
   $.fn.setTab3Chart2Data = function(outData){
 	  //하루에 얼마 지출하세요 정보 출력
 	  var lastDay = ((new Date( toyear, tomonth, 0) ).getDate())*1;
-	  var restMonth = loginMonth/lastDay;
+	  var restMonth = (loginMonth-outData)/lastDay;
 	  
 	  //텍스트 정보 출력
 	  $(".thisMonth_out").text($.fn.comma(outData)+" 원");
 	  $(".thisMonth_month").text($.fn.comma(loginMonth-outData)+" 원");
+	  $(".last_sub").text("이번달 총 사용지출은 "+ $.fn.comma(outData) +" 원 입니다.");
 	  $(".thisMonthTitle").empty();
 	  
 	  if(loginMonth!=0){
-		  $(".thisMonthTitle").append(loginName+"님, 하루에 "+$.fn.comma(restMonth)+" 원을 사용하시는 것을 권장 드려요.");
+		  $(".thisMonthTitle").append(loginName+"님, 하루에 <span class='money_out'>"+$.fn.comma(restMonth)+" 원</span>을 사용하시는 것을 권장 드려요.");
 		  
 		  if(restMonth==0){
 			  $(".thisMonthTitle + div").text("한달 예산을 다 사용하셨어요 T_T");
@@ -633,72 +635,44 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
   
   //탭4
   $.fn.setTab4ChartData = function(assetName, assetData){
+	    var assetSum = $.fn.returnNumber(assetData);
 	  	var dataList = []
 	  	for(var j=0; j<assetName.length; j++){
-	  		dataList[j] = { value : assetData[j],
-	  						name : assetName[j]
+	  		dataList[j] = { name : assetName[j],
+	  						y : assetSum[j]
 	  		};
 	  	}
-	  
-        var myChart = echarts.init($("#chart-pie-basic"));
-        var app = {};
-        option = null;
-        option = {
+	  	
+        Highcharts.chart('chart-highchart-pie1', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            colors: color,
             title: {
-                text: '',
-                subtext: '',
-                x: 'center'
+                text: ''
             },
             tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
-            legend: {
-                orient: 'vertical',
-                x: 'left',
-                data: assetName
-            },
-            color: ['#f4c22b', '#A389D4', '#3ebfea', '#04a9f5', '#1de9b6'],
-            toolbox: {
-                show: true,
-                feature: {
-                    mark: {
-                        show: true
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
                     },
-                    dataView: {
-                        show: true,
-                        readOnly: false
-                    },
-                    magicType: {
-                        show: true,
-                        type: ['pie', 'funnel'],
-                        option: {
-                            funnel: {
-                                x: '25%',
-                                width: '50%',
-                                funnelAlign: 'left',
-                                max: 1548
-                            }
-                        }
-                    },
-                    restore: {
-                        show: true
-                    },
-                    saveAsImage: {
-                        show: true
-                    }
+                    showInLegend: true
                 }
             },
-            calculable: true,
             series: [{
-                name: 'Webpage',
-                type: 'pie',
-                radius: '55%',
-                center: ['50%', '60%'],
+                name: 'Brands',
+                colorByPoint: true,
                 data: dataList
             }]
-        };
-        myChart.setOption(option, true);
+        });
   }  
   
 	//데이터 가져오기
@@ -823,7 +797,8 @@ var week = new Array('일', '월', '화', '수', '목', '금', '토');
 		   success : function(data){
 			   var assetName1 = data.assetName1;
 			   var assetData1 = data.assetData1;
-			   $.fn.setTab3Chart1Data(assetName1, assetData1);
+			   var assetCode1 = data.assetCode1;
+			   $.fn.setTab3Chart1Data(assetName1, assetData1, assetCode1);
 			   
 			   var outData2 = data.outData2;
 			   $.fn.setTab3Chart2Data(outData2);
