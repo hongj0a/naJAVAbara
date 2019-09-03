@@ -35,6 +35,15 @@ function insertSform() {
 }
 
 $(document).ready(function() {
+	switch($('#rst').val()) {
+		case '-2':
+			swal('비밀번호가 일치하지 않습니다.'); break;
+		case '0':
+			swal('회원정보 수정에 실패했습니다.'); break;
+		case '1':
+			swal('회원정보를 성공적으로 변경했습니다.'); break;
+	}
+	
   $('#change-pwd-btn').on('click', function() {
     $(this).parent().parent().hide();
     $('.change-password').css('display', 'inline');

@@ -24,7 +24,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     log.error("Redirect....");
     
-    response.sendRedirect("/?eCode=ER000");
+    response.sendRedirect("/?ecode=ER000");
   }
 
 }

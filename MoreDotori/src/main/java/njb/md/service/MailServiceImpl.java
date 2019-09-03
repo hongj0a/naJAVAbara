@@ -28,12 +28,7 @@ public class MailServiceImpl implements MailService {
 	
 	@Override
 	public boolean sendMail(String receiverName, String receiverId) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("m_id", receiverId);
-		map.put("m_name", receiverName);
-		
-		if(mmapper.existMem(map) != null) {
+		if(mmapper.existMem(receiverId, receiverName) != null) {
 			PasswordEncoder pwencoder = new BCryptPasswordEncoder();
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
@@ -88,15 +83,6 @@ public class MailServiceImpl implements MailService {
 						"    </div>\r\n" + 
 						"\r\n" + 
 						"</body></html>";
-//				String content = "<html><body>";
-//				content += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-//				content += "<div><img src='http://localhost:8080/images/slider/icon.png' style='width: 150px'></div>";
-//				content += "<h3 style='color: blue;'>" + receiverName + " 님, 임시 비밀번호 안내해드립니다.</h3>";
-//				content += "<div style='font-size: 130%; margin:10px'>";
-//				content += receiverName + " 님, ";
-//				content += "임시 비밀번호는 <strong>" + tempPassword + "</strong> 입니다.<br/>";
-//				content += "임시 비밀번호로 로그인 후에는 반드시 <strong>비밀번호를 변경해주세요</strong>.";
-//				content += "</div></body></html>";
 				
 				messageHelper.setFrom(sender);
 				messageHelper.setTo(receiverId);
@@ -105,11 +91,7 @@ public class MailServiceImpl implements MailService {
 
 				String encoded = pwencoder.encode(tempPassword);
 				
-				map.clear();
-				map.put("m_id", receiverId);
-				map.put("m_password", encoded);
-				
-				if(mmapper.updatePwd(map) != 0) {
+				if(mmapper.updatePwd(encoded, receiverId) != 0) {
 					mailSender.send(message);
 					log.info("임시비밀번호 메일 발송 완료");
 					return true;

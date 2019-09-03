@@ -28,8 +28,8 @@
 
 					<div class="main-body">
 						<div class="page-wrapper">
-
 							<!-- [ Main Content ] start -->
+							<input type="hidden" id="rst" value="<%=request.getParameter("rst")%>">
 							<div class="row justify-content-center text-c-black">
 								<div class="card cw-740">
 									<div class="card-body">
@@ -71,7 +71,7 @@
 																<div class="form-group row mb-4">
 																	<label class="col-sm-3 col-form-label">아이디</label>
 																	<sec:authentication property="principal.member.m_id" var="mid"/>
-																	<input type="hidden" name="m_id" value="${mid}">
+																	<input type="hidden" id="m_id" name="m_id" value="${mid}">
 																	<label class="col-sm-9 col-form-label">${mid}</label>
 																</div>
 																<div class="form-group row mb-4">

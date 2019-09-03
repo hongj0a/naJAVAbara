@@ -40,69 +40,69 @@
 	  m_count, m_accrue, m_cdate, m_reason, m_enabled, ma_auth from MEMBER mem left outer join MAUTH auth on mem.m_id = auth.m_id
 	  where mem.m_id=#{m_id}
 	</select>
-	<update id="updateLdate" parameterType="string">
+	<update id="updateLdate">
 		update MEMBER set m_ldate=SYSDATE where m_id=#{m_id}
 	</update>
 
 	<!-- join -->
-	<insert id="insertMember" parameterType="njb.md.domain.Member">
+	<insert id="insertMember">
       insert into MEMBER(m_id, m_name, m_nickname, m_password, m_phone, m_birth, m_gender, m_profile, c_member)
       values(#{m_id}, #{m_name}, #{m_nickname}, #{m_password}, #{m_phone}, #{m_birth}, #{m_gender}, #{m_profile, jdbcType=VARCHAR}, #{c_member})
  	</insert>
- 	<insert id="insertExpert" parameterType="njb.md.domain.Expert">
+ 	<insert id="insertExpert">
  	  insert into EXPERT values(#{m_id}, #{e_job}, #{e_position}, #{e_career}, #{e_address}, #{e_detailaddr}, #{e_introduce},
  	  #{e_starpoint}, #{e_license1, jdbcType=VARCHAR}, #{e_license2, jdbcType=VARCHAR}, #{e_license3, jdbcType=VARCHAR},
  	  #{e_sns1, jdbcType=VARCHAR}, #{e_sns2, jdbcType=VARCHAR}, #{e_sns3, jdbcType=VARCHAR}, #{e_sns4, jdbcType=VARCHAR},
  	  #{e_sns5, jdbcType=VARCHAR})
  	</insert>
-	<insert id="authMember" parameterType="njb.md.domain.Mauth">
+	<insert id="authMember">
 	  insert into MAUTH values(#{m_id}, #{ma_auth})
 	</insert>
 	
 	<!-- join & mypage -->
-	<select id="duplIdCheck" parameterType="string" resultType="string">
+	<select id="duplIdCheck" resultType="string">
 		select m_id from MEMBER where m_id=#{m_id}
 	</select>
-	<select id="duplNickCheck" parameterType="string" resultType="string">
+	<select id="duplNickCheck" resultType="string">
 		select m_nickname from MEMBER where m_nickname=#{m_nickname}
 	</select>
 	
 	<!-- mypage - info -->
-	<select id="getExpert" parameterType="string" resultType="njb.md.domain.Expert">
+	<select id="getExpert" resultType="njb.md.domain.Expert">
 		select * from Expert where m_id=#{m_id}
 	</select>
-	<update id="updatePwd" parameterType="map">
+	<update id="updatePwd">
 		update MEMBER set m_password=#{m_password} where m_id=#{m_id}
 	</update>
-	<update id="updateMinfo" parameterType="njb.md.domain.Member">
+	<update id="updateMinfo">
 		update MEMBER set m_nickname=#{m_nickname}, m_phone=#{m_phone}, m_birth=#{m_birth}, m_gender=#{m_gender}, m_profile=#{m_profile}
 		where m_id=#{m_id}
 	</update>
-	<update id="updateEinfo" parameterType="njb.md.domain.Expert">
+	<update id="updateEinfo">
 		update EXPERT set e_job=#{e_job}, e_position=#{e_position}, e_career=#{e_career}, e_address=#{e_address}, e_detailaddr=#{e_detailaddr},
 		e_introduce=#{e_introduce}, e_license1=#{e_license1, jdbcType=VARCHAR}, e_license2=#{e_license2, jdbcType=VARCHAR},
 		e_license3=#{e_license3, jdbcType=VARCHAR}, e_sns1=#{e_sns1, jdbcType=VARCHAR}, e_sns2=#{e_sns2, jdbcType=VARCHAR},
-		e_sns3=#{e_sns3, jdbcType=VARCHAR}, e_sns4=#{e_sns4, jdbcType=VARCHAR}, e_sns5=#{e_sns5, jdbcType=VARCHAR}) where m_id=#{m_id}
+		e_sns3=#{e_sns3, jdbcType=VARCHAR}, e_sns4=#{e_sns4, jdbcType=VARCHAR}, e_sns5=#{e_sns5, jdbcType=VARCHAR} where m_id=#{m_id}
 	</update>
 
 	<!-- mypage - withdrawal -->
-	<update id="updateState" parameterType="map">
+	<update id="updateState">
 	  update MEMBER set c_mstate=#{m_state} where m_id=#{m_id}
 	</update>
-	<update id="setEnable" parameterType="map">
+	<update id="setEnable">
 	  update MEMBER set M_ENABLED=#{m_enabled} where m_id=#{m_id}
 	</update>
 	
 	<!-- findaccount - findid -->
-	<select id="findId" parameterType="map" resultType="string">
+	<select id="findId" resultType="string">
 	  select m_id from MEMBER where m_name=#{m_name} and m_birth=#{m_birth} and m_phone=#{m_phone}
 	</select>
-	<select id="existMem" parameterType="map" resultType="string">
+	<select id="existMem" resultType="string">
 	  select m_id from MEMBER where m_name=#{m_name} and m_id=#{m_id}
 	</select>
 	
 	<!-- book - setMonth -->
-	<update id="updateMonth" parameterType="map">
+	<update id="updateMonth">
 	  update MEMBER set m_month=#{m_month} where m_id=#{m_id}
 	</update>
 </mapper>

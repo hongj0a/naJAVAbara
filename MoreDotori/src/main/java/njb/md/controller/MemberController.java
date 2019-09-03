@@ -80,7 +80,10 @@ public class MemberController {
 	}
 	
 	@PostMapping("/update.do")
-	public String updateInfo(Member member, Expert expert, Minfo minfo, String newPwd, Principal principal) {
+	public String updateInfo(Member member, Expert expert, Minfo minfo,
+			String originPwd, String newPwd, Principal principal) {
+		int result = -1;
+		
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
 		Member oMember = user.getMember();
 		
@@ -93,10 +96,16 @@ public class MemberController {
 		}
 		
 		if(!newPwd.isEmpty()) {
-			member.setM_password(pwencoder.encode(newPwd));
-			oMember.setM_password(member.getM_password());
+			if(!isRightPwd(originPwd, principal)) {
+				result = -2;
+				return "redirect:/mypage?rst=" + result;
+			} else {
+				member.setM_password(pwencoder.encode(newPwd));
+				oMember.setM_password(member.getM_password());
+			}
 		}
 		if(mservice.updateMember(member, expert)) {
+			result = 1;
 			log.info("정보수정 성공");
 			
 			oMember.setM_nickname(member.getM_nickname());
@@ -110,12 +119,12 @@ public class MemberController {
 			
 			log.info("oMember: " + oMember);
 		} else {
+			result = 0;
 			log.info("정보수정 실패");
 		}
 		
-		return "redirect:/mypage";
+		return "redirect:/mypage?rst=" + result;
 	}
-	
 	
 	@PostMapping("/checkPwd.do")
 	@ResponseBody
@@ -123,9 +132,7 @@ public class MemberController {
 		int result = -1;
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
-//		log.info("user: " + user);
-		if(pwencoder.matches(pwd, user.getMember().getM_password()))
+		if(isRightPwd(pwd, principal))
 			result = 1;
 		else
 			result = 0;
@@ -201,6 +208,15 @@ public class MemberController {
 		map.put("rst", result);
 
 		return map;
+	}
+	
+	public boolean isRightPwd(String inputPwd, Principal principal) {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+
+		if(pwencoder.matches(inputPwd, user.getMember().getM_password()))
+			return true;
+		else
+			return false;
 	}
 	
 	public void getForm(Member member, Expert expert, Minfo minfo) {

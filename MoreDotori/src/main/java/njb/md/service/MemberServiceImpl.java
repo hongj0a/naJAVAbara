@@ -53,23 +53,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	public boolean updateMember(Member member, Expert expert) {
-//		log.info("member: " + member);
-//		log.info("expert: " + expert);
-		
 		int ue_result = -1;
 		int up_result = -1;
 		int um_result = mapper.updateMinfo(member);
 		if(member.getC_member().equals("MB002"))
 			ue_result = mapper.updateEinfo(expert);
 		
-		if(member.getM_password() != null) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			map.put("m_id", member.getM_id());
-			map.put("m_password", member.getM_password());
-			
-			up_result = mapper.updatePwd(map);
-		}
+		if(member.getM_password() != null)
+			up_result = mapper.updatePwd(member.getM_password(), member.getM_id());
 
 		if(um_result!=0 && ue_result!=0 && up_result!=0)
 			return true;
@@ -79,7 +70,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	public Map<Object, Object> getExpertById(String id) {
 		Expert expert = mapper.getExpert(id);
-//		log.info("expert: " + expert);
 		
 		Map<Object, Object> eMap = new HashMap<Object, Object>();
 		eMap.put("job", expert.getE_job());
@@ -150,9 +140,6 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 		}
-		
-//		log.info("eMap: " + eMap);
-		
 		return eMap;
 	}
 	
@@ -173,39 +160,20 @@ public class MemberServiceImpl implements MemberService {
 	public int withdrawal(String mid) {
 		int result = -1;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("m_id", mid);
-		map.put("m_state", "MS003");
-		
-		result *= mapper.updateState(map);
-
-		map.remove("m_state");
-		map.put("m_enabled", "0");
-		
-		result *= mapper.setEnable(map);
-		
-//		log.info("# map: " + map);
+		result *= mapper.updateState("MS003", mid);
+		result *= mapper.setEnable("0", mid);
 		
 		return result;
 	}
 	
 	public String findId(String name, String phone, String birth) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("m_name", name);
-		map.put("m_phone", phone);
-		map.put("m_birth", birth);
-		
-		return mapper.findId(map);
+		return mapper.findId(name, birth, phone);
 	}
 
 	public boolean setMonth(String mid, long month) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("m_id", mid);
-		map.put("m_month", month);
-		
-		if(mapper.updateMonth(map) != 0) return true;
-		else return false;
+		if(mapper.updateMonth(month, mid) != 0)
+			return true;
+		else
+			return false;
 	}
 }

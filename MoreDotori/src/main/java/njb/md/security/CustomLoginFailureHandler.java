@@ -36,7 +36,7 @@ public class CustomLoginFailureHandler implements AuthenticationFailureHandler {
 			errorCode += "4";
 		}
 		
-		response.sendRedirect("/signin?eCode=" + errorCode);
+		response.sendRedirect("/signin?ecode=" + errorCode);
 	}
 
 }

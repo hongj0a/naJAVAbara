@@ -12,7 +12,8 @@
 <body class="layout-8">
 	<%-- <jsp:include page="../main/header.jsp"></jsp:include> --%>
     <!-- [ Main Content ] start -->
-    <input type="hidden" id="errorCode" value="<%=request.getParameter("eCode")%>">
+    <input type="hidden" id="errorCode" value="<%=request.getParameter("ecode")%>">
+    
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
             <div class="pcoded-content" id="main_content_nopadding">

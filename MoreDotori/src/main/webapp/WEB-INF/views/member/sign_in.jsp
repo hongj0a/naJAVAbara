@@ -30,7 +30,8 @@
 					</a>
 					<form action="/login" method="post">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<input type="hidden" id="errorCode" value="<%=request.getParameter("eCode")%>">
+						<input type="hidden" id="errorCode" value="<%=request.getParameter("ecode")%>">
+						<input type="hidden" id="cDate" value="<%=request.getParameter("cdate")%>">
 						<div class="input-group mb-3">
 							<input type="text" name="username" class="form-control" placeholder="아이디">
 						</div>
@@ -64,7 +65,7 @@
     	  var $error = $('#errorCode').val();
    		  switch($error) {
 	   		  case 'ER001':
-	   		  case 'ER002': 
+	   		  case 'ER002':
 	   			  swal('아이디 또는 비밀번호가 일치하지 않습니다.');
 	   			  break;
 	   		  case 'ER003': 
@@ -73,6 +74,12 @@
 	   		  case 'ER004': 
 	   			  swal('비밀번호 유효기간이 만료 되었습니다. 관리자에게 문의해주세요.');
 	   			  break;
+		   	  case 'ER005':
+		   		  swal('정지된 회원입니다.\n' + $('#cDate').val() + ' 이후에 로그인 할 수 있습니다.');
+		   		  break;
+		   	  case 'ER006':
+		   		  swal('이미 탈퇴한 회원입니다.');
+		   		  break;
     	  }
       });
     </script>
