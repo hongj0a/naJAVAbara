@@ -595,11 +595,10 @@ var color = ["#F76D82", "#3b8686", "#cff09e", "#FC8370", "#62DDBD",
 	  $(".thisMonthTitle").empty();
 	  
 	  if(loginMonth!=0){
-		  $(".thisMonthTitle").append(loginName+"님, 하루에 <span class='money_out'>"+$.fn.comma(restMonth)+" 원</span>을 사용하시는 것을 권장 드려요.");
-		  
-		  if(restMonth==0){
+		    if(restMonth<=0){
 			  $(".thisMonthTitle + div").text("한달 예산을 다 사용하셨어요 T_T");
 		  }else{
+			  $(".thisMonthTitle").append(loginName+"님, 하루에 <span class='money_out'>"+$.fn.comma(restMonth)+" 원</span>을 사용하시는 것을 권장 드려요.");
 			  $(".thisMonthTitle + div").text("");
 		  }		  
 	  }else{

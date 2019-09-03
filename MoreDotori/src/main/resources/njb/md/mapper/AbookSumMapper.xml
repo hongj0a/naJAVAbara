@@ -177,7 +177,7 @@
 		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
 		and ass.M_id=#{M_id}
 		and io.C_inout=#{inoutCode}
-		and rownum <= 4
+		and rownum <= 3
 		group by io.c_categori
 		order by ct desc			
 	]]>
