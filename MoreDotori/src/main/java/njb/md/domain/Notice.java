@@ -13,5 +13,5 @@ public class Notice {
 	private String N_subject;
 	private String N_content;
 	private Date N_date;
-	private String C_Nstate;
+	private String C_nstate;
 }

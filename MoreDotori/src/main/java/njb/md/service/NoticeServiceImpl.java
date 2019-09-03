@@ -15,6 +15,11 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired
 	private NoticeMapper mapper;
+
+	@Override
+	public List<String> dateNotiListS(String M_id) {
+		return mapper.dateNotiList(M_id);
+	}	
 	
 	@Override
 	public List<Notice> getNotiListHeaderS(String M_id) {
@@ -32,8 +37,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void updateNoticeS(Notice notice) {
-		mapper.updateNotice(notice);
+	public void updateNoticeS(long N_seq, String C_nstate) {
+		mapper.updateNotice(N_seq, C_nstate);
 	}
 
 }

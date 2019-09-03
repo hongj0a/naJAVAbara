@@ -4,6 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njb.md.mapper.NoticeMapper">
 
+	<select id="dateNotiList" resultType="String">
+	<![CDATA[
+		select distinct(weekdate)
+		from (select to_char(N_date, 'YYYY/MM/DD') as weekdate
+		from Notice
+		where N_date > sysdate-7
+		and N_date <= sysdate
+		and M_id=#{M_id}
+		and C_NSTATE!='NS003'
+		group by N_date
+		order by N_date desc)
+		order by weekdate desc
+	 ]]>		
+	</select>
+
 	<select id="getNotiListHeader" resultType="njb.md.domain.Notice">
 	<![CDATA[
 		select *
@@ -41,9 +56,9 @@
 	 ]]>		
 	</select>
 	
-	<update id="updateNotice" parameterType="njb.md.domain.Notice">
+	<update id="updateNotice">
 		update Notice
-		set C_NSTATE=#{C_NSTATE}
+		set C_NSTATE=#{C_nstate}
 		where N_seq=#{N_seq}
 	</update>
 </mapper>
