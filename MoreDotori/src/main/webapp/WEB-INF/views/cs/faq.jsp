@@ -13,7 +13,25 @@
 
 <body class="layout-8">
 	<jsp:include page="../main/header.jsp"></jsp:include>
+	<script type="text/javascript">
+	function clickWriteBtn(){
+ 		var form = document.tabform;
+ 		//if(!validation(form)) return;
+ 		form.action = "/board/${BoardMgrVO.b_code}/write";
+ 		form.submit();
+ 	}
+	function go_delete(seq){
+ 		var form = document.tabform;
+ 		//if(!validation(form)) return;
+ 		var con_test = confirm('정말 삭제 하시겠습니까?');
+ 		if(con_test){
+ 			$("#b_seq").val(seq);
+ 	 		form.action = "/board/${BoardMgrVO.b_code}/delete";
+ 	 		form.submit();
+ 		}
+ 	}
 	
+	</script>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
@@ -29,7 +47,8 @@
                         <div class="page-wrapper">
 							<form id="tabform" name="tabform" method="post" target="" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
 							<input type="hidden" name="searchCate" value="${search_cate }">
-
+							<input type="hidden" name="b_seq" id="b_seq" value="0">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							
                             <!-- [ Main Content ] start -->
                             <div class="row">
@@ -87,7 +106,11 @@
 		                                            </a>
 		                                            <div class="collapse" id="f${status.count }" data-parent="#myTabContent">
 		                                                <p class="mb-0"> ${listConts.b_content}</p>
+		                                                <c:if test="${tuser.c_member eq 'MB000'}">
+		                                                 <a href="#" onclick="go_delete(${listConts.b_seq});">삭제</a>
+		                                                 </c:if>
 		                                            </div>
+		                                           
 			                                        <hr>
 			                                    </c:forEach>
 			                                </c:if>
@@ -143,6 +166,9 @@
 		                                            </a>
 		                                            <div class="collapse" id="f${status.count}" data-parent="#myTabContent">
 		                                                <p class="mb-0"> ${listConts.b_content}</p>
+		                                                <c:if test="${tuser.c_member eq 'MB000'}">
+		                                                 <a href="#" onclick="go_delete(${listConts.b_seq});">삭제</a>
+		                                                 </c:if>
 		                                            </div>
 			                                        <hr>
 			                                     </c:if>
@@ -163,6 +189,9 @@
 		                                            </a>
 		                                            <div class="collapse" id="f${status.count}" data-parent="#myTabContent">
 		                                                <p class="mb-0"> ${listConts.b_content}</p>
+		                                                <c:if test="${tuser.c_member eq 'MB000'}">
+		                                                 <a href="#" onclick="go_delete(${listConts.b_seq});">삭제</a>
+		                                                 </c:if>
 		                                            </div>
 			                                        <hr>
 			                                     </c:if>
@@ -185,6 +214,9 @@
 		                                            </a>
 		                                            <div class="collapse" id="f${status.count}" data-parent="#myTabContent">
 		                                                <p class="mb-0"> ${listConts.b_content}</p>
+		                                                <c:if test="${tuser.c_member eq 'MB000'}">
+		                                                 <a href="#" onclick="go_delete(${listConts.b_seq});">삭제</a>
+		                                                 </c:if>
 		                                            </div>
 			                                        <hr>
 			                                     </c:if>
@@ -207,12 +239,15 @@
 		                                            </a>
 		                                            <div class="collapse" id="f${status.count}" data-parent="#myTabContent">
 		                                                <p class="mb-0"> ${listConts.b_content}</p>
+		                                                <c:if test="${tuser.c_member eq 'MB000'}">
+		                                                 <a href="#" onclick="go_delete(${listConts.b_seq});">삭제</a>
+		                                                 </c:if>
 		                                            </div>
 			                                        <hr>
 			                                     </c:if>
 			                                    </c:forEach>
 			                                    
-                                        <c:if test="${empty boardList }">
+                                        		<c:if test="${empty boardList }">
 		                                  			<h5 data-toggle="collapse" data-target="#f${status.count}" aria-Expand="false" aria-controls="f${status.count }">
                                                       <span>  내용이 없슈</span>
                                                    </h5>
@@ -223,7 +258,10 @@
 				                                  	내용이 없습니다.
 					                              </c:if> --%>
                                         </div>
-                                            <!-- <a href="/board_write" class="btn btn-primary " style="margin:10px; textalign:rignt;">FAQ 작성하기</a> -->                                       
+                                         <c:if test="${tuser.c_member eq 'MB000'}">
+		                                 <a href="#" onclick="clickWriteBtn();" class="btn btn-primary " style="margin:10px; textalign:rignt;">FAQ 작성하기</a>
+		                                  </c:if>
+                                            <!--  -->                                       
                                     </div>
                                 </div>
                                 <!-- tab end -->

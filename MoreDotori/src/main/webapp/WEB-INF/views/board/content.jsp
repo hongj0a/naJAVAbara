@@ -3,15 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
 	<!-- append css -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/style_board_content.css">
+	<link rel="stylesheet" href="/css/board/style_board_content.css">
 	<!-- material icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/fonts/material/css/materialdesignicons.min.css">
 	
 </head>
 
@@ -19,6 +20,8 @@
 	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
      <script type="text/javascript">
+     var type = "bbs";
+     var tseq = "";
 	 function clickListBtn(){
  		var form = document.aform;
  		//if(!validation(form)) return;
@@ -29,21 +32,43 @@
 	 function clickWriteBtn(){
  		var form = document.aform;
  		//if(!validation(form)) return;
- 		
+ 		$("#b_seq").val("${board.b_seq }");
+ 		$("#mode").val("mod");
  		form.action = "/board/${BoardMgrVO.b_code}/write";
  		form.submit();
  	}
+	 function clickDelete(){
+ 		var form = document.aform;
+ 		//if(!validation(form)) return;
+ 		var con_test = confirm('정말 삭제 하시겠습니까?');
+ 		if(con_test){
+ 			$("#b_seq").val("${board.b_seq }");
+ 	 		form.action = "/board/${BoardMgrVO.b_code}/delete";
+ 	 		form.submit();
+ 		}
+ 	}
 	 function go_heart(b_seq) {
-		 $.post("/board/${BoardMgrVO.b_code}/heart", { b_seq: b_seq },    
-			      function(data) {     alert("추천하였습니다.");
-					 $(".like_count").html(data.boardVO.b_heartnum);  },   "json" );  
+		 $.post("/board/${BoardMgrVO.b_code}/heart", 
+				 { b_seq: b_seq,"${_csrf.parameterName}" : "${_csrf.token}" },    
+			     function(data) { 
+					 console.log(data);
+					 if(data.data == "sucsses"){
+			 			alert("추천하였습니다.");
+				 		$(".like_count").html(data.likecnt);  
+					 }
+				 	},
+				 "json" );  
 	 }
+	  <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }">
 	 function replywrite(){
 		 var b_seq = "${board.b_seq }";
 		 var recon = $("#replycontent").val();
 		 $.post("/reply/write", 
 				 { b_seq: b_seq,
-			 		re_content : recon},    
+			 		re_content : recon,
+			 		b_code	: 	"${BoardMgrVO.b_code }",
+			 		"${_csrf.parameterName}" :  "${_csrf.token}"
+				 },    
 			      function(data) {    
 			 			if(data.data == "sucsses"){
 			 				alert("등록성공하였습니다.");
@@ -54,7 +79,9 @@
 			"json" );  
 	 }
 	 function getReplyList(b_seq){
-		 $.post("/reply/list", { b_seq: b_seq },    
+		 $.post("/reply/list", { b_seq: b_seq, 
+			 "${_csrf.parameterName}" : "${_csrf.token}"
+		 },    
 		      function(data) {     
 			 	var relist = data.list;
 			 	var html;
@@ -64,8 +91,8 @@
 			 			html += "<li><div class=\"media userlist-box reply_info\" data-id=\"\" data-status=\"\" data-username=\"\">";
 				 		html += "<a class=\"media-left\" href=\"#!\"><img class=\"media-object img-radius\" src=\" "+"/images/user/avatar-1.jpg" +"\"  alt=\"image \"></a>";
 				 		html += "<div class=\"media-body\"><span class=\"chat-header float-left\">"+o.reg_id +"<small class=\"d-block text-c-green\"> " +o.reg_dt+ "</small></span>";
-				 		html += "<span class=\"like_warning float-right\"><span><a href=\"#\">추천 </a>";
-				 		html += "|<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\"> 신고</a>";
+				 		html += "<span class=\"like_warning float-right\"><!--<span><a href=\"#\">추천| </a>-->";
+				 		html += "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\" style=\"cursor:pointer;\" onclick=\"test(this, "+o.re_seq+");\"> 신고</a>";
 					 	html += "</span></span></div></div><div class=\"reply_comment\">"+o.re_content+"</div></li>";
 			 		});
 			 		$(".reply_list_ul").html("").html(html);
@@ -73,15 +100,65 @@
 			  },  
 		"json" );  
 	 }
-	 function test(t){
-		
+	 </c:if>
+	 function test(t, seq){
+		 tseq = seq;
+		if($(t)[0].tagName == "BUTTON"){
+			 type = "bbs";
+		} else {
+			 type = "comm";
+		}
 	 }
 	 //신고
 /* 	 function report_completed(b_seq){
 
 	 } */
+	 function reportwrite(){
+		 var b_seq = "";
+		 var re_seq = "";
+		 if(type == "bbs"){
+			 b_seq = ""+tseq;
+		 } else {
+			 re_seq = ""+tseq;
+		 }
+		 
+		 var b_code	= "${BoardMgrVO.b_code  }";
+		 
+		 var radioVal = $('input[name="radio-p-1"]:checked').val();
+		 var reporcon = "";
+		 console.log(radioVal);
+		 if(radioVal != 0){
+			 $label = $('input[name="radio-p-1"]:checked')[0].labels;
+			 reporcon = $($label).html();
+		 } else {
+			 reporcon = $("#repotxt").val(); 
+		 }
+		 
+		 if(reporcon == ""){
+			 alert("신고사유는 필수 입력값 입니다.");
+		 }
+		 
+		 $.post("/report/write", 
+				 { 
+			 		b_seq: b_seq,
+			 		b_code : b_code,
+			 		re_seq : re_seq,
+			 		"${_csrf.parameterName}" : "${_csrf.token}",
+			 		rd_content : reporcon
+				 },    
+			      function(data) {  
+					 console.log(data);
+		 			if(data.data == "sucsses"){
+		 				alert("신고했습니다.");
+		 			}
+		 			$(".btn-secondary").trigger("click");
+				  },  
+			"json" );  
+	 }
 	 $(document).ready(function() {
+		 <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }">
 		 getReplyList("${board.b_seq }");
+		 </c:if>
      });
 	 </script>
     <div class="pcoded-main-container">
@@ -97,9 +174,9 @@
                     <div class="main-body">
                         <div class="page-wrapper">
 						<form:form id="aform" modelAttribute="boardVO" name="aform" method="post" action="/board/${BoardMgrVO.b_code}/list"  onsubmit="javascript:return false;">
+							<input type="hidden" name="b_seq" id="b_seq" value="0"/>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							<input type="hidden" name="b_seq" value="0"/>
-							<input type="hidden" name="mode" value="view"/>
+							<input type="hidden" name="mode" id="mode"  value="view"/>
 						</form:form>
                             <!-- [ Main Content ] start -->
                             <div class="row">
@@ -108,7 +185,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <h5>${BoardMgrVO.b_title}</h5>
-                                            <span class="d-block m-t-5"> <code>모든 회원</code> 들의 자유로운 게시판 입니다.</span>
+                                            <span class="d-block m-t-5"> <code></code>${BoardMgrVO.b_subtitle}</span>
 
                                         </div>
                                         <!-- 게시글 시작 -->
@@ -141,6 +218,7 @@
                                             </div>
                                             <!-- 게시글 내용 end -->
                                             <!-- 추천/신고 start -->
+                                            <c:if test="${fn:trim(BoardMgrVO.b_code) ne 'BO000'}">
                                             <div class="like_section">
                                                 <a class="like">
                                                     <!--
@@ -150,12 +228,18 @@
                                                     </div> -->
                                                     <button type="button" onclick="go_heart(${board.b_seq});" class="btn btn2 btn-outline-danger" data-toggle="" data-target="" date-type="like"><span class="fas fa-heart"></span><span class="like_count">${board.b_heartnum }</span></button>
                                                 </a>
+                                                 <c:if test="${fn:trim(BoardMgrVO.b_report_yn) eq 'Y'}">
                                                 <a class="warning  float-right">
-                                                    <button type="button" class="btn btn2 btn-outline-danger mdi mdi-alarm-light" data-toggle="modal" data-target="#exampleModalCenter"> 신고</button>
+                                                    <button type="button" class="btn btn2 btn-outline-danger mdi mdi-alarm-light" data-toggle="modal" data-target="#exampleModalCenter" onclick="test(this,${board.b_seq } );"> 신고</button>
 
                                                 </a>
+                                                </c:if>
                                             </div>
+                                            </c:if>
                                             <!-- 추천/신고 end -->
+                                            
+                                            <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }">
+                                            
                                             <!-- 댓글 start -->
                                             <div class="reply_section">
                                                 <table cellspacing="0" class="reply_tb">
@@ -173,36 +257,20 @@
                                                 </table>
                                                 <div class="reply_list">
                                                     <ul class="reply_list_ul">
-                                                        
-                                                       <!--  <li>
-                                                            <div class="media userlist-box reply_info" data-id="" data-status="" data-username="">
-                                                                유저이미지
-                                                                <a class="media-left" href="#!">
-                                                                    <img class="media-object img-radius" src="/images/user/avatar-1.jpg" alt="image ">
-                                                                </a>
-                                                                유저정보
-                                                                <div class="media-body">
-                                                                    <span class="chat-header float-left">닉네임***?<small class="d-block text-c-green">2019.07.14</small></span>
-                                                                    <span class="like_warning float-right">
-                                                                    <span>
-	                                                                    <a href="#">추천 </a>|
-	                                                                    <a data-toggle="modal" data-target="#exampleModalCenter"style="cursor:pointer;"> 신고</a>
-                                                                    </span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="reply_comment">
-                                                                여기는 댓글 리스트입니다. 입력한 댓글 내용이 바로 여기에 뿌려지는 거시지요.
-                                                            </div>
-                                                        </li> -->
+                                                     
                                                     </ul>
                                                 </div>
 
                                             </div>
                                             <!-- 댓글 end -->
+                                            </c:if>
+                                            
                                             <!-- 하단 버튼 -->
                                             <a href="#" datataget="" class="btn btn-primary btn-boredlist" onclick="clickListBtn();">목록</a>
-                                            <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickWriteBtn();">글쓰기</a>
+                                            <c:if test="${tuser.c_member eq 'MB000' || tuser.m_nickname eq board.reg_id}">
+                                            <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickWriteBtn();">수정</a>
+                                            <a href="#" class="btn btn-primary btn-boredwrite" onclick="clickDelete();">삭제</a>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>
@@ -234,13 +302,13 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="radio radio-primary d-inline">
-                                                                <input type="radio" name="radio-p-1" id="radio-p-2"value="1">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-2"value="2">
                                                                 <label for="radio-p-2" class="cr">바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <div class="radio radio-primary d-inline">
-                                                                <input type="radio" name="radio-p-1" id="radio-p-3"value="1">
+                                                                <input type="radio" name="radio-p-1" id="radio-p-3"value="3">
                                                                 <label for="radio-p-3" class="cr">홈페이지 내 자체운영 원칙에 위배되는 활동</label>
                                                             </div>
                                                         </div>
@@ -298,12 +366,12 @@
                                                         -->
                                                         <!-- [ primary radio ] end -->
 
-                                                        <textarea class="reply_textarea form-control reseonwhy" name="text" placeholder="신고 사유를 작성해주세요" rows="3" disabled></textarea>
+                                                        <textarea class="reply_textarea form-control reseonwhy" name="text" id="repotxt" placeholder="신고 사유를 작성해주세요" rows="3" disabled></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                                                    <button type="button" class="btn btn-primary" onclick="report_completed">신고하기</button>
+                                                    <button type="button" class="btn btn-primary" onclick="reportwrite();">신고하기</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -323,7 +391,7 @@
     <!-- [ Main Content ] end -->
     
         <!-- footable Js -->
-    <script src="${pageContext.request.contextPath}/js/board/footable.min.js"></script>
+    <script src="/js/board/footable.min.js"></script>
 
 
 	<input id="bcode" type="hidden" value="${BoardMgrVO.b_code}">

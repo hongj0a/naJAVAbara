@@ -137,7 +137,7 @@
           					                                            <c:forEach items="${reportList.reportDetail}" var="reportData" >
           					                                               <tr class="thickness">
 	          					                                              <td>${reportData.rownum } </td>
-	          					                                              <td>${reportData.reg_id }</td>
+	          					                                              <td>${reportData.m_id }</td>
 	          					                                              <td>${reportData.rd_content }</td>
 	          					                                              <td>${reportData.rd_date }</td>
           					                                               </tr>

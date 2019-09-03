@@ -1,20 +1,25 @@
 package njb.md.customer.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import njb.md.customer.domain.BoardVO;
 import njb.md.customer.domain.ReplyVO;
 import njb.md.customer.service.ReplyService;
+import njb.md.security.domain.CustomUser;
 
 @Controller
 @Log4j
@@ -38,15 +43,58 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/write")
-	public String write(HttpServletRequest request, HttpSession session, ReplyVO vo, Model mo) throws Exception {
-		vo.setReg_id("inhee@naver.com");
+	public String write(HttpServletRequest request, HttpSession session, ReplyVO vo, Principal principal, Model mo) throws Exception {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		vo.setReg_id(user.getMember().getM_nickname());
 		String b_seq = request.getParameter("b_seq");
 		String re_content = request.getParameter("re_content");
+		String b_code	= request.getParameter("b_code");
 		vo.setB_seq(Integer.parseInt(b_seq));
-		vo.setC_bcategori("");
+		vo.setB_code(b_code);
 		vo.setRe_content(re_content);
 		service.regReply(vo);
 		mo.addAttribute("data","sucsses");
 		return "jsonView";
 	}
+	
+	@RequestMapping("/modify")
+	public String modify(HttpServletRequest request, HttpSession session, ReplyVO vo, Principal principal, Model mo) throws Exception {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		vo.setReg_id(user.getMember().getM_nickname());
+		String b_seq = request.getParameter("b_seq");
+		String re_content = request.getParameter("re_content");
+		String b_code	= request.getParameter("b_code");
+		vo.setB_seq(Integer.parseInt(b_seq));
+		vo.setB_code(b_code);
+		vo.setRe_content(re_content);
+		service.modReply(vo);
+		mo.addAttribute("data","sucsses");
+		return "jsonView";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, HttpSession session, ReplyVO vo, Principal principal, Model mo) throws Exception {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		log.info("user: " + user.getMember().getM_nickname());
+		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
+		
+		vo.setReg_id(user.getMember().getM_nickname());
+		String b_seq = request.getParameter("b_seq");
+		String re_content = request.getParameter("re_content");
+		String b_code	= request.getParameter("b_code");
+		vo.setB_seq(Integer.parseInt(b_seq));
+		vo.setB_code(b_code);
+		vo.setRe_content(re_content);
+		service.removeReply(vo);
+		mo.addAttribute("data","sucsses");
+		return "jsonView";
+	}
+	
+	
 }
