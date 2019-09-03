@@ -29,8 +29,8 @@ public class AsserListServiceTests {
 	
 	@Test
 	public void testListS() {
-		List<AssetList> list = service.listS();
-		log.info("#testExcist() list : " + list);
+		//List<AssetList> list = service.listS();
+		//log.info("#testExcist() list : " + list);
 	}
 	@Test
 	public void testInsertS() {

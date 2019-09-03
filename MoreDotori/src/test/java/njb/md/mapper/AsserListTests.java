@@ -25,7 +25,7 @@ public class AsserListTests {
 	@Test
 	public void testList() {
 		log.info("#assetListMapper: " + assetListMapper.getClass().getName());
-		log.info("#call list(): " + assetListMapper.list());
+		//log.info("#call list(): " + assetListMapper.list());
 	}
 	public void testInsert() {
 		AssetList dto = new AssetList(-1L, "가", "AS001", "다", 2L, "라");
