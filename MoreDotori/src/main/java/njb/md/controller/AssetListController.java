@@ -28,23 +28,11 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/normal")
 @AllArgsConstructor
 public class AssetListController {
-	
-	
 	private static final String C_code = null;
 
 	@Setter(onMethod_ = @Autowired)
 	private AssetListService service;
 	
-	/*@RequestMapping("/list.do")
-	public ModelAndView list() {
-		List<Bo2waard> list = service.listS();
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/list");
-		mv.addObject("list", list);
-		//ModelAndView mv = new ModelAndView("addr/list", "list", list);
-	
-		return mv;
-	}*/
 	@Setter(onMethod_ = @Autowired)
 	private CodeService cservice;
 	
