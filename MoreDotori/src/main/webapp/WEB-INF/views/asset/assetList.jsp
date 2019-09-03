@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +15,7 @@
     <meta name="author" content="Codedthemes" />
 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/assetManagement/assetm.css">
-	<!-- footable css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/footable/css/footable.standalone.min.css">
-    
+
 </head>
 
 <body class="layout-8">
@@ -73,11 +71,11 @@
                                                     		&nbsp;
                                                     		<select name="c_asset" class="js-example-basic-single form-control plus-imp">
                                                             	<option value="AS001">현금</option>
-                                                            	<option value="AS002">통장</option>
-                                                            	<option value="AS003">신용카드</option>
-                                                            	<option value="AS004">체크카드</option>
+                                                            	<option value="AS002">신용카드</option>
+                                                            	<option value="AS003">체크카드</option>
+                                                            	<option value="AS004">통장</option>
                                                         	</select> 
-                                                     		</div>
+                                                     	</div>
                                                      	</br>
                                                         <div class="col-12">
                                                      		<span>별칭 :  </span>
@@ -120,18 +118,24 @@
 												    <th class="widsize2">메모</th>
 												    <th class="widsize">삭제</th>
 												  </tr>
-												  	<c:forEach items="${list}" var="alist">
-														<tr class="updatetd" id="hove" onclick="/normal/aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
-															<td class="idhidden">${alist.a_seq}</td>
-															<td class="idhidden">${alist.m_id}</td>
-															<td>${alist.c_asset}</td>
-															<td>${alist.a_nickname}</td>
-															<td>${alist.a_money}</td>
-															<td>${alist.a_memo}</td>
-															<td ><a href="/normal/aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
-														</tr>
-			                                            </c:forEach>
-			                                            
+													<c:choose>
+														<c:when test="${empty list}">
+															<tr><td id="tdsize" colspan="5">자산 내역이 없습니다</td></tr>
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${list}" var="alist">
+																<tr class="updatetd" id="hove" onclick="/normal/aList/update.do?a_seq=${alist.a_seq}" data-toggle="modal" data-target="#exampleModalLive2">
+																	<td class="idhidden">${alist.a_seq}</td>
+																	<td class="idhidden">${alist.m_id}</td>
+																	<td>${alist.c_asset}</td>
+																	<td>${alist.a_nickname}</td>
+																	<td>${alist.a_money}</td>
+																	<td>${alist.a_memo}</td>
+																	<td ><a href="/normal/aList/del.do?a_seq=${alist.a_seq}">삭제</a></td>
+																</tr>
+			                                       			 </c:forEach>
+														</c:otherwise>
+													</c:choose>
 			                                             <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
 			                                                <div class="modal-dialog" role="document">
 			                                                       <div id="contentsize-plus2" class="modal-content">
@@ -149,9 +153,9 @@
 			                                                    		&nbsp;
 			                                                    		<select name="c_asset" id="c_asset" class="js-example-basic-single form-control plus-imp">
 			                                                            	<option value="AS001">현금</option>
-			                                                            	<option value="AS002">통장</option>
-			                                                            	<option value="AS003">신용카드</option>
-			                                                            	<option value="AS004">체크카드</option>
+			                                                            	<option value="AS002">신용카드</option>
+			                                                            	<option value="AS003">체크카드</option>
+			                                                            	<option value="AS004">통장</option>
 			                                                        	</select> 
 			                                                     		</div>
 			                                                     	</br>
@@ -186,27 +190,6 @@
 													
 											</table>
 												</form>
-											     	<tfoot>
-								                 		<tr class="footable-paging"><td colspan="5">
-								                			<div class="footable-pagination-wrapper">
-												                 <ul class="pagination">
-												                 <li class="footable-page-nav disabled" data-page="first">
-												                 	<a class="footable-page-link" href="#">«</a></li>
-												                 <li class="footable-page-nav disabled" data-page="prev">
-												                 	<a class="footable-page-link" href="#">‹</a></li>
-												                 <li class="footable-page visible active" data-page="1">
-												                 	<a class="footable-page-link" href="#">1</a></li>
-												                 <li class="footable-page visible" data-page="2">
-												                 	<a class="footable-page-link" href="#">2</a></li>
-												                 <li class="footable-page-nav" data-page="next">
-												                 	<a class="footable-page-link" href="#">›</a></li>
-												                 <li class="footable-page-nav" data-page="last">
-												                 	<a class="footable-page-link" href="#">»</a></li>
-												                 </ul>
-												            <div class="divider">
-								                 		</div>
-								                 	</td></tr>
-								                 </tfoot>
                               		   </div>
                               		</div>
                               	</div>
@@ -233,21 +216,5 @@
 	<!-- assetUpdatemodal Js -->
 	<script src="${pageContext.request.contextPath}/js/asset/assetUpdate.js"></script>
 
-	<!-- footable Js -->
-	<script src="${pageContext.request.contextPath}/plugins/footable/js/footable.min.js"></script>
-	
-	    <script type="text/javascript">
-	        $(document).ready(function() {
-	            // [ Foo-table ]
-	            $('#demo-foo-filtering').footable({
-	                "paging": {
-	                    "enabled": true
-	                },
-	                "sorting": {
-	                    "enabled": true
-	                }
-	            });
-	        });
-	    </script>
 </body>
 </html>

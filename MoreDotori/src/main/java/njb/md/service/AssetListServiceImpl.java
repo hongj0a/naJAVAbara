@@ -16,9 +16,10 @@ public class AssetListServiceImpl implements AssetListService {
 	private AssetListMapper mapper;
 	
 	@Override
-	public List<AssetList> listS() {
-		List<AssetList> list = mapper.list();
+	public List<AssetList> listS(String m_id) {
+		List<AssetList> list = mapper.list(m_id);
 		log.info("#AssetListServiceImpl listS() list : " + list);
+
 		return list;
 	}
 	@Override
