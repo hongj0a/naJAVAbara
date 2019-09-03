@@ -223,7 +223,7 @@
 																<div class="card-header">
 																	<h5>지출 금액 Top3</h5>
 																</div>
-																<div class="card-body">
+																<div id="top3IO" class="card-body">
 																	<div class="row">
 																		<div class="col-sm-2 col-form-label">
 																			<i class="mdi mdi-numeric-1-box"></i>
@@ -256,7 +256,7 @@
 																<div class="card-header">
 																	<h5>지출 분류별 건수 Top3</h5>
 																</div>
-																<div class="card-body">
+																<div id="top3CountIO" class="card-body">
 																	<div class="row">
 																		<div class="col-sm-2 col-form-label">
 																			<i class="mdi mdi-numeric-1-box"></i>

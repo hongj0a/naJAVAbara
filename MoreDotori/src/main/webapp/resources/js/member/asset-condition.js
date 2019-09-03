@@ -810,7 +810,7 @@ var color = ["#F76D82", "#3b8686", "#cff09e", "#FC8370", "#62DDBD",
 	   });  
    } 	
 
-	//tab3 : 나의 자산 현황
+	//tab4 : 자산별 지출현황
    $.fn.getTab4ChartData = function(yyyy, mmmm, dddd){
 	   $.ajax({
 		   type: "GET",
@@ -824,19 +824,104 @@ var color = ["#F76D82", "#3b8686", "#cff09e", "#FC8370", "#62DDBD",
 		   success : function(data){
 			   var assetName1 = data.assetName1;
 			   var assetData1 = data.assetData1;
-			   
 			   $.fn.setTab4ChartData(assetName1, assetData1);
-			   
-			   
-			   
 		   },
 		   error:function(request,status,error){
 	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	       }
 		   
 	   });  
-   } 	   
+   }
+
+	//tab4 - top3
+   $.fn.getTab4Top3IOData = function(yyyy, mmmm, dddd){
+	   $.ajax({
+		   type: "GET",
+		   url : "asset_cond/top3IO.do",
+		   dataType : "json",
+		   data : { M_id: loginId,
+			   		yyyy: yyyy,
+			   		mmmm: mmmm,
+			   		dddd, dddd
+		   },
+		   success : function(data){
+			   $('#top3IO').empty();
+			   var content = "";
+			   if(0==data.length){
+				   content += "<div>";
+				   content += "해당 월에 지출내역이 없습니다.";
+				   content += "</div>"
+			   }else{
+				   for(var i=0; i<data.length; i++){
+					   content += "<div class='row'>";
+					   content += "<div class='col-sm-2 col-form-label'>";
+					   content += "<i class='mdi mdi-numeric-"+(i+1)+"-box'></i>";
+					   content += "</div>";
+					   content += "<div class='col col-form-label'>";
+					   content += data[i].I_memo;
+					   content += "</div>";
+					   content += "<div class='col-sm-2 col-form-label'>";
+					   content += data[i].I_date;
+					   content += "</div>";
+					   content += "<div class='col-sm-3 col-form-label text-right'>";
+					   content += $.fn.comma(data[i].I_money)+" 원";
+					   content += "</div>";
+					   content += "</div>";
+				   }
+			   }
+			   $('#top3IO').append(content);
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+		   
+	   });  
+   } 	
    
+	//tab4 - 건수top3
+   $.fn.getTab4Top3CountData = function(yyyy, mmmm, dddd){
+	   $.ajax({
+		   type: "GET",
+		   url : "asset_cond/top3CountIO.do",
+		   dataType : "json",
+		   data : { M_id: loginId,
+			   		yyyy: yyyy,
+			   		mmmm: mmmm,
+			   		dddd, dddd
+		   },
+		   success : function(data){
+			   $('#top3CountIO').empty();
+			   var content = "";
+			   if(0==data.length){
+				   content += "<div>";
+				   content += "해당 월에 지출내역이 없습니다.";
+				   content += "</div>"
+			   }else{
+				   for(var i=0; i<data.length; i++){
+					   content += "<div class='row'>";
+					   content += "<div class='col-sm-2 col-form-label'>";
+					   content += "<i class='mdi mdi-numeric-"+(i+1)+"-box'></i>";
+					   content += "</div>";
+					   content += "<div class='col col-form-label'>";
+					   content += data[i].C_categori;
+					   content += "</div>";
+					   content += "<div class='col-sm-2 col-form-label'>";
+					   content += data[i].ct+"건";
+					   content += "</div>";
+					   content += "<div class='col-sm-3 col-form-label text-right'>";
+					   content += $.fn.comma(data[i].sumMoney)+" 원";
+					   content += "</div>";
+					   content += "</div>";
+				   }
+			   }
+			   $('#top3CountIO').append(content);
+		   },
+		   error:function(request,status,error){
+	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	       }
+		   
+	   });  
+   }    
 ////////////////////////////////////////////////////////////////
 //메소드 첫실행 ******************************************************************************************
    
@@ -855,6 +940,8 @@ $(document).ready(function() {
 	$.fn.getTab2ChartData(toyear, tomonth, todate);
 	$.fn.getTab3ChartData(toyear, tomonth, todate);
 	$.fn.getTab4ChartData(toyear, tomonth, todate);
+	$.fn.getTab4Top3IOData(toyear, tomonth, todate);
+	$.fn.getTab4Top3CountData(toyear, tomonth, todate);
 	
 	// card-collapse arrow
 	var arrow_dir = function() {

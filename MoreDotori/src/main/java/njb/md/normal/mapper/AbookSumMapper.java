@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import njb.md.normal.domain.Inout;
+import njb.md.normal.domain.InoutCount;
 
 public interface AbookSumMapper {
 	//자산 총액
@@ -52,4 +53,6 @@ public interface AbookSumMapper {
 	//top3 이번달 지출금액
 	List<Inout> orderbyInout(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode);
 	
+	//top3 이번달 지출수
+	List<InoutCount> orderbyInoutCount(@Param("M_id") String M_id,@Param("selectMonth") String selectMonth, @Param("inoutCode") String inoutCode);
 }

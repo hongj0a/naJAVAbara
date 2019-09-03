@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import njb.md.normal.domain.Inout;
+import njb.md.normal.domain.InoutCount;
 import njb.md.normal.mapper.AbookSumMapper;
 
 @Log4j
@@ -120,4 +121,11 @@ public class AbookSumServiceImpl implements AbookSumService {
 		List<Inout> list = mapper.orderbyInout(M_id, selectMonth, inoutCode);
 		return list;
 	}
+	
+	@Override
+	public List<InoutCount> orderbyInoutCountS(String M_id, String selectMonth, String inoutCode) {
+		log.info("### 해당 월의 지출건수 탑3 가져오기 ###");
+		List<InoutCount> list = mapper.orderbyInoutCount(M_id, selectMonth, inoutCode);
+		return list;
+	}	
 }

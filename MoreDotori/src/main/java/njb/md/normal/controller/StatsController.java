@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
 import njb.md.normal.domain.Asset;
+import njb.md.normal.domain.Inout;
+import njb.md.normal.domain.InoutCount;
+import njb.md.normal.domain.InoutTrsList;
+import njb.md.normal.domain.Transfer;
 import njb.md.normal.service.AbookSumService;
 import njb.md.normal.service.AssetService;
 import njb.md.service.CodeService;
@@ -558,9 +563,69 @@ public class StatsController {
         hm.put("assetName1", assetName1);
         hm.put("assetData1", assetSum1);
         
-        ///////////////////////////////////////////////////////////////////////
-        
-        
 		return hm;
-	}	
+	}
+	
+	@RequestMapping(value="/asset_cond/top3IO.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<Object> getIoTop3List(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		//날짜데이타
+        int yearint = Integer.parseInt(yyyy);
+        int monint = Integer.parseInt(mmmm);
+        int dayint = Integer.parseInt(dddd);
+        
+        String monStr = mmmm;
+        if(monint<10) monStr = "0"+monint;
+        long datelong = Long.parseLong(yyyy+monStr+dddd);
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
+			
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
+
+        List<Inout> ioList = abs_service.orderbyInoutS(M_id, yyyy+"/"+monStr, out);
+        for(Inout i : ioList) {
+        	HashMap<Object,Object> hm = new HashMap<Object,Object>();
+        	hm.put("C_categori", code_service.selectCodeS(i.getC_categori()).getC_name());
+        	hm.put("I_memo", i.getI_memo());
+        	hm.put("I_date", transFormat.format(i.getI_date()));
+        	hm.put("I_money", i.getI_money());
+        	hmlist.add(hm);
+        }
+        
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value="/asset_cond/top3CountIO.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<Object> getIoCountTop3List(String M_id, String yyyy, String mmmm, String dddd, HttpServletRequest request) throws Exception{
+		//날짜데이타
+        int yearint = Integer.parseInt(yyyy);
+        int monint = Integer.parseInt(mmmm);
+        int dayint = Integer.parseInt(dddd);
+        
+        String monStr = mmmm;
+        if(monint<10) monStr = "0"+monint;
+        long datelong = Long.parseLong(yyyy+monStr+dddd);
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd");
+			
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap<Object,Object>> hmlist = new ArrayList<HashMap<Object,Object>>();
+
+        List<InoutCount> ioList = abs_service.orderbyInoutCountS(M_id, yyyy+"/"+monStr, out);
+        for(InoutCount i : ioList) {
+        	HashMap<Object,Object> hm = new HashMap<Object,Object>();
+        	hm.put("C_categori", code_service.selectCodeS(i.getC_categori()).getC_name());
+        	hm.put("ct", i.getCt());
+        	hm.put("sumMoney", i.getSumMoney());
+        	hmlist.add(hm);
+        }
+        
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
+	}
 }

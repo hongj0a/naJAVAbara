@@ -168,4 +168,19 @@
 	]]>
 	</select>
 	
+	<select id="orderbyInoutCount" resultType="njb.md.normal.domain.InoutCount">
+	<![CDATA[
+		select io.c_categori, count(io.c_categori) as ct, sum(io.i_money) as sumMoney
+		from inout io
+		join asset ass
+		on io.A_seq=ass.A_seq
+		where to_char(io.I_date, 'YYYY/MM')=#{selectMonth}
+		and ass.M_id=#{M_id}
+		and io.C_inout=#{inoutCode}
+		and rownum <= 4
+		group by io.c_categori
+		order by ct desc			
+	]]>
+	</select>
+	
 </mapper>

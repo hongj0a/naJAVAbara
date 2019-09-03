@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import njb.md.normal.domain.Inout;
+import njb.md.normal.domain.InoutCount;
 
 public interface AbookSumService {
 	long selectAllAssetS(String M_id);
@@ -26,4 +27,5 @@ public interface AbookSumService {
 	long selectAssetSumS(String selectMonth, String inoutCode, long A_seq);
 	
 	List<Inout> orderbyInoutS(String M_id, String selectMonth, String inoutCode);
+	List<InoutCount> orderbyInoutCountS(String M_id, String selectMonth, String inoutCode);
 }
