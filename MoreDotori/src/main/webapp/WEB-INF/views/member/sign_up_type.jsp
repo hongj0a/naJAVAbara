@@ -16,8 +16,13 @@
 <body>
 	<div class="auth-wrapper">
 		<div class="card cw-740">
+			<div class="card-header text-center">
+				<a href="/">
+					<img width="100px" src="${pageContext.request.contextPath}/images/slider/icon.png">
+					<h4>MORE DOTORI</h4>
+				</a>
+			</div>
 			<div class="card-body text-center">
-				<a href="/"><h2 class="mb-5">Logo Here</h2></a>
 				<h3>회원가입</h3>
 				<h5 class="mb-5">가입 유형을 선택해주세요.</h5>
 				<form>

@@ -9,17 +9,22 @@
 	<bean id="customUserDetailsService" class="njb.md.security.CustomUserDetailsService"></bean>
 	<bean id="customAccessDenied" class="njb.md.security.CustomAccessDeniedHandler"></bean>
 	<bean id="customLoginSuccess" class="njb.md.security.CustomLoginSuccessHandler"></bean>
+	<bean id="customLoginFailure" class="njb.md.security.CustomLoginFailureHandler"></bean>
 
 	<security:http>
-		<security:intercept-url pattern="/book" access="hasRole('ROLE_NORMAL')" />
-		<security:intercept-url pattern="/expert_cal" access="hasRole('ROLE_EXPERT')" />
-		<security:intercept-url pattern="/mem" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/board_free" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/normal/**" access="hasRole('ROLE_NORMAL')" />
+		<security:intercept-url pattern="/expert/**" access="hasRole('ROLE_EXPERT')" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/reply/**" access="hasAnyRole('ROLE_NORMAL','ROLE_EXPERT','ROLE_ADMIN')"/>
+		
 		<security:intercept-url pattern="/mypage" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/withdrawal.do" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/**" access="permitAll" />
 
 		<security:form-login login-page="/signin"
-			authentication-success-handler-ref="customLoginSuccess" />
+			authentication-success-handler-ref="customLoginSuccess"
+			authentication-failure-handler-ref="customLoginFailure" />
 		<security:logout logout-url="/logout"
 			logout-success-url="/"
 			delete-cookies="JSESSION_ID" />

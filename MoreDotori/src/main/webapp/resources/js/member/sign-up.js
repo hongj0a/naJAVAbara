@@ -36,13 +36,13 @@ $(document).ready(function() {
   // add license select options
   var arrLicense = ['AFPK', 'CFP', 'FP', 'IFP', 'CPM', 'ChFC'];
   for (j = 1; j <= 6; j++) {
-    $('select[name=license]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
+    $('select[name="license"]').append('<option value="LI00' + j + '">' + arrLicense[j - 1] + '</option>');
   }
   
   //add sns select options
   var arrSns = ['Facebook', 'Instagram', 'Twitter', 'Youtube', 'Blog'];
   for (i = 1; i <= 5; i++) {
-	  $('select[name=sns]').append('<option value="SN00' + i + '">' + arrSns[i - 1] + '</option>');
+	  $('select[name="sns"]').append('<option value="SN00' + i + '">' + arrSns[i - 1] + '</option>');
   }
   
   // add sns form
@@ -61,7 +61,7 @@ $(document).ready(function() {
 					+ '<option value="SN005">Blog</option>'
 				+ '</select>'
 			+ '</div>'
-			+ '<input type="text" class="form-control" name="snsUrl" placeholder="SNS주소">'
+			+ '<input type="url" class="form-control" name="snsUrl" placeholder="SNS주소">'
 			+ '<div class="input-group-append">'
 				+ '<button class="btn btn-primary subSNS" type="button">'
 					+ '<i class="fas fa-minus"></i>'
@@ -147,8 +147,18 @@ $(document).ready(function() {
       $parent.removeClass('mb-2');
       $parent.addClass('mb-4');
     },
-    messages: {
-
+    submitHandler: function() {
+    	if(isValidId){
+    		if(isValidNick) {
+    			return true;
+    		} else {
+    			swal('닉네임 중복확인을 해주세요.');
+    			return false;
+    		}
+    	} else {
+    		swal('아이디 중복확인을 해주세요.');
+    		return false;
+    	}
     }
   });
 });

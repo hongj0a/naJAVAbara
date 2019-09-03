@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +27,7 @@ import njb.md.domain.Member;
 import njb.md.domain.Minfo;
 import njb.md.security.domain.CustomUser;
 import njb.md.service.FileService;
+import njb.md.service.MailService;
 import njb.md.service.MemberService;
 
 @Log4j
@@ -30,6 +37,10 @@ public class MemberController {
 	private MemberService mservice;
 	@Autowired
 	private FileService fservice;
+	@Autowired
+	private MailService mailservice;
+	
+	private PasswordEncoder pwencoder = new BCryptPasswordEncoder();
 	
 	@PostMapping("/dupl.do")
 	@ResponseBody
@@ -69,45 +80,69 @@ public class MemberController {
 	}
 	
 	@PostMapping("/update.do")
-	public String updateInfo(Member member, Expert expert, Minfo minfo, Principal principal) {
+	public String updateInfo(Member member, Expert expert, Minfo minfo,
+			String originPwd, String newPwd, Principal principal) {
+		int result = -1;
+		
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+		Member oMember = user.getMember();
 		
 		getForm(member, expert, minfo);
-		if(!minfo.getChooseImg().isEmpty())
+		if(!minfo.getChooseImg().isEmpty()) {
 			member.setM_profile(fservice.upload(minfo.getChooseImg()));
-		else {
+			oMember.setM_profile(member.getM_profile());
+		} else {
 			member.setM_profile(user.getMember().getM_profile());
 		}
+		
+		if(!newPwd.isEmpty()) {
+			if(!isRightPwd(originPwd, principal)) {
+				result = -2;
+				return "redirect:/mypage?rst=" + result;
+			} else {
+				member.setM_password(pwencoder.encode(newPwd));
+				oMember.setM_password(member.getM_password());
+			}
+		}
 		if(mservice.updateMember(member, expert)) {
+			result = 1;
 			log.info("정보수정 성공");
+			
+			oMember.setM_nickname(member.getM_nickname());
+			oMember.setM_phone(member.getM_phone());
+			oMember.setM_gender(member.getM_gender());
+			oMember.setM_birth(member.getM_birth());
+			
+			CustomUser changedUser= new CustomUser(oMember);
+			Authentication authentication = new UsernamePasswordAuthenticationToken(changedUser, changedUser.getPassword(), changedUser.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			log.info("oMember: " + oMember);
 		} else {
+			result = 0;
 			log.info("정보수정 실패");
 		}
 		
-		return "redirect:/";
+		return "redirect:/mypage?rst=" + result;
 	}
-	
 	
 	@PostMapping("/checkPwd.do")
 	@ResponseBody
-	public Map<Object, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
+	public Map<String, Object> pwdCheck(@RequestParam("pwd") String pwd, Principal principal) {
 		int result = -1;
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
-//		log.info("user: " + user);
-		if(pwencoder.matches(pwd, user.getMember().getM_password()))
+		if(isRightPwd(pwd, principal))
 			result = 1;
 		else
 			result = 0;
-		
+//		log.info("result: " + result);
 		map.put("rst", result);
 		return map;
 	}
 	
 	@PostMapping("/withdrawal.do")
-	public String withdrawal(String mid) {
+	public String withdrawal(HttpServletRequest request, HttpServletResponse response, String mid) {
 		log.info("# mid: " + mid);
 		
 		if(mservice.withdrawal(mid) != 0)
@@ -115,7 +150,73 @@ public class MemberController {
 		else 
 			log.info("탈퇴 실패");
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/findId.do")
+	@ResponseBody
+	public Map<Object, Object> findid(String name, String phone, String birth) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		String id = mservice.findId(name, phone, birth);
+		if(id != null) {
+			map.put("id", id);
+			result = 1;
+		} else {
+			result = 0;
+		}
+		map.put("rst", result);
+		
+		return map;
+	}
+	
+	@PostMapping("/findPwd.do")
+	@ResponseBody
+	public Map<Object, Object> findPwd(String name, String id) {
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		if(mailservice.sendMail(name, id)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		map.put("rst", result);
+		
+		return map;
+	}
+	
+	@PostMapping("/normal/setMonth.do")
+	@ResponseBody
+	public Map<Object, Object> setMonth(String id, long month){
+		int result = -1;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		if(mservice.setMonth(id, month)) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		
+		map.put("rst", result);
+
+		return map;
+	}
+	
+	public boolean isRightPwd(String inputPwd, Principal principal) {
+		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
+
+		if(pwencoder.matches(inputPwd, user.getMember().getM_password()))
+			return true;
+		else
+			return false;
 	}
 	
 	public void getForm(Member member, Expert expert, Minfo minfo) {

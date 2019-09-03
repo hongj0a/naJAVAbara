@@ -8,16 +8,16 @@ import lombok.Data;
 
 @Data
 public class Minfo {
-	MultipartFile chooseImg;
-	ArrayList<String> birth;
+	private MultipartFile chooseImg;
+	private ArrayList<String> birth;
 	
-	String zipCode;
-	String address;
-	String career;
+	private String zipCode;
+	private String address;
+	private String career;
 
-	ArrayList<String> license;
-	ArrayList<String> licenseNum;
+	private ArrayList<String> license;
+	private ArrayList<String> licenseNum;
 	
-	ArrayList<String> sns;
-	ArrayList<String> snsUrl;
+	private ArrayList<String> sns;
+	private ArrayList<String> snsUrl;
 }

@@ -1,6 +1,6 @@
 package njb.md.mapper;
 
-import java.util.Map;
+import org.apache.ibatis.annotations.Param;
 
 import njb.md.domain.Expert;
 import njb.md.domain.Mauth;
@@ -17,11 +17,16 @@ public interface MemberMapper {
 	String duplIdCheck(String id);
 	String duplNickCheck(String nick);
 	
-	Expert getExpert(String id);
-	int updatePwd(Map<String, Object> map);
+	Expert getExpert(String m_id);
+	int updatePwd(@Param("m_password") String pwd, @Param("m_id") String id);
 	int updateMinfo(Member member);
 	int updateEinfo(Expert expert);
 	
-	int updateState(Map<String, Object> map);
-	int setEnable(Map<String, Object> map);
+	int updateState(@Param("m_state") String state, @Param("m_id") String id);
+	int setEnable(@Param("m_enabled") String enabled, @Param("m_id") String id);
+	
+	String findId(@Param("m_name") String name, @Param("m_birth") String birth, @Param("m_phone") String phone);
+	String existMem(@Param("m_id") String id, @Param("m_name") String name);
+	
+	int updateMonth(@Param("m_month")long month, @Param("m_id") String id);
 }
