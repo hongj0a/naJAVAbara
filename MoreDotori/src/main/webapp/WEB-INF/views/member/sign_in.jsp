@@ -43,7 +43,7 @@
 					</form>
 					<div>
 						<div class="mb-2 text-muted float-sm-left">
-							<a href="/signuptype">회원가입</a>
+							<a href="/signup?type=normal">회원가입</a>
 						</div>
 						<div class="mb-2 text-muted float-sm-right">
 							<a href="/find_account">계정 찾기</a>

@@ -146,6 +146,19 @@ $(document).ready(function() {
 
       $parent.removeClass('mb-2');
       $parent.addClass('mb-4');
+    },
+    submitHandler: function() {
+    	if(isValidId){
+    		if(isValidNick) {
+    			return true;
+    		} else {
+    			swal('닉네임 중복확인을 해주세요.');
+    			return false;
+    		}
+    	} else {
+    		swal('아이디 중복확인을 해주세요.');
+    		return false;
+    	}
     }
   });
 });
