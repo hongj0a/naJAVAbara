@@ -32,9 +32,9 @@
 							<div class="row">
 							    <div class="col-2" id="noti_menu">
 									<div><a> 전체보기 </a></div>
-									<div><a> 상담 </a></div>
-									<div><a> Q&A </a></div>
+									<div><a> 가계부 </a></div>
 									<div><a> 게시판 </a></div>
+									<!-- <div><a> Q&A </a></div> -->
 							    </div>
 							    <div class="col-8">
 				                    <div class="card">
