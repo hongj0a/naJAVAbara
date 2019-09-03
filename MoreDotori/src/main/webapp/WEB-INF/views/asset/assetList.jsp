@@ -185,11 +185,46 @@
 			                                                  </div>
 			                                                </div>
 			                                            </div> 
-			                                            
-			                                           </tr>
+													</table>
+													</br></br>
+													<nav aria-label="Page navigation example">
+													  <ul class="pagination justify-content-center">
+													    <li class="page-item  disabled">
+													      <span class="page-link">«</span>
+													    </li>
+													    <li class="page-item  disabled">
+													      <span class="page-link">‹</span>
+													    </li>
+													    <li class="page-item active" aria-current="page">
+													      <span class="page-link">
+													        1
+													        <span class="sr-only">(current)</span>
+													      </span>
+													    </li>
+													    <li class="page-item  disabled"><a class="page-link" href="#">2</a></li>
+													    <li class="page-item  disabled">
+													      <a class="page-link" href="#">›</a>
+													    </li>
+													    <li class="page-item  disabled">
+													      <a class="page-link" href="#">»</a>
+													    </li>
+													  </ul>
+													</nav>
 													
-											</table>
-												</form>
+													
+													
+													<div class="footable-pagination-wrapper">
+														<ul class="pagination">
+															<li class="footable-page-nav" data-page="first"><a class="footable-page-link" href="#">«</a></li>
+															<li class="footable-page-nav" data-page="prev"><a class="footable-page-link" href="#">‹</a></li>
+															<li class="footable-page visible" data-page="1"><a class="footable-page-link" href="#">1</a></li>
+															<li class="footable-page visible active" data-page="2"><a class="footable-page-link" href="#">2</a></li>
+															<li class="footable-page-nav disabled" data-page="next"><a class="footable-page-link" href="#">›</a></li>
+															<li class="footable-page-nav disabled" data-page="last"><a class="footable-page-link" href="#">»</a></li>
+														</ul>
+														<div class="divider"></div>
+													</div>
+											</form>
                               		   </div>
                               		</div>
                               	</div>
