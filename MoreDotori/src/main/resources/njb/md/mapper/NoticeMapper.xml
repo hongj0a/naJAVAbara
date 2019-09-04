@@ -19,6 +19,18 @@
 	 ]]>		
 	</select>
 
+	<select id="headerCount" resultType="long">
+	<![CDATA[
+		select count(*) as hc
+		from Notice
+		where N_date > sysdate-7
+		and N_date <= sysdate
+		and M_id=#{M_id}
+		and C_NSTATE='NS001'
+		order by N_date desc
+	 ]]>		
+	</select>
+
 	<select id="getNotiListHeader" resultType="njb.md.domain.Notice">
 	<![CDATA[
 		select *

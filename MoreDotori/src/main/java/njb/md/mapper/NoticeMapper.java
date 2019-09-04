@@ -10,6 +10,9 @@ public interface NoticeMapper {
 	//알림 노티스 데이트 리스트
 	List<String> dateNotiList(String M_id);
 	
+	//헤더 카운트
+	long headerCount(String M_id);
+	
 	//헤더 노티스
 	List<Notice> getNotiListHeader(String M_id);
 	

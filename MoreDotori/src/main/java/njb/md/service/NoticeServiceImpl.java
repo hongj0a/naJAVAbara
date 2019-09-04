@@ -17,6 +17,11 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeMapper mapper;
 
 	@Override
+	public long headerCountS(String M_id) {
+		return mapper.headerCount(M_id);
+	}		
+	
+	@Override
 	public List<String> dateNotiListS(String M_id) {
 		return mapper.dateNotiList(M_id);
 	}	

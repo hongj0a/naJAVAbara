@@ -2,17 +2,23 @@ package njb.md.controller;
 
 
 import java.security.Principal;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.Setter;
@@ -32,16 +38,16 @@ public class NoticeController {
 	@Setter(onMethod_ = @Autowired)
 	private NoticeService noti_service;
 	
+	//출력할 날짜 형식
+	SimpleDateFormat transFormat1 = new SimpleDateFormat("MM월 dd일");
+	SimpleDateFormat transFormat2 = new SimpleDateFormat("MM월 dd일 HH시 mm분");	
+	
 	@RequestMapping("")
 	public ModelAndView notiList(Principal principal){
 		log.info("### 알림리스트 출력 ###");
 		
 		//사용자정보
 		CustomUser user = (CustomUser) ((Authentication) principal).getPrincipal();
-		
-		//출력할 날짜 형식
-		SimpleDateFormat transFormat1 = new SimpleDateFormat("MM월 dd일");
-		SimpleDateFormat transFormat2 = new SimpleDateFormat("MM월 dd일 HH시 mm분");
 
 		//날짜제목리스트
 		List<String> dateList = new ArrayList<String>();
@@ -80,5 +86,44 @@ public class NoticeController {
 		
 		return "redirect:/noti";
 	}
+	
+	@RequestMapping(value="/headerList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity<Object> notiHeaderList(String M_id, HttpServletRequest request) throws Exception{
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+        ArrayList<HashMap<String,Object>> hmlist = new ArrayList<HashMap<String,Object>>();
+		
+		List<Notice> realList = noti_service.getNotiListHeaderS(M_id);
+		for(Notice noti : realList) {
+        	HashMap<String,Object> hm = new HashMap<String, Object>();
+			hm.put("N_seq", noti.getN_seq());
+			hm.put("C_horsehead", code_service.selectCodeS(noti.getC_horsehead()).getC_name());
+			hm.put("N_bseq", noti.getN_bseq());
+			hm.put("N_subject", noti.getN_subject());
+			hm.put("N_content", noti.getN_content());
+			hm.put("N_date", transFormat2.format(noti.getN_date()));
+			hmlist.add(hm);
+		}		
+        
+		//jsonArray를 사용하려면 pom.xml에 메이븐추가해야함 ^^
+        JSONArray json = new JSONArray(hmlist);        
+        return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
+	
+	}
+	
+	@RequestMapping(value ="/updateHeader.do", produces="application/json; charset=utf-8")
+    @ResponseBody
+	public String updateStateHeader(String N_seq, HttpServletRequest request) throws Exception{
+		long nseq =Long.parseLong(N_seq);
+		noti_service.updateNoticeS(nseq, "NS003");
+		return "success";
+	}
+	
+	@RequestMapping(value="/headerCount.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public long notiHeaderCount(String M_id, HttpServletRequest request) throws Exception{
+        return noti_service.headerCountS(M_id);
+	}	
 	
 }

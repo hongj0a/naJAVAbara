@@ -7,6 +7,9 @@ public interface NoticeService {
 	//알림 노티스 데이트 리스트
 	List<String> dateNotiListS(String M_id);
 	
+	//헤더 카운트
+	long headerCountS(String M_id);
+	
 	//헤더 노티스
 	List<Notice> getNotiListHeaderS(String M_id);
 	
