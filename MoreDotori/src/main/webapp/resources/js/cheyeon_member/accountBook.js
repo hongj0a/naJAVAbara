@@ -202,10 +202,19 @@ var loginId = null;
 				   $('#selInDay').text($.fn.comma(data.inDay)+' 원');
 				   $('#selOutDay').text($.fn.comma(data.outDay)+' 원');
 				   
-				   if($('#month_money').val()==0){
+			    	 var mmoneyStr = $("#month_money").val();
+			    	 var mmoneyArr = mmoneyStr.split(",");
+			    	 
+			    	 var mmStr = "";
+			    	 for(var j=0; j<mmoneyArr.length; j++){
+			    		 mmStr += mmoneyArr[j];
+			    	 }
+			    	 var mmoney = mmStr*1;				   
+				   
+				   if(mmoney==0){
 					   $('#month_rest').text('예산을 설정해주세요');
 				   }else{
-					   $('#month_rest').text($.fn.comma(($('#month_money').val()-data.outMonth))+' 원');
+					   $('#month_rest').text($.fn.comma((mmoney-data.outMonth))+' 원');
 				   }
 				   
 				   if(data.avgOutDays==0){
@@ -470,6 +479,24 @@ var loginId = null;
 		    $(this).val($(this).val().replace(/[^0-9]/g,""));
 		});
 		
+	       //입력이벤트(액수입력~숫자만,컴마)
+		$("#month_money").on("focus", function() {
+		    var x = $(this).val();
+		    x = $.fn.removeCommas(x);
+		    $(this).val(x);
+		}).on("focusout", function() {
+		    var x = $(this).val();
+		    if(x && x.length > 0) {
+		        if(!$.isNumeric(x)) {
+		            x = x.replace(/[^0-9]/g,"");
+		        }
+  				x = $.fn.addCommas(x);
+		        $(this).val(x);
+		    }
+		}).on("keyup", function() {
+		    $(this).val($(this).val().replace(/[^0-9]/g,""));
+		});		
+		
 		//한자리 입력 시 앞에 0 붙이기
 		$.fn.leadingZeros = function(date, num){
 			 var zero = '';
@@ -539,7 +566,8 @@ var loginId = null;
        
        
        /*한달예산버튼 이벤트*/
-       var mmoney = $("#month_money").val();
+       var mmoney = $("#loginMonth").val();
+       $("#month_money").val($.fn.comma(mmoney));
        //1) 수정버튼
        $(".badge_update").click(function(){
     	 $("#month_money").attr("readonly", false);
@@ -561,15 +589,21 @@ var loginId = null;
     	 
     	 $(".badge_update").css("display", "inline-block");   
     	 
-    	 mmoney = $("#month_money").val();
+    	 var mmoneyStr = $("#month_money").val();
+    	 var mmoneyArr = mmoneyStr.split(",");
     	 
+    	 var mmStr = "";
+    	 for(var j=0; j<mmoneyArr.length; j++){
+    		 mmStr += mmoneyArr[j];
+    	 }
+    	 mmoney = mmStr*1;
  		 $.fn.getSum();
  		 $.fn.saveMonth(mmoney);
        });
        
        //3) 취소버튼
        $(".badge_cancle").click(function(){
-    	 $("#month_money").val(mmoney);
+    	 $("#month_money").val($.fn.comma(mmoney));
       	 $("#month_money").attr("readonly", true);
       	 $("#month_money").css({"background-color": "#ffffff00", "border": "1px solid #f4f7fa"});
 	
