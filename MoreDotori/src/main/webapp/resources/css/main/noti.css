@@ -70,3 +70,13 @@
 .card .card-body2{
   padding: 15px 25px !important;
 }
+
+ .noti_body span a:hover{
+ 	color: #5086F2;
+	text-decoration: underline;
+	text-underline-position: under;
+ }
+ 
+ .NS002 > a{
+ 	color: #c1c1c1 !important;
+ }

@@ -288,3 +288,11 @@ width:16px;height:16px;background:#fff;}
 .hNotiIcon{
 	cursor: pointer;
 }
+
+.alink{
+	margin:0;
+}
+
+.alink:hover{
+ 	color: #5086F2;
+}
