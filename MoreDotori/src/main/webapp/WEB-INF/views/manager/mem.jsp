@@ -19,7 +19,11 @@
 
 <!-- management/my Css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/management.css">
-    
+    <style type="text/css">
+    	.radio.stop input[type=radio] + .cr:after {
+		    top: 11px;
+		}
+    </style>
 </head>
 
 <body class="layout-8">
@@ -28,24 +32,6 @@
         <div class="pcoded-wrapper">
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
-                    <!-- [ breadcrumb ] start -->
-                    <div class="page-header">
-                        <div class="page-block">
-                            <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="page-header-title">
-                                        <h5 class="m-b-10">관리자페이지</h5>
-                                    </div>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-
-                                        <li class="breadcrumb-item"><a href="#!">회원관리</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- [ breadcrumb ] end -->
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
@@ -54,47 +40,26 @@
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>회원관리 페이지</h5>
-                                            <div class="card-header-right">
-                                                <div class="btn-group card-option">
-                                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
-                                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
-                                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
-                                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
-                                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            <h5>회원 목록</h5>
                                         </div>
                                         <div class="card">
                                           <div class="card-block task-data">
                                             <div class="table-responsive form-material scroll"> 
                                               <div id="simpletable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                <div class="row">
-                                                  <div class="col-sm-3">
-                                                    <div class="dataTables_length" id="simpletable_length">
-                                                      <label>회원정보/회원목록</label>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col-sm-9">
-                                          <div id="simpletable_filter" class="dataTables_filter col-sm-5 float-sm-right">
-                                          <div class="input-group mb-3">
-                                            <input type="text" class="form-control add_task_todo" placeholder="Search here...." required>
-                                            <div class="input-group-append">
-                                              <button class="btn btn-primary btn-icon btn-msg-send" type="button">
-                                                <i class="fas fa-search icon"></i>
-                                              </button>
-                                            </div>
-                                          </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
-                                      
+	                                           <div id="simpletable_filter" class="dataTables_filter col-sm-5 float-sm-right">
+	                                           <div class="input-group mb-3">
+	                                             <input type="text" class="form-control add_task_todo" placeholder="Search here...." required>
+	                                             <div class="input-group-append">
+	                                               <button class="btn btn-primary btn-icon btn-msg-send" type="button">
+	                                                 <i class="fas fa-search icon"></i>
+	                                               </button>
+	                                             </div>
+	                                           </div>
+	                                          </div>
+	                                        </div>
+	                                      </div>
                                             <div class="padding=20%">
                                             <table id="demo-foo-filtering" class="table table-striped table-hover" >
-
-
                                                 <thead>
                                                     <tr>
                                                         <th>
@@ -208,7 +173,7 @@
                                                            <div class="col-sm-9 radioSelect">
 
                                                          <div class="form-group">
-                                                               <div class="radio radio-primary d-inline">
+                                                               <div class="radio stop radio-primary d-inline">
                                                                  <input type="radio" name="radio-p-1" id="radio-p-1" checked>
                                                                 <label for="radio-p-1" class="cr">성인/도박 등 불법광고 및 스팸 활동</label>
                                                             </div>
@@ -216,14 +181,14 @@
                                                              
 
                                                       <div class="form-group">
-                                                        <div class="radio radio-primary d-inline">
+                                                        <div class="radio stop radio-primary d-inline">
                                                             <input type="radio" name="radio-p-1" id="radio-p-2">
                                                             <label for="radio-p-2" class="cr">바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)</label>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <div class="radio radio-primary d-inline">
+                                                        <div class="radio stop radio-primary d-inline">
                                                             <input type="radio" name="radio-p-1" id="radio-p-3">
                                                             <label for="radio-p-3" class="cr">홈페이지 내 자체운영 원칙에 위배되는 활동</label>
                                                         </div>
@@ -232,7 +197,7 @@
                                                                    
                                                                    
                                                               <div class="form-group">
-                                                        <div class="radio radio-primary d-inline">
+                                                        <div class="radio stop radio-primary d-inline">
                                                             <input type="radio" name="radio-p-1" id="radio-p-4" >
                                                             <label for="radio-p-4" class="cr">기타</label>
                                                         </div>
@@ -317,12 +282,10 @@
                            </div>
                          </div>
                        </div>
-                </div>
                   </div>
               </div>
             </div>
         </div>
-      </div>
     <jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
     

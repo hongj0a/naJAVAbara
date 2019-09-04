@@ -230,30 +230,32 @@
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="dropdown">
-                        <a id="noti_btn" class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><div id="noti_bell_count"><p></p></div></a>
-                        <div class="dropdown-menu dropdown-menu-right notification">
-                            <div class="noti-head">
-                                <h6 class="d-inline-block m-b-0">알림</h6>
-                            </div>
-                            <ul class="noti-body"  id="noti_menu_scroll">
-                                <li class="notification2 notification header_notice">
-                                    <div class="media">
-                                        <div class="media-body">
-                                        	알림내역이 없습니다.
-                                        </div>
-                                    </div>
-                                </li>
-                          </ul>
-                            <a href="/noti">
-                            <div class="noti-footer" id="whole_noti">
-                              	알림 전체보기
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-                </li>
+                <sec:authorize access="hasAnyRole('ROLE_EXPERT', 'ROLE_NORMAL')">
+	                <li>
+	                    <div class="dropdown">
+	                        <a id="noti_btn" class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><div id="noti_bell_count"><p></p></div></a>
+	                        <div class="dropdown-menu dropdown-menu-right notification">
+	                            <div class="noti-head">
+	                                <h6 class="d-inline-block m-b-0">알림</h6>
+	                            </div>
+	                            <ul class="noti-body"  id="noti_menu_scroll">
+	                                <li class="notification2 notification header_notice">
+	                                    <div class="media">
+	                                        <div class="media-body">
+	                                        	알림내역이 없습니다.
+	                                        </div>
+	                                    </div>
+	                                </li>
+	                          </ul>
+	                            <a href="/noti">
+	                            <div class="noti-footer" id="whole_noti">
+	                              	알림 전체보기
+	                            </div>
+	                            </a>
+	                        </div>
+	                    </div>
+	                </li>
+                </sec:authorize>
 	            </sec:authorize>
 
                 <li><a href="#!" class="full-screen" onclick="javascript:toggleFullScreen()"><i class="feather icon-maximize"></i></a></li>

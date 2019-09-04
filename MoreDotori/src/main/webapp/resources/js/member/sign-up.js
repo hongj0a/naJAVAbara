@@ -1,5 +1,10 @@
 var isValidId = false;
+var checkedId = "";
 var isValidNick = false;
+var checkedNick = "";
+
+var isSelectGender = false;
+var isCheckClause = false;
 
 $(document).ready(function() {
   // choose profile-image
@@ -71,6 +76,10 @@ $(document).ready(function() {
 		);
 	}
   });
+  
+  $('input[name="m_gender"]').on('click', function() {
+	  isSelectGender = true;
+  })
 
   $(document).on('click', '.subSNS', function() {
     $(this).parents('div.input-group.mb-1').remove();
@@ -90,9 +99,6 @@ $(document).ready(function() {
       'password-confirm': {
         equalTo: 'input[name="m_password"]'
       },
-      'm_gender': {
-    	required: true
-      },
       'm_phone': {
         digits: true,
         minlength: 10,
@@ -110,7 +116,6 @@ $(document).ready(function() {
       }
     },
     errorPlacement: function errorPlacement(error, element) {
-      console.log(element);
       var $parent = $(element).parents('.form-group');
       if ($parent.find('.jquery-validation-error').length) {
         return;
@@ -124,9 +129,6 @@ $(document).ready(function() {
       var $el = $(element);
       var $parent = $el.parents('.form-group');
 
-      if ($el.attr('id') == 'inputId') isValidId = false;
-      if ($el.attr('id') == 'inputNick') isValidNick = false;
-
       $el.addClass('is-invalid');
 
       $parent.removeClass('mb-4');
@@ -136,17 +138,20 @@ $(document).ready(function() {
       var $el = $(element);
       var $parent = $el.parents('.form-group');
 
-      if ($el.attr('id') == 'inputId') isValidId = true;
-      if ($el.attr('id') == 'inputNick') isValidNick = true;
-
       $el.parents('.form-group').find('.is-invalid').removeClass('is-invalid');
 
       $parent.removeClass('mb-2');
       $parent.addClass('mb-4');
     },
     submitHandler: function() {
-    	if(isValidId){
-    		if(isValidNick) {
+    	if(!isSelectGender) {
+    		$('#inputGender').removeClass('mb-4');
+    		$('#inputGender').removeClass('mb-2');
+    		$('#inputGender').append('<label id="inputGender-error" class="error jquery-validation-error small form-text invalid-feedback" for="inputGender">필수 항목입니다.</label>');
+    		return false;
+    	}
+    	if(isValidId && checkedId==$('#inputId').val()){
+    		if(isValidNick && checkedNick==$('#inputNick').val()) {
     			return true;
     		} else {
     			swal('닉네임 중복확인을 해주세요.');
@@ -154,6 +159,10 @@ $(document).ready(function() {
     		}
     	} else {
     		swal('아이디 중복확인을 해주세요.');
+    		return false;
+    	}
+    	if($('#inputAgreeClause:checked').length == 0) {
+    		swal('회원가입 약관에 동의해주세요.')
     		return false;
     	}
     }
@@ -169,7 +178,7 @@ $(function () {
 });
 
 function duplCheckId() {
-  if (isValidId) {
+  if(! $('#inputId').hasClass('is-invalid')) {
     $.ajax({
       url: 'dupl.do',
       data: {
@@ -182,12 +191,16 @@ function duplCheckId() {
         switch (data.rst) {
           case 1:
             swal('존재하는 아이디입니다.');
+            isValidId = false;
             break;
           case 0:
             swal('사용 가능한 아이디입니다.');
+            checkedId = $('#inputId').val();
+            isValidId = true;
             break;
           default:
-            swal('error');
+            swal('error?');
+            isValidId = false;
         }
       }
     });
@@ -198,7 +211,7 @@ function duplCheckId() {
 }
 
 function duplCheckNick() {
-  if (isValidNick) {
+  if(! $('#inputNick').hasClass('is-invalid')) {
     $.ajax({
       url: 'dupl.do',
       data: {
@@ -211,12 +224,16 @@ function duplCheckNick() {
         switch (data.rst) {
           case 1:
             swal('존재하는 닉네임입니다.');
+            isValidNick = false;
             break;
           case 0:
             swal('사용 가능한 닉네임입니다.');
+            checkedNick = $('#inputNick').val();
+            isValidNick = true;
             break;
           default:
             swal('error');
+            isValidNick = false;
         }
       }
     });

@@ -103,13 +103,13 @@
 						<div class="form-group col-sm-4 mb-4">
 							<label for="male">성별&nbsp;&nbsp;</label>
 							<div class="col col-form-label" id="inputGender">
-   								<div class="form-group d-inline">
+   								<div class="d-inline">
 		                            <div class="radio radio-primary d-inline gender">
-			                            <input type="radio" name="m_gender" id="genderM" value="M" required>
+			                            <input type="radio" name="m_gender" id="genderM" value="M" required="required">
 			                            <label for="genderM" class="cr">남</label>
 			                        </div>
 		                        </div>
-			                    <div class="form-group d-inline">
+			                    <div class="d-inline">
 			 	                   <div class="radio radio-primary d-inline gender">
 			    	                   <input type="radio" name="m_gender" id="genderF" value="F">
 			                           <label for="genderF" class="cr">여</label>
@@ -120,13 +120,13 @@
 						<div class="form-group col-sm-8">
 							<label for="inputBirth">생년월일</label>
 							<div class="input-group" id="inputBirth">
-								<select class="form-control" name="birth" id="birth-year" required>
+								<select class="birth form-control" name="birth" id="birth-year" required>
 									<option value="">년</option>
 								</select>
-								<select class="form-control" name="birth" id="birth-month" required>
+								<select class="birth form-control" name="birth" id="birth-month" required>
 									<option value="">월</option>
 								</select>
-								<select class="form-control" name="birth" id="birth-day" required>
+								<select class="birth form-control" name="birth" id="birth-day" required>
 									<option value="">일</option>
 								</select>
 							</div>
