@@ -7,14 +7,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Service
 public class FileServiceImpl implements FileService {
 
 	@Override
 	public String upload(MultipartFile file) {
 		String FILE_STORE = "C:\\KIH\\sts-bundle\\workspace\\naJAVAbara\\MoreDotori\\src\\main\\webapp\\resources\\images\\profile-images";
-		// 나중에 경로 바꾸셈
+//		String FILE_STORE = "\\usr\\local\\apache-tomcat-9.0.24\\webapps\\MoreDotori\\resources\\images\\profile-images";
 		
 		File fStore = new File(FILE_STORE);
 		if(!fStore.exists()) fStore.mkdirs();

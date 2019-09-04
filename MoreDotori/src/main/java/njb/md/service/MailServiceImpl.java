@@ -54,7 +54,7 @@ public class MailServiceImpl implements MailService {
 						"        <div style=\"width: 740px;margin: 0 auto;margin-top: 50px; margin-bottom: 50px; border-radius: 10px;border: 1px solid #d7d7d7;\">\r\n" + 
 						"            <div style=\"width: 100%;margin: 0 auto;padding-top:3em;\">\r\n" + 
 						"                <div stlye=\"text-align: center;margin-bottom: 90px;\">\r\n" + 
-						"                    <img class=\"footerlogo\" src=\"https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-9/69696930_2681299648581537_7220158762688970752_n.jpg?_nc_cat=103&_nc_oc=AQlDWnwLzIaJ-tQaRTN9Y5joG7sSSUrsAdpmYKFxkJ3BKawnWTC9MXE1TSQsOxDtL74&_nc_ht=scontent-gmp1-1.xx&oh=bc480d620b7d1cbd9ee34fd1b92c4c8c&oe=5E11DF2D\" style=\"margin:0 auto; height:80px; display:block;\" alt=\"moredotori's logo\" />\r\n" + 
+						"                    <img class=\"footerlogo\" src=\"http://13.124.40.127:8080/images/slider/icon.png\" style=\"margin:0 auto; height:80px; display:block;\" alt=\"moredotori's logo\" />\r\n" + 
 						"                    <h1 style=\"font-size: 2em;line-height: 1.5em;color:#5086f2;text-align: center;\">MORE DOTORI</h1>\r\n" + 
 						"                    <p style=\"margin:0 auto;width:70%;line-height: 1.5em;margin-bottom: 90px; text-align: center; color:#747474;margin-bottom: 60px;\">안녕하세요, " + receiverName + " 님.<br>MORE DOTORI에서 임시 비밀번호를 안내해드립니다.<!--<br>아래 안내해 드리는 임시번호를 이용하여 로그인 후<br> 비밀번호를 번경하시는 것을 권장드립니다.--></p>\r\n" + 
 						"                    <div style=\"margin: 0 auto;width: 70%;height: 60px;line-height: 60px;border: 1px solid #5086f2;margin-bottom: 90px; font-weight:300;text-align: center;\"><span style=\"font-weight:700;\">" + receiverName + "</span> 님의 임시 비밀번호 : <span style=\"color: #5086f2; font-weight:700;\">" + tempPassword + "</span></div>\r\n" + 

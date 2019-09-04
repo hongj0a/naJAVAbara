@@ -48,6 +48,14 @@ input.address[readonly], textarea.account-clause[readonly] {
 .card.cw-560 {
 	margin: 20px 0;
 }
+
+.radio.gender input[type=radio] + .cr:after {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 10.7px;
+    left: 5px;
+}
 /* sign-up end */
 
 /* find-account  start */

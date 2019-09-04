@@ -49,16 +49,17 @@ File: style.css
 /**  =====================
      Google Font
 ==========================  **/
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 @import url("../plugins/bootstrap/css/bootstrap.min.css");
 @import url("../fonts/feather/css/feather.css");
 @import url("../plugins/jquery-scrollbar/css/perfect-scrollbar.css");
 @import url("../fonts/datta/datta-icon.css");
+@font-face { font-family: 'Handon3gyeopsal300g'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/Handon3gyeopsal300g.woff') format('woff'); font-weight: normal; font-style: normal; }
 /**  =====================
       Custom css start
 ==========================  **/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Handon3gyeopsal300g', 'Noto Sans KR', 'Arial', 'sans-serif';
   font-size: 14px;
   color: #888;
   font-weight: 400;

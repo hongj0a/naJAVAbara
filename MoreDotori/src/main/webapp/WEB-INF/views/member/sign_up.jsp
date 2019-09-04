@@ -102,13 +102,13 @@
 							<label for="male">성별&nbsp;&nbsp;</label>
 							<div class="col col-form-label" id="inputGender">
    								<div class="form-group d-inline">
-		                            <div class="radio radio-primary d-inline">
+		                            <div class="radio radio-primary d-inline gender">
 			                            <input type="radio" name="m_gender" id="genderM" value="M">
 			                            <label for="genderM" class="cr">남</label>
 			                        </div>
 		                        </div>
 			                    <div class="form-group d-inline">
-			 	                   <div class="radio radio-primary d-inline">
+			 	                   <div class="radio radio-primary d-inline gender">
 			    	                   <input type="radio" name="m_gender" id="genderF" value="F">
 			                           <label for="genderF" class="cr">여</label>
 			                       </div>
