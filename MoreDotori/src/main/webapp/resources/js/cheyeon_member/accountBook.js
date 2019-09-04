@@ -167,6 +167,26 @@ var loginId = null;
     	   });
        }
        
+       //예산저장하기
+       $.fn.saveMonth = function(mmoney){
+    	   $.ajax({
+    		   type: "POST",
+			   url : "book/saveMonth.do",
+			   dataType : "text",
+			   data : { M_id : loginId,
+				   	    M_month : mmoney,
+						_csrf: $('#csrf').val()
+			   },
+			   success : function(data){
+				   
+			   },
+			   error:function(request,status,error){
+		          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			   
+    	   });   	   
+       }
+       
        //가계부 합계 등등 가져오기
        $.fn.getSum = function(){
     	   $.ajax({
@@ -413,19 +433,7 @@ var loginId = null;
     		   $.fn.clearInsertTrs();
     	   }
        };
-       
-/*
-       //행삭제
-       $.fn.delRow = function(obj){
-    	   alert('삭제로직짜야함 html에서만 삭제된거임');
-    	   $(obj).parent().fadeTo(1000, 0.01, function(){ 
-    		    $(this).slideUp(150, function() {
-    		        $(this).remove(); 
-    		    }); 
-    		});
-       };
-*/
-       
+
        //숫자입력시 컴마넣기
        $.fn.addCommas = function(x){
     	   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -556,7 +564,7 @@ var loginId = null;
     	 mmoney = $("#month_money").val();
     	 
  		 $.fn.getSum();
-    	 alert('저장로직짜셈');
+ 		 $.fn.saveMonth(mmoney);
        });
        
        //3) 취소버튼

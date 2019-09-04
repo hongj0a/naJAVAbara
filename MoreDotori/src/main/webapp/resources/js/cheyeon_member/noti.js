@@ -27,9 +27,9 @@ var loginId = null;
 	   $.ajax({
 		   type: "POST",
 		   url : "../../noti/updateHeader.do",
-		   dataType : "json",
+		   dataType : "text",
 		   data : { N_seq: N_seq,
-		   		_csrf: $('#csrf_h').val()
+		   			_csrf: $('#csrf_h').val()
 		   },
 		   success : function(data){
 			   if( data == "success"){
@@ -65,14 +65,15 @@ var loginId = null;
 					   content += data[i].C_horsehead;
 					   content += "] </strong>";
 					   content += data[i].N_subject;
-					   content += "<a href=''>";
+					   //content += "<a href=''>";
 					   content += "<span>";
 					   content += "<i class='hNotiIcon feather icon-x'>";
 					   content += "<span style='display:none'>";
 					   content += data[i].N_seq;
 					   content += "<span></i>"
 					   content += "</span>";
-					   content += "</a></p>";
+					   //content += "</a>";
+					   content += "</p>";
 					   content += "<p>";
 					   content += "- " + data[i].N_content;
 					   content += "</p>";
@@ -98,6 +99,7 @@ var loginId = null;
 		loginId=$("#loginId").val();
 		if(loginId!=null){
 			$.fn.getHeaderCount();
+			setInterval(function() {$.fn.getHeaderCount()}, 5000);
 		}
 	});
    
