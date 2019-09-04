@@ -59,8 +59,12 @@
 					            <a class="carousel-control-next" href="#carouselExampleIndicatorscaption" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>
 					        </div>
                             <!-- [ Main Content ] start -->
-
-								<div class="card-deck padding_30px" id="main_no_margin">
+                            
+                            	<div class="col-xl-12 tab2_title">
+                            		<h5> 모아도토리와 함께해요 </h5>
+                            		<hr/>
+                            	</div>
+								<div class="card-deck tab2" id="main_no_margin">
 								    <div class="card">
 								        <img class="card-img-top" src="images/slider/img-slide-1.jpg" alt="Card image cap">
 								        <div class="card-body">
@@ -92,6 +96,41 @@
 								        </div> -->
 								    </div>
 								</div>
+								
+								<div class="padding30 col-xl-12">
+                                    <h5 class="mt-4"> 모아도토리로 가계부를 작성해보아요 </h5>
+                                    <hr>
+                                    <div class="row tab2">
+                                        <div class="col-sm-4">
+                                            <div class="card text-white bg-primary ">
+                                                <div class="card-header"> 1단계 </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title text-white"> 자산을 등록해요 </h5>
+                                                    <p class="card-text"> > 소유하고 있는 자산(통장, 신용카드, 현금) 목록을 작성해요 </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="card text-white bg-secondary ">
+                                                <div class="card-header"> 2단계 </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title text-white"> 가계부를 작성해요 </h5>
+                                                    <p class="card-text"> > 오늘 하루 소비하거나 얻은 내역을 작성해요 </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="card text-white bg-success ">
+                                                <div class="card-header"> 3단계 </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title text-white"> 나의 수입 및 지출 통계를 확인해요 </h5>
+                                                    <p class="card-text"> > 나의 자산지출 현황을 한 눈에 확인해요 </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								
                             <!-- [ Main Content ] end -->
 
                         </div>
