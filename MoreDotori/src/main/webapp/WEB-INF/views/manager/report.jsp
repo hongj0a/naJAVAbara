@@ -30,23 +30,6 @@
         <div class="pcoded-wrapper">
           <div class="pcoded-content">
             <div class="pcoded-inner-content">
-              <!-- [ breadcrumb ] start -->
-              <div class="page-header">
-                <div class="page-block">
-                  <div class="row align-items-center">
-                    <div class="col-md-12">
-                      <div class="page-header-title">
-                        <h5 class="m-b-10">신고내역</h5>
-                      </div>
-                      <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="#!">관리자페이지</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- [ breadcrumb ] end -->
               <div class="main-body">
                 <div class="page-wrapper">
                   <!-- [ Main Content ] start -->
@@ -54,17 +37,14 @@
                     <!-- [ Foo-table ] start -->
                     <div class="col-sm-12">
                       <div class="card">
+                        <div class="card-header">
+                            <h5>게시물 신고내역</h5>
+                        </div>
                         <div class="card-block task-data">
                           <div class="table-responsive form-material">
                             <div id="simpletable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <div class="dataTables_length" id="simpletable_length">
-                                    <label>신고관리 페이지</label>
-                                  </div>
-                                </div>
-                                <div class="col-sm-9">
-                                  <div id="simpletable_filter" class="dataTables_filter col-sm-5 float-sm-right">
+                              <div class="float-right">
+                                  <div id="simpletable_filter" class="dataTables_filter float-sm-right">
                                     <div class="input-group mb-3">
                                       <input type="search" class="form-control form-control-sm" placeholder="Search here..." aria-controls="zero-configuration">
                                       <div class="input-group-append">
@@ -74,7 +54,6 @@
                                       </div>
                                     </div>
                                   </div>
-                                </div>
                               </div>
 
                               <div class="card-block">
@@ -201,8 +180,8 @@
           					                                            </tr>
           					                                            <c:forEach items="${list.replyDetail}" var="data" >
 	          					                                            <tr class="thickness">
-	          					                                              <td>${data.m_id }</td>
 	          					                                              <td>${data.rownum } </td>
+	          					                                              <td>${data.m_id }</td>
 	          					                                              <td>${data.rd_content }</td>
 	          					                                              <td>${data.rd_date }</td>
 	          					                                            </tr>

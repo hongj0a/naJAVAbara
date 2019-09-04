@@ -45,7 +45,7 @@ public class ReportNariController {
 		log.info("user: " + user.getMember().getM_nickname());
 		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		
-		revo.setM_id(user.getMember().getM_nickname());
+		revo.setM_id(user.getMember().getM_id());
 		int test = service.getMreportCnt(revo);
 		if(test <= 0) {
 			service.regReport(revo);

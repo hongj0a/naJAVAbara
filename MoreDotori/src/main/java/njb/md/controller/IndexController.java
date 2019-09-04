@@ -15,8 +15,9 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 import njb.md.domain.AssetList;
+import njb.md.domain.Code;
 import njb.md.service.AssetListService;
-
+import njb.md.service.CodeService;
 import lombok.AllArgsConstructor;
 import njb.md.domain.Mem;
 import njb.md.domain.Reply;
@@ -35,6 +36,9 @@ public class IndexController {
 	
 	@Autowired
 	private MemService memService;
+	
+	@Autowired
+	private CodeService codeService;
 	
 	// 메인
 	@GetMapping("/")
@@ -90,12 +94,15 @@ public class IndexController {
 	 @ResponseBody
 	 public ModelAndView getList(){
 	      List<Mem> list = memService.getList();
+	      for(Mem item: list) {
+	    	  Code code = codeService.selectCodeS(item.getC_member());
+	    	  item.setC_member(code.getC_name());
+	    	  code = codeService.selectCodeS(item.getC_mstate());
+	    	  item.setC_mstate(code.getC_name());
+	      }
 	      ModelAndView mv = new ModelAndView();
 	      mv.setViewName("manager/mem");
 	      mv.addObject("list", list);
-	      //List<Mem> list = memService.getMemList();
-	      //model.addAttribute("list", memService.getList());
-	      //return getList(null);
 	      return mv;
 	   }
 	 
