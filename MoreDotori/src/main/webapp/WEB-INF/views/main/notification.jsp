@@ -68,8 +68,8 @@
 													            	</div>
 													            	
 													                <div class="noti_body">
-													                	<span>
-													                		<a href="#!">${noti.N_content} </a>
+													                	<span class="${noti.C_nstate}">
+													                		<a href="/noti/cont.do?N_bseq=${noti.N_bseq}&N_seq=${noti.N_seq}">${noti.N_content} </a>
 													                	</span>
 													                </div>
 													                
