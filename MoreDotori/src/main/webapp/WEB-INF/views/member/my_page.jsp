@@ -148,13 +148,13 @@
 															<input type="hidden" id="birth" value="<sec:authentication property="principal.member.m_birth"/>">
 															<label class="col-sm-3 col-form-label">생년월일</label>
 															<div class="col form-inline" id="inputBirth">
-																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-year" required>
+																<select class="birth form-control col-sm-3 mr-1" name="birth" id="birth-year" required>
 																</select>
 																<label class="col-form-label mr-2">년</label>
-																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-month" required>
+																<select class="birth form-control col-sm-3 mr-1" name="birth" id="birth-month" required>
 																</select>
 																<label class="col-form-label mr-2">월</label>
-																<select class="form-control col-sm-3 mr-1" name="birth" id="birth-day" required>
+																<select class="birth form-control col-sm-3 mr-1" name="birth" id="birth-day" required>
 																</select>
 																<label class="col-form-label mr-2">일</label>
 															</div>
