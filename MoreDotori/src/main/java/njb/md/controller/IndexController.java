@@ -66,12 +66,6 @@ public class IndexController {
 		return "member/my_page";
 	}
 
-	// 알림
-	@GetMapping("/noti")
-	public String noti() {
-		return "main/notification";
-	}
-
 	// 일반 회원 - 전문가 찾기
 	@GetMapping("/eList")
 	public String eList() {

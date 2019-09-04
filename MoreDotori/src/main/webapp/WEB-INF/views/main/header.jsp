@@ -40,16 +40,21 @@
     <c:choose>
        <c:when test="${isExpert}">
           <c:set var="mainColor" value="orange" />
-          <link rel="stylesheet" href="css/main/header2.css">
+          <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/header2.css">
        </c:when>
        <c:when test="${isAdmin}">
           <c:set var="mainColor" value="black" />
-          <link rel="stylesheet" href="css/main/header3.css">
+          <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/header3.css">
        </c:when>
     </c:choose>
 
 </head>
 <body class="layout-8">
+	<sec:authorize access="isAuthenticated()">
+		<!-- 로그인아이디 -->
+		<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">
+	</sec:authorize>
+
     <!-- [ navigation menu ] start -->
     <nav id="header_menu" id="pcoded_navbar_${mainColor}" class="pcoded-navbar menu-light brand-lightblue active-lightblue">
         <div class="navbar-wrapper">
@@ -216,7 +221,7 @@
                             </ul>
                             <a href="#!">
                                <form id="logout" action="/logout" method="post">
-                                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                  <input type="hidden" id="csrf_h" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                   <a href="javascript:$('#logout').submit();">
                                      <div class="noti-footer" id="logout">로그아웃</div>
                                   </a>
@@ -227,7 +232,7 @@
                 </li>
                 <li>
                     <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><div id="noti_bell_count"><p>+99</p></div></a>
+                        <a id="noti_btn" class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i><div id="noti_bell_count"><p></p></div></a>
                         <div class="dropdown-menu dropdown-menu-right notification">
                             <div class="noti-head">
                                 <h6 class="d-inline-block m-b-0">알림</h6>
@@ -236,40 +241,11 @@
                                 <li class="notification2 notification header_notice">
                                     <div class="media">
                                         <div class="media-body">
-                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
-                                            <p> - 내용웅앵웅조곰만보여주지... </p>
-                                            <span>2019.07.09</span>
+                                        	알림내역이 없습니다.
                                         </div>
                                     </div>
                                 </li>
-                                <li class="notification2 notification header_notice">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
-                                            <p> - 내용웅앵웅조곰만보여주지... </p>
-                                            <span>2019.07.09</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification2 notification header_notice">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
-                                            <p> - 내용웅앵웅조곰만보여주지... </p>
-                                            <span>2019.07.09</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="notification2 notification header_notice">
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <p><strong>[ 말머리 ]</strong> 제목제목 <a href="#!"><span><i class="feather icon-x"></i></span></a></p>
-                                            <p> - 내용웅앵웅조곰만보여주지... </p>
-                                            <span>2019.07.09</span>
-                                        </div>
-                                    </div>
-                                </li>                               
-                            </ul>
+                          </ul>
                             <a href="/noti">
                             <div class="noti-footer" id="whole_noti">
                               	알림 전체보기
@@ -312,11 +288,9 @@
     <!-- [ chat message ] end -->
 
     <!-- Required Js -->
-    <script src="${pageContext.request.contextPath}/js/vendor-all.min.js">
-</script>
-    <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js">
-</script>
-    <script src="${pageContext.request.contextPath}/js/pcoded.min.js">
-</script>
+    <script src="${pageContext.request.contextPath}/js/vendor-all.min.js"></script>
+    <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/pcoded.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/cheyeon_member/noti.js"></script>
 </body>
 </html>

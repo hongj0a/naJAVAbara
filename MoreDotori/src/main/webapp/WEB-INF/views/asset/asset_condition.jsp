@@ -41,118 +41,7 @@
 									</h6>
 									<div id="my-statistics" role="tablist"
 										aria-multiselectable="true">
-										<div class="card my-statistics">
-											<div class="card-header" role="tab" id="ch1">
-												<a data-toggle="collapse" href="#collapseOne"
-													aria-expanded="true" aria-controls="collapseOne">
-													<h5>수입 및 지출 통계</h5>
-													<div class="i-block float-sm-right collapse-arrow">
-														<i class="fas"></i>
-													</div>
-												</a>
-											</div>
-											<div id="collapseOne" class="collapse show" role="tabpanel"
-												data-parent="#my-statistics" aria-labelledby="ch1">
-												<div class="card-block">
-													<div class="float-sm-right">
-														<ul class="nav nav-pills asset" id="tab1" role="tablist">
-															<li class="nav-item"><a class="nav-link active"
-																id="tab1-month" data-toggle="pill"
-																href="#pills1-month" role="tab" aria-controls="pills1-month"
-																aria-selected="true">월별</a></li>
-															<li class="nav-item"><a class="nav-link"
-																id="tab1-week" data-toggle="pill"
-																href="#pills1-week" role="tab"
-																aria-controls="pills1-week" aria-selected="false">주별</a>
-															</li>
-															<li class="nav-item"><a class="nav-link"
-																id="tab1-year" data-toggle="pill"
-																href="#pills1-year" role="tab"
-																aria-controls="pills1-year" aria-selected="false">연별</a>
-															</li>
-															<li class="nav-item"><a class="nav-link"
-																id="tab1-day" data-toggle="pill"
-																href="#pills1-day" role="tab" aria-controls="pills1-day"
-																aria-selected="false">요일별</a></li>
-														</ul>
-													</div>
-													<div class="tab-content" id="asset-tab1">
-														<div class="tab-pane fade show active" id="pills1-month"
-															role="tabpanel" aria-labelledby="tab1-month">
-															<div class="stats_sub"> 월별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
-															<div id="tab1-chart1" class="lineAreaDashboard"></div>
-														</div>
-														<div class="tab-pane fade" id="pills1-week"
-															role="tabpanel" aria-labelledby="tab1-week">
-															<div class="stats_sub"> 주별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
-															<div id="tab1-chart2" class="lineAreaDashboard"></div>
-														</div>
-														<div class="tab-pane fade" id="pills1-year"
-															role="tabpanel" aria-labelledby="tab1-year">
-															<div class="stats_sub"> 10 년간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
-															<div id="tab1-chart3" class="lineAreaDashboard"></div>
-														</div>
-														<div class="tab-pane fade" id="pills1-day" role="tabpanel"
-															aria-labelledby="pills1-day">
-															<div class="stats_sub"> <span class="today_mm"></span>월 요일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
-															<div id="tab1-chart4" class="lineAreaDashboard"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="card my-statistics">
-											<div class="card-header" role="tab" id="ch2">
-												<a class="collapsed" data-toggle="collapse"
-													href="#collapseTwo" aria-expanded="false"
-													aria-controls="collapseTwo">
-													<h5>지출 분류별 통계</h5>
-													<div class="i-block float-sm-right collapse-arrow">
-														<i class="fas"></i>
-													</div>
-												</a>
-											</div>
-											<div id="collapseTwo" class="collapse" role="tabpanel"
-												data-parent="#my-statistics" aria-labelledby="ch2">
-												<div class="card-block">
-													<div class="float-sm-right">
-														<ul class="nav nav-pills asset" id="tab2" role="tablist">
-															<li class="nav-item"><a class="nav-link active"
-																id="tab2-month" data-toggle="pill"
-																href="#pills2-month" role="tab" aria-controls="pills2-month"
-																aria-selected="true">월별</a></li>
-															<li class="nav-item"><a class="nav-link"
-																id="tab2-week" data-toggle="pill"
-																href="#pills2-week" role="tab"
-																aria-controls="pills2-week" aria-selected="false">주별</a>
-															</li>
-															<li class="nav-item"><a class="nav-link"
-																id="tab2-year" data-toggle="pill"
-																href="#pills2-year" role="tab"
-																aria-controls="pills2-year" aria-selected="false">연별</a>
-															</li>
-														</ul>
-													</div>
-													<div class="tab-content" id="asset-tab2">
-														<div class="tab-pane fade show active tab2" style="margin:0 auto;" id="pills2-month"
-															role="tabpanel" aria-labelledby="tab2-month">
-															<div class="stats_sub"> 월별 <span class="money_out">지출</span> 분류별 통계  </div>
-															<div id="tab2-chart1"></div>
-														</div>
-														<div class="tab-pane fade" id="pills2-week"
-															role="tabpanel" aria-labelledby="tab2-week">
-															<div class="stats_sub"> 주별 <span class="money_out">지출</span> 분류별 통계  </div>
-															<div id="tab2-chart2" class="tab2"></div>
-														</div>
-														<div class="tab-pane fade" id="pills2-year"
-															role="tabpanel" aria-labelledby="tab2-year">
-															<div class="stats_sub"> 10 년간 <span class="money_out">지출</span> 분류별 통계  </div>
-															<div id="tab2-chart3" class="tab2"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
+										
 										<div class="card my-statistics">
 											<div class="card-header" role="tab" id="ch3">
 												<a class="collapsed" data-toggle="collapse"
@@ -164,7 +53,7 @@
 													</div>
 												</a>
 											</div>
-											<div id="collapseThree" class="collapse" role="tabpanel"
+											<div id="collapseThree" class="collapse show" role="tabpanel"
 												data-parent="#my-statistics" aria-labelledby="ch3">
 												<div class="card-block tab2">
 													<div class="text-center">
@@ -283,6 +172,120 @@
 																	</div>
 																</div>
 															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>										
+										
+										
+										<div class="card my-statistics">
+											<div class="card-header" role="tab" id="ch1">
+												<a data-toggle="collapse" href="#collapseOne"
+													aria-expanded="true" aria-controls="collapseOne">
+													<h5>수입 및 지출 통계</h5>
+													<div class="i-block float-sm-right collapse-arrow">
+														<i class="fas"></i>
+													</div>
+												</a>
+											</div>
+											<div id="collapseOne" class="collapse" role="tabpanel"
+												data-parent="#my-statistics" aria-labelledby="ch1">
+												<div class="card-block">
+													<div class="float-sm-right">
+														<ul class="nav nav-pills asset" id="tab1" role="tablist">
+															<li class="nav-item"><a class="nav-link active"
+																id="tab1-month" data-toggle="pill"
+																href="#pills1-month" role="tab" aria-controls="pills1-month"
+																aria-selected="true">월별</a></li>
+															<li class="nav-item"><a class="nav-link"
+																id="tab1-week" data-toggle="pill"
+																href="#pills1-week" role="tab"
+																aria-controls="pills1-week" aria-selected="false">주별</a>
+															</li>
+															<li class="nav-item"><a class="nav-link"
+																id="tab1-year" data-toggle="pill"
+																href="#pills1-year" role="tab"
+																aria-controls="pills1-year" aria-selected="false">연별</a>
+															</li>
+															<li class="nav-item"><a class="nav-link"
+																id="tab1-day" data-toggle="pill"
+																href="#pills1-day" role="tab" aria-controls="pills1-day"
+																aria-selected="false">요일별</a></li>
+														</ul>
+													</div>
+													<div class="tab-content" id="asset-tab1">
+														<div class="tab-pane fade show active" id="pills1-month"
+															role="tabpanel" aria-labelledby="tab1-month">
+															<div class="stats_sub"> 월별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div id="tab1-chart1" class="lineAreaDashboard"></div>
+														</div>
+														<div class="tab-pane fade" id="pills1-week"
+															role="tabpanel" aria-labelledby="tab1-week">
+															<div class="stats_sub"> 주별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div id="tab1-chart2" class="lineAreaDashboard"></div>
+														</div>
+														<div class="tab-pane fade" id="pills1-year"
+															role="tabpanel" aria-labelledby="tab1-year">
+															<div class="stats_sub"> 10 년간 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div id="tab1-chart3" class="lineAreaDashboard"></div>
+														</div>
+														<div class="tab-pane fade" id="pills1-day" role="tabpanel"
+															aria-labelledby="pills1-day">
+															<div class="stats_sub"> <span class="today_mm"></span>월 요일별 <span class="money_in">수입</span> 및 <span class="money_out">지출</span> 통계  </div>
+															<div id="tab1-chart4" class="lineAreaDashboard"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="card my-statistics">
+											<div class="card-header" role="tab" id="ch2">
+												<a class="collapsed" data-toggle="collapse"
+													href="#collapseTwo" aria-expanded="false"
+													aria-controls="collapseTwo">
+													<h5>지출 분류별 통계</h5>
+													<div class="i-block float-sm-right collapse-arrow">
+														<i class="fas"></i>
+													</div>
+												</a>
+											</div>
+											<div id="collapseTwo" class="collapse" role="tabpanel"
+												data-parent="#my-statistics" aria-labelledby="ch2">
+												<div class="card-block">
+													<div class="float-sm-right">
+														<ul class="nav nav-pills asset" id="tab2" role="tablist">
+															<li class="nav-item"><a class="nav-link active"
+																id="tab2-month" data-toggle="pill"
+																href="#pills2-month" role="tab" aria-controls="pills2-month"
+																aria-selected="true">월별</a></li>
+															<li class="nav-item"><a class="nav-link"
+																id="tab2-week" data-toggle="pill"
+																href="#pills2-week" role="tab"
+																aria-controls="pills2-week" aria-selected="false">주별</a>
+															</li>
+															<li class="nav-item"><a class="nav-link"
+																id="tab2-year" data-toggle="pill"
+																href="#pills2-year" role="tab"
+																aria-controls="pills2-year" aria-selected="false">연별</a>
+															</li>
+														</ul>
+													</div>
+													<div class="tab-content" id="asset-tab2">
+														<div class="tab-pane fade show active tab2" style="margin:0 auto;" id="pills2-month"
+															role="tabpanel" aria-labelledby="tab2-month">
+															<div class="stats_sub"> 월별 <span class="money_out">지출</span> 분류별 통계  </div>
+															<div id="tab2-chart1"></div>
+														</div>
+														<div class="tab-pane fade" id="pills2-week"
+															role="tabpanel" aria-labelledby="tab2-week">
+															<div class="stats_sub"> 주별 <span class="money_out">지출</span> 분류별 통계  </div>
+															<div id="tab2-chart2" class="tab2"></div>
+														</div>
+														<div class="tab-pane fade" id="pills2-year"
+															role="tabpanel" aria-labelledby="tab2-year">
+															<div class="stats_sub"> 10 년간 <span class="money_out">지출</span> 분류별 통계  </div>
+															<div id="tab2-chart3" class="tab2"></div>
 														</div>
 													</div>
 												</div>

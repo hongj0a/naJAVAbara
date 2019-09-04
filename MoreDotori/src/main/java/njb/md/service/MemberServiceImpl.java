@@ -20,6 +20,10 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	
+	public Member readS(String id) {
+		return mapper.read(id);
+	}
+	
 	public boolean joinMember(Member member, Expert expert) {
 		PasswordEncoder pwencoder = new BCryptPasswordEncoder();
 		String encoded = pwencoder.encode(member.getM_password());

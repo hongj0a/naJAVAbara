@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,10 +8,8 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
-
-
     <!-- append css -->
-    <link rel="stylesheet" href="css/main/noti.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/noti.css">
 
 </head>
 
@@ -32,9 +33,9 @@
 							<div class="row">
 							    <div class="col-2" id="noti_menu">
 									<div><a> 전체보기 </a></div>
-									<div><a> 상담 </a></div>
-									<div><a> Q&A </a></div>
+									<div><a> 가계부 </a></div>
 									<div><a> 게시판 </a></div>
+									<!-- <div><a> Q&A </a></div> -->
 							    </div>
 							    <div class="col-8">
 				                    <div class="card">
@@ -42,138 +43,45 @@
 				                            <h5>알림</h5>
 				                        </div>
 				                        <div class="card-body">
-				                        <div class="noti_lists">
-				                        	<h6> 오늘 </h6>
-				                        	<hr/>
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>
-										        
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>
-
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>	
-				                        </div>
 				                        
-				                        <div class="noti_lists">
-				                        	<h6> 7월 9일 </h6>
-				                        	<hr/>
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>
-										        
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>
-
-										        <div class="card noti_list">
-										            <div class="card-body2 card-body">
-										            	<div class="noti_head">
-										            		<span>
-										            			<a href="#!">[말머리] 제목gg님의  글에 댓글이 달렸습니다.</a>
-										            		</span>
-										            		<span><a href="#!"><i class="feather icon-x"></i></a></span>
-										            	</div>
-										            	
-										                <div class="noti_body">
-										                	<span>
-										                		<a href="#!">글제목 : 웅엥웅졸졸졸하하하후훟 </a>
-										                	</span>
-										                </div>
-										                
-										                <div class="noti_foot">
-										                	<span> 6월 27일 오후 3시 23분  </span>
-										                </div>
-										            </div>
-										        </div>	
+										<c:choose>
+											<c:when test="${empty hmlist}">
+			                            		<div> 7일동안 새로운 알림이 없습니다. </div>
+											</c:when>
+											<c:otherwise>
+					                            <c:forEach items="${dateList}" var="dati">
+						                        	<div class="noti_lists">
+						                        	<h6> ${dati} </h6>
+						                        	<hr/>													
+						                            <c:forEach items="${hmlist}" var="noti">
+						                            	<c:if test="${dati eq noti.MMDD}">
+													        <div class="card noti_list">
+													            <div class="card-body2 card-body">
+													            	<div class="noti_head">
+													            		<span>
+													            			<a href="#!">[${noti.C_horsehead}] ${noti.N_subject}</a>
+													            		</span>
+													            		<span><a href="/noti/update.do?N_seq=${noti.N_seq}"><i class="feather icon-x"></i></a></span>
+													            	</div>
+													            	
+													                <div class="noti_body">
+													                	<span>
+													                		<a href="#!">${noti.N_content} </a>
+													                	</span>
+													                </div>
+													                
+													                <div class="noti_foot">
+													                	<span> ${noti.N_date} </span>
+													                </div>
+													            </div>
+													        </div>
+												        </c:if>				                            
+						                            </c:forEach>
+				                        			</div>
+					                            </c:forEach>													
+											</c:otherwise>
+										</c:choose>
+						
 				                        </div>				                        
 				                        </div>
 				                    </div>							    

@@ -6,6 +6,7 @@ import njb.md.domain.Expert;
 import njb.md.domain.Member;
 
 public interface MemberService {
+	Member readS(String id);
 	boolean joinMember(Member member, Expert expert);
 	boolean updateMember(Member member, Expert expert);
 	int duplCheck(String type, String name);

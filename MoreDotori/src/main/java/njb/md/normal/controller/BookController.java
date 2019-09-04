@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import njb.md.domain.Code;
+import njb.md.domain.Member;
 import njb.md.normal.domain.Asset;
 import njb.md.normal.domain.Inout;
 import njb.md.normal.domain.InoutForm;
@@ -31,9 +36,11 @@ import njb.md.normal.domain.TrsForm;
 import njb.md.normal.service.AbookSumService;
 import njb.md.normal.service.AssetService;
 import njb.md.service.CodeService;
+import njb.md.service.MemberService;
 import njb.md.normal.service.InoutService;
 import njb.md.normal.service.InoutTrsListService;
 import njb.md.normal.service.TransferService;
+import njb.md.security.domain.CustomUser;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -62,6 +69,9 @@ public class BookController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private AssetService ass_service;
+
+	@Setter(onMethod_ = @Autowired)
+	private MemberService mem_service;
 	
 	@RequestMapping("/book")
 	public ModelAndView myAccountBook() {
@@ -97,6 +107,22 @@ public class BookController {
 		mv.addObject("codelistOT", codelistOT);
 		return mv;
 	}
+	
+	@RequestMapping(value ="/book/saveMonth.do")
+    @ResponseBody
+	public String saveMonth(String M_id, long M_month, HttpServletRequest request) throws Exception{
+		log.info("### 예산저장 ####");
+		
+		mem_service.setMonth(M_id, M_month);
+		
+		Member mem = mem_service.readS(M_id);
+		CustomUser customuser = new CustomUser(mem);
+		
+		Authentication authentication = new UsernamePasswordAuthenticationToken(customuser, customuser.getPassword(), customuser.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		return "success";
+	}	
 	
 	@RequestMapping(value="/book/assetList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
