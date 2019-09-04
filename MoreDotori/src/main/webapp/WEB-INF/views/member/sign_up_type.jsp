@@ -7,6 +7,8 @@
 <title>회원가입 유형 - 모아도토리</title>
 <meta charset="utf-8">
 
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon">
 <!-- vendor css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">

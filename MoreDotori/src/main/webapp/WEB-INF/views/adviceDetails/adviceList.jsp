@@ -11,6 +11,7 @@
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
 
+	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!--  stars css  -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/bootstrap-stars.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/ratting/css/css-stars.css"> 
@@ -20,7 +21,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

@@ -10,12 +10,12 @@
 <meta name="_csrf" content="${_csrf.token}"/>
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
+	<jsp:include page="../main/header.jsp"></jsp:include>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- [ Main Content ] start -->
 	<div class="pcoded-main-container">
 		<div class="pcoded-wrapper">

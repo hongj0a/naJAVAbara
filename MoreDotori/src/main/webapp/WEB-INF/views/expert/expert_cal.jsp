@@ -5,6 +5,7 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- Wysiwyg editor -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/fullcalendar/css/fullcalendar.min.css">
     <!-- schedule/my Css -->
@@ -12,7 +13,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">

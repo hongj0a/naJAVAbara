@@ -8,6 +8,7 @@
 <head>
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- append css -->
 	<!-- footable css -->
     <link rel="stylesheet" href="/css/board/footable.bootstrap.min.css">
@@ -17,7 +18,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
      <script type="text/javascript">
 	 function clickWriteBtn(){

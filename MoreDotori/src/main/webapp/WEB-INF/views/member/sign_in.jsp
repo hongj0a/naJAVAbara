@@ -7,6 +7,8 @@
 <title>로그인 - 모아도토리</title>
 <meta charset="utf-8">
 
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon">
 <!-- animation css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/animation/css/animate.min.css">
 <!-- vendor css -->

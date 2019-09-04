@@ -7,12 +7,12 @@
 <head>
     <title>NAJAVABARA::고객센터</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- append css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/cs/faq.css">
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
 	<script type="text/javascript">
 	function clickWriteBtn(){
  		var form = document.tabform;

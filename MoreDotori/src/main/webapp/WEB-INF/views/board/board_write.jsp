@@ -8,6 +8,7 @@
 <head>
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
     <style>
         .ck-editor__editable {
             min-height: 300px;
@@ -17,7 +18,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <script type="text/javascript">
     	//목록으로

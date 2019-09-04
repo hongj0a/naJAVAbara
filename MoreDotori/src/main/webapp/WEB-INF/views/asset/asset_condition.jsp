@@ -7,12 +7,12 @@
 <head>
 	<title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
   	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/asset-condition.css">
   	<link rel="stylesheet" href="${pageContext.request.contextPath}/fonts/material/css/materialdesignicons.min.css">
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- [ Main Content ] start -->
 
 	<!-- 로그인아이디 -->

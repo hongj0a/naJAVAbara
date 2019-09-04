@@ -6,6 +6,7 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- append css -->
     <link rel="stylesheet" href="css/cheyeon_member/accountBook.css">
     <link rel="stylesheet" href="css/cheyeon_member/jsCalendar.css">
@@ -43,7 +44,6 @@
 %>
 </head>
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

@@ -9,6 +9,8 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon2.ico" type="image/x-icon">
 <!-- vendor css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/member/member.css">

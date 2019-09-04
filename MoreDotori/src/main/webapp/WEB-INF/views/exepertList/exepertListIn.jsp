@@ -10,6 +10,7 @@
     <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
     <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template">
     <meta name="author" content="Codedthemes" />
+	<jsp:include page="../main/header.jsp"></jsp:include>
  
     <!-- Smart Wizard css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/smart-wizard/css/smart_wizard.min.css">
@@ -44,7 +45,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

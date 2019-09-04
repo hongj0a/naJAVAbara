@@ -8,13 +8,13 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- append css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main/noti.css">
 
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

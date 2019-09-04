@@ -9,6 +9,7 @@
 <head>
     <title>NAJAVABARA::${BoardMgrVO.b_title}</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- append css -->
 	<link rel="stylesheet" href="/css/board/style_board_content.css">
 	<!-- material icon -->
@@ -17,7 +18,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
      <script type="text/javascript">
      var type = "bbs";

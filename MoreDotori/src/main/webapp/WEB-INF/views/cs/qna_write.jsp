@@ -5,6 +5,7 @@
 <head>
     <title>NAJAVABARA::고객센터</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- append css -->
 	<!-- footable css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board/footable.bootstrap.min.css">
@@ -13,7 +14,6 @@
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">

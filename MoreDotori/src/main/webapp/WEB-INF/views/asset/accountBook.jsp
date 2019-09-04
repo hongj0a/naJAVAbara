@@ -10,6 +10,7 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>
     <!-- append css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/accountBook.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/jsCalendar.css">
@@ -17,7 +18,6 @@
 
 </head>
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>
 	<!-- 로그인아이디 -->
 	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">
 	<input id="loginMonth" type="hidden" value="<sec:authentication property="principal.member.m_month"/>">

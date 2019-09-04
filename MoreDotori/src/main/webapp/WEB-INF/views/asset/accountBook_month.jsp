@@ -9,13 +9,13 @@
 <head>
     <title>NAJAVABARA</title>
 	<meta charset="utf-8">
+	<jsp:include page="../main/header.jsp"></jsp:include>	
     <!-- append css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/accountBookM.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cheyeon_member/jquery.monthpicker-0.1.css">
 </head>
 
 <body class="layout-8">
-	<jsp:include page="../main/header.jsp"></jsp:include>	
 	
 	<!-- 로그인아이디 -->
 	<input id="loginId" type="hidden" value="<sec:authentication property="principal.member.m_id"/>">

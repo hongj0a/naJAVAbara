@@ -12,6 +12,7 @@
 	<meta name="_csrf_header" content="${_csrf.headerName}"/>
     
    <meta charset="utf-8">
+   <jsp:include page="../main/header.jsp"></jsp:include>
   <!-- 내가추가함  -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/report.css">
 
@@ -24,7 +25,6 @@
 </head>
 
 <body class="layout-8">
-   <jsp:include page="../main/header.jsp"></jsp:include>
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
