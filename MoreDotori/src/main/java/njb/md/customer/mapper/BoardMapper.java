@@ -2,10 +2,15 @@ package njb.md.customer.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import njb.md.customer.domain.BoardMgrVO;
 import njb.md.customer.domain.BoardVO;
 
 public interface BoardMapper {
+	//알림을 위한 메소드(댓글단 게시물의 주인장 찾아내기)
+	public String returnMid(@Param("B_seq") long B_seq,@Param("B_code") String B_code);
+	public String returnTitle(@Param("B_seq") long B_seq,@Param("B_code") String B_code);
 	
 	/* boardMgr */
 	

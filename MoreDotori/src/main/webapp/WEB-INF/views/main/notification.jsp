@@ -31,12 +31,15 @@
 
                             <!-- [ Main Content ] start -->
 							<div class="row">
+
 							    <div class="col-2" id="noti_menu">
+   							<!-- 
 									<div><a> 전체보기 </a></div>
 									<div><a> 가계부 </a></div>
 									<div><a> 게시판 </a></div>
-									<!-- <div><a> Q&A </a></div> -->
-							    </div>
+									<div><a> Q&A </a></div>
+							 -->							   
+							 	</div>
 							    <div class="col-8">
 				                    <div class="card">
 				                        <div class="card-header">
@@ -86,10 +89,6 @@
 				                        </div>
 				                    </div>							    
 							    </div>
-							    
-<!-- 							    <div class="col-2 noti_gotop">
-							   		<button type="button" class="btn btn-icon btn-rounded btn-info" id="noti_gotop_btn"><i class="feather icon-chevrons-up"></i></button>
-							    </div> -->							    
 							</div>
                             <!-- [ Main Content ] end -->
 
@@ -98,7 +97,6 @@
                 </div>
             </div>
         </div>
-    </div>
 	<jsp:include page="../main/footer.jsp"></jsp:include>
     <!-- [ Main Content ] end -->
 </body>

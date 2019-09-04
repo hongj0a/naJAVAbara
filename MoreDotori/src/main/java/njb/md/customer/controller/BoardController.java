@@ -163,13 +163,16 @@ public class BoardController {
 		log.info("user: " + user.getMember().getM_nickname());
 		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		mo.addAttribute("tuser", user.getMember());
-		if(!b_code.equals("BO003")) {
+		if(b_code.equals("BO003")) {
 			vo.setFcategori(b_code);
 		}
+		
 		vo.setB_filekey("asdfasdfsadfas");
-		vo.setReg_id(user.getMember().getM_nickname());
+		vo.setReg_id(user.getMember().getM_id());
+		vo.setMod_id(user.getMember().getM_nickname());
+		
 		vo.setB_code(b_code);
-		vo.setFcategori(b_code);
+		//vo.setFcategori(b_code);
 		vo.setB_filekey("asdfasdfsadfas");
 		
 		if(vo.getB_seq() > 0) {

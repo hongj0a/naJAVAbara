@@ -14,11 +14,13 @@ var loginId = null;
 			   }else{
 				   $('#noti_bell_count > p').text("+99");
 			   }
-		   },
+		   }
+		   
+		   /*,
 		   error:function(request,status,error){
 	          alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	       }
-		   
+		   */
 	   });
    }
 
@@ -113,3 +115,4 @@ var loginId = null;
 	   
 		$.fn.getHeaderUpdate(nseq);
    });
+   

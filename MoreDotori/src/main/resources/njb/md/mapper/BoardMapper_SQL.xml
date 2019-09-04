@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="njb.md.customer.mapper.BoardMapper">
 
+	<select id="returnMid" resultType="String">
+		select reg_id from board where B_seq=#{B_seq} and B_code=#{B_code} 	
+	</select>
+	<select id="returnTitle" resultType="String">
+		select B_SUBJCET from board where B_seq=#{B_seq} and B_code=#{B_code} 	
+	</select>	
+
 
 <!-- boardMgr -->
 
@@ -199,7 +206,7 @@
 		    'N',
 		    #{reg_id},
 		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
-		    #{reg_id},
+		    #{mod_id},
 		    TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 		    #{fcategori}
 		)
@@ -209,7 +216,6 @@
 		UPDATE BOARD SET
 			B_subjcet = #{b_subjcet},
 			B_content= #{b_content:CLOB},
-			mod_id = #{reg_id},
 			mod_dt= TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
 			fcategori = #{fcategori}
 		WHERE B_code= #{b_code}
@@ -219,7 +225,6 @@
 	<update id="deleteBoard" ><!-- 삭제유무를 Y로 바꿈 실제 delete 아님 -->
 		UPDATE BOARD SET
 			B_del_YN = 'Y',
-			mod_id = #{reg_id},
 			mod_dt= TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 		WHERE B_code= #{b_code}
 		AND B_seq = #{b_seq}	
@@ -250,7 +255,7 @@
 		</if>
 		<!-- 글쓴이 -->
 		<if test="searchType == 'opt2'  and searchWord != ''">
-			and reg_id like '%' ||  #{searchWord} || '%'
+			and mod_id like '%' ||  #{searchWord} || '%'
 		</if>
 		<!-- 작성일 -->
 		<if test="searchType == 'opt3'  and searchWord != ''">

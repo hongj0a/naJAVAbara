@@ -114,7 +114,7 @@
 															<tr>
 																<td> ${listConts.num} </td>
 																<td><a href="#" onclick="go_view(${listConts.b_seq})">${listConts.b_subjcet} <c:if test="${BoardMgrVO.b_comment_yn eq 'Y' }"> (${listConts.recnt})</c:if> </a></td>
-		                                                        <td>${listConts.reg_id}</td>
+		                                                        <td>${listConts.mod_id}</td>
 		                                                        <td>${listConts.reg_dt}</td>
 		                                                        <td>${listConts.b_readnum}</td>
 		                                                        <td>${listConts.b_heartnum}</td>

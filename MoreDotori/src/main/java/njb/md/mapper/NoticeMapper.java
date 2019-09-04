@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import njb.md.domain.Notice;
 
 public interface NoticeMapper {
+	//노티스 인서트
+	void insertBoardNotice(Notice noti);
+	
 	//알림 노티스 데이트 리스트
 	List<String> dateNotiList(String M_id);
 	

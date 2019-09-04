@@ -60,7 +60,7 @@
 				0,
 				#{reg_id},
 				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS'),
-				#{reg_id},
+				#{mod_id},
 				TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 			)
 	</insert>
@@ -68,7 +68,6 @@
 	<update id="updateReply">
 		UPDATE REPLY SET
 			RE_CONTENT = #{re_content},
-			mod_id =#{mod_id},
 			mod_dt=TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS')
 		WHERE B_SEQ = #{b_seq}
 		AND RE_SEQ = #{re_seq}

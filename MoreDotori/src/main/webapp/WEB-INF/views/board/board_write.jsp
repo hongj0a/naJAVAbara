@@ -55,6 +55,7 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<input type="hidden" name="mode" id="mode"  value="${boardVO.mode }"/>
 							<input type="hidden" name="b_seq" id="b_seq"  value="${boardVO.b_seq }"/>
+							<input type="hidden" name="b_code" id="b_code"  value="${boardVO.b_code }"/>
                             <!-- [ Main Content ] start -->
                             <div class="row">
                             	 <!-- [ board_write ] start -->

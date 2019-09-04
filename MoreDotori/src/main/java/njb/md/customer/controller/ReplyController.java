@@ -48,7 +48,9 @@ public class ReplyController {
 		log.info("user: " + user.getMember().getM_nickname());
 		log.info("getC_member::::::::::::::::::"+user.getMember().getC_member());
 		
-		vo.setReg_id(user.getMember().getM_nickname());
+		vo.setReg_id(user.getMember().getM_id());
+		vo.setM_id(user.getMember().getM_id()); 
+		vo.setMod_id(user.getMember().getM_nickname()); 
 		String b_seq = request.getParameter("b_seq");
 		String re_content = request.getParameter("re_content");
 		String b_code	= request.getParameter("b_code");
