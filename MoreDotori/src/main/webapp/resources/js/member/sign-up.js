@@ -90,32 +90,29 @@ $(document).ready(function() {
       'password-confirm': {
         equalTo: 'input[name="m_password"]'
       },
+      'm_gender': {
+    	required: true
+      },
       'm_phone': {
         digits: true,
         minlength: 10,
         maxlength: 11
       },
-      'license-num1': {
+      'licenseNum': {
         digits: true,
         rangelength: [10, 10]
       },
-      'license-num2': {
-        digits: true
-      },
-      'license-num3': {
-        digits: true
-      },
       'introduction': {
         minlength: 30
+      },
+      'agree-clause': {
+    	required: true
       }
     },
     errorPlacement: function errorPlacement(error, element) {
+      console.log(element);
       var $parent = $(element).parents('.form-group');
-
       if ($parent.find('.jquery-validation-error').length) {
-        return;
-      }
-      if ($parent.find('.mb-2').length) {
         return;
       }
 

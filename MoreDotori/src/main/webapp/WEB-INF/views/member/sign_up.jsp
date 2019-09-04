@@ -103,7 +103,7 @@
 							<div class="col col-form-label" id="inputGender">
    								<div class="form-group d-inline">
 		                            <div class="radio radio-primary d-inline gender">
-			                            <input type="radio" name="m_gender" id="genderM" value="M">
+			                            <input type="radio" name="m_gender" id="genderM" value="M" required>
 			                            <label for="genderM" class="cr">남</label>
 			                        </div>
 		                        </div>
