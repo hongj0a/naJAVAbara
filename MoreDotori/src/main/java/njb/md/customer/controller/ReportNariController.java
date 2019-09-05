@@ -15,8 +15,11 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import njb.md.customer.domain.ReportVO;
+import njb.md.customer.service.BoardService;
+import njb.md.customer.service.ReplyService;
 import njb.md.customer.service.ReportService;
 import njb.md.security.domain.CustomUser;
+import njb.md.service.MemberService;
 
 @Controller
 @Log4j
@@ -26,6 +29,12 @@ import njb.md.security.domain.CustomUser;
 public class ReportNariController {
 	@Resource
 	private ReportService service;
+	@Resource
+	private BoardService bservice;
+	@Resource
+	private ReplyService rservice;
+	@Resource
+	private MemberService mservice;
 	
 	@RequestMapping("/write")
 	public String write(HttpServletRequest request, HttpSession session, ReportVO vo,Principal principal, Model mo) throws Exception {
@@ -57,6 +66,24 @@ public class ReportNariController {
 		revo.setRp_seq(revo2.getRp_seq());
 		log.info("ReportVO::::::::::::::::"+revo);
 		service.regReportDetail(revo);
+		
+		int b_seqI = 0;
+		int re_seqI = 0;
+		
+		if(!b_seq.equals(""))
+			b_seqI = Integer.parseInt(b_seq);
+		
+		if(!re_seq.equals(""))
+			re_seqI = Integer.parseInt(re_seq);
+		
+		if(revo.getC_sort().equals("RP001")) {
+			bservice.reportNum(b_seqI);
+			mservice.updateReport(bservice.getIdBySeq(b_seqI));
+		} else {
+			rservice.reportNum(re_seqI);
+			mservice.updateReport(rservice.getIdBySeq(re_seqI));
+		}
+		
 		/*
 		 * vo.setB_seq(Integer.parseInt(b_seq)); vo.setC_bcategori(b_code);
 		 * vo.setRe_content(re_content); service.regReply(vo);

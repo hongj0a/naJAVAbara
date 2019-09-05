@@ -180,4 +180,9 @@ public class MemberServiceImpl implements MemberService {
 		else
 			return false;
 	}
+
+	@Override
+	public int updateReport(String m_id) {
+		return mapper.updateReport(m_id);
+	}
 }

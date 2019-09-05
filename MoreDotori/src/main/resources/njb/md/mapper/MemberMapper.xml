@@ -105,4 +105,9 @@
 	<update id="updateMonth">
 	  update MEMBER set m_month=#{m_month} where m_id=#{m_id}
 	</update>
+	
+	<!-- report - count,accrue -->
+	<update id="updateReport">
+	  update MEMBER set m_count=m_count+1, m_accrue=m_accrue+1 where m_id=#{m_id} 
+	</update>
 </mapper>

@@ -1,4 +1,5 @@
-var isValidNick = false;
+var isValidNick = true;
+var checkedNick = $('#inputNick').val();
 
 $(function() {
   var token = $("meta[name='_csrf']").attr("content");
@@ -177,6 +178,14 @@ $(document).ready(function() {
 	  }
   });
   
+  $("#withdrawal").keydown(function (event) {
+      if (event.keyCode == '13') {
+         if (window.event) {
+            event.preventDefault(); return;
+		 }
+	  }
+  });
+  
   $('#account-edit').validate({
 	    focusInvalid: true,
 	    rules: {
@@ -228,8 +237,6 @@ $(document).ready(function() {
 	      var $el = $(element);
 	      var $parent = $el.parents('.form-group');
 
-	      if ($el.attr('id') == 'inputNick') isValidNick = false;
-
 	      $el.addClass('is-invalid');
 
 	      $parent.removeClass('mb-4');
@@ -239,50 +246,54 @@ $(document).ready(function() {
 	      var $el = $(element);
 	      var $parent = $el.parents('.form-group');
 
-	      if ($el.attr('id') == 'inputNick') isValidNick = true;
-
 	      $el.parents('.form-group').find('.is-invalid').removeClass('is-invalid');
 
 	      $parent.removeClass('mb-2');
 	      $parent.addClass('mb-4');
+	    },
+	    submitHandler: function() {
+	    	if(isValidNick && checkedNick==$('#inputNick').val()) {
+    			return true;
+    		} else {
+    			swal('닉네임 중복확인을 해주세요.');
+    			return false;
+    		}
 	    }
 	  });
 });
 
 function duplCheckNick() {
-  if (isValidNick) {
-    $.ajax({
-      url: 'dupl.do',
-      data: {
-        type: 'nickname',
-        name: $('#inputNick').val()
-      },
-      type: 'POST',
-      dataType: 'JSON',
-      success: function(data) {
-        switch (data.rst) {
-          case 1:
-            swal('존재하는 닉네임입니다.');
-            break;
-          case 0:
-            swal('사용 가능한 닉네임입니다.');
-            break;
-          default:
-            swal('error');
-        }
-      }
-    });
-  } else {
-    swal('닉네임을 확인해주세요.');
-    $('#inputNick').focus();
-  }
-}
-
-$('#pwd-confirm').keydown(function() {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-    }
-});
+	  if(! $('#inputNick').hasClass('is-invalid')) {
+	    $.ajax({
+	      url: 'dupl.do',
+	      data: {
+	        type: 'nickname',
+	        name: $('#inputNick').val()
+	      },
+	      type: 'POST',
+	      dataType: 'JSON',
+	      success: function(data) {
+	        switch (data.rst) {
+	          case 1:
+	            swal('존재하는 닉네임입니다.');
+	            isValidNick = false;
+	            break;
+	          case 0:
+	            swal('사용 가능한 닉네임입니다.');
+	            checkedNick = $('#inputNick').val();
+	            isValidNick = true;
+	            break;
+	          default:
+	            swal('error');
+	            isValidNick = false;
+	        }
+	      }
+	    });
+	  } else {
+	    swal('닉네임을 확인해주세요.');
+	    $('#inputNick').focus();
+	  }
+	}
 
 function checkPassword() {
   $.ajax({

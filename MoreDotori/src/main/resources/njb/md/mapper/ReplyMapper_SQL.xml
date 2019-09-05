@@ -79,4 +79,10 @@
 		AND RE_SEQ = #{re_seq}
 	</delete>
 	
+	<update id="reportNum" parameterType="int">
+		update REPLY set re_reportnum=re_reportnum+1 where re_seq=#{re_seq}
+	</update>
+	<select id="getIdBySeq" resultType="string">
+		select reg_id from REPLY where re_seq=#{re_seq}
+	</select>
 </mapper>

@@ -15,4 +15,9 @@ public interface ReplyMapper {
 	public int updateReply(ReplyVO vo);	
 	//delete
 	public int deleteReply(ReplyVO vo);
+
+	
+	//신고수 증가
+	public int reportNum(int re_seq);
+	public String getIdBySeq(int re_seq);
 }

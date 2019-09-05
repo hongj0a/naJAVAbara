@@ -96,8 +96,16 @@ public class BoardServiceImpl implements BoardService {
 		log.info("#modHeartNum...:" + vo);
 		return boardMapper.heartNum(vo);
 	}
+	//신고수
+	@Override
+	public int reportNum(int b_seq) throws Exception {
+		return boardMapper.reportNum(b_seq);
+	}
 
-	
+	@Override
+	public String getIdBySeq(int b_seq) {
+		return boardMapper.getIdBySeq(b_seq);
+	}
 
 //	@Override
 //	public Map<String,BoardMgrVO> getBoardMgrMapList() throws Exception{		

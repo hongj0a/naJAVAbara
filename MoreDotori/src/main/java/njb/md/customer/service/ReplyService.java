@@ -14,4 +14,8 @@ public interface ReplyService {
 	public int modReply(ReplyVO vo) throws Exception;	
 	//delete
 	public int removeReply(ReplyVO vo) throws Exception;
+
+	//신고수 증가
+	public int reportNum(int re_seq) throws Exception;
+	public String getIdBySeq(int re_seq);
 }

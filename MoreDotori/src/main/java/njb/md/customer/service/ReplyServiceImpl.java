@@ -72,4 +72,16 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.deleteReply(vo);
 	}
 
+	@Override
+	public int reportNum(int re_seq) throws Exception {
+		// TODO Auto-generated method stub
+		return replyMapper.reportNum(re_seq);
+	}
+
+	@Override
+	public String getIdBySeq(int re_seq) {
+		// TODO Auto-generated method stub
+		return replyMapper.getIdBySeq(re_seq);
+	}
+
 }

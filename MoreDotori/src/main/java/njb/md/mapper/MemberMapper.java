@@ -29,4 +29,6 @@ public interface MemberMapper {
 	String existMem(@Param("m_id") String id, @Param("m_name") String name);
 	
 	int updateMonth(@Param("m_month")long month, @Param("m_id") String id);
+	
+	int updateReport(@Param("m_id") String m_id);
 }

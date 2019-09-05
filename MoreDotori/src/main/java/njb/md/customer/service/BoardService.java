@@ -39,5 +39,8 @@ public interface BoardService {
 	//추천수
 	public int modHeartNum(BoardVO vo) throws Exception;
 	
+	//신고수 증가
+	public int reportNum(int b_seq) throws Exception;
+	public String getIdBySeq(int b_seq);
 }
 

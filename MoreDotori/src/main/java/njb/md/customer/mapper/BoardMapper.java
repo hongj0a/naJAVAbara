@@ -45,4 +45,8 @@ public interface BoardMapper {
 	//추천수
 	public int heartNum(BoardVO vo);
 	
+	
+	//신고수 증가
+	public int reportNum(int b_seq);
+	public String getIdBySeq(int b_seq);
 }

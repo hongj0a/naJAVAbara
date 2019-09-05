@@ -273,5 +273,11 @@
 		</if>
 	</sql>
 
+	<update id="reportNum" parameterType="int">
+		update BOARD set b_reportnum=b_reportnum+1 where b_seq=#{b_seq}
+	</update>
 	
+	<select id="getIdBySeq" resultType="string">
+		select reg_id from BOARD where b_seq=#{b_seq}
+	</select>
 </mapper>

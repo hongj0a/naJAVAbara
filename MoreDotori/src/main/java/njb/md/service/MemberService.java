@@ -14,4 +14,5 @@ public interface MemberService {
 	int withdrawal(String mid);
 	String findId(String name, String phone, String birth);
 	boolean setMonth(String mid, long month);
+	int updateReport(String m_id);
 }
