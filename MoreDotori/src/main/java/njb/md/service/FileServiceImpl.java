@@ -12,8 +12,8 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public String upload(MultipartFile file) {
-		String FILE_STORE = "C:\\KIH\\sts-bundle\\workspace\\naJAVAbara\\MoreDotori\\src\\main\\webapp\\resources\\images\\profile-images";
-//		String FILE_STORE = "\\usr\\local\\apache-tomcat-9.0.24\\webapps\\MoreDotori\\resources\\images\\profile-images";
+//		String FILE_STORE = "C:\\KIH\\sts-bundle\\workspace\\naJAVAbara\\MoreDotori\\src\\main\\webapp\\resources\\images\\profile-images";
+		String FILE_STORE = "\\usr\\local\\apache-tomcat-9.0.24\\webapps\\MoreDotori\\resources\\images\\profile-images";
 		
 		File fStore = new File(FILE_STORE);
 		if(!fStore.exists()) fStore.mkdirs();
