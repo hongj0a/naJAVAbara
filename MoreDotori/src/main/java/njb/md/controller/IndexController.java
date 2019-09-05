@@ -94,6 +94,7 @@ public class IndexController {
 	 @ResponseBody
 	 public ModelAndView getList(){
 	      List<Mem> list = memService.getList();
+	      
 	      for(Mem item: list) {
 	    	  Code code = codeService.selectCodeS(item.getC_member());
 	    	  item.setC_member(code.getC_name());
